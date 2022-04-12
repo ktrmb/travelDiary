@@ -35,7 +35,18 @@
             <artifactId>javafx-controls</artifactId>
             <version>17.0.2</version>
         </dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.1.1</version>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <plugins>
@@ -92,9 +103,9 @@
          </execution>
       </executions>
       <configuration>
-         <systemPropertyVariables>
+<!--         <systemPropertyVariables>
             <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
-         </systemPropertyVariables>
+         </systemPropertyVariables>-->
       </configuration>
    </plugin>
 	</plugins>

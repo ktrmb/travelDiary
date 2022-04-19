@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import java.time.LocalDate;
 
 public class DiaryEntryController {
+    private Diary diary;
 
     @FXML
     private TextField address;
@@ -46,9 +47,12 @@ public class DiaryEntryController {
         String entryAddress = address.getText();
         String entryDiaryText = diaryText.getText();
 
-        DiaryEntry newEntry = new DiaryEntry(entryDate, entryTitle, entryAddress, entryDiaryText);
+        int id = diary.getEntryList().size() + 1;
+
+        DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText);
         newEntry.outPut();
 
+        diary.addNewEntry(newEntry);
     }
 
 }

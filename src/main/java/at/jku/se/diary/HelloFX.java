@@ -23,7 +23,9 @@ public class HelloFX extends Application {
         Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");*/
 
         Scene scene = new Scene(loadFXML("DiaryEntryView"), 640, 480);
+        Scene journalList = new Scene(loadFXML("JournalList"), 640, 480);
         stage.setScene(scene);
+        stage.setScene(journalList);
         stage.show();
     }
 

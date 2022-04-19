@@ -13,21 +13,29 @@ import java.time.LocalDate;
  */
 public class DiaryEntry {
 
+    final int id;
     private LocalDate date;
     private String title;
     private String address;
     private String diaryText;
 
-    public DiaryEntry(String title) {
+    public DiaryEntry(int id, String title) {
+        this.id = id;
         setTitle(title);
     }
-    public DiaryEntry(LocalDate date, String title, String address, String diaryText) {
+    public DiaryEntry(int id, LocalDate date, String title, String address, String diaryText) {
+        this.id = id;
         setDate(date);
         setTitle(title);
         this.address = address; //weil optional
         setDiaryText(diaryText);
+
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
     public void setDate(LocalDate date){
         if(date != null){
             this.date = date;

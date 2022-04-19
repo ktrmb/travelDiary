@@ -9,6 +9,14 @@ public class Diary {
         entryList = new ArrayList<>();
     }
 
+    public ArrayList<DiaryEntry> getEntryList() {
+        return entryList;
+    }
+
+    public void setEntryList(ArrayList<DiaryEntry> entryList) {
+        this.entryList = entryList;
+    }
+
     public void addNewEntry(DiaryEntry newEntry){
         entryList.add(newEntry);
     }

@@ -5,7 +5,10 @@
  */
 package at.jku.se.diary;
 
+import javafx.scene.image.Image;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,8 +21,10 @@ public class DiaryEntry {
     private String title;
     private String address;
     private String diaryText;
+    private ArrayList<Image> pictures;
 
-    public DiaryEntry(int id, String title) {
+
+    public DiaryEntry(String title, int id) {
         this.id = id;
         setTitle(title);
     }
@@ -29,11 +34,18 @@ public class DiaryEntry {
         setTitle(title);
         this.address = address; //weil optional
         setDiaryText(diaryText);
+        pictures = new ArrayList<>();
 
+    }
+    public ArrayList<Image> getPictures(){
+        return pictures;
     }
 
     public int getId() {
         return id;
+    }
+    public void addPicture(Image pic){
+        pictures.add(pic);
     }
 
     public void setDate(LocalDate date){
@@ -65,7 +77,8 @@ public class DiaryEntry {
 
     //dient nur zum Testen
     public void outPut(){
-        System.out.println("Datum: " + getDate().toString() + " Title: " + getTitle().toString() + " Adresse: " + getAddress().toString() + " Text: " + getDiaryText().toString());
+        System.out.println("Datum: " + getDate().toString() + " Title: " + getTitle().toString() + " Adresse: " + getAddress().toString() + " Text: " + getDiaryText().toString() + "pics: " + getPictures().toString());
     }
+
 
 }

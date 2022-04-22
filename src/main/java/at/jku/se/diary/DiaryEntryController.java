@@ -2,20 +2,28 @@ package at.jku.se.diary;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 
 
 public class DiaryEntryController {
     private Diary diary;
+
     private Stage stage;
+
     @FXML
     private TextField address;
     @FXML
@@ -40,6 +48,17 @@ public class DiaryEntryController {
     private ImageView pic2;
     @FXML
     private ImageView pic3;
+    @FXML
+    private ImageView btnJournalList;
+
+    //Scene wechseln - auf JournalList
+    @FXML
+    void showJournalListPage(MouseEvent mouseEvent) throws IOException {
+        Scene scene = btnJournalList.getScene();
+        URL url = new File("src/main/java/at/jku/se/diary/JournalList.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
+    }
 
     @FXML
     void addEntry(ActionEvent event) {
@@ -48,29 +67,36 @@ public class DiaryEntryController {
         String entryAddress = address.getText();
         String entryDiaryText = diaryText.getText();
 
+        //noch Ändern !!! - wo erstellen wir neues Tagebuch Objekt?
+        diary = new Diary();
+
         int id = diary.getEntryList().size() + 1;
 
         DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText);
-        newEntry.outPut();
+
+        newEntry.addPicture(pic1.getImage());
+        newEntry.addPicture(pic2.getImage());
+        newEntry.addPicture(pic3.getImage());
 
         diary.addNewEntry(newEntry);
+        newEntry.outPut();
     }
 
     @FXML
-    public void addPic1(javafx.scene.input.MouseEvent mouseEvent) throws FileNotFoundException {
+    public void addPic1(MouseEvent mouseEvent) throws FileNotFoundException {
         File selectedFile = addPic();
         Image image = new Image(selectedFile.toURI().toString());
         pic1.setImage(image);
     }
     @FXML
-    public void addPic2(javafx.scene.input.MouseEvent mouseEvent) {
+    public void addPic2(MouseEvent mouseEvent) {
         File selectedFile = addPic();
         Image image = new Image(selectedFile.toURI().toString());
         pic2.setImage(image);
 
     }
     @FXML
-    public void addPic3(javafx.scene.input.MouseEvent mouseEvent) {
+    public void addPic3(MouseEvent mouseEvent) {
         File selectedFile = addPic();
         Image image = new Image(selectedFile.toURI().toString());
         pic3.setImage(image);

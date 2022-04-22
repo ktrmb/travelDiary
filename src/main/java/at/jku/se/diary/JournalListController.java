@@ -1,51 +1,65 @@
 package at.jku.se.diary;
 
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 public class JournalListController {
 
     @FXML
-    private ImageView BtnCalendar;
+    private ImageView btnCalendar;
 
     @FXML
-    private ImageView BtnJournalList;
+    private ImageView btnJournalList;
 
     @FXML
-    private ImageView BtnMap;
+    private ImageView btnMap;
 
     @FXML
-    private ImageView BtnNewEntry;
+    private ImageView btnNewEntry;
 
     @FXML
-    private Button BtnSFL;
+    private Button btnSFL;
 
     @FXML
-    void SelectFileLocationClick(ActionEvent event) {
+    void showCalendarPage(MouseEvent event) {
 
     }
 
     @FXML
-    void ShowCalendarPage(MouseEvent event) {
+    void showMapPage(MouseEvent event) {
 
     }
 
-    @FXML
-    void ShowJournalListPage(MouseEvent event) {
 
+    //Scene wechseln auf NewDiaryEntry
+    @FXML
+    void showNewEntryPage(MouseEvent event) throws IOException {
+        Scene scene = btnNewEntry.getScene();
+        URL url = new File("src/main/java/at/jku/se/diary/DiaryEntryView.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
     }
 
     @FXML
-    void ShowMapPage(MouseEvent event) {
-
-    }
-
-    @FXML
-    void ShowNewEntryPage(MouseEvent event) {
-
+    void showSelectFileLocation(MouseEvent event) throws IOException {
+        Scene scene = btnSFL.getScene();
+        URL url = new File("src/main/java/at/jku/se/diary/SelectFileLocation.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
     }
 
 }
+
+
+

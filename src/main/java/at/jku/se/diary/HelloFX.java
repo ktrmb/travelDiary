@@ -4,12 +4,13 @@
  * (c) Reinhold Plösch, 2020
  */
 package at.jku.se.diary;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -25,9 +26,10 @@ public class HelloFX extends Application {
         Scene scene = new Scene(loadFXML("DiaryEntryView"), 640, 480);
         Scene journalList = new Scene(loadFXML("JournalList"), 640, 480);
         stage.setScene(scene);
-        stage.setScene(journalList);
+        //stage.setScene(journalList);
         stage.show();
     }
+
 
     private static Parent loadFXML(String diaryEntryView) throws IOException{
         URL url = new File("src/main/java/at/jku/se/diary/" + diaryEntryView + ".fxml").toURI().toURL();
@@ -39,3 +41,20 @@ public class HelloFX extends Application {
         launch();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

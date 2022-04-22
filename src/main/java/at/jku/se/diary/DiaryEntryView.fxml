@@ -46,44 +46,45 @@
             <Image url="@../../../../../../Icons/map.png" />
          </image>
       </ImageView>
-      <MenuButton fx:id="category" layoutX="190.0" layoutY="339.0" mnemonicParsing="false" text="Category">
+      <MenuButton fx:id="category" layoutX="187.0" layoutY="356.0" mnemonicParsing="false" text="Category">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
-      <TextArea fx:id="structuredText" layoutX="189.0" layoutY="371.0" prefHeight="25.0" prefWidth="270.0" promptText="Text" />
-      <Button fx:id="buttonCancel" layoutX="189.0" layoutY="421.0" mnemonicParsing="false" prefWidth="80.0" text="Cancel" />
-      <Button fx:id="buttonEditCategories" layoutX="276.0" layoutY="421.0" mnemonicParsing="false" prefWidth="95.0" text="Edit categories" />
-      <Button fx:id="buttonAdd" layoutX="377.0" layoutY="421.0" mnemonicParsing="false" onAction="#addEntry" prefHeight="25.0" prefWidth="80.0" text="Add">
+      <TextArea fx:id="structuredText" layoutX="187.0" layoutY="387.0" prefHeight="25.0" prefWidth="270.0" promptText="Text" />
+      <Button fx:id="buttonCancel" layoutX="190.0" layoutY="434.0" mnemonicParsing="false" prefWidth="80.0" text="Cancel" />
+      <Button fx:id="buttonEditCategories" layoutX="277.0" layoutY="434.0" mnemonicParsing="false" prefWidth="95.0" text="Edit categories" />
+      <Button fx:id="buttonAdd" layoutX="377.0" layoutY="434.0" mnemonicParsing="false" onAction="#addEntry" prefHeight="25.0" prefWidth="80.0" text="Add">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></Button>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="190.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pic1" fitHeight="60.0" fitWidth="72.0" layoutX="190.0" layoutY="284.0" onMouseClicked="#addPic1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="235.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pic2" fitHeight="60.0" fitWidth="60.0" layoutX="292.0" layoutY="284.0" onMouseClicked="#addPic2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pic3" fitHeight="60.0" fitWidth="80.0" layoutX="398.0" layoutY="284.0" onMouseClicked="#addPic3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="13.0" fitWidth="13.0" layoutX="461.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="13.0" fitWidth="13.0" layoutX="461.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/plus.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="460.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="460.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/delete.png" />
          </image>
       </ImageView>
-      <Rating layoutX="283.0" layoutY="332.0" rating="0.0" />
+      <Rating layoutX="280.0" layoutY="352.0" rating="0.0" />
+      <ImageView fitHeight="68.0" fitWidth="80.0" layoutX="417.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

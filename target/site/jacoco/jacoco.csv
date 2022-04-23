@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+diary_proj,at.jku.se.diary,DiaryEntryController,183,0,0,0,38,0,7,0,7,0
+diary_proj,at.jku.se.diary,SelectFileLocationController,43,0,0,0,13,0,5,0,5,0
+diary_proj,at.jku.se.diary,CategoryListController,4,0,0,0,2,0,2,0,2,0
+diary_proj,at.jku.se.diary,HelloFX,35,0,0,0,10,0,4,0,4,0
+diary_proj,at.jku.se.diary,Diary,21,0,0,0,8,0,4,0,4,0
+diary_proj,at.jku.se.diary,JournalListController,60,0,0,0,18,0,6,0,6,0
+diary_proj,at.jku.se.diary,DiaryEntry,78,21,8,2,23,8,15,3,10,3

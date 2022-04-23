@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -64,8 +65,35 @@
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#7b7a7a" height="3.0" layoutX="393.0" layoutY="432.0" stroke="#6b6b6b" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="120.0" />
-      <Label fx:id="btnSFL" layoutX="398.0" layoutY="424.0" onMouseClicked="#showSelectFileLocation" text="Select File Location" textFill="WHITE">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#575757e6" height="207.0" layoutX="95.0" layoutY="162.0" stroke="#575757e6" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="30.0" width="448.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7c7c7" height="200.0" layoutX="111.0" layoutY="166.0" stroke="#c7c7c7" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="30.0" width="420.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="10.0" layoutX="135.0" layoutY="251.0" stroke="#eaeaea" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="250.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="10.0" layoutX="134.0" layoutY="321.0" stroke="#eaeaea" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="250.0" />
+      <Rectangle fx:id="BtnOk" accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#7b7a7a" height="3.0" layoutX="458.0" layoutY="354.0" onMouseClicked="#showJournalList" stroke="#6b6b6b" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="50.0" />
+      <Label layoutX="128.0" layoutY="174.0" prefHeight="18.0" prefWidth="307.0" text="Select File Location">
+         <font>
+            <Font name="Century Gothic Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="128.0" layoutY="221.0" text="Journal Entry Location:">
+         <font>
+            <Font name="Century Gothic Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="128.0" layoutY="290.0" text="Journal Photo Location:">
+         <font>
+            <Font name="Century Gothic Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="473.0" layoutY="347.0" text="OK" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="entryLocation" layoutX="142.0" layoutY="244.0" prefHeight="26.0" prefWidth="238.0" />
+      <TextField fx:id="photoLocation" layoutX="138.0" layoutY="314.0" prefHeight="26.0" prefWidth="238.0" />
+      <Rectangle accessibleRole="BUTTON" arcHeight="5.0" arcWidth="5.0" fill="#7b7a7a" height="3.0" layoutX="405.0" layoutY="432.0" stroke="#6b6b6b" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="120.0" />
+      <Label layoutX="410.0" layoutY="424.0" text="Select File Location" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="13.0" />
          </font>

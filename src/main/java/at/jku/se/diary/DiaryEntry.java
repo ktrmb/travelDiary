@@ -6,7 +6,7 @@
 package at.jku.se.diary;
 
 import javafx.scene.image.Image;
-
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -16,13 +16,16 @@ import java.util.ArrayList;
  */
 public class DiaryEntry {
 
-    final int id;
+    private int id;
     private LocalDate date;
     private String title;
     private String address;
     private String diaryText;
     private ArrayList<Image> pictures;
 
+    //Standardkonstruktor notwendig für XML umwandlung!
+    public DiaryEntry(){
+    }
 
     public DiaryEntry(String title, int id) {
         this.id = id;
@@ -32,11 +35,12 @@ public class DiaryEntry {
         this.id = id;
         setDate(date);
         setTitle(title);
-        this.address = address; //weil optional
+        setAddress(address);
         setDiaryText(diaryText);
         pictures = new ArrayList<>();
 
     }
+
     public ArrayList<Image> getPictures(){
         return pictures;
     }
@@ -51,7 +55,12 @@ public class DiaryEntry {
     public void setDate(LocalDate date){
         if(date != null){
             this.date = date;
+        }else{
+            this.date = LocalDate.now();
         }
+    }
+    public void setAddress(String address){
+        this.address = address;
     }
     public void setTitle(String title) {
         if (title != null && title.length() > 0)
@@ -62,6 +71,7 @@ public class DiaryEntry {
             this.diaryText = diaryText;
     }
 
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     public LocalDate getDate() {
         return date;
     }
@@ -75,9 +85,9 @@ public class DiaryEntry {
         return diaryText;
     }
 
-    //dient nur zum Testen
+    //dient nur zum Testen - wieder weglöschen!!
     public void outPut(){
-        System.out.println("Datum: " + getDate().toString() + " Title: " + getTitle().toString() + " Adresse: " + getAddress().toString() + " Text: " + getDiaryText().toString() + "pics: " + getPictures().toString());
+        System.out.println(" Title: " + getTitle().toString() + " Adresse: " + getAddress().toString() + " Text: " + getDiaryText().toString() + "pics: " + getPictures().toString());
     }
 
 

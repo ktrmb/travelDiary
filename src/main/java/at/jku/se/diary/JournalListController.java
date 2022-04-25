@@ -49,6 +49,13 @@ public class JournalListController {
         scene.setRoot(root);
     }
 
+    @FXML
+    void showSelectFileLocation(MouseEvent event) throws IOException{
+        Scene scene = btnSFL.getScene();
+        URL url = new File("src/main/java/at/jku/se/diary/SelectFileLocation.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
+    }
 }
 
 

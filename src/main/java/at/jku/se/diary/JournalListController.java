@@ -1,19 +1,38 @@
 package at.jku.se.diary;
 
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.util.Pair;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JournalListController {
+
+    @FXML
+    private TableView<ShortDiaryEntry> TVjournalList;
+
+    @FXML
+    private TableColumn<ShortDiaryEntry, String> tvDate;
+
+    @FXML
+    private TableColumn<ShortDiaryEntry, String> tvTitle;
+
     @FXML
     private ImageView btnCalendar;
 
@@ -56,6 +75,24 @@ public class JournalListController {
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
     }
+
+    // Load Table - all Entry's
+
+    @FXML
+    void showTV(MouseEvent event) {
+        Diary d = HelloFX.diary;
+        loadTableView(d);
+    }
+
+    public void loadTableView(Diary diary) {
+        tvTitle.setCellValueFactory(new PropertyValueFactory<ShortDiaryEntry, String >("title"));
+        tvDate.setCellValueFactory(new PropertyValueFactory<ShortDiaryEntry, String >("date"));
+
+        ObservableList<ShortDiaryEntry> list = FXCollections.observableArrayList(diary.getShortEntryList());
+        TVjournalList.setItems(list);
+    }
+
+
 }
 
 

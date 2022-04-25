@@ -8,14 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Rectangle;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 public class JournalListController {
-
     @FXML
     private ImageView btnCalendar;
 
@@ -47,14 +45,6 @@ public class JournalListController {
     void showNewEntryPage(MouseEvent event) throws IOException {
         Scene scene = btnNewEntry.getScene();
         URL url = new File("src/main/java/at/jku/se/diary/DiaryEntryView.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
-    }
-
-    @FXML
-    void showSelectFileLocation(MouseEvent event) throws IOException {
-        Scene scene = btnSFL.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/SelectFileLocation.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
     }

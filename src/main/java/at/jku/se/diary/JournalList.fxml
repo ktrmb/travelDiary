@@ -65,6 +65,10 @@
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <Button fx:id="btnSFL" layoutX="400.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#showSelectFileLocation" text="Select File Location" />
+      <Button id="BtnSFL" fx:id="btnSFL" layoutX="411.0" layoutY="420.0" mnemonicParsing="false" text="Select File Location">
+         <font>
+            <Font name="Century Gothic Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

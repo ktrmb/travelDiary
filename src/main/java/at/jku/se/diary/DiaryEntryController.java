@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -61,15 +62,13 @@ public class DiaryEntryController {
     }
 
     @FXML
-    void addEntry(ActionEvent event) {
+    void addEntry(ActionEvent event) throws JAXBException {
         String entryTitle = title.getText();
         LocalDate entryDate = date.getValue();
         String entryAddress = address.getText();
         String entryDiaryText = diaryText.getText();
 
-        //noch Ändern !!! - wo erstellen wir neues Tagebuch Objekt?
-        diary = new Diary();
-
+        diary = HelloFX.diary;
         int id = diary.getEntryList().size() + 1;
 
         DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText);

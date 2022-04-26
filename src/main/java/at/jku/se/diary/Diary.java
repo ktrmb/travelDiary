@@ -14,11 +14,17 @@ public class Diary {
     private ArrayList<ShortDiaryEntry> shortEntryList;
     private DiaryDB diaryDB;
     private File diaryFile;
+    private ArrayList<String> categories;
 
     public Diary() throws JAXBException {
         entryList = new ArrayList<>();
         diaryDB = HelloFX.diaryDB;
         diaryFile = HelloFX.diaryFile;
+        categories = new ArrayList<>();
+
+        //Todo delete later
+        categories.add("Restaurant");
+        categories.add("Kino");
     }
     @XmlElement
     public ArrayList<DiaryEntry> getEntryList() {
@@ -26,6 +32,10 @@ public class Diary {
     }
 
     public ArrayList<ShortDiaryEntry> getShortEntryList() {return shortEntryList;}
+
+    public ArrayList<String> getCategories() {
+        return categories;
+    }
 
     public void setEntryList(ArrayList<DiaryEntry> entryList) {
         this.entryList = entryList;
@@ -35,8 +45,8 @@ public class Diary {
         entryList.add(newEntry);
         diaryDB.writeDiary(this, diaryFile);
 
-        ShortDiaryEntry sEntry = new ShortDiaryEntry(newEntry.getTitle(), newEntry.getDate().toString());
-        shortEntryList.add(sEntry);
+       /* ShortDiaryEntry sEntry = new ShortDiaryEntry(newEntry.getTitle(), newEntry.getDate().toString());
+        shortEntryList.add(sEntry); */
 
     }
 

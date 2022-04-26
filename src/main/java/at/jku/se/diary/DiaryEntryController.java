@@ -3,6 +3,7 @@ package at.jku.se.diary;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
@@ -18,9 +20,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
-public class DiaryEntryController {
+public class DiaryEntryController implements Initializable {
     private Diary diary;
 
     private Stage stage;
@@ -34,7 +38,7 @@ public class DiaryEntryController {
     @FXML
     private Button buttonEditCategories;
     @FXML
-    private MenuButton category;
+    private ChoiceBox<String> category;
     @FXML
     private DatePicker date;
     @FXML
@@ -51,6 +55,10 @@ public class DiaryEntryController {
     private ImageView pic3;
     @FXML
     private ImageView btnJournalList;
+    @FXML
+    private Rating rating;
+
+    private String selectedCategory;
 
     //Scene wechseln - auf JournalList
     @FXML
@@ -68,10 +76,17 @@ public class DiaryEntryController {
         String entryAddress = address.getText();
         String entryDiaryText = diaryText.getText();
 
+        double stars = rating.getRating();
+        StructInformation structInfo = new StructInformation(0, selectedCategory, stars, structuredText.getText());
+
+        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+
+        structuredInfo.add(structInfo);
+
         diary = HelloFX.diary;
         int id = diary.getEntryList().size() + 1;
 
-        DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText);
+        DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText,structuredInfo);
 
         newEntry.addPicture(pic1.getImage());
         newEntry.addPicture(pic2.getImage());
@@ -116,6 +131,16 @@ public class DiaryEntryController {
         File selectedFile = fileChooser.showOpenDialog(stage);
         System.out.println(selectedFile);
         return selectedFile;
-
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        category.getItems().addAll(HelloFX.diary.getCategories());
+        category.setOnAction(this::selectCategory);
+    }
+
+    public void selectCategory(ActionEvent event){
+        this.selectedCategory = category.getValue();
+    }
+
 }

@@ -23,6 +23,10 @@ public class DiaryEntry {
     private String diaryText;
     private ArrayList<Image> pictures;
 
+
+
+    private ArrayList<StructInformation> structuredInfo;
+
     //Standardkonstruktor notwendig für XML umwandlung!
     public DiaryEntry(){
     }
@@ -31,18 +35,23 @@ public class DiaryEntry {
         this.id = id;
         setTitle(title);
     }
-    public DiaryEntry(int id, LocalDate date, String title, String address, String diaryText) {
+    public DiaryEntry(int id, LocalDate date, String title, String address, String diaryText, ArrayList<StructInformation> infos) {
         this.id = id;
         setDate(date);
         setTitle(title);
         setAddress(address);
         setDiaryText(diaryText);
         pictures = new ArrayList<>();
+        structuredInfo = infos;
 
     }
 
     public ArrayList<Image> getPictures(){
         return pictures;
+    }
+
+    public ArrayList<StructInformation> getStructuredInfo() {
+        return structuredInfo;
     }
 
     public int getId() {
@@ -87,7 +96,7 @@ public class DiaryEntry {
 
     //dient nur zum Testen - wieder weglöschen!!
     public void outPut(){
-        System.out.println(" Title: " + getTitle().toString() + " Adresse: " + getAddress().toString() + " Text: " + getDiaryText().toString() + "pics: " + getPictures().toString());
+        System.out.println(" Title: " + getTitle().toString() + " Adresse: " + getAddress().toString() + " Text: " + getDiaryText().toString() + "pics: " + getPictures().toString() + "structuredInfos: " + getStructuredInfo().toString());
     }
 
 

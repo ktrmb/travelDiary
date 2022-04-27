@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -70,11 +69,6 @@
             <Font name="Century Gothic Bold" size="12.0" />
          </font>
       </Button>
-      <TableView fx:id="TVjournalList" layoutX="246.0" layoutY="228.0" onMouseClicked="#showTV" prefHeight="176.0" prefWidth="274.0">
-        <columns>
-          <TableColumn fx:id="tvTitle" prefWidth="177.6000518798828" text="Title" />
-          <TableColumn fx:id="tvDate" minWidth="5.5999755859375" prefWidth="96.0" text="Date" />
-        </columns>
-      </TableView>
+      <TableView fx:id="TVjournalList" layoutX="246.0" layoutY="228.0" prefHeight="176.0" prefWidth="272.0" />
    </children>
 </Pane>

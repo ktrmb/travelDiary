@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<myDiary>
+    <entryList>
+        <address>Italien</address>
+        <date>2022-02-06</date>
+        <diaryText>Liebes Reisetagebuch, in Italien ist es sehr schön und warm!</diaryText>
+        <title>Italienrundreise</title>
+    </entryList>
+    <entryList>
+        <address>Kroatien</address>
+        <date>2022-01-06</date>
+        <diaryText>Liebes Reisetagebuch, heute waren wir in....</diaryText>
+        <title>Camping-Trip Kroatien</title>
+    </entryList>
+    <entryList>
+        <address>St. Wolfgang</address>
+        <date>2022-04-20</date>
+        <diaryText>Liebes Reisetagebuch, heute sind wir...</diaryText>
+        <title>Wanderung</title>
+    </entryList>
+    <entryList>
+        <address>Aigen</address>
+        <date>2022-04-04</date>
+        <diaryText>Liebes Reisetagebuch, heute waren wir Welnessen im Hotel Almesberger</diaryText>
+        <title>Wellnessen</title>
+    </entryList>
+    <entryList>
+        <address>Linz 4020</address>
+        <date>2022-04-18</date>
+        <diaryText>asdfasdf</diaryText>
+        <title>FirstEntry</title>
+    </entryList>
+    <entryList>
+        <address>Linz 4020</address>
+        <date>2022-04-18</date>
+        <diaryText>asdfasdf</diaryText>
+        <title>FirstEntry</title>
+    </entryList>
+    <entryList>
+        <address>asdfads</address>
+        <date>2022-04-11</date>
+        <diaryText>fasdfasdf</diaryText>
+        <title>asdfa</title>
+    </entryList>
+    <entryList>
+        <address></address>
+        <date>2022-04-05</date>
+    </entryList>
+    <entryList>
+        <address>asdfasdf</address>
+        <date>2022-04-05</date>
+        <diaryText>asdfasdf</diaryText>
+        <title>asdfasdf</title>
+    </entryList>
+</myDiary>

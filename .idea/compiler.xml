@@ -7,6 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="diary" />
+        <module name="PR SE_TravelDiary" />
+        <module name="travel diary" />
+        <module name="travelDiary" />
       </profile>
     </annotationProcessing>
   </component>

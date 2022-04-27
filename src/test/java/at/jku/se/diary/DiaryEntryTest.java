@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class DiaryEntryTest {
     
-   private final DiaryEntry e= new DiaryEntry("Visiting Acropolis");
+   private final DiaryEntry e= new DiaryEntry("Visiting Acropolis", 1);
 
     /**
      * Test of setTitle method, of class DiaryEntry.

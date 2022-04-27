@@ -6,24 +6,67 @@
 package at.jku.se.diary;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import javax.xml.bind.JAXBException;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+
 public class HelloFX extends Application {
+    public static Diary diary;
+    public static DiaryDB diaryDB;
+    public static File diaryFile;
 
     @Override
-    public void start(Stage stage) {
-        String javaVersion = System.getProperty("java.version!");
-        String javafxVersion = System.getProperty("javafx.version");
-        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        Scene scene = new Scene(new StackPane(l), 640, 480);
-        stage.setScene(scene);
+    public void start(Stage stage) throws IOException{
+        Scene journalList = new Scene(loadFXML("JournalList"), 640, 480);
+        stage.setScene(journalList);
         stage.show();
     }
 
-    public static void main(String[] args) {
+    private static Parent loadFXML(String diaryEntryView) throws IOException{
+        URL url = new File("src/main/java/at/jku/se/diary/" + diaryEntryView + ".fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        return root;
+    }
+
+    public static void main(String[] args) throws JAXBException {
+        //Beim Starten des Programms wird neues Diary-Objekt erzeugt, dass unten dann mit den bereits vorhandenen Daten(der XML) befüllt wird
+        diaryDB = new DiaryDB();
+        diaryFile = new File("diary.xml");
+        diary = new Diary();
+
+        // hier alle DiaryEntries aus xml auslesen und dem Diary hinzufügen
+        diary = diaryDB.readDiary(diaryFile);
+
         launch();
+
+        //Dient nur zur Kontrolle - wieder weglöschen!!
+        ArrayList<DiaryEntry> entryList = diary.getEntryList();
+        for(DiaryEntry entry : entryList){
+            System.out.println(entry.getTitle() + " " + entry.getAddress() + " " + entry.getDiaryText());
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

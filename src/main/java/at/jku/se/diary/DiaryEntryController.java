@@ -143,4 +143,7 @@ public class DiaryEntryController implements Initializable {
         this.selectedCategory = category.getValue();
     }
 
+    @FXML
+    public void editCategories(MouseEvent mouseEvent) {
+    }
 }

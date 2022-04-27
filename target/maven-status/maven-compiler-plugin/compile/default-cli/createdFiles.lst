@@ -1,6 +1,7 @@
 at\jku\se\diary\DiaryDB.class
 at\jku\se\diary\StructInformation.class
 at\jku\se\diary\JournalListController.class
+at\jku\se\diary\EntryViewController.class
 at\jku\se\diary\Diary.class
 at\jku\se\diary\CategoryListController.class
 at\jku\se\diary\DiaryEntry.class

@@ -22,6 +22,8 @@ import java.time.LocalDate;
 
 public class JournalListController {
 
+    public DiaryEntry selectedEntry;
+
     @FXML
     private TableView<DiaryEntry> TVjournalList;
 
@@ -39,6 +41,22 @@ public class JournalListController {
 
     @FXML
     private Button btnSFL;
+
+    // Load Table - all Entry's
+    public void initialize () {
+        Diary diary = HelloFX.diary;
+
+        TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
+        titel.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getTitle())));
+
+        TableColumn<DiaryEntry, LocalDate> date = new TableColumn<DiaryEntry, LocalDate>("Date");
+        date.setCellValueFactory(c -> new SimpleObjectProperty<LocalDate>(c.getValue().getDate()));
+
+        TVjournalList.getColumns().addAll(titel, date);
+
+        ObservableList<DiaryEntry> diaryE = FXCollections.observableArrayList(diary.getEntryList());
+        TVjournalList.setItems(diaryE);
+    }
 
     @FXML
     void showCalendarPage(MouseEvent event) {
@@ -68,20 +86,14 @@ public class JournalListController {
         scene.setRoot(root);
     }
 
-    // Load Table - all Entry's
-    public void initialize () {
-        Diary diary = HelloFX.diary;
+    @FXML
+    void showSelectedEntry(MouseEvent event) throws IOException{
+        selectedEntry = TVjournalList.getSelectionModel().getSelectedItem();
 
-        TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
-        titel.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getTitle())));
-
-        TableColumn<DiaryEntry, LocalDate> date = new TableColumn<DiaryEntry, LocalDate>("Date");
-        date.setCellValueFactory(c -> new SimpleObjectProperty<LocalDate>(c.getValue().getDate()));
-
-        TVjournalList.getColumns().addAll(titel, date);
-
-        ObservableList<DiaryEntry> diaryE = FXCollections.observableArrayList(diary.getEntryList());
-        TVjournalList.setItems(diaryE);
+        Scene scene = null;
+        URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
     }
 
 }

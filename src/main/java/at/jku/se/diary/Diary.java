@@ -38,6 +38,12 @@ public class Diary {
         this.entryList = entryList;
     }
 
+
+    public void setCategories(ArrayList<String> categories) {
+        this.categories = categories;
+    }
+
+
     public void addNewEntry(DiaryEntry newEntry) throws JAXBException {
         entryList.add(newEntry);
         diaryDB.writeDiary(this, diaryFile);

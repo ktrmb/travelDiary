@@ -144,6 +144,11 @@ public class DiaryEntryController implements Initializable {
     }
 
     @FXML
-    public void editCategories(MouseEvent mouseEvent) {
+    public void editCategories(MouseEvent mouseEvent) throws IOException{
+        Scene scene = buttonEditCategories.getScene();
+        URL url = new File("src/main/java/at/jku/se/diary/CategoryList.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
+
     }
 }

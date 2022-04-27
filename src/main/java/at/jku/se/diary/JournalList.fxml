@@ -45,8 +45,8 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#999898" height="3.0" layoutX="117.0" layoutY="193.0" stroke="#717171" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="406.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="175.0" layoutX="247.0" layoutY="228.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="272.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#999898" height="3.0" layoutX="121.0" layoutY="194.0" stroke="#717171" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="103.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="210.0" layoutX="256.0" layoutY="194.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="272.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="175.0" layoutX="120.0" layoutY="228.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="103.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="3.0" layoutX="128.0" layoutY="257.0" stroke="#eaeaea" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="88.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="3.0" layoutX="128.0" layoutY="285.0" stroke="#eaeaea" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="88.0" />
@@ -54,12 +54,12 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="3.0" layoutX="128.0" layoutY="342.0" stroke="#eaeaea" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="88.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="3.0" layoutX="128.0" layoutY="385.0" stroke="#eaeaea" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="27.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="3.0" layoutX="189.0" layoutY="385.0" stroke="#eaeaea" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="27.0" />
-      <Label layoutX="131.0" layoutY="183.0" prefHeight="24.0" prefWidth="387.0" text="Filter                     Title                                       Date" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="151.0" layoutY="183.0" prefHeight="24.0" prefWidth="41.0" text="Filter" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="319.0" layoutY="187.0" prefHeight="4.0" prefWidth="73.0" text="Search..." textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="265.0" layoutY="187.0" prefHeight="4.0" prefWidth="73.0" text="Search..." textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
@@ -69,6 +69,6 @@
             <Font name="Century Gothic Bold" size="12.0" />
          </font>
       </Button>
-      <TableView fx:id="TVjournalList" layoutX="246.0" layoutY="228.0" prefHeight="176.0" prefWidth="272.0" />
+      <TableView fx:id="TVjournalList" layoutX="256.0" layoutY="215.0" prefHeight="189.0" prefWidth="272.0" />
    </children>
 </Pane>

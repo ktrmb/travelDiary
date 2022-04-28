@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.CategoryListController">
    <children>
       <Label layoutX="162.0" layoutY="26.0" prefHeight="43.0" prefWidth="317.0" text="T R A V E L   J O U R N A L" textAlignment="CENTER">
          <font>
@@ -25,7 +26,7 @@
             <Image url="@../../../../../../Icons/icons/menu-burger.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="289.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnNewEntry" fitHeight="24.0" fitWidth="24.0" layoutX="289.0" layoutY="99.0" onMouseClicked="#showNewEntryPage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/icons/plus.png" />
          </image>
@@ -45,12 +46,18 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="175.0" layoutX="184.0" layoutY="205.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="272.0" />
-      <Button fx:id="BtnOk" layoutX="408.0" layoutY="400.0" mnemonicParsing="false" onAction="#SaveListOnClick" prefHeight="25.0" prefWidth="48.0" text="OK">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="160.0" layoutX="181.0" layoutY="196.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="280.0" />
+      <Button fx:id="BtnOk" layoutX="404.0" layoutY="386.0" mnemonicParsing="false" onAction="#SaveListOnClick" onMouseClicked="#showNewEntryPage" prefHeight="25.0" prefWidth="48.0" text="OK">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <ListView fx:id="LVcategoryList" layoutX="188.0" layoutY="218.0" prefHeight="148.0" prefWidth="264.0" />
+      <ListView fx:id="LVcategoryList" layoutX="188.0" layoutY="196.0" prefHeight="159.0" prefWidth="264.0" />
+      <TextField fx:id="newCategory" layoutX="190.0" layoutY="386.0" />
+      <Button fx:id="BtnAdd" layoutX="347.0" layoutY="386.0" mnemonicParsing="false" onAction="#AddToList" prefHeight="25.0" prefWidth="48.0" text="Add">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

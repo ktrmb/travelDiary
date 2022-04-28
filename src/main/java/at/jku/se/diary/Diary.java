@@ -11,7 +11,6 @@ import java.util.ArrayList;
 @XmlRootElement(name="myDiary")
 public class Diary {
     private ArrayList<DiaryEntry> entryList;
-    private ArrayList<ShortDiaryEntry> shortEntryList;
     private DiaryDB diaryDB;
     private File diaryFile;
     private ArrayList<String> categories;
@@ -31,8 +30,6 @@ public class Diary {
         return entryList;
     }
 
-    public ArrayList<ShortDiaryEntry> getShortEntryList() {return shortEntryList;}
-
     public ArrayList<String> getCategories() {
         return categories;
     }
@@ -41,13 +38,15 @@ public class Diary {
         this.entryList = entryList;
     }
 
+
+    public void setCategories(ArrayList<String> categories) {
+        this.categories = categories;
+    }
+
+
     public void addNewEntry(DiaryEntry newEntry) throws JAXBException {
         entryList.add(newEntry);
         diaryDB.writeDiary(this, diaryFile);
-
-       /* ShortDiaryEntry sEntry = new ShortDiaryEntry(newEntry.getTitle(), newEntry.getDate().toString());
-        shortEntryList.add(sEntry); */
-
     }
 
 

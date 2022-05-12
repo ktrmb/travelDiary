@@ -10,6 +10,7 @@ public class DiaryDB {
 
     //Methode um in die XML zu schreiben
     public void writeDiary(Diary diary, File file) throws JAXBException{
+        diary.setCurrentEntry(false);
         JAXBContext jc = JAXBContext.newInstance(Diary.class);
         Marshaller m = jc.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

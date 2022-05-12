@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import org.json.JSONObject;
+
 
 public class CategoryListController implements Initializable {
     //ListView list with two buttons in it
@@ -54,6 +56,8 @@ public class CategoryListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         LVcategoryList.getItems().addAll(HelloFX.diary.getCategories());
+
+
     }
 
     @FXML
@@ -62,6 +66,7 @@ public class CategoryListController implements Initializable {
         URL url = new File("src/main/java/at/jku/se/diary/DiaryEntryView.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
+
     }
 
 }

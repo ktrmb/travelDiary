@@ -14,12 +14,14 @@ public class Diary {
     private DiaryDB diaryDB;
     private File diaryFile;
     private ArrayList<String> categories;
+    private boolean currentEntry = false;
 
     public Diary() throws JAXBException {
         entryList = new ArrayList<>();
         diaryDB = HelloFX.diaryDB;
         diaryFile = HelloFX.diaryFile;
         categories = new ArrayList<>();
+        currentEntry = false;
 
         //Todo delete later
         categories.add("Restaurant");
@@ -47,6 +49,14 @@ public class Diary {
     public void addNewEntry(DiaryEntry newEntry) throws JAXBException {
         entryList.add(newEntry);
         diaryDB.writeDiary(this, diaryFile);
+    }
+
+    public boolean getCurrentEntry() {
+        return currentEntry;
+    }
+
+    public void setCurrentEntry(boolean currentEntry) {
+        this.currentEntry = currentEntry;
     }
 
 

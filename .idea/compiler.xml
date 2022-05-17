@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="diary" />
         <module name="travelDiary" />
+        <module name="travel diary" />
       </profile>
     </annotationProcessing>
   </component>

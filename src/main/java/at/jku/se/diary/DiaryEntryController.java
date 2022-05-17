@@ -22,10 +22,11 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import org.json.JSONObject;
 
 
 public class DiaryEntryController implements Initializable {
-    private Diary diary;
+    private Diary diary = HelloFX.diary;;
 
     private Stage stage;
 
@@ -63,6 +64,8 @@ public class DiaryEntryController implements Initializable {
     //Scene wechseln - auf JournalList
     @FXML
     void showJournalListPage(MouseEvent mouseEvent) throws IOException {
+        System.out.println("JLCurrentEntry == "+ diary.getCurrentEntry() );
+        if(diary.getCurrentEntry() == true) diary.getEntryList().remove(diary.getEntryList().size()-1);
         Scene scene = btnJournalList.getScene();
         URL url = new File("src/main/java/at/jku/se/diary/JournalList.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
@@ -83,7 +86,7 @@ public class DiaryEntryController implements Initializable {
 
         structuredInfo.add(structInfo);
 
-        diary = HelloFX.diary;
+
         int id = diary.getEntryList().size() + 1;
 
         DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText,structuredInfo);
@@ -91,8 +94,10 @@ public class DiaryEntryController implements Initializable {
         newEntry.addPicture(pic1.getImage());
         newEntry.addPicture(pic2.getImage());
         newEntry.addPicture(pic3.getImage());
-
+        diary.getEntryList().remove(diary.getEntryList().size()-1);
         diary.addNewEntry(newEntry);
+        diary.setCurrentEntry(false);
+        System.out.println("AddCurrentEntry == "+ diary.getCurrentEntry() );
         newEntry.outPut();
     }
 
@@ -137,6 +142,14 @@ public class DiaryEntryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         category.getItems().addAll(HelloFX.diary.getCategories());
         category.setOnAction(this::selectCategory);
+        System.out.println("Initialize == "+ diary.getCurrentEntry() );
+        if (diary.getCurrentEntry() == true) {
+            DiaryEntry lastEntry = diary.getEntryList().get(diary.getEntryList().size()-1);
+            title.setText(lastEntry.getTitle());
+            date.setValue(lastEntry.getDate());
+            address.setText(lastEntry.getAddress());
+            diaryText.setText(lastEntry.getDiaryText());
+        }
     }
 
     public void selectCategory(ActionEvent event){
@@ -144,11 +157,40 @@ public class DiaryEntryController implements Initializable {
     }
 
     @FXML
-    public void editCategories(MouseEvent mouseEvent) throws IOException{
-        Scene scene = buttonEditCategories.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/CategoryList.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
+    public void editCategories(MouseEvent mouseEvent) throws IOException, JAXBException {
+
+        this.safeEntry();
+        diary.setCurrentEntry(true);
+        System.out.println("EditCurrentEntry == "+ diary.getCurrentEntry() );
+        try {
+            Scene scene = buttonEditCategories.getScene();
+            URL url = new File("src/main/java/at/jku/se/diary/CategoryList.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            scene.setRoot(root);
+        } catch (Exception e) {
+            System.out.println("load categories" + e);
+        }
 
     }
+
+    public void safeEntry() throws JAXBException {
+        StructInformation structInfo = new StructInformation(0, selectedCategory, rating.getRating(), structuredText.getText());
+        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+        structuredInfo.add(structInfo);
+
+        int id = diary.getEntryList().size() + 1;
+
+        DiaryEntry newEntry = new DiaryEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getText(),structuredInfo);
+        try {
+            newEntry.addPicture(pic1.getImage());
+            newEntry.addPicture(pic2.getImage());
+            newEntry.addPicture(pic3.getImage());
+        } catch (Exception e) {
+            System.out.print("no pictures");
+        }
+        diary.addNewEntry(newEntry);
+        newEntry.outPut();
+    }
+
+
 }

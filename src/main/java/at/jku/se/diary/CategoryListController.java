@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -56,6 +57,8 @@ public class CategoryListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         LVcategoryList.getItems().addAll(HelloFX.diary.getCategories());
+        LVcategoryList.setEditable(true);
+        LVcategoryList.setCellFactory(TextFieldListCell.forListView());
 
 
     }
@@ -67,6 +70,14 @@ public class CategoryListController implements Initializable {
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
 
+    }
+
+
+    @FXML
+    void deleteCategory(MouseEvent event) {
+        String deletedCategory = LVcategoryList.getSelectionModel().getSelectedItem();
+        LVcategoryList.getItems().remove(deletedCategory);
+        HelloFX.diary.getCategories().remove(deletedCategory);
     }
 
 }

@@ -49,5 +49,6 @@
       </Label>
       <Button fx:id="btnEdit" layoutX="552.0" layoutY="377.0" mnemonicParsing="false" onMouseClicked="#editEntry" text="Edit" />
       <Button fx:id="btnDelete" layoutX="545.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#deleteEntry" text="Delete" />
+      <Button fx:id="btnTest" layoutX="550.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#showEntry" text="test" />
    </children>
 </Pane>

@@ -64,7 +64,7 @@
       </Button>
       <ImageView fx:id="delete" fitHeight="20.0" fitWidth="15.0" layoutX="550.0" layoutY="158.0" onMouseClicked="#deleteStructuredInfo" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Icons/delete.png" />
+            <Image url="@../../../../../../Icons/delete.png" />
          </image>
       </ImageView>
       <TableView fx:id="tableList" layoutX="282.0" layoutY="198.0" prefHeight="188.0" prefWidth="274.0" />

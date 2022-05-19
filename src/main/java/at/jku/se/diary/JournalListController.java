@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
+import javax.imageio.IIOParam;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -41,6 +44,9 @@ public class JournalListController {
 
     @FXML
     private Button btnSFL;
+
+    @FXML
+    private Button btnShowEntry;
 
     // Load Table - all Entry's
     public void initialize () {
@@ -87,10 +93,27 @@ public class JournalListController {
     }
 
     @FXML
-    void showSelectedEntry(MouseEvent event) throws IOException{
+    void saveSelectedItem(MouseEvent event) throws IOException {
         selectedEntry = TVjournalList.getSelectionModel().getSelectedItem();
 
-        Scene scene = null;
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("EntryView.fxml"));
+            stage.setUserData(selectedEntry);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println(String.format("Error: %s", e.getMessage()));
+        }
+    }
+
+    @FXML
+    void showSelectedEntry(MouseEvent event) throws IOException{
+        Scene scene = btnShowEntry.getScene();
         URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);

@@ -46,7 +46,7 @@
          </image>
       </ImageView>
       <TextArea fx:id="structuredText" layoutX="187.0" layoutY="387.0" prefHeight="25.0" prefWidth="270.0" promptText="Text" />
-      <Button fx:id="buttonCancel" layoutX="190.0" layoutY="434.0" mnemonicParsing="false" prefWidth="80.0" text="Cancel" />
+      <Button fx:id="buttonCancel" layoutX="190.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#showJournalListPage" prefWidth="80.0" text="Cancel" />
       <Button fx:id="buttonEditCategories" layoutX="277.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#editCategories" prefWidth="95.0" text="Edit categories" />
       <Button fx:id="buttonAdd" layoutX="377.0" layoutY="434.0" mnemonicParsing="false" onAction="#addEntry" prefHeight="25.0" prefWidth="80.0" text="Add">
          <opaqueInsets>
@@ -67,12 +67,12 @@
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="13.0" fitWidth="13.0" layoutX="461.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="13.0" fitWidth="13.0" layoutX="461.0" layoutY="406.0" onMouseClicked="#addStructuredInfo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/plus.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="460.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="460.0" layoutY="387.0" onMouseClicked="#deleteStructInfo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/delete.png" />
          </image>

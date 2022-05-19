@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <myDiary>
+    <categories>Restaurant</categories>
+    <categories>Kino</categories>
+    <categories>asdf</categories>
+    <currentEntry>false</currentEntry>
     <entryList>
         <address>Italien</address>
         <date>2022-02-06</date>
@@ -25,7 +29,13 @@
         <title>Wellnessen</title>
     </entryList>
     <entryList>
+        <address>Aigen</address>
+        <date>2022-04-04</date>
+        <diaryText>Liebes Reisetagebuch, heute waren wir Welnessen im Hotel Almesberger</diaryText>
+        <title>Wellnessen</title>
+    </entryList>
+    <entryList>
         <address></address>
-        <date>2022-04-27</date>
+        <date>2022-05-17</date>
     </entryList>
 </myDiary>

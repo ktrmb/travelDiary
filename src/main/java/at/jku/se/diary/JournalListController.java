@@ -95,20 +95,6 @@ public class JournalListController {
     @FXML
     void saveSelectedItem(MouseEvent event) throws IOException {
         selectedEntry = TVjournalList.getSelectionModel().getSelectedItem();
-
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.close();
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("EntryView.fxml"));
-            stage.setUserData(selectedEntry);
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            System.err.println(String.format("Error: %s", e.getMessage()));
-        }
     }
 
     @FXML

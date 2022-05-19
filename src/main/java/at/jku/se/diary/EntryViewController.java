@@ -50,13 +50,8 @@ public class EntryViewController {
     }
 
     @FXML
-    <User>
     void showEntry(MouseEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        User u = (User) stage.getUserData();
-
-        txtTitel.setText(stage.getUserData().);
+        System.out.println(selectedEntry.getTitle());
     }
 
     public void initialize () {

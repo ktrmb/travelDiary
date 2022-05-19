@@ -235,6 +235,4 @@ public class DiaryEntryController implements Initializable {
 
     }
 
-
-
 }

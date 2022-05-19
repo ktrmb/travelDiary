@@ -55,11 +55,11 @@ public class EntryViewController {
     @FXML
     private Label txtTitel;
 
+    //Edit und View verbinden um anzusehen und gleichzeitig editieren?
+
     public void setSelectedEntry (DiaryEntry entry) {
         this.entry = entry;
     }
-
-
 
     @FXML
     void showEntry(MouseEvent event) {

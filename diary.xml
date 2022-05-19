@@ -3,6 +3,7 @@
     <categories>Restaurant</categories>
     <categories>Kino</categories>
     <categories>asdf</categories>
+    <categories>Urlaub</categories>
     <currentEntry>false</currentEntry>
     <entryList>
         <address>Italien</address>
@@ -23,19 +24,14 @@
         <title>Wanderung</title>
     </entryList>
     <entryList>
-        <address>Aigen</address>
-        <date>2022-04-04</date>
-        <diaryText>Liebes Reisetagebuch, heute waren wir Welnessen im Hotel Almesberger</diaryText>
-        <title>Wellnessen</title>
-    </entryList>
-    <entryList>
-        <address>Aigen</address>
-        <date>2022-04-04</date>
-        <diaryText>Liebes Reisetagebuch, heute waren wir Welnessen im Hotel Almesberger</diaryText>
-        <title>Wellnessen</title>
-    </entryList>
-    <entryList>
-        <address></address>
-        <date>2022-05-17</date>
+        <address>Attersee</address>
+        <date>2022-05-03</date>
+        <diaryText>Radausflug rund um den Attersee</diaryText>
+        <structuredInfo>
+            <category>Urlaub</category>
+            <id>0</id>
+            <structuredText>toller Radrundweg</structuredText>
+        </structuredInfo>
+        <title>Ausflug Attersee</title>
     </entryList>
 </myDiary>

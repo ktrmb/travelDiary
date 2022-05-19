@@ -22,11 +22,9 @@ public class DiaryEntry {
     private String address;
     private String diaryText;
     private ArrayList<Image> pictures;
-
-
     private ArrayList<StructInformation> structuredInfo;
 
-    //Standardkonstruktor notwendig für XML umwandlung!
+    //Standardkonstruktor notwendig für XML Umwandlung!
     public DiaryEntry(){
     }
 

@@ -56,7 +56,7 @@ public class EntryViewController {
         Stage stage = (Stage) node.getScene().getWindow();
         User u = (User) stage.getUserData();
 
-        txtTitel.setText(stage.getUserData().);
+        //txtTitel.setText(stage.getUserData().);
     }
 
     public void initialize () {

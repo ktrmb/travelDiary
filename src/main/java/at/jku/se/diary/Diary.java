@@ -1,7 +1,5 @@
 package at.jku.se.diary;
 
-import javafx.util.Pair;
-
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,11 +20,8 @@ public class Diary {
         diaryFile = HelloFX.diaryFile;
         categories = new ArrayList<>();
         currentEntry = false;
-
-        //Todo delete later
-        categories.add("Restaurant");
-        categories.add("Kino");
     }
+
     @XmlElement
     public ArrayList<DiaryEntry> getEntryList() {
         return entryList;
@@ -44,7 +39,10 @@ public class Diary {
     public void setCategories(ArrayList<String> categories) {
         this.categories = categories;
     }
-
+    public void addNewCategory(String category) throws JAXBException {
+        categories.add(category);
+        diaryDB.writeDiary(this, diaryFile);
+    }
 
     public void addNewEntry(DiaryEntry newEntry) throws JAXBException {
         entryList.add(newEntry);

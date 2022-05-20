@@ -12,11 +12,11 @@ import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import org.json.JSONObject;
 
 
 public class CategoryListController implements Initializable {
@@ -46,13 +46,23 @@ public class CategoryListController implements Initializable {
 
 
     @FXML
-    void SaveListOnClick(ActionEvent event) {
+    void SaveListOnClick(ActionEvent event) throws JAXBException {
         for(String category:LVcategoryList.getItems()) {
             if (!HelloFX.diary.getCategories().contains(category)) {
                 HelloFX.diary.getCategories().add(category);
+                HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
             }
         }
     }
+
+/*    @FXML
+    void SaveListOnClick(ActionEvent event) throws JAXBException {
+        for(String category:LVcategoryList.getItems()) {
+            if (!HelloFX.diary.getCategories().contains(category)) {
+                HelloFX.diary.addNewCategory(category);
+            }
+        }
+    }*/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,10 +84,11 @@ public class CategoryListController implements Initializable {
 
 
     @FXML
-    void deleteCategory(MouseEvent event) {
+    void deleteCategory(MouseEvent event) throws JAXBException {
         String deletedCategory = LVcategoryList.getSelectionModel().getSelectedItem();
         LVcategoryList.getItems().remove(deletedCategory);
         HelloFX.diary.getCategories().remove(deletedCategory);
+        HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
     }
 
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <myDiary>
-    <categories>Restaurant</categories>
-    <categories>Kino</categories>
-    <categories>asdf</categories>
+    <categories>Hotel</categories>
+    <categories>Kultur</categories>
     <categories>Urlaub</categories>
+    <categories>Strand</categories>
     <currentEntry>false</currentEntry>
     <entryList>
         <address>Italien</address>

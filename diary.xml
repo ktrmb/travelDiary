@@ -34,4 +34,14 @@
         </structuredInfo>
         <title>Ausflug Attersee</title>
     </entryList>
+    <entryList>
+        <address></address>
+        <date>2022-05-19</date>
+        <diaryText></diaryText>
+        <structuredInfo>
+            <id>0</id>
+            <structuredText></structuredText>
+        </structuredInfo>
+        <title></title>
+    </entryList>
 </myDiary>

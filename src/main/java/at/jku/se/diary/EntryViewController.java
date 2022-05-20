@@ -1,22 +1,32 @@
 package at.jku.se.diary;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.tools.Platform;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class EntryViewController {
 
-    DiaryEntry selectedEntry;
+    DiaryEntry entry;
 
     @FXML
     private Button btnBack;
@@ -45,23 +55,15 @@ public class EntryViewController {
     @FXML
     private Label txtTitel;
 
-    public void setSelectedEntry(DiaryEntry entry) {
-        selectedEntry = entry;
+    //Edit und View verbinden um anzusehen und gleichzeitig editieren?
+
+    public void setSelectedEntry (DiaryEntry entry) {
+        this.entry = entry;
     }
 
     @FXML
-    <User>
     void showEntry(MouseEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        User u = (User) stage.getUserData();
-
-        //txtTitel.setText(stage.getUserData().);
-    }
-
-    public void initialize () {
-        //System.out.println(selectedEntry.getTitle());
-
+        System.out.println(entry.getTitle());
     }
 
     @FXML
@@ -82,4 +84,18 @@ public class EntryViewController {
         scene.setRoot(root);
     }
 
+    public void initialize() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                setEntryView(entry);
+            }
+        });
+    }
+
+    public void setEntryView (DiaryEntry entry) {
+        this.txtTitel.setText(entry.getTitle());
+        this.txtDatePlace.setText(entry.getDate() + " || " + entry.getAddress());
+        this.txtText.setText(entry.getDiaryText());
+    }
 }

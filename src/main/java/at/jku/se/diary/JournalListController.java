@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class JournalListController {
 
@@ -48,8 +50,7 @@ public class JournalListController {
     @FXML
     private Button btnShowEntry;
 
-    // Load Table - all Entry's
-    public void initialize () {
+    public void initialize() {
         Diary diary = HelloFX.diary;
 
         TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
@@ -95,29 +96,31 @@ public class JournalListController {
     @FXML
     void saveSelectedItem(MouseEvent event) throws IOException {
         selectedEntry = TVjournalList.getSelectionModel().getSelectedItem();
+    }
 
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.close();
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("EntryView.fxml"));
-            stage.setUserData(selectedEntry);
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            System.err.println(String.format("Error: %s", e.getMessage()));
-        }
+    public DiaryEntry getSelectedEntry () {
+        return selectedEntry;
     }
 
     @FXML
-    void showSelectedEntry(MouseEvent event) throws IOException{
-        Scene scene = btnShowEntry.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
+    void showSelectedEntry(MouseEvent event) {
+        try {
+            URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            EntryViewController eController = loader.getController();
+            eController.setSelectedEntry(selectedEntry);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Entry View");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
 }
 

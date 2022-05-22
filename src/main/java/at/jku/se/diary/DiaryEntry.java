@@ -28,10 +28,6 @@ public class DiaryEntry {
     public DiaryEntry(){
     }
 
-    public DiaryEntry(String title, int id) {
-        this.id = id;
-        setTitle(title);
-    }
     public DiaryEntry(int id, LocalDate date, String title, String address, String diaryText, ArrayList<StructInformation> infos) {
         this.id = id;
         setDate(date);
@@ -65,8 +61,6 @@ public class DiaryEntry {
     public void setDate(LocalDate date){
         if(date != null){
             this.date = date;
-        }else{
-            this.date = LocalDate.now();
         }
     }
     public void setAddress(String address){

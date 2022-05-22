@@ -4,6 +4,7 @@
     <categories>Kultur</categories>
     <categories>Urlaub</categories>
     <categories>Strand</categories>
+    <categories>Restaurant</categories>
     <currentEntry>false</currentEntry>
     <entryList>
         <address>Italien</address>
@@ -35,13 +36,14 @@
         <title>Ausflug Attersee</title>
     </entryList>
     <entryList>
-        <address></address>
-        <date>2022-05-19</date>
-        <diaryText></diaryText>
+        <address>Testadresse</address>
+        <date>2022-04-30</date>
+        <diaryText>Testtext</diaryText>
         <structuredInfo>
+            <category>Kultur</category>
             <id>0</id>
-            <structuredText></structuredText>
+            <structuredText>TestInfo</structuredText>
         </structuredInfo>
-        <title></title>
+        <title>Testausflug</title>
     </entryList>
 </myDiary>

@@ -73,7 +73,21 @@ public class EntryViewController {
 
     @FXML
     void editEntry(MouseEvent event) {
+        try {
+            URL url = new File("src/main/java/at/jku/se/diary/EntryEdit.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
 
+            EntryEditController eController = loader.getController();
+            eController.setSelectedEntry(entry);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Entry Edit");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

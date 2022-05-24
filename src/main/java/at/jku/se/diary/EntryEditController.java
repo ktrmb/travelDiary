@@ -9,13 +9,17 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class EntryEditController {
+
+    private DiaryEntry entry;
+    private Diary diary = HelloFX.diary;
 
     @FXML
     private Button btnCancel;
@@ -47,6 +51,26 @@ public class EntryEditController {
     @FXML
     private TextField txtTitel;
 
+    public void initialize() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                setEntry(entry);
+            }
+        });
+    }
+
+    public void setSelectedEntry (DiaryEntry entry) {
+        this.entry = entry;
+    }
+
+    public void setEntry (DiaryEntry entry) {
+        txtTitel.setText(entry.getTitle());
+        txtAdress.setText(entry.getAddress());
+        txtDate.setValue(entry.getDate());
+        txtText.setText(entry.getDiaryText());
+    }
+
     @FXML
     void cancelEdit(MouseEvent event) throws IOException {
         Scene scene = btnCancel.getScene();
@@ -57,6 +81,26 @@ public class EntryEditController {
 
     @FXML
     void saveEntry(MouseEvent event) {
+        entry.setTitle(txtTitel.getText());
+        entry.setAddress(txtAdress.getText());
+        entry.setDate(txtDate.getValue());
+        entry.setDiaryText(txtText.getText());
+
+        try {
+            URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            EntryViewController eController = loader.getController();
+            eController.setSelectedEntry(entry);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Entry View");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

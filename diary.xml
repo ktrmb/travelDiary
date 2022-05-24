@@ -7,12 +7,6 @@
     <categories>Restaurant</categories>
     <currentEntry>false</currentEntry>
     <entryList>
-        <address>Italien</address>
-        <date>2022-02-06</date>
-        <diaryText>Liebes Reisetagebuch, in Italien ist es sehr schön und warm!</diaryText>
-        <title>Italienrundreise</title>
-    </entryList>
-    <entryList>
         <address>Kroatien</address>
         <date>2022-01-06</date>
         <diaryText>Liebes Reisetagebuch, heute waren wir in....</diaryText>
@@ -36,14 +30,9 @@
         <title>Ausflug Attersee</title>
     </entryList>
     <entryList>
-        <address>Testadresse</address>
-        <date>2022-04-30</date>
-        <diaryText>Testtext</diaryText>
-        <structuredInfo>
-            <category>Kultur</category>
-            <id>0</id>
-            <structuredText>TestInfo</structuredText>
-        </structuredInfo>
-        <title>Testausflug</title>
+        <address>Italien</address>
+        <date>2022-02-06</date>
+        <diaryText>Liebes Reisetagebuch, in Italien ist es sehr schön und warm!</diaryText>
+        <title>Italienrundreise</title>
     </entryList>
 </myDiary>

@@ -122,9 +122,4 @@ public class EntryEditController {
     void showStructuredInfo(MouseEvent event) {
 
     }
-
-    public void saveToXML(String title) {
-
-    }
-
 }

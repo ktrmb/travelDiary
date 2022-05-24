@@ -10,6 +10,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.bind.JAXBException;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import javax.swing.*;
 import java.io.File;
@@ -80,11 +92,13 @@ public class EntryEditController {
     }
 
     @FXML
-    void saveEntry(MouseEvent event) {
-        entry.setTitle(txtTitel.getText());
-        entry.setAddress(txtAdress.getText());
-        entry.setDate(txtDate.getValue());
-        entry.setDiaryText(txtText.getText());
+    void saveEntry(MouseEvent event) throws JAXBException {
+        int oldId = entry.getId();
+        DiaryEntry newEntry = new DiaryEntry(oldId, txtDate.getValue(), txtTitel.getText(), txtAdress.getText(), txtText.getText(), entry.getStructuredInfo());
+        //save to xml and switch page
+        diary.getEntryList().remove(entry);
+        diary.addNewEntry(newEntry);
+        HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
 
         try {
             URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
@@ -92,7 +106,7 @@ public class EntryEditController {
             Parent root = loader.load();
 
             EntryViewController eController = loader.getController();
-            eController.setSelectedEntry(entry);
+            eController.setSelectedEntry(newEntry);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -106,6 +120,10 @@ public class EntryEditController {
 
     @FXML
     void showStructuredInfo(MouseEvent event) {
+
+    }
+
+    public void saveToXML(String title) {
 
     }
 

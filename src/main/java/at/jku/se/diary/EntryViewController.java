@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import org.controlsfx.tools.Platform;
 
 import javax.swing.*;
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -67,8 +68,14 @@ public class EntryViewController {
     }
 
     @FXML
-    void deleteEntry(MouseEvent event) {
+    void deleteEntry(MouseEvent event) throws JAXBException, IOException {
+        HelloFX.diary.getEntryList().remove(entry);
+        HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
 
+        Scene scene = btnBack.getScene();
+        URL url = new File("src/main/java/at/jku/se/diary/JournalList.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
     }
 
     @FXML

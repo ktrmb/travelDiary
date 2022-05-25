@@ -1,7 +1,5 @@
 package at.jku.se.diary;
 
-import java.time.LocalDate;
-
 public class StructInformation {
 
     private int id;
@@ -9,6 +7,9 @@ public class StructInformation {
     private double stars;
     private String structuredText;
 
+    public StructInformation(){
+
+    }
 
     public StructInformation(int id, String category, double stars, String structuredText) {
         this.id = id;

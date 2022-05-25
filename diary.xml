@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <myDiary>
+    <categories>Hotel</categories>
+    <categories>Kultur</categories>
+    <categories>Urlaub</categories>
+    <categories>Strand</categories>
     <categories>Restaurant</categories>
-    <categories>Kino</categories>
-    <categories>asdf</categories>
-    <entryList>
-        <address>Italien</address>
-        <date>2022-02-06</date>
-        <diaryText>Liebes Reisetagebuch, in Italien ist es sehr schön und warm!</diaryText>
-        <title>Italienrundreise</title>
-    </entryList>
+    <currentEntry>false</currentEntry>
     <entryList>
         <address>Kroatien</address>
         <date>2022-01-06</date>
@@ -22,15 +19,20 @@
         <title>Wanderung</title>
     </entryList>
     <entryList>
-        <address>Aigen</address>
-        <date>2022-04-04</date>
-        <diaryText>Liebes Reisetagebuch, heute waren wir Welnessen im Hotel Almesberger</diaryText>
-        <title>Wellnessen</title>
+        <address>Attersee</address>
+        <date>2022-05-03</date>
+        <diaryText>Radausflug rund um den Attersee</diaryText>
+        <structuredInfo>
+            <category>Urlaub</category>
+            <id>0</id>
+            <structuredText>toller Radrundweg</structuredText>
+        </structuredInfo>
+        <title>Ausflug Attersee</title>
     </entryList>
     <entryList>
-        <address>Aigen</address>
-        <date>2022-04-04</date>
-        <diaryText>Liebes Reisetagebuch, heute waren wir Welnessen im Hotel Almesberger</diaryText>
-        <title>Wellnessen</title>
+        <address>Italien</address>
+        <date>2022-02-06</date>
+        <diaryText>Liebes Reisetagebuch, in Italien ist es sehr schön und warm!</diaryText>
+        <title>Italienrundreise</title>
     </entryList>
 </myDiary>

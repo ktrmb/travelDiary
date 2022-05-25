@@ -22,19 +22,12 @@ public class DiaryEntry {
     private String address;
     private String diaryText;
     private ArrayList<Image> pictures;
-
-
-
     private ArrayList<StructInformation> structuredInfo;
 
-    //Standardkonstruktor notwendig für XML umwandlung!
+    //Standardkonstruktor notwendig für XML Umwandlung!
     public DiaryEntry(){
     }
 
-    public DiaryEntry(String title, int id) {
-        this.id = id;
-        setTitle(title);
-    }
     public DiaryEntry(int id, LocalDate date, String title, String address, String diaryText, ArrayList<StructInformation> infos) {
         this.id = id;
         setDate(date);
@@ -54,6 +47,10 @@ public class DiaryEntry {
         return structuredInfo;
     }
 
+    public void setStructuredInfo(ArrayList<StructInformation> structuredInfo) {
+        this.structuredInfo = structuredInfo;
+    }
+
     public int getId() {
         return id;
     }
@@ -64,19 +61,17 @@ public class DiaryEntry {
     public void setDate(LocalDate date){
         if(date != null){
             this.date = date;
-        }else{
-            this.date = LocalDate.now();
         }
     }
     public void setAddress(String address){
         this.address = address;
     }
     public void setTitle(String title) {
-        if (title != null && title.length() > 0)
+        if (title != null)
             this.title= title;
     }
     public void setDiaryText(String diaryText){
-        if(diaryText != null && diaryText.length() > 0)
+        if(diaryText != null)
             this.diaryText = diaryText;
     }
 
@@ -96,8 +91,7 @@ public class DiaryEntry {
 
     //dient nur zum Testen - wieder weglöschen!!
     public void outPut(){
-        System.out.println(" Title: " + getTitle().toString() + " Adresse: " + getAddress().toString() + " Text: " + getDiaryText().toString() + "pics: " + getPictures().toString() + "structuredInfos: " + getStructuredInfo().toString());
+        System.out.println(" Title: " + getTitle().toString() + " Adresse: " + getAddress().toString() + " Text: " + getDiaryText().toString() + "pics: " + getPictures().toString() + "structuredInfos: " + getStructuredInfo().size());
     }
-
 
 }

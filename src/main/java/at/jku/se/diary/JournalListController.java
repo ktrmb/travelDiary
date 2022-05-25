@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,11 +16,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
+import javax.imageio.IIOParam;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class JournalListController {
 
@@ -42,8 +47,10 @@ public class JournalListController {
     @FXML
     private Button btnSFL;
 
-    // Load Table - all Entry's
-    public void initialize () {
+    @FXML
+    private Button btnShowEntry;
+
+    public void initialize() {
         Diary diary = HelloFX.diary;
 
         TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
@@ -87,14 +94,33 @@ public class JournalListController {
     }
 
     @FXML
-    void showSelectedEntry(MouseEvent event) throws IOException{
+    void saveSelectedItem(MouseEvent event) throws IOException {
         selectedEntry = TVjournalList.getSelectionModel().getSelectedItem();
-
-        Scene scene = null;
-        URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
     }
+
+    public DiaryEntry getSelectedEntry () {
+        return selectedEntry;
+    }
+
+    @FXML
+    void showSelectedEntry(MouseEvent event) {
+        try {
+            URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            EntryViewController eController = loader.getController();
+            eController.setSelectedEntry(selectedEntry);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Entry View");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
 

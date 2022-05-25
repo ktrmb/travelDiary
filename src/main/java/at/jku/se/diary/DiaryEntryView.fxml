@@ -5,73 +5,80 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.DiaryEntryController">
+<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.DiaryEntryController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="415.0" layoutX="67.0" layoutY="51.0" stroke="#cfcfcf00" strokeType="INSIDE" width="506.0" />
-      <Label alignment="TOP_CENTER" layoutX="274.0" layoutY="20.0" text="TRAVEL JOURNAL" />
-      <Line endX="100.0" layoutX="473.0" layoutY="27.0" startX="-90.0" />
-      <DatePicker fx:id="date" layoutX="188.0" layoutY="132.0" prefHeight="25.0" prefWidth="102.0" promptText="Date" />
-      <Label alignment="TOP_CENTER" layoutX="272.0" layoutY="101.0" text="New Journal Entry" />
-      <TextField fx:id="title" layoutX="308.0" layoutY="132.0" promptText="Titel" />
-      <TextField fx:id="address" layoutX="187.0" layoutY="164.0" prefHeight="25.0" prefWidth="270.0" promptText="Address" />
-      <TextArea fx:id="diaryText" layoutX="187.0" layoutY="197.0" prefHeight="87.0" prefWidth="270.0" promptText="Text" />
-      <Line endX="100.0" layoutX="158.0" layoutY="28.0" startX="-90.0" />
-      <ImageView fx:id="btnJournalList" fitHeight="25.0" fitWidth="25.0" layoutX="227.0" layoutY="65.0" onMouseClicked="#showJournalListPage" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="341.0" layoutX="66.0" layoutY="95.0" stroke="#d9d9d9" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="30.0" width="508.0" />
+      <Label alignment="TOP_CENTER" layoutX="162.0" layoutY="26.0" text="T R A V E L   J O U R N A L">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Label>
+      <Line endX="45.39990234375" endY="-1.1444091796875E-5" layoutX="602.0" layoutY="47.0" startX="-107.2213134765625" startY="-1.1444091796875E-5" strokeWidth="3.0" />
+      <DatePicker fx:id="date" layoutX="137.0" layoutY="173.0" prefHeight="25.0" prefWidth="102.0" promptText="Date" />
+      <Label alignment="TOP_CENTER" layoutX="257.0" layoutY="138.0" text="New Journal Entry">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <TextField fx:id="title" layoutX="257.0" layoutY="173.0" promptText="Titel" />
+      <TextField fx:id="address" layoutX="136.0" layoutY="205.0" prefHeight="25.0" prefWidth="270.0" promptText="Address" />
+      <TextArea fx:id="diaryText" layoutX="136.0" layoutY="238.0" prefHeight="87.0" prefWidth="270.0" promptText="Text" />
+      <Line endX="68.30001831054688" endY="-1.1444091796875E-5" layoutX="74.0" layoutY="48.0" startX="-100.0" strokeWidth="3.0" />
+      <ImageView fx:id="btnJournalList" fitHeight="25.0" fitWidth="25.0" layoutX="243.0" layoutY="97.0" onMouseClicked="#showJournalListPage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/menu.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="280.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="289.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/plus.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="331.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="330.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/calendar.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="368.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="370.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/map.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="structuredText" layoutX="187.0" layoutY="387.0" prefHeight="25.0" prefWidth="270.0" promptText="Text" />
-      <Button fx:id="buttonCancel" layoutX="190.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#showJournalListPage" prefWidth="80.0" text="Cancel" />
-      <Button fx:id="buttonEditCategories" layoutX="277.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#editCategories" prefWidth="95.0" text="Edit categories" />
-      <Button fx:id="buttonAdd" layoutX="377.0" layoutY="434.0" mnemonicParsing="false" onAction="#addEntry" prefHeight="25.0" prefWidth="80.0" text="Add">
+      <TextArea fx:id="structuredText" layoutX="136.0" layoutY="364.0" prefHeight="25.0" prefWidth="270.0" promptText="Text" />
+      <Button fx:id="buttonCancel" layoutX="136.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#showJournalListPage" prefWidth="80.0" text="Cancel" />
+      <Button fx:id="buttonEditCategories" layoutX="221.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#editCategories" prefWidth="95.0" text="Edit categories" />
+      <Button fx:id="buttonAdd" layoutX="322.0" layoutY="410.0" mnemonicParsing="false" onAction="#addEntry" prefHeight="25.0" prefWidth="80.0" text="Add">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></Button>
-      <ImageView fx:id="pic1" fitHeight="60.0" fitWidth="72.0" layoutX="190.0" layoutY="284.0" onMouseClicked="#addPic1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pic1" fitHeight="60.0" fitWidth="72.0" layoutX="443.0" layoutY="168.0" onMouseClicked="#addPic1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pic2" fitHeight="60.0" fitWidth="60.0" layoutX="292.0" layoutY="284.0" onMouseClicked="#addPic2" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pic2" fitHeight="60.0" fitWidth="60.0" layoutX="443.0" layoutY="232.0" onMouseClicked="#addPic2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pic3" fitHeight="60.0" fitWidth="80.0" layoutX="398.0" layoutY="284.0" onMouseClicked="#addPic3" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pic3" fitHeight="60.0" fitWidth="80.0" layoutX="443.0" layoutY="295.0" onMouseClicked="#addPic3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="13.0" fitWidth="13.0" layoutX="461.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="13.0" fitWidth="13.0" layoutX="413.0" layoutY="384.0" onMouseClicked="#addStructuredInfo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/plus.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="460.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="412.0" layoutY="364.0" onMouseClicked="#deleteStructInfo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/delete.png" />
          </image>
       </ImageView>
-      <Rating fx:id="rating" layoutX="280.0" layoutY="352.0" rating="0.0" />
-      <ImageView fitHeight="68.0" fitWidth="80.0" layoutX="417.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true" />
-      <ChoiceBox fx:id="category" layoutX="187.0" layoutY="356.0" prefHeight="25.0" prefWidth="80.0" />
+      <Rating fx:id="rating" layoutX="229.0" layoutY="329.0" rating="0.0" />
+      <ImageView fitHeight="68.0" fitWidth="80.0" layoutX="176.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true" />
+      <ChoiceBox fx:id="category" layoutX="136.0" layoutY="333.0" prefHeight="25.0" prefWidth="80.0" />
    </children>
 </AnchorPane>

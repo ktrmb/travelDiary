@@ -1,19 +1,33 @@
 package at.jku.se.diary;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import org.controlsfx.tools.Platform;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
+import javax.swing.*;
+import javax.xml.bind.JAXBException;
 import java.io.File;
-import java.net.URL;
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
+public class EntryViewController {
 
-public class EntryViewController extends JournalListController {
+    DiaryEntry entry;
 
     @FXML
     private Button btnBack;
@@ -23,6 +37,9 @@ public class EntryViewController extends JournalListController {
 
     @FXML
     private Button btnEdit;
+
+    @FXML
+    private Button btnTest;
 
     @FXML
     private Label txtDatePlace;
@@ -39,45 +56,67 @@ public class EntryViewController extends JournalListController {
     @FXML
     private Label txtTitel;
 
-    @FXML //wird nicht benutzt ka?
-    void deleteEntry(MouseEvent event) {
+    //Edit und View verbinden um anzusehen und gleichzeitig editieren?
 
+    public void setSelectedEntry (DiaryEntry entry) {
+        this.entry = entry;
     }
 
-    @FXML //wird nicht benutzt ka?
+    @FXML
+    void showEntry(MouseEvent event) {
+        System.out.println(entry.getTitle());
+    }
+
+    @FXML
+    void deleteEntry(MouseEvent event) throws JAXBException, IOException {
+        HelloFX.diary.getEntryList().remove(entry);
+        HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
+
+        Scene scene = btnBack.getScene();
+        URL url = new File("src/main/java/at/jku/se/diary/JournalList.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
+    }
+
+    @FXML
     void editEntry(MouseEvent event) {
+        try {
+            URL url = new File("src/main/java/at/jku/se/diary/EntryEdit.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
 
+            EntryEditController eController = loader.getController();
+            eController.setSelectedEntry(entry);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Entry Edit");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    @FXML //wird nicht benutzt ka?
-    void showJournalList(MouseEvent event) throws IOException{
-        Scene scene = null;
+    @FXML
+    void showJournalList(MouseEvent event) throws IOException {
+        Scene scene = btnBack.getScene();
         URL url = new File("src/main/java/at/jku/se/diary/JournalList.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
     }
 
-    public void initialize () {
-        DiaryEntry entry = super.selectedEntry;
-
-        txtTitel.setText(entry.getTitle());
-        txtDatePlace.setText(entry.getDate().toString() + " >>> " + entry.getAddress());
-        txtText.setText(entry.getDiaryText());
-        //StructInformation s = entry.getStructuredInfo();
-        //txtRating.setText("Raiting: " + entry.getStructuredInfo().);
+    public void initialize() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                setEntryView(entry);
+            }
+        });
     }
 
-
-    public void showJournalList(javafx.scene.input.MouseEvent mouseEvent) throws IOException{
-        Scene scene = null;
-        URL url = new File("src/main/java/at/jku/se/diary/JournalList.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
-    }
-
-    public void editEntry(javafx.scene.input.MouseEvent mouseEvent) {
-    }
-
-    public void deleteEntry(javafx.scene.input.MouseEvent mouseEvent) {
+    public void setEntryView (DiaryEntry entry) {
+        this.txtTitel.setText(entry.getTitle());
+        this.txtDatePlace.setText(entry.getDate() + " || " + entry.getAddress());
+        this.txtText.setText(entry.getDiaryText());
     }
 }

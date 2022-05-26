@@ -7,23 +7,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
-import javax.imageio.IIOParam;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
 
 public class JournalListController {
 
@@ -102,7 +97,7 @@ public class JournalListController {
         return selectedEntry;
     }
 
-    @FXML
+/*    @FXML
     void showSelectedEntry(MouseEvent event) {
         try {
             URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
@@ -119,8 +114,22 @@ public class JournalListController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
+    @FXML
+    void showSelectedEntry(MouseEvent event) {
+        try {
+            Scene scene = btnShowEntry.getScene();
+            URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+            EntryViewController eController = loader.getController();
+            eController.setSelectedEntry(selectedEntry);
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 

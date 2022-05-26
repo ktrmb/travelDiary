@@ -1,29 +1,21 @@
 package at.jku.se.diary;
 
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import org.controlsfx.tools.Platform;
 
 import javax.swing.*;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
 
 public class EntryViewController {
 
@@ -55,6 +47,15 @@ public class EntryViewController {
 
     @FXML
     private Label txtTitel;
+
+    @FXML
+    private ImageView img1;
+
+    @FXML
+    private ImageView img2;
+
+    @FXML
+    private ImageView img3;
 
     //Edit und View verbinden um anzusehen und gleichzeitig editieren?
 
@@ -118,5 +119,11 @@ public class EntryViewController {
         this.txtTitel.setText(entry.getTitle());
         this.txtDatePlace.setText(entry.getDate() + " || " + entry.getAddress());
         this.txtText.setText(entry.getDiaryText());
+        Image image1 = new Image("file:src/pictures/image"+entry.getId()+"_1.jpg");
+        this.img1.setImage(image1);
+        Image image2 = new Image("file:src/pictures/image"+entry.getId()+"_2.jpg");
+        this.img2.setImage(image2);
+        Image image3 = new Image("file:src/pictures/image"+entry.getId()+"_3.jpg");
+        this.img3.setImage(image3);
     }
 }

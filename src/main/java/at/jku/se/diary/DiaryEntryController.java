@@ -1,5 +1,6 @@
 package at.jku.se.diary;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,16 +15,16 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 
+import javax.imageio.ImageIO;
 import javax.xml.bind.JAXBException;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
-import org.json.JSONObject;
 
 
 public class DiaryEntryController implements Initializable {
@@ -95,22 +96,50 @@ public class DiaryEntryController implements Initializable {
 
         int id = diary.getEntryList().size() + 1;
 
-        DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText,structuredInfo);
+        DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText, structuredInfo);
 
-        newEntry.addPicture(pic1.getImage());
-        newEntry.addPicture(pic2.getImage());
-        newEntry.addPicture(pic3.getImage());
-        diary.getEntryList().remove(diary.getEntryList().size()-1);
+        //Bilder zuerst in ordner "pictures" speichern und dann in das newDiary Objekt speichern
+        //Bild1:
+        String imgName1 = saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
+        Image image1 = new Image("file:src/pictures/"+imgName1);
+        newEntry.addPicture(image1);
+
+        //Bild 2:
+        String imgName2 = saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
+        Image image2 = new Image("file:src/pictures/"+imgName2);
+        newEntry.addPicture(image2);
+
+        //Bild 2:
+        String imgName3 = saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
+        Image image3 = new Image("file:src/pictures/"+imgName3);
+        newEntry.addPicture(image3);
+
+        //diary.getEntryList().remove(diary.getEntryList().size()-1);
+
         diary.addNewEntry(newEntry);
         diary.setCurrentEntry(false);
         System.out.println("AddCurrentEntry == "+ diary.getCurrentEntry() );
         newEntry.outPut();
     }
 
+    public String saveImageToFile(String fileImg, String id){
+        Image image = new Image(fileImg);
+        String imageName = "image" + id + ".jpg";
+        File imageFile = new File("src\\pictures\\"+imageName);
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+
+        try{
+            ImageIO.write(bufferedImage, "jpg", imageFile);
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+        return imageName;
+    }
+
     @FXML
     public void addPic1(MouseEvent mouseEvent) throws FileNotFoundException {
         File selectedFile = addPic();
-        Image image = new Image(selectedFile.toURI().toString());
+        Image image = new Image(String.valueOf(selectedFile));
         pic1.setImage(image);
     }
     @FXML
@@ -132,11 +161,13 @@ public class DiaryEntryController implements Initializable {
         fileChooser.setTitle("Wähle ein Bild aus");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
-        //Festlegen welche Dateitypen wir zulassen:
+/*        //Festlegen welche Dateitypen wir zulassen:
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                 new FileChooser.ExtensionFilter("PNG", "*.png")
-        );
+        );*/
+        //Festlegen welche Dateitypen wir zulassen - nur JPG:
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
 
         //in selectedFile bekomme ich den Pfad gespeichert
         File selectedFile = fileChooser.showOpenDialog(stage);

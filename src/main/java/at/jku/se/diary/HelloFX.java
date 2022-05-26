@@ -51,6 +51,11 @@ public class HelloFX extends Application {
         for(DiaryEntry entry : entryList){
             System.out.println(entry.getTitle() + " " + entry.getAddress() + " " + entry.getDiaryText());
         }
+
+        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+        diary.outputDiaryIDs();
+        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+
     }
 }
 

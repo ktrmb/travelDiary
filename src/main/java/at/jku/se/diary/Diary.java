@@ -57,5 +57,21 @@ public class Diary {
         this.currentEntry = currentEntry;
     }
 
+    //wieder weglöschen!
+    public String toString(){
+        String output = "";
+        for(DiaryEntry e : getEntryList()){
+            output += e.toString();
+        }
+        return output;
+    }
+
+    //wieder weglöschen!
+    public void outputDiaryIDs(){
+        for(DiaryEntry e : getEntryList()){
+            System.out.println("ID: " + e.getId() + " Titel: " + e.getTitle());
+        }
+    }
+
 
 }

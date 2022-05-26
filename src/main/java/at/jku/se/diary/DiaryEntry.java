@@ -29,7 +29,7 @@ public class DiaryEntry {
     }
 
     public DiaryEntry(int id, LocalDate date, String title, String address, String diaryText, ArrayList<StructInformation> infos) {
-        this.id = id;
+        setId(id);
         setDate(date);
         setTitle(title);
         setAddress(address);
@@ -39,6 +39,40 @@ public class DiaryEntry {
 
     }
 
+    //Setter: --------------------------------------------------------------------------------------------
+
+    public void setStructuredInfo(ArrayList<StructInformation> structuredInfo) {
+        this.structuredInfo = structuredInfo;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setDate(LocalDate date){
+        if(date != null){
+            this.date = date;
+        }
+    }
+
+    public void setAddress(String address){
+        this.address = address;
+    }
+
+    public void setTitle(String title) {
+        if (title != null)
+            this.title= title;
+    }
+
+    public void setDiaryText(String diaryText){
+        if(diaryText != null)
+            this.diaryText = diaryText;
+    }
+
+    public void addPicture(Image pic){
+        pictures.add(pic);
+    }
+
+    //getter:-------------------------------------------------------------------------------------------------------
     public ArrayList<Image> getPictures(){
         return pictures;
     }
@@ -47,32 +81,8 @@ public class DiaryEntry {
         return structuredInfo;
     }
 
-    public void setStructuredInfo(ArrayList<StructInformation> structuredInfo) {
-        this.structuredInfo = structuredInfo;
-    }
-
     public int getId() {
         return id;
-    }
-    public void addPicture(Image pic){
-        pictures.add(pic);
-    }
-
-    public void setDate(LocalDate date){
-        if(date != null){
-            this.date = date;
-        }
-    }
-    public void setAddress(String address){
-        this.address = address;
-    }
-    public void setTitle(String title) {
-        if (title != null)
-            this.title= title;
-    }
-    public void setDiaryText(String diaryText){
-        if(diaryText != null)
-            this.diaryText = diaryText;
     }
 
     @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
@@ -89,9 +99,22 @@ public class DiaryEntry {
         return diaryText;
     }
 
-    //dient nur zum Testen - wieder weglöschen!!
+    //dient nur zum Testen - wieder weglöschen!!----------------------------------------------------------------------------------
     public void outPut(){
-        System.out.println(" Title: " + getTitle().toString() + " Adresse: " + getAddress().toString() + " Text: " + getDiaryText().toString() + "pics: " + getPictures().toString() + "structuredInfos: " + getStructuredInfo().size());
+        System.out.println("ID: " + getId() + " "  + getTitle() + " Adresse: " + getAddress() + " Text: " + getDiaryText()  + "structuredInfos: " + getStructuredInfo().size());
+        for(Image pic:getPictures()){
+            System.out.println(pic.getUrl());
+        }
     }
+    public String toString(){
+        String output = ("ID: " + getId() + " "  + getTitle() + " Adresse: " + getAddress() + " Text: " + getDiaryText()  + "structuredInfos: " + getStructuredInfo().size());
+
+        for(Image pic:getPictures()){
+            output += (" Bild: " + pic.getUrl());
+        }
+        return output;
+    }
+
+
 
 }

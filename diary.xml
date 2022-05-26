@@ -7,32 +7,39 @@
     <categories>Restaurant</categories>
     <currentEntry>false</currentEntry>
     <entryList>
-        <address>Kroatien</address>
-        <date>2022-01-06</date>
-        <diaryText>Liebes Reisetagebuch, heute waren wir in....</diaryText>
-        <title>Camping-Trip Kroatien</title>
-    </entryList>
-    <entryList>
-        <address>St. Wolfgang</address>
-        <date>2022-04-20</date>
-        <diaryText>Liebes Reisetagebuch, heute sind wir...</diaryText>
-        <title>Wanderung</title>
-    </entryList>
-    <entryList>
-        <address>Attersee</address>
-        <date>2022-05-03</date>
-        <diaryText>Radausflug rund um den Attersee</diaryText>
+        <address>Luxor</address>
+        <date>2022-05-01</date>
+        <diaryText>Liebes Reisetagebuch, heute....</diaryText>
+        <id>1</id>
         <structuredInfo>
-            <category>Urlaub</category>
+            <category>Kultur</category>
             <id>0</id>
-            <structuredText>toller Radrundweg</structuredText>
+            <structuredText>sehr schöne, alte Stadt</structuredText>
         </structuredInfo>
-        <title>Ausflug Attersee</title>
+        <title>Ausflug Luxor</title>
     </entryList>
     <entryList>
-        <address>Italien</address>
-        <date>2022-02-06</date>
-        <diaryText>Liebes Reisetagebuch, in Italien ist es sehr schön und warm!</diaryText>
-        <title>Italienrundreise</title>
+        <address>Marsa Alam</address>
+        <date>2022-05-02</date>
+        <diaryText>Liebes Reisetagebuch, heute....</diaryText>
+        <id>2</id>
+        <structuredInfo>
+            <category>Strand</category>
+            <id>0</id>
+            <structuredText>schöner, gepflegter Strand</structuredText>
+        </structuredInfo>
+        <title>Strandbesuch</title>
+    </entryList>
+    <entryList>
+        <address>Marsa Alam</address>
+        <date>2022-05-03</date>
+        <diaryText>Liebes Reisetagebuch, heute...</diaryText>
+        <id>3</id>
+        <structuredInfo>
+            <category>Hotel</category>
+            <id>0</id>
+            <structuredText>schönes Hotel, gutes Essen</structuredText>
+        </structuredInfo>
+        <title>Hotel Sea World</title>
     </entryList>
 </myDiary>

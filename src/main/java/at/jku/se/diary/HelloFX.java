@@ -15,7 +15,6 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class HelloFX extends Application {
     public static Diary diary;
@@ -45,17 +44,6 @@ public class HelloFX extends Application {
         diary = diaryDB.readDiary(diaryFile);
 
         launch();
-
-        //Dient nur zur Kontrolle - wieder weglöschen!!
-        ArrayList<DiaryEntry> entryList = diary.getEntryList();
-        for(DiaryEntry entry : entryList){
-            System.out.println(entry.getTitle() + " " + entry.getAddress() + " " + entry.getDiaryText());
-        }
-
-        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-        diary.outputDiaryIDs();
-        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-
     }
 }
 

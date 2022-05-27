@@ -5,7 +5,6 @@
  */
 package at.jku.se.diary;
 
-import javafx.scene.image.Image;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ public class DiaryEntry {
     private String title;
     private String address;
     private String diaryText;
-    private ArrayList<Image> pictures;
     private String picture1;
     private String picture2;
     private String picture3;
@@ -32,16 +30,16 @@ public class DiaryEntry {
     }
 
     public DiaryEntry(int id, LocalDate date, String title, String address, String diaryText, ArrayList<StructInformation> infos) {
-        setId(id);
-        setDate(date);
-        setTitle(title);
-        setAddress(address);
-        setDiaryText(diaryText);
-        pictures = new ArrayList<>();
+        this.id = id;
+        this.date = date;
+        this.title = title;
+        this.address = address;
+        this.diaryText = diaryText;
         structuredInfo = infos;
-        picture1 = "defaultPic.png";
-        picture2 = "defaultPic.png";
-        picture3 = "defaultPic.png";
+        String defaultPic = "defaultPic.png";
+        picture1 = defaultPic;
+        picture2 = defaultPic;
+        picture3 = defaultPic;
 
     }
 
@@ -75,17 +73,15 @@ public class DiaryEntry {
     }
 
     public void setTitle(String title) {
-        if (title != null)
-            this.title= title;
+        if (title != null) {
+            this.title = title;
+        }
     }
 
     public void setDiaryText(String diaryText){
-        if(diaryText != null)
+        if(diaryText != null) {
             this.diaryText = diaryText;
-    }
-
-    public void addPicture(Image pic){
-        pictures.add(pic);
+        }
     }
 
     //getter:-------------------------------------------------------------------------------------------------------
@@ -97,11 +93,6 @@ public class DiaryEntry {
     }
     public String getPicture3(){
         return picture3;
-    }
-
-
-    public ArrayList<Image> getPictures(){
-        return pictures;
     }
 
     public ArrayList<StructInformation> getStructuredInfo() {
@@ -127,22 +118,9 @@ public class DiaryEntry {
     }
 
     //dient nur zum Testen - wieder weglöschen!!----------------------------------------------------------------------------------
-    public void outPut(){
+/*    public void outPut(){
         System.out.println("ID: " + getId() + " "  + getTitle() + " Adresse: " + getAddress() + " Text: " + getDiaryText()  + "structuredInfos: " + getStructuredInfo().size());
         System.out.println("Name Pic1:" + getPicture1() + " Name Pic2: " + getPicture2() + " Name Pic3: " + getPicture3());
-        for(Image pic:getPictures()){
-            System.out.println(pic.getUrl());
-        }
-    }
-    public String toString(){
-        String output = ("ID: " + getId() + " "  + getTitle() + " Adresse: " + getAddress() + " Text: " + getDiaryText()  + "structuredInfos: " + getStructuredInfo().size());
-        output += ("Name Pic1:" + getPicture1() + " Name Pic2: " + getPicture2() + " Name Pic3: " + getPicture3());
-        for(Image pic:getPictures()){
-            output += (" Bild: " + pic.getUrl());
-        }
-        return output;
-    }
 
-
-
+    }*/
 }

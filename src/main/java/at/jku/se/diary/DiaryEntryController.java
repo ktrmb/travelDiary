@@ -14,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
-
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXBException;
 import java.awt.image.BufferedImage;
@@ -28,7 +27,7 @@ import java.util.ResourceBundle;
 
 
 public class DiaryEntryController implements Initializable {
-    private Diary diary = HelloFX.diary;;
+    private Diary diary = HelloFX.diary;
 
     private Stage stage;
 
@@ -51,7 +50,7 @@ public class DiaryEntryController implements Initializable {
     @FXML
     private TextField title;
     @FXML
-    private ImageView pic1 = null;
+    private ImageView pic1;
     @FXML
     private ImageView pic2;
     @FXML
@@ -68,7 +67,9 @@ public class DiaryEntryController implements Initializable {
     @FXML
     void showJournalListPage(MouseEvent mouseEvent) throws IOException {
         System.out.println("JLCurrentEntry == "+ diary.getCurrentEntry() );
-        if(diary.getCurrentEntry() == true) diary.getEntryList().remove(diary.getEntryList().size()-1);
+        if(diary.getCurrentEntry() == true){
+            diary.getEntryList().remove(diary.getEntryList().size()-1);
+        }
         Scene scene = btnJournalList.getScene();
         URL url = new File("src/main/java/at/jku/se/diary/JournalList.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
@@ -100,25 +101,19 @@ public class DiaryEntryController implements Initializable {
 
         //Bilder zuerst in ordner "pictures" speichern und dann in das newDiary Objekt speichern
         //Bild1:
-        if(!pic1.getImage().getUrl().contains("Icons/pic.png")){
+        String defaultPic = "Icons/pic.png";
+        if(!pic1.getImage().getUrl().contains(defaultPic)){
             String imgName1 = saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
-            Image image1 = new Image("file:src/pictures/"+imgName1);
-            System.out.println(imgName1 + "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-            newEntry.addPicture(image1);
             newEntry.setPicture1(imgName1);
         }
         //Bild 2:
-        if(!pic2.getImage().getUrl().contains("Icons/pic.png")){
+        if(!pic2.getImage().getUrl().contains(defaultPic)){
             String imgName2 = saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
-            Image image2 = new Image("file:src/pictures/"+imgName2);
-            newEntry.addPicture(image2);
             newEntry.setPicture2(imgName2);
         }
         //Bild 3:
-        if(!pic3.getImage().getUrl().contains("Icons/pic.png")){
+        if(!pic3.getImage().getUrl().contains(defaultPic)){
             String imgName3 = saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
-            Image image3 = new Image("file:src/pictures/"+imgName3);
-            newEntry.addPicture(image3);
             newEntry.setPicture3(imgName3);
         }
 
@@ -127,7 +122,6 @@ public class DiaryEntryController implements Initializable {
         diary.addNewEntry(newEntry);
         diary.setCurrentEntry(false);
         System.out.println("AddCurrentEntry == "+ diary.getCurrentEntry() );
-        newEntry.outPut();
     }
 
     public String saveImageToFile(String fileImg, String id){
@@ -169,11 +163,6 @@ public class DiaryEntryController implements Initializable {
         fileChooser.setTitle("Wähle ein Bild aus");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
-/*        //Festlegen welche Dateitypen wir zulassen:
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-        );*/
         //Festlegen welche Dateitypen wir zulassen - nur JPG:
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
 
@@ -255,15 +244,8 @@ public class DiaryEntryController implements Initializable {
         String currentDiaryText = ((diaryText.getText() == null) ? " " : diaryText.getText());
 
         DiaryEntry newEntry = new DiaryEntry(id, currentDate, currentTitle, currentAddress, currentDiaryText,structuredInfo);
-        try {
-            newEntry.addPicture(pic1.getImage());
-            newEntry.addPicture(pic2.getImage());
-            newEntry.addPicture(pic3.getImage());
-        } catch (Exception e) {
-            System.out.print("no pictures");
-        }
         diary.addNewEntry(newEntry);
-        newEntry.outPut();
+        //newEntry.outPut();
     }
 
     @FXML

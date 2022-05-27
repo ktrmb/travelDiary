@@ -7,18 +7,6 @@
     <categories>Restaurant</categories>
     <currentEntry>false</currentEntry>
     <entryList>
-        <address>Luxor</address>
-        <date>2022-05-01</date>
-        <diaryText>Liebes Reisetagebuch, heute....</diaryText>
-        <id>1</id>
-        <structuredInfo>
-            <category>Kultur</category>
-            <id>0</id>
-            <structuredText>sehr schöne, alte Stadt</structuredText>
-        </structuredInfo>
-        <title>Ausflug Luxor</title>
-    </entryList>
-    <entryList>
         <address>Marsa Alam</address>
         <date>2022-05-02</date>
         <diaryText>Liebes Reisetagebuch, heute....</diaryText>
@@ -41,5 +29,17 @@
             <structuredText>schönes Hotel, gutes Essen</structuredText>
         </structuredInfo>
         <title>Hotel Sea World</title>
+    </entryList>
+    <entryList>
+        <address>Luxor</address>
+        <date>2022-05-01</date>
+        <diaryText>Liebes Reisetagebuch, heute....</diaryText>
+        <id>1</id>
+        <structuredInfo>
+            <category>Kultur</category>
+            <id>0</id>
+            <structuredText>sehr schöne, alte Stadt</structuredText>
+        </structuredInfo>
+        <title>Ausflug Luxor</title>
     </entryList>
 </myDiary>

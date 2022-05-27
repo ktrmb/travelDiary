@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import javax.xml.bind.JAXBException;
@@ -53,6 +52,15 @@ public class EntryEditController {
     @FXML
     private TextField txtTitel;
 
+    @FXML
+    private ImageView btnDeletePic1;
+
+    @FXML
+    private ImageView btnDeletePic2;
+
+    @FXML
+    private ImageView btnDeletePic3;
+
     public void initialize() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -76,8 +84,24 @@ public class EntryEditController {
         Image image2 = new Image("file:src/pictures/image"+entry.getId()+"_2.jpg");
         this.pic2.setImage(image2);
         Image image3 = new Image("file:src/pictures/image"+entry.getId()+"_3.jpg");
-        this.pic2.setImage(image3);
+        this.pic3.setImage(image3);
     }
+
+    @FXML
+    void deletePic1(MouseEvent event) {
+
+    }
+
+    @FXML
+    void deletePic2(MouseEvent event) {
+
+    }
+
+    @FXML
+    void deletePic3(MouseEvent event) {
+
+    }
+
 
     @FXML
     void cancelEdit(MouseEvent event) throws IOException {
@@ -96,7 +120,7 @@ public class EntryEditController {
         diary.addNewEntry(newEntry);
         HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
 
-        try {
+/*        try {
             URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
@@ -110,8 +134,21 @@ public class EntryEditController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+        try {
+            Scene scene = btnSave.getScene();
+            URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
 
+            EntryViewController eController = loader.getController();
+            eController.setSelectedEntry(newEntry);
+
+            scene.setRoot(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

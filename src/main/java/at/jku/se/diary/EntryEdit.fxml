@@ -59,14 +59,29 @@
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pic2" fitHeight="50.0" fitWidth="51.0" layoutX="200.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pic2" fitHeight="50.0" fitWidth="51.0" layoutX="222.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pic3" fitHeight="50.0" fitWidth="51.0" layoutX="258.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pic3" fitHeight="50.0" fitWidth="51.0" layoutX="306.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnDeletePic1" fitHeight="12.0" fitWidth="13.0" layoutX="191.0" layoutY="361.0" onMouseClicked="#deletePic1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnDeletePic2" fitHeight="12.0" fitWidth="13.0" layoutX="272.0" layoutY="362.0" onMouseClicked="#deletePic2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnDeletePic3" fitHeight="12.0" fitWidth="13.0" layoutX="356.0" layoutY="362.0" onMouseClicked="#deletePic3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/delete.png" />
          </image>
       </ImageView>
    </children>

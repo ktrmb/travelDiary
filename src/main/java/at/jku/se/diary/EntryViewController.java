@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import javax.xml.bind.JAXBException;
@@ -22,6 +23,7 @@ import java.nio.file.Paths;
 public class EntryViewController {
 
     DiaryEntry entry;
+    Stage stage;
 
     @FXML
     private Button btnBack;
@@ -102,25 +104,6 @@ public class EntryViewController {
         }
     }
 
-/*    @FXML
-    void editEntry(MouseEvent event) {
-        try {
-            URL url = new File("src/main/java/at/jku/se/diary/EntryEdit.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-
-            EntryEditController eController = loader.getController();
-            eController.setSelectedEntry(entry);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Entry Edit");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-
     @FXML
     void editEntry(MouseEvent event) {
         try {
@@ -165,5 +148,59 @@ public class EntryViewController {
         this.img2.setImage(image2);
         Image image3 = new Image("file:src/pictures/image"+entry.getId()+"_3.jpg");
         this.img3.setImage(image3);
+    }
+/*    @FXML
+    void enlargePic1(MouseEvent event) {
+        try {
+            URL url = new File("src/main/java/at/jku/se/diary/EnlargedPicture.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            EnlargedPictureController eController = loader.getController();
+            eController.setSelectedEntry(entry.getPicture1());
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("enlarge Picture");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    @FXML
+    void enlargePic1(MouseEvent event) {
+        openNewWindowWithPic(entry.getPicture1());
+    }
+
+    @FXML
+    void enlargePic2(MouseEvent event) {
+        openNewWindowWithPic(entry.getPicture2());
+
+    }
+
+    @FXML
+    void enlargePic3(MouseEvent event) {
+        openNewWindowWithPic(entry.getPicture3());
+
+    }
+
+    //Methode die das jeweilige Bild in einem neuen Fenster (neue Stage) öffnet
+    void openNewWindowWithPic(String picture){
+        try {
+            URL url = new File("src/main/java/at/jku/se/diary/EnlargedPicture.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            EnlargedPictureController eController = loader.getController();
+            eController.setSelectedEntry(picture);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("enlarge Picture");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

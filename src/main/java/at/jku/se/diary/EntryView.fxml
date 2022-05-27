@@ -52,17 +52,17 @@
       <Button fx:id="btnEdit" layoutX="552.0" layoutY="377.0" mnemonicParsing="false" onMouseClicked="#editEntry" text="Edit" />
       <Button fx:id="btnDelete" layoutX="545.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#deleteEntry" text="Delete" />
       <Button fx:id="btnTest" layoutX="550.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#showEntry" text="test" />
-      <ImageView fx:id="img1" fitHeight="54.0" fitWidth="68.0" layoutX="462.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img1" fitHeight="54.0" fitWidth="68.0" layoutX="462.0" layoutY="213.0" onMouseClicked="#enlargePic1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="img2" fitHeight="54.0" fitWidth="68.0" layoutX="462.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img2" fitHeight="54.0" fitWidth="68.0" layoutX="462.0" layoutY="261.0" onMouseClicked="#enlargePic2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="img3" fitHeight="54.0" fitWidth="68.0" layoutX="462.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img3" fitHeight="54.0" fitWidth="68.0" layoutX="462.0" layoutY="308.0" onMouseClicked="#enlargePic3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>

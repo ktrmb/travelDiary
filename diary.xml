@@ -8,83 +8,47 @@
     <currentEntry>false</currentEntry>
     <entryList>
         <address>Marsa Alam</address>
-        <date>2022-05-03</date>
-        <diaryText>Liebes Reisetagebuch, heute...</diaryText>
-        <id>3</id>
-        <structuredInfo>
-            <category>Hotel</category>
-            <id>0</id>
-            <structuredText>schönes Hotel, gutes Essen</structuredText>
-        </structuredInfo>
-        <title>Hotel Sea World</title>
-    </entryList>
-    <entryList>
-        <address>Luxor</address>
-        <date>2022-05-01</date>
+        <date>2022-05-02</date>
         <diaryText>Liebes Reisetagebuch, heute....</diaryText>
-        <id>1</id>
-        <structuredInfo>
-            <category>Kultur</category>
-            <id>0</id>
-            <structuredText>sehr schöne, alte Stadt</structuredText>
-        </structuredInfo>
-        <title>Ausflug Luxor</title>
-    </entryList>
-    <entryList>
-        <address>Marsa Alam_geändert</address>
-        <date>2022-05-03</date>
-        <diaryText>Liebes Reisetagebuch, heute....geändert</diaryText>
         <id>2</id>
-        <picture1>defaultPic.png</picture1>
+        <picture1>image2_1.jpg</picture1>
         <picture2>defaultPic.png</picture2>
         <picture3>defaultPic.png</picture3>
         <structuredInfo>
             <category>Strand</category>
             <id>0</id>
-            <structuredText>schöner, gepflegter Strand</structuredText>
+            <structuredText>gepflegter Strand</structuredText>
         </structuredInfo>
-        <title>Strandbesuch_geändert</title>
+        <title>Strandbesuch</title>
     </entryList>
     <entryList>
-        <address>TEST1- geändert</address>
-        <date>2022-05-10</date>
-        <diaryText>TEST1- geändert</diaryText>
-        <id>4</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
+        <address>Luxor</address>
+        <date>2022-05-01</date>
+        <diaryText>Liebes Reisetagebuch, ....</diaryText>
+        <id>1</id>
+        <picture1>image1_1.jpg</picture1>
+        <picture2>image1_2.jpg</picture2>
+        <picture3>image1_3.jpg</picture3>
         <structuredInfo>
+            <category>Kultur</category>
             <id>0</id>
-            <structuredText></structuredText>
+            <structuredText>schöne, alte Stadt</structuredText>
         </structuredInfo>
-        <title>TEST1-geändert</title>
+        <title>Ausflug Luxor</title>
     </entryList>
     <entryList>
-        <address>ggg</address>
-        <date>2022-05-10</date>
-        <diaryText>ggg</diaryText>
-        <id>5</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <structuredInfo>
-            <id>0</id>
-            <structuredText></structuredText>
-        </structuredInfo>
-        <title>ggg</title>
-    </entryList>
-    <entryList>
-        <address>geändert2</address>
+        <address>Ägypten</address>
         <date>2022-05-03</date>
-        <diaryText>asdf</diaryText>
-        <id>6</id>
-        <picture1>image6_1.jpg</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
+        <diaryText>Liebes Reisetagebuch, ....</diaryText>
+        <id>3</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>image3_2.jpg</picture2>
+        <picture3>image3_3.jpg</picture3>
         <structuredInfo>
+            <category>Hotel</category>
             <id>0</id>
-            <structuredText></structuredText>
+            <structuredText>sauber, gutes essen</structuredText>
         </structuredInfo>
-        <title>geändert2</title>
+        <title>Ägypten Urlaub</title>
     </entryList>
 </myDiary>

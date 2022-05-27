@@ -124,7 +124,7 @@ public class EntryEditController {
     void editPic3(MouseEvent event) {
         File selectedFile = addPic();
         Image image = new Image(String.valueOf(selectedFile));
-        pic2.setImage(image);
+        pic3.setImage(image);
 
     }
     public File addPic(){

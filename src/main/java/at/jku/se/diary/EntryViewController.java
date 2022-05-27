@@ -78,11 +78,12 @@ public class EntryViewController {
         HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
 
         //Bilder werden auch aus Ordner "pictures" gelöscht
-        String fileName1 = "src/pictures/"+entry.getPicture1();
+        String fileName = "src/pictures/";
+        String fileName1 = fileName+entry.getPicture1();
         deletePic(fileName1);
-        String fileName2 = "src/pictures/"+entry.getPicture2();
+        String fileName2 = fileName+entry.getPicture2();
         deletePic(fileName2);
-        String fileName3 = "src/pictures/"+entry.getPicture3();
+        String fileName3 = fileName+entry.getPicture3();
         deletePic(fileName3);
 
         Scene scene = btnBack.getScene();
@@ -130,43 +131,21 @@ public class EntryViewController {
     }
 
     public void initialize() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                setEntryView(entry);
-            }
-        });
+        SwingUtilities.invokeLater(() -> setEntryView(entry));
     }
 
     public void setEntryView (DiaryEntry entry) {
         this.txtTitel.setText(entry.getTitle());
         this.txtDatePlace.setText(entry.getDate() + " || " + entry.getAddress());
         this.txtText.setText(entry.getDiaryText());
-        Image image1 = new Image("file:src/pictures/image"+entry.getId()+"_1.jpg");
+        String imgPath = "file:src/pictures/image";
+        Image image1 = new Image(imgPath+entry.getId()+"_1.jpg");
         this.img1.setImage(image1);
-        Image image2 = new Image("file:src/pictures/image"+entry.getId()+"_2.jpg");
+        Image image2 = new Image(imgPath+entry.getId()+"_2.jpg");
         this.img2.setImage(image2);
-        Image image3 = new Image("file:src/pictures/image"+entry.getId()+"_3.jpg");
+        Image image3 = new Image(imgPath+entry.getId()+"_3.jpg");
         this.img3.setImage(image3);
     }
-/*    @FXML
-    void enlargePic1(MouseEvent event) {
-        try {
-            URL url = new File("src/main/java/at/jku/se/diary/EnlargedPicture.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-
-            EnlargedPictureController eController = loader.getController();
-            eController.setSelectedEntry(entry.getPicture1());
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("enlarge Picture");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 
     @FXML
     void enlargePic1(MouseEvent event) {
@@ -195,7 +174,7 @@ public class EntryViewController {
             EnlargedPictureController eController = loader.getController();
             eController.setSelectedEntry(picture);
 
-            Stage stage = new Stage();
+            stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("enlarge Picture");
             stage.show();

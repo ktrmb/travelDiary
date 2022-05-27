@@ -3,14 +3,11 @@ package at.jku.se.diary;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
 import javax.swing.*;
 
+
+
 public class EnlargedPictureController {
-    private DiaryEntry entry;
-    private Diary diary = HelloFX.diary;
-    private Stage stage;
     private String picture;
 
     @FXML
@@ -22,12 +19,7 @@ public class EnlargedPictureController {
     }
 
     public void initialize() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                setEntry(picture);
-            }
-        });
+        SwingUtilities.invokeLater(() -> setEntry(picture));
     }
     public void setEntry (String picture) {
         Image image1 = new Image("file:src/pictures/"+picture);

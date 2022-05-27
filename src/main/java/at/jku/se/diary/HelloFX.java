@@ -34,15 +34,18 @@ public class HelloFX extends Application {
         return root;
     }
 
-    public static void main(String[] args) throws JAXBException {
-        //Beim Starten des Programms wird neues Diary-Objekt erzeugt, dass unten dann mit den bereits vorhandenen Daten(der XML) befüllt wird
+    public static void main(String[] args) {
+        //Beim Starten des Programms wird neues Diary-Objekt erzeugt,
+        // dass unten dann mit den bereits vorhandenen Daten(der XML) befüllt wird
         diaryDB = new DiaryDB();
         diaryFile = new File("diary.xml");
-        diary = new Diary();
-
-        // hier alle DiaryEntries aus xml auslesen und dem Diary hinzufügen
-        diary = diaryDB.readDiary(diaryFile);
-
+        try {
+            diary = new Diary();
+            // hier alle DiaryEntries aus xml auslesen und dem Diary hinzufügen
+            diary = diaryDB.readDiary(diaryFile);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
         launch();
     }
 }

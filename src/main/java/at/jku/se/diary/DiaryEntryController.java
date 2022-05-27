@@ -66,8 +66,8 @@ public class DiaryEntryController implements Initializable {
     //wenn Current Entry true ist und es wird auf eine andere View gewechselt, wird der derzeitige Input wieder aus Arraylist gelöscht
     @FXML
     void showJournalListPage(MouseEvent mouseEvent) throws IOException {
-        System.out.println("JLCurrentEntry == "+ diary.getCurrentEntry() );
-        if(diary.getCurrentEntry() == true){
+        System.out.println("JLCurrentEntry == "+ diary.isCurrentEntry() );
+        if(diary.isCurrentEntry() == true){
             diary.getEntryList().remove(diary.getEntryList().size()-1);
         }
         Scene scene = btnJournalList.getScene();
@@ -85,7 +85,7 @@ public class DiaryEntryController implements Initializable {
         ArrayList<StructInformation> structuredInfo = new ArrayList<>();
 
 
-        if(diary.getCurrentEntry()) {
+        if(diary.isCurrentEntry()) {
             structuredInfo = diary.getEntryList().get(diary.getEntryList().size()-1).getStructuredInfo();
         } else {
             double stars = rating.getRating();
@@ -121,7 +121,7 @@ public class DiaryEntryController implements Initializable {
 
         diary.addNewEntry(newEntry);
         diary.setCurrentEntry(false);
-        System.out.println("AddCurrentEntry == "+ diary.getCurrentEntry() );
+        System.out.println("AddCurrentEntry == "+ diary.isCurrentEntry() );
     }
 
     public String saveImageToFile(String fileImg, String id){
@@ -177,8 +177,8 @@ public class DiaryEntryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         category.getItems().addAll(HelloFX.diary.getCategories());
         category.setOnAction(this::selectCategory);
-        System.out.println("Initialize == "+ diary.getCurrentEntry() );
-        if (diary.getCurrentEntry() == true) {
+        System.out.println("Initialize == "+ diary.isCurrentEntry() );
+        if (diary.isCurrentEntry() == true) {
             DiaryEntry lastEntry = diary.getEntryList().get(diary.getEntryList().size()-1);
             title.setText(lastEntry.getTitle());
             date.setValue(lastEntry.getDate());
@@ -197,10 +197,10 @@ public class DiaryEntryController implements Initializable {
     //calls safeEntry() to safe the current input and opens new view
     @FXML
     public void editCategories(MouseEvent mouseEvent) throws IOException, JAXBException {
-        if(!diary.getCurrentEntry()) {
+        if(!diary.isCurrentEntry()) {
             this.safeEntry();
             diary.setCurrentEntry(true);
-            System.out.println("EditCurrentEntry == " + diary.getCurrentEntry());
+            System.out.println("EditCurrentEntry == " + diary.isCurrentEntry());
         }
         try {
             Scene scene = buttonEditCategories.getScene();
@@ -215,7 +215,7 @@ public class DiaryEntryController implements Initializable {
 
     @FXML
     public void addStructuredInfo(MouseEvent mouseEvent) throws IOException, JAXBException {
-        if(!diary.getCurrentEntry()) {
+        if(!diary.isCurrentEntry()) {
             this.safeEntry();
             diary.setCurrentEntry(true);
         }

@@ -35,10 +35,10 @@ public class Diary {
         this.entryList = entryList;
     }
 
-
     public void setCategories(ArrayList<String> categories) {
         this.categories = categories;
     }
+
     public void addNewCategory(String category) throws JAXBException {
         categories.add(category);
         diaryDB.writeDiary(this, diaryFile);
@@ -49,7 +49,7 @@ public class Diary {
         diaryDB.writeDiary(this, diaryFile);
     }
 
-    public boolean getCurrentEntry() {
+    public boolean isCurrentEntry() {
         return currentEntry;
     }
 
@@ -72,6 +72,4 @@ public class Diary {
             System.out.println("ID: " + e.getId() + " Titel: " + e.getTitle());
         }
     }
-
-
 }

@@ -19,19 +19,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import static at.jku.se.diary.HelloFX.diary;
 
 public class StructuredInfoController implements Initializable {
 
-
-        @FXML
-        private Button BtnAdd;
-
-        @FXML
-        private Button BtnOk;
 
         @FXML
         private ImageView btnNewEntry;
@@ -57,8 +50,9 @@ public class StructuredInfoController implements Initializable {
         private String selectedCategory;
 
         @FXML
-        void AddToList(ActionEvent event) {
-                StructInformation structInfo = new StructInformation(tableList.getItems().size(), selectedCategory, rating.getRating() , structuredText.getText());
+        void addToList(ActionEvent event) {
+                StructInformation structInfo = new StructInformation(tableList.getItems().size(),
+                        selectedCategory, rating.getRating() , structuredText.getText());
                 tableList.getItems().add(structInfo);
                 category.setValue(" ");
                 rating.setRating(0);
@@ -67,7 +61,7 @@ public class StructuredInfoController implements Initializable {
         }
 
         @FXML
-        void SaveListOnClick(ActionEvent event) throws IOException {
+        void saveListOnClick(ActionEvent event) throws IOException {
                 ArrayList<StructInformation> infos = new ArrayList<>();
                 infos.addAll(tableList.getItems());
                 diary.getEntryList().get(diary.getEntryList().size() -1).setStructuredInfo(infos);
@@ -82,7 +76,7 @@ public class StructuredInfoController implements Initializable {
 
         @FXML
         void showNewEntryPage(MouseEvent event) {
-
+                //will be implemented
         }
 
         @FXML
@@ -104,11 +98,14 @@ public class StructuredInfoController implements Initializable {
                 columnInfo.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStructuredText()));
 
                 tableList.getColumns().addAll(columnCategory,columnStars, columnInfo);
-                ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(diary.getEntryList().get(diary.getEntryList().size() -1).getStructuredInfo());
+                ObservableList<StructInformation> diaryE = FXCollections.observableArrayList
+                        (diary.getEntryList().get(diary.getEntryList().size() -1).getStructuredInfo());
                 diaryE.forEach(info -> System.out.println(info.getCategory() + " " + info.getStars()));
-                if (diaryE.size()>0)tableList.setItems(diaryE);
+                if (diaryE.size()>0){
+                        tableList.setItems(diaryE);
+                }
 
-                //set categorie
+                //set category
                 category.getItems().addAll(HelloFX.diary.getCategories());
                 category.setOnAction(this::selectCategory);
         }

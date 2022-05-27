@@ -8,18 +8,6 @@
     <currentEntry>false</currentEntry>
     <entryList>
         <address>Marsa Alam</address>
-        <date>2022-05-02</date>
-        <diaryText>Liebes Reisetagebuch, heute....</diaryText>
-        <id>2</id>
-        <structuredInfo>
-            <category>Strand</category>
-            <id>0</id>
-            <structuredText>schöner, gepflegter Strand</structuredText>
-        </structuredInfo>
-        <title>Strandbesuch</title>
-    </entryList>
-    <entryList>
-        <address>Marsa Alam</address>
         <date>2022-05-03</date>
         <diaryText>Liebes Reisetagebuch, heute...</diaryText>
         <id>3</id>
@@ -29,6 +17,18 @@
             <structuredText>schönes Hotel, gutes Essen</structuredText>
         </structuredInfo>
         <title>Hotel Sea World</title>
+    </entryList>
+    <entryList>
+        <address>Marsa Alam</address>
+        <date>2022-05-02</date>
+        <diaryText>Liebes Reisetagebuch, heute....</diaryText>
+        <id>2</id>
+        <structuredInfo>
+            <category>Strand</category>
+            <id>0</id>
+            <structuredText>schöner, gepflegter Strand</structuredText>
+        </structuredInfo>
+        <title>Strandbesuch</title>
     </entryList>
     <entryList>
         <address>Luxor</address>

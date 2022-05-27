@@ -16,6 +16,9 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class EntryEditController {
 
@@ -89,17 +92,38 @@ public class EntryEditController {
 
     @FXML
     void deletePic1(MouseEvent event) {
-
+        String fileName = "src/pictures/image"+entry.getId()+"_1.jpg";
+        deletePic(fileName);
+        //Default Image wird gesetzt
+        pic1.setImage(new Image("file:src/pictures/defaultPic.png"));
     }
 
     @FXML
     void deletePic2(MouseEvent event) {
-
+        String fileName = "src/pictures/image"+entry.getId()+"_2.jpg";
+        deletePic(fileName);
+        //Default Image wird gesetzt
+        pic2.setImage(new Image("file:src/pictures/defaultPic.png"));
     }
 
     @FXML
     void deletePic3(MouseEvent event) {
+        String fileName = "src/pictures/image"+entry.getId()+"_3.jpg";
+        deletePic(fileName);
+        //Default Image wird gesetzt
+        pic3.setImage(new Image("file:src/pictures/defaultPic.png"));
+    }
 
+    //Methode um Bilder aus dem Verzeichnis "pictures" zu löschen
+    void deletePic(String fileName){
+        File file = new File(fileName);
+        String pathString = file.getAbsolutePath();
+        Path path = Paths.get(pathString);
+        try{
+            Files.delete(path);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -120,22 +144,7 @@ public class EntryEditController {
         diary.addNewEntry(newEntry);
         HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
 
-/*        try {
-            URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-
-            EntryViewController eController = loader.getController();
-            eController.setSelectedEntry(newEntry);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Entry View");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        try {
+        try{
             Scene scene = btnSave.getScene();
             URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);

@@ -19,18 +19,6 @@
         <title>Hotel Sea World</title>
     </entryList>
     <entryList>
-        <address>Marsa Alam</address>
-        <date>2022-05-02</date>
-        <diaryText>Liebes Reisetagebuch, heute....</diaryText>
-        <id>2</id>
-        <structuredInfo>
-            <category>Strand</category>
-            <id>0</id>
-            <structuredText>schöner, gepflegter Strand</structuredText>
-        </structuredInfo>
-        <title>Strandbesuch</title>
-    </entryList>
-    <entryList>
         <address>Luxor</address>
         <date>2022-05-01</date>
         <diaryText>Liebes Reisetagebuch, heute....</diaryText>
@@ -41,5 +29,62 @@
             <structuredText>sehr schöne, alte Stadt</structuredText>
         </structuredInfo>
         <title>Ausflug Luxor</title>
+    </entryList>
+    <entryList>
+        <address>Marsa Alam_geändert</address>
+        <date>2022-05-03</date>
+        <diaryText>Liebes Reisetagebuch, heute....geändert</diaryText>
+        <id>2</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <structuredInfo>
+            <category>Strand</category>
+            <id>0</id>
+            <structuredText>schöner, gepflegter Strand</structuredText>
+        </structuredInfo>
+        <title>Strandbesuch_geändert</title>
+    </entryList>
+    <entryList>
+        <address>TEST1- geändert</address>
+        <date>2022-05-10</date>
+        <diaryText>TEST1- geändert</diaryText>
+        <id>4</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <structuredInfo>
+            <id>0</id>
+            <structuredText></structuredText>
+        </structuredInfo>
+        <title>TEST1-geändert</title>
+    </entryList>
+    <entryList>
+        <address>ggg</address>
+        <date>2022-05-10</date>
+        <diaryText>ggg</diaryText>
+        <id>5</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <structuredInfo>
+            <id>0</id>
+            <structuredText></structuredText>
+        </structuredInfo>
+        <title>ggg</title>
+    </entryList>
+    <entryList>
+        <address>geändert2</address>
+        <date>2022-05-03</date>
+        <diaryText>asdf</diaryText>
+        <id>6</id>
+        <picture1>image6_1.jpg</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <structuredInfo>
+            <id>0</id>
+            <structuredText></structuredText>
+        </structuredInfo>
+        <title>geändert2</title>
     </entryList>
 </myDiary>

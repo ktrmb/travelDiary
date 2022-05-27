@@ -22,6 +22,9 @@ public class DiaryEntry {
     private String address;
     private String diaryText;
     private ArrayList<Image> pictures;
+    private String picture1;
+    private String picture2;
+    private String picture3;
     private ArrayList<StructInformation> structuredInfo;
 
     //Standardkonstruktor notwendig für XML Umwandlung!
@@ -36,10 +39,23 @@ public class DiaryEntry {
         setDiaryText(diaryText);
         pictures = new ArrayList<>();
         structuredInfo = infos;
+        picture1 = "defaultPic.png";
+        picture2 = "defaultPic.png";
+        picture3 = "defaultPic.png";
 
     }
 
     //Setter: --------------------------------------------------------------------------------------------
+    public void setPicture1(String nameOfPic){
+       this.picture1 = nameOfPic;
+    }
+    public void setPicture2(String nameOfPic){
+        this.picture2 = nameOfPic;
+    }
+    public void setPicture3(String nameOfPic){
+        this.picture3 = nameOfPic;
+    }
+
 
     public void setStructuredInfo(ArrayList<StructInformation> structuredInfo) {
         this.structuredInfo = structuredInfo;
@@ -73,6 +89,17 @@ public class DiaryEntry {
     }
 
     //getter:-------------------------------------------------------------------------------------------------------
+    public String getPicture1(){
+        return picture1;
+    }
+    public String getPicture2(){
+        return picture2;
+    }
+    public String getPicture3(){
+        return picture3;
+    }
+
+
     public ArrayList<Image> getPictures(){
         return pictures;
     }
@@ -102,13 +129,14 @@ public class DiaryEntry {
     //dient nur zum Testen - wieder weglöschen!!----------------------------------------------------------------------------------
     public void outPut(){
         System.out.println("ID: " + getId() + " "  + getTitle() + " Adresse: " + getAddress() + " Text: " + getDiaryText()  + "structuredInfos: " + getStructuredInfo().size());
+        System.out.println("Name Pic1:" + getPicture1() + " Name Pic2: " + getPicture2() + " Name Pic3: " + getPicture3());
         for(Image pic:getPictures()){
             System.out.println(pic.getUrl());
         }
     }
     public String toString(){
         String output = ("ID: " + getId() + " "  + getTitle() + " Adresse: " + getAddress() + " Text: " + getDiaryText()  + "structuredInfos: " + getStructuredInfo().size());
-
+        output += ("Name Pic1:" + getPicture1() + " Name Pic2: " + getPicture2() + " Name Pic3: " + getPicture3());
         for(Image pic:getPictures()){
             output += (" Bild: " + pic.getUrl());
         }

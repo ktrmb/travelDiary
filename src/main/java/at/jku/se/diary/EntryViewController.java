@@ -15,6 +15,9 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class EntryViewController {
 
@@ -72,10 +75,31 @@ public class EntryViewController {
         HelloFX.diary.getEntryList().remove(entry);
         HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
 
+        //Bilder werden auch aus Ordner "pictures" gelöscht
+        String fileName1 = "src/pictures/"+entry.getPicture1();
+        deletePic(fileName1);
+        String fileName2 = "src/pictures/"+entry.getPicture2();
+        deletePic(fileName2);
+        String fileName3 = "src/pictures/"+entry.getPicture3();
+        deletePic(fileName3);
+
         Scene scene = btnBack.getScene();
         URL url = new File("src/main/java/at/jku/se/diary/JournalList.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
+    }
+    //Methode um Bilder aus dem Verzeichnis "pictures" zu löschen
+    void deletePic(String fileName){
+        if(!fileName.contains("default")){
+            File file = new File(fileName);
+            String pathString = file.getAbsolutePath();
+            Path path = Paths.get(pathString);
+            try{
+                Files.delete(path);
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 
 /*    @FXML

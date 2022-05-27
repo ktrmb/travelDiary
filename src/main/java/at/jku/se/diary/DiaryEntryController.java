@@ -103,19 +103,23 @@ public class DiaryEntryController implements Initializable {
         if(!pic1.getImage().getUrl().contains("Icons/pic.png")){
             String imgName1 = saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
             Image image1 = new Image("file:src/pictures/"+imgName1);
+            System.out.println(imgName1 + "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             newEntry.addPicture(image1);
+            newEntry.setPicture1(imgName1);
         }
         //Bild 2:
-        if(!pic1.getImage().getUrl().contains("Icons/pic.png")){
+        if(!pic2.getImage().getUrl().contains("Icons/pic.png")){
             String imgName2 = saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
             Image image2 = new Image("file:src/pictures/"+imgName2);
             newEntry.addPicture(image2);
+            newEntry.setPicture2(imgName2);
         }
-        //Bild 2:
-        if(!pic1.getImage().getUrl().contains("Icons/pic.png")){
+        //Bild 3:
+        if(!pic3.getImage().getUrl().contains("Icons/pic.png")){
             String imgName3 = saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
             Image image3 = new Image("file:src/pictures/"+imgName3);
             newEntry.addPicture(image3);
+            newEntry.setPicture3(imgName3);
         }
 
         //diary.getEntryList().remove(diary.getEntryList().size()-1);

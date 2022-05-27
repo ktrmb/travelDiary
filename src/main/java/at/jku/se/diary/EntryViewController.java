@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import javax.xml.bind.JAXBException;
@@ -79,7 +78,7 @@ public class EntryViewController {
         scene.setRoot(root);
     }
 
-    @FXML
+/*    @FXML
     void editEntry(MouseEvent event) {
         try {
             URL url = new File("src/main/java/at/jku/se/diary/EntryEdit.fxml").toURI().toURL();
@@ -93,6 +92,23 @@ public class EntryViewController {
             stage.setScene(new Scene(root));
             stage.setTitle("Entry Edit");
             stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    @FXML
+    void editEntry(MouseEvent event) {
+        try {
+            Scene scene = btnEdit.getScene();
+            URL url = new File("src/main/java/at/jku/se/diary/EntryEdit.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            EntryEditController eController = loader.getController();
+            eController.setSelectedEntry(entry);
+
+            scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

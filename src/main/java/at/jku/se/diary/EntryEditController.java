@@ -7,23 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.bind.JAXBException;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import javax.swing.*;
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -81,6 +71,12 @@ public class EntryEditController {
         txtAdress.setText(entry.getAddress());
         txtDate.setValue(entry.getDate());
         txtText.setText(entry.getDiaryText());
+        Image image1 = new Image("file:src/pictures/image"+entry.getId()+"_1.jpg");
+        this.pic1.setImage(image1);
+        Image image2 = new Image("file:src/pictures/image"+entry.getId()+"_2.jpg");
+        this.pic2.setImage(image2);
+        Image image3 = new Image("file:src/pictures/image"+entry.getId()+"_3.jpg");
+        this.pic2.setImage(image3);
     }
 
     @FXML

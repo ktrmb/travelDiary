@@ -51,7 +51,7 @@ public class DiaryEntryController implements Initializable {
     @FXML
     private TextField title;
     @FXML
-    private ImageView pic1;
+    private ImageView pic1 = null;
     @FXML
     private ImageView pic2;
     @FXML
@@ -100,19 +100,23 @@ public class DiaryEntryController implements Initializable {
 
         //Bilder zuerst in ordner "pictures" speichern und dann in das newDiary Objekt speichern
         //Bild1:
-        String imgName1 = saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
-        Image image1 = new Image("file:src/pictures/"+imgName1);
-        newEntry.addPicture(image1);
-
+        if(!pic1.getImage().getUrl().contains("Icons/pic.png")){
+            String imgName1 = saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
+            Image image1 = new Image("file:src/pictures/"+imgName1);
+            newEntry.addPicture(image1);
+        }
         //Bild 2:
-        String imgName2 = saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
-        Image image2 = new Image("file:src/pictures/"+imgName2);
-        newEntry.addPicture(image2);
-
+        if(!pic1.getImage().getUrl().contains("Icons/pic.png")){
+            String imgName2 = saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
+            Image image2 = new Image("file:src/pictures/"+imgName2);
+            newEntry.addPicture(image2);
+        }
         //Bild 2:
-        String imgName3 = saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
-        Image image3 = new Image("file:src/pictures/"+imgName3);
-        newEntry.addPicture(image3);
+        if(!pic1.getImage().getUrl().contains("Icons/pic.png")){
+            String imgName3 = saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
+            Image image3 = new Image("file:src/pictures/"+imgName3);
+            newEntry.addPicture(image3);
+        }
 
         //diary.getEntryList().remove(diary.getEntryList().size()-1);
 

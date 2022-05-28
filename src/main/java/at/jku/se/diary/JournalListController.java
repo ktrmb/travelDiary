@@ -1,23 +1,18 @@
 package at.jku.se.diary;
 
-
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
-
-import javax.imageio.IIOParam;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +23,7 @@ public class JournalListController {
     public DiaryEntry selectedEntry;
 
     @FXML
-    private TableView<DiaryEntry> TVjournalList;
+    private TableView<DiaryEntry> tVjournalList;
 
     @FXML
     private ImageView btnCalendar;
@@ -48,8 +43,7 @@ public class JournalListController {
     @FXML
     private Button btnShowEntry;
 
-    // Load Table - all Entry's
-    public void initialize () {
+    public void initialize() {
         Diary diary = HelloFX.diary;
 
         TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
@@ -58,22 +52,21 @@ public class JournalListController {
         TableColumn<DiaryEntry, LocalDate> date = new TableColumn<DiaryEntry, LocalDate>("Date");
         date.setCellValueFactory(c -> new SimpleObjectProperty<LocalDate>(c.getValue().getDate()));
 
-        TVjournalList.getColumns().addAll(titel, date);
+        tVjournalList.getColumns().addAll(titel, date);
 
         ObservableList<DiaryEntry> diaryE = FXCollections.observableArrayList(diary.getEntryList());
-        TVjournalList.setItems(diaryE);
+        tVjournalList.setItems(diaryE);
     }
 
     @FXML
     void showCalendarPage(MouseEvent event) {
-
+        //will be implemented
     }
 
     @FXML
     void showMapPage(MouseEvent event) {
-
+        //will be implemented
     }
-
 
     //Scene wechseln auf NewDiaryEntry
     @FXML
@@ -94,29 +87,28 @@ public class JournalListController {
 
     @FXML
     void saveSelectedItem(MouseEvent event) throws IOException {
-        selectedEntry = TVjournalList.getSelectionModel().getSelectedItem();
+        selectedEntry = tVjournalList.getSelectionModel().getSelectedItem();
+    }
 
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.close();
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("EntryView.fxml"));
-            stage.setUserData(selectedEntry);
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            System.err.println(String.format("Error: %s", e.getMessage()));
-        }
+    public DiaryEntry getSelectedEntry () {
+        return selectedEntry;
     }
 
     @FXML
-    void showSelectedEntry(MouseEvent event) throws IOException{
-        Scene scene = btnShowEntry.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
+    void showSelectedEntry(MouseEvent event) {
+        try {
+            Scene scene = btnShowEntry.getScene();
+            URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            EntryViewController eController = loader.getController();
+            eController.setSelectedEntry(selectedEntry);
+
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

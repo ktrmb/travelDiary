@@ -5,7 +5,6 @@
     <categories>Urlaub</categories>
     <categories>Strand</categories>
     <categories>Restaurant</categories>
-    <categories>Action</categories>
     <currentEntry>false</currentEntry>
     <entryList>
         <address>Marsa Alam</address>
@@ -60,11 +59,21 @@
         <picture1>defaultPic.png</picture1>
         <picture2>defaultPic.png</picture2>
         <picture3>defaultPic.png</picture3>
-        <structuredInfo>
-            <category>Hotel</category>
-            <id>0</id>
-            <structuredText>War sehr schön</structuredText>
-        </structuredInfo>
         <title>Italien</title>
+    </entryList>
+    <entryList>
+        <address></address>
+        <date>2022-05-12</date>
+        <diaryText></diaryText>
+        <id>5</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <structuredInfo>
+            <category>Urlaub</category>
+            <id>0</id>
+            <structuredText>test</structuredText>
+        </structuredInfo>
+        <title>test1</title>
     </entryList>
 </myDiary>

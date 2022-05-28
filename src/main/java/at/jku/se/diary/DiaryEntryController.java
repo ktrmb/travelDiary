@@ -78,6 +78,7 @@ public class DiaryEntryController implements Initializable {
 
     @FXML
     void addEntry(ActionEvent event) throws JAXBException {
+        diary.setCurrentEntry(false);
         String entryTitle = title.getText();
         LocalDate entryDate = date.getValue();
         String entryAddress = address.getText();
@@ -117,10 +118,11 @@ public class DiaryEntryController implements Initializable {
             newEntry.setPicture3(imgName3);
         }
 
-        //diary.getEntryList().remove(diary.getEntryList().size()-1);
-
+        if(diary.isCurrentEntry()) {
+            diary.getEntryList().remove(diary.getEntryList().size() - 1);
+        }
         diary.addNewEntry(newEntry);
-        diary.setCurrentEntry(false);
+
         System.out.println("AddCurrentEntry == "+ diary.isCurrentEntry() );
     }
 

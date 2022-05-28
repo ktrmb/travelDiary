@@ -48,7 +48,7 @@
       <TextArea fx:id="structuredText" layoutX="136.0" layoutY="364.0" prefHeight="25.0" prefWidth="270.0" promptText="Text" />
       <Button fx:id="buttonCancel" layoutX="136.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#showJournalListPage" prefWidth="80.0" text="Cancel" />
       <Button fx:id="buttonEditCategories" layoutX="221.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#editCategories" prefWidth="95.0" text="Edit categories" />
-      <Button fx:id="buttonAdd" layoutX="322.0" layoutY="410.0" mnemonicParsing="false" onAction="#addEntry" prefHeight="25.0" prefWidth="80.0" text="Add">
+      <Button fx:id="buttonAdd" layoutX="322.0" layoutY="410.0" mnemonicParsing="false" onAction="#addEntry" onMouseClicked="#showJournalListPage"  prefHeight="25.0" prefWidth="80.0" text="Add">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></Button>

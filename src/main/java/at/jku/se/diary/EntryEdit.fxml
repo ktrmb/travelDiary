@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.EntryEditController">
+   <children>
+      <Label layoutX="162.0" layoutY="26.0" prefHeight="43.0" prefWidth="317.0" text="T R A V E L   J O U R N A L" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Line endX="68.30001831054688" endY="-1.1444091796875E-5" layoutX="74.0" layoutY="48.0" startX="-100.0" strokeWidth="3.0" />
+      <Line endX="45.39990234375" endY="-1.1444091796875E-5" layoutX="602.0" layoutY="47.0" startX="-107.2213134765625" startY="-1.1444091796875E-5" strokeWidth="3.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="341.0" layoutX="66.0" layoutY="95.0" stroke="#d9d9d9" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="30.0" width="508.0" />
+      <Label layoutX="283.0" layoutY="80.0" prefHeight="43.0" prefWidth="73.0" text="Edit Entry" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="290.0" layoutX="120.0" layoutY="136.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="400.0" />
+      <TextField fx:id="txtTitel" layoutX="134.0" layoutY="153.0" prefHeight="25.0" prefWidth="354.0" />
+      <Label layoutX="134.0" layoutY="133.0" prefHeight="19.0" prefWidth="73.0" text="Titel" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="312.0" layoutY="180.0" prefHeight="19.0" prefWidth="73.0" text="Date" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAdress" layoutX="134.0" layoutY="200.0" />
+      <Label layoutX="134.0" layoutY="180.0" prefHeight="19.0" prefWidth="73.0" text="Adress" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="txtDate" layoutX="312.0" layoutY="200.0" />
+      <TextField fx:id="txtText" layoutX="135.0" layoutY="253.0" prefHeight="91.0" prefWidth="354.0" />
+      <Label layoutX="135.0" layoutY="233.0" prefHeight="19.0" prefWidth="73.0" text="Text" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSave" layoutX="466.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#saveEntry" text="Save" />
+      <Button fx:id="btnCancel" layoutX="407.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#cancelEdit" text="Cancel" />
+      <Button fx:id="btnShowStructuredInfo" layoutX="410.0" layoutY="387.0" mnemonicParsing="false" onMouseClicked="#showStructuredInfo" text="Structered Info" />
+      <ImageView fx:id="pic1" fitHeight="50.0" fitWidth="51.0" layoutX="140.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/pic.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pic2" fitHeight="50.0" fitWidth="51.0" layoutX="222.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/pic.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pic3" fitHeight="50.0" fitWidth="51.0" layoutX="306.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/pic.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnDeletePic1" fitHeight="12.0" fitWidth="13.0" layoutX="192.0" layoutY="380.0" onMouseClicked="#deletePic1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnDeletePic2" fitHeight="12.0" fitWidth="13.0" layoutX="273.0" layoutY="383.0" onMouseClicked="#deletePic2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnDeletePic3" fitHeight="12.0" fitWidth="13.0" layoutX="356.0" layoutY="384.0" onMouseClicked="#deletePic3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnEditPic1" fitHeight="12.0" fitWidth="12.0" layoutX="192.0" layoutY="363.0" onMouseClicked="#editPic1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/edit.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnEditPic2" fitHeight="12.0" fitWidth="12.0" layoutX="274.0" layoutY="363.0" onMouseClicked="#editPic2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/edit.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnEditPic3" fitHeight="12.0" fitWidth="12.0" layoutX="357.0" layoutY="365.0" onMouseClicked="#editPic3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/edit.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

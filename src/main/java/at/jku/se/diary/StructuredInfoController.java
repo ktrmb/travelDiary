@@ -72,7 +72,7 @@ public class StructuredInfoController implements Initializable {
 
         @FXML
         void SaveListOnClick(ActionEvent event) throws IOException {
-                if (diary.getCurrentEntry()) {
+                if (diary.isCurrentEntry()) {
 
                         ArrayList<StructInformation> infos = new ArrayList<>();
                         infos.addAll(tableList.getItems());
@@ -132,7 +132,7 @@ public class StructuredInfoController implements Initializable {
 
                 tableList.getColumns().addAll(columnCategory,columnStars, columnInfo);
 
-                if (diary.getCurrentEntry()) {
+                if (diary.isCurrentEntry()) {
                         ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(diary.getEntryList().get(diary.getEntryList().size() -1).getStructuredInfo());
                         diaryE.forEach(info -> System.out.println(info.getCategory() + " " + info.getStars()));
                         if (diaryE.size()>0)tableList.setItems(diaryE);

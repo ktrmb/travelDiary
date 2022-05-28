@@ -69,6 +69,7 @@ public class DiaryEntryController implements Initializable {
         System.out.println("JLCurrentEntry == "+ diary.isCurrentEntry() );
         if(diary.isCurrentEntry() == true){
             diary.getEntryList().remove(diary.getEntryList().size()-1);
+            diary.setCurrentEntry(false);
         }
         Scene scene = btnJournalList.getScene();
         URL url = new File("src/main/java/at/jku/se/diary/JournalList.fxml").toURI().toURL();
@@ -117,10 +118,10 @@ public class DiaryEntryController implements Initializable {
             newEntry.setPicture3(imgName3);
         }
 
-        //diary.getEntryList().remove(diary.getEntryList().size()-1);
+        diary.getEntryList().remove(diary.getEntryList().size()-1);
 
         diary.addNewEntry(newEntry);
-        diary.setCurrentEntry(false);
+         diary.setCurrentEntry(false);
         System.out.println("AddCurrentEntry == "+ diary.isCurrentEntry() );
     }
 

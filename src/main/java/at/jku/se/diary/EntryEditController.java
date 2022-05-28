@@ -85,10 +85,21 @@ public class EntryEditController {
 
     @FXML
     void cancelEdit(MouseEvent event) throws IOException {
-        Scene scene = btnCancel.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
+        try {
+            URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            EntryViewController eController = loader.getController();
+            eController.setSelectedEntry(entry);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Entry View");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -119,7 +130,26 @@ public class EntryEditController {
     }
 
     @FXML
-    void showStructuredInfo(MouseEvent event) {
+    void showStructuredInfo(MouseEvent event) throws IOException {
+        entry.setTitle(txtTitel.getText());
+        entry.setDate(txtDate.getValue());
+        entry.setAddress(txtAdress.getText());
+        entry.setDiaryText(txtText.getText());
 
+        try {
+            URL url = new File("src/main/java/at/jku/se/diary/StructInformationView.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            StructuredInfoController controller = loader.getController();
+            controller.setEntryEdit(entry);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Struct Info Edit");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

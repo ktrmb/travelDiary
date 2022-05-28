@@ -75,11 +75,18 @@ public class CategoryListController implements Initializable {
 
     @FXML
     void showNewEntryPage(MouseEvent event) throws IOException {
-        Scene scene = btnNewEntry.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/DiaryEntryView.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
 
+        if (HelloFX.diary.getCurrentEntry()) {
+            Scene scene = btnNewEntry.getScene();
+            URL url = new File("src/main/java/at/jku/se/diary/DiaryEntryView.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            scene.setRoot(root);
+        } else {
+            Scene scene = btnNewEntry.getScene();
+            URL url = new File("src/main/java/at/jku/se/diary/StructInformationView.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            scene.setRoot(root);
+        }
     }
 
 

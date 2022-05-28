@@ -52,4 +52,19 @@
         </structuredInfo>
         <title>Ägypten Urlaub</title>
     </entryList>
+    <entryList>
+        <address>Italien</address>
+        <date>2022-05-17</date>
+        <diaryText></diaryText>
+        <id>4</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <structuredInfo>
+            <category>Hotel</category>
+            <id>0</id>
+            <structuredText>War sehr schön</structuredText>
+        </structuredInfo>
+        <title>Italien</title>
+    </entryList>
 </myDiary>

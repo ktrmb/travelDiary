@@ -15,7 +15,6 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class HelloFX extends Application {
     public static Diary diary;
@@ -35,22 +34,19 @@ public class HelloFX extends Application {
         return root;
     }
 
-    public static void main(String[] args) throws JAXBException {
-        //Beim Starten des Programms wird neues Diary-Objekt erzeugt, dass unten dann mit den bereits vorhandenen Daten(der XML) befüllt wird
+    public static void main(String[] args) {
+        //Beim Starten des Programms wird neues Diary-Objekt erzeugt,
+        // dass unten dann mit den bereits vorhandenen Daten(der XML) befüllt wird
         diaryDB = new DiaryDB();
         diaryFile = new File("diary.xml");
-        diary = new Diary();
-
-        // hier alle DiaryEntries aus xml auslesen und dem Diary hinzufügen
-        diary = diaryDB.readDiary(diaryFile);
-
-        launch();
-
-        //Dient nur zur Kontrolle - wieder weglöschen!!
-        ArrayList<DiaryEntry> entryList = diary.getEntryList();
-        for(DiaryEntry entry : entryList){
-            System.out.println(entry.getTitle() + " " + entry.getAddress() + " " + entry.getDiaryText());
+        try {
+            diary = new Diary();
+            // hier alle DiaryEntries aus xml auslesen und dem Diary hinzufügen
+            diary = diaryDB.readDiary(diaryFile);
+        } catch (JAXBException e) {
+            e.printStackTrace();
         }
+        launch();
     }
 }
 

@@ -5,34 +5,51 @@
     <categories>Urlaub</categories>
     <categories>Strand</categories>
     <categories>Restaurant</categories>
+    <categories>Action</categories>
     <currentEntry>false</currentEntry>
     <entryList>
-        <address>Kroatien</address>
-        <date>2022-01-06</date>
-        <diaryText>Liebes Reisetagebuch, heute waren wir in....</diaryText>
-        <title>Camping-Trip Kroatien</title>
-    </entryList>
-    <entryList>
-        <address>St. Wolfgang</address>
-        <date>2022-04-20</date>
-        <diaryText>Liebes Reisetagebuch, heute sind wir...</diaryText>
-        <title>Wanderung</title>
-    </entryList>
-    <entryList>
-        <address>Attersee</address>
-        <date>2022-05-03</date>
-        <diaryText>Radausflug rund um den Attersee</diaryText>
+        <address>Marsa Alam</address>
+        <date>2022-05-02</date>
+        <diaryText>Liebes Reisetagebuch, heute....</diaryText>
+        <id>2</id>
+        <picture1>image2_1.jpg</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
         <structuredInfo>
-            <category>Urlaub</category>
+            <category>Strand</category>
             <id>0</id>
-            <structuredText>toller Radrundweg</structuredText>
+            <structuredText>gepflegter Strand</structuredText>
         </structuredInfo>
-        <title>Ausflug Attersee</title>
+        <title>Strandbesuch</title>
     </entryList>
     <entryList>
-        <address>Italien</address>
-        <date>2022-02-06</date>
-        <diaryText>Liebes Reisetagebuch, in Italien ist es sehr schön und warm!</diaryText>
-        <title>Italienrundreise</title>
+        <address>Luxor</address>
+        <date>2022-05-01</date>
+        <diaryText>Liebes Reisetagebuch, ....</diaryText>
+        <id>1</id>
+        <picture1>image1_1.jpg</picture1>
+        <picture2>image1_2.jpg</picture2>
+        <picture3>image1_3.jpg</picture3>
+        <structuredInfo>
+            <category>Kultur</category>
+            <id>0</id>
+            <structuredText>schöne, alte Stadt</structuredText>
+        </structuredInfo>
+        <title>Ausflug Luxor</title>
+    </entryList>
+    <entryList>
+        <address>Ägypten</address>
+        <date>2022-05-03</date>
+        <diaryText>Liebes Reisetagebuch, ....</diaryText>
+        <id>3</id>
+        <picture1>image3_1.jpg</picture1>
+        <picture2>image3_2.jpg</picture2>
+        <picture3>image3_3.jpg</picture3>
+        <structuredInfo>
+            <category>Hotel</category>
+            <id>0</id>
+            <structuredText>sauber, gutes essen</structuredText>
+        </structuredInfo>
+        <title>Ägypten Urlaub</title>
     </entryList>
 </myDiary>

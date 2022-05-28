@@ -19,16 +19,16 @@ public class SelectFileLocationController {
     private Button btnSaveFileLocation;
 
     @FXML
-    private TextField TxtEntryFileLocation;
+    private TextField txtEntryFileLocation;
 
     @FXML
-    private TextField TxtPhotoFileLocation;
+    private TextField txtPhotoFileLocation;
 
     @FXML
     void saveFileLocation(MouseEvent event) throws IOException {
         //save the selected Location
-        entryFileLocation = TxtEntryFileLocation.getText();
-        photoFileLocation = TxtPhotoFileLocation.getText();
+        entryFileLocation = txtEntryFileLocation.getText();
+        photoFileLocation = txtPhotoFileLocation.getText();
 
         //switch to JournalList Page
         Scene scene = btnSaveFileLocation.getScene();

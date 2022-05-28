@@ -21,7 +21,8 @@ class DiaryEntryTest {
      * Creating a new TestObject
      */
     private ArrayList<StructInformation> arrayListInfos = new ArrayList<>();
-    private final DiaryEntry entry = new DiaryEntry(1, LocalDate.now(), "Ausflug Attersee", "Steinbach am Attersee", "Liebes Tagebuch ...", arrayListInfos);
+    private final DiaryEntry entry = new DiaryEntry(1, LocalDate.now(),
+            "Ausflug Attersee", "Steinbach am Attersee", "Liebes Tagebuch ...", arrayListInfos);
 
     /**
      * Test of setTitle method, of class DiaryEntry.
@@ -51,7 +52,7 @@ class DiaryEntryTest {
     void setStructuredInfo(){
         StructInformation structInfo1 = new StructInformation(1, "See", 4.00, "sehr schön");
         StructInformation structInfo2 = new StructInformation(2, "Essen", 4.00, "sehr gut");
-        ArrayList<StructInformation> arrayListInfos = new ArrayList<>();
+        arrayListInfos = new ArrayList<>();
         arrayListInfos.add(structInfo1);
         arrayListInfos.add(structInfo2);
         entry.setStructuredInfo(arrayListInfos);

@@ -101,8 +101,10 @@ public class JournalListController {
             URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
+
             EntryViewController eController = loader.getController();
             eController.setSelectedEntry(selectedEntry);
+
             scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();

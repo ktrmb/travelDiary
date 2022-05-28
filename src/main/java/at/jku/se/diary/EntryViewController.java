@@ -131,13 +131,19 @@ public class EntryViewController {
     }
 
     public void initialize() {
-        SwingUtilities.invokeLater(() -> setEntryView(entry));
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                setEntryView(entry);
+            }
+        });
     }
 
     public void setEntryView (DiaryEntry entry) {
         this.txtTitel.setText(entry.getTitle());
         this.txtDatePlace.setText(entry.getDate() + " || " + entry.getAddress());
         this.txtText.setText(entry.getDiaryText());
+
         String imgPath = "file:src/pictures/image";
         Image image1 = new Image(imgPath+entry.getId()+"_1.jpg");
         this.img1.setImage(image1);

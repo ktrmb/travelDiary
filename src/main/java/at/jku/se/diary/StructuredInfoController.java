@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 import static at.jku.se.diary.HelloFX.diary;
 
-public class StructuredInfoController implements Initializable {
+public class StructuredInfoController {
 
 
         @FXML
@@ -119,8 +119,7 @@ public class StructuredInfoController implements Initializable {
 
         }
 
-        @Override
-        public void initialize(URL url, ResourceBundle resourceBundle) {
+        public void initialize() {
                 TableColumn<StructInformation, String> columnCategory = new TableColumn<StructInformation, String>("Category");
                 columnCategory.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getCategory())));
 

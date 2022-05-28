@@ -63,7 +63,12 @@ public class EntryEditController {
 
 
     public void initialize() {
-        SwingUtilities.invokeLater(() -> setEntry(entry));
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                setEntry(entry);
+            }
+        });
     }
 
     public void setSelectedEntry (DiaryEntry entry) {
@@ -233,13 +238,14 @@ public class EntryEditController {
     }
 
     @FXML
-    void showStructuredInfo(MouseEvent event) throws IOException {
+    void showStructuredInfo(MouseEvent event) {
         entry.setTitle(txtTitel.getText());
         entry.setDate(txtDate.getValue());
         entry.setAddress(txtAdress.getText());
         entry.setDiaryText(txtText.getText());
 
         try {
+            Scene scene = btnShowStructuredInfo.getScene();
             URL url = new File("src/main/java/at/jku/se/diary/StructInformationView.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
@@ -247,10 +253,7 @@ public class EntryEditController {
             StructuredInfoController controller = loader.getController();
             controller.setEntryEdit(entry);
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Struct Info Edit");
-            stage.show();
+            scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

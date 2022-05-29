@@ -1,14 +1,14 @@
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\CategoryListController.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\DiaryDB.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\LocalDateAdapter.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\StructInformation.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\StructuredInfoController.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\EntryViewController.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\EntryEditController.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\HelloFX.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\EnlargedPictureController.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\DiaryEntryController.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\JournalListController.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\Diary.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\SelectFileLocationController.java
-E:\Michelle\__UNI\4_SS 2022\PR SE\travel diary\src\main\java\at\jku\se\diary\DiaryEntry.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\EntryViewController.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\DiaryDB.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\StructInformation.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\CategoryListController.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\Diary.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\JournalListController.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\EntryEditController.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\LocalDateAdapter.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\DiaryEntry.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\DiaryEntryController.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\HelloFX.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\SelectFileLocationController.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\StructuredInfoController.java
+D:\SE Project\travel diary\src\main\java\at\jku\se\diary\EnlargedPictureController.java

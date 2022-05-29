@@ -61,8 +61,6 @@ public class EntryViewController {
     @FXML
     private ImageView img3;
 
-    //Edit und View verbinden um anzusehen und gleichzeitig editieren?
-
     public void setSelectedEntry (DiaryEntry entry) {
         this.entry = entry;
     }
@@ -134,12 +132,12 @@ public class EntryViewController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                setEntryView(entry);
+                setEntryView();
             }
         });
     }
 
-    public void setEntryView (DiaryEntry entry) {
+    public void setEntryView () {
         this.txtTitel.setText(entry.getTitle());
         this.txtDatePlace.setText(entry.getDate() + " || " + entry.getAddress());
         this.txtText.setText(entry.getDiaryText());

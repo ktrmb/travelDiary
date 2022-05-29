@@ -66,7 +66,7 @@ public class EntryEditController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                setEntry(entry);
+                setEntry();
             }
         });
     }
@@ -75,7 +75,7 @@ public class EntryEditController {
         this.entry = entry;
     }
 
-    public void setEntry (DiaryEntry entry) {
+    public void setEntry () {
         txtTitel.setText(entry.getTitle());
         txtAdress.setText(entry.getAddress());
         txtDate.setValue(entry.getDate());
@@ -255,6 +255,7 @@ public class EntryEditController {
 
             scene.setRoot(root);
         } catch (IOException e) {
+            System.out.println("Struct View Load Error");
             e.printStackTrace();
         }
     }

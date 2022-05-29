@@ -42,7 +42,7 @@ public class StructuredInfoController {
         private ChoiceBox<String> category;
 
         @FXML
-        private ImageView delete;
+        private Button btnDelete;
 
         @FXML
         private ImageView journalView;

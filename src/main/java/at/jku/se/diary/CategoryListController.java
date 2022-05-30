@@ -48,14 +48,6 @@ public class CategoryListController implements Initializable {
         }
     }
 
-/*    @FXML
-    void SaveListOnClick(ActionEvent event) throws JAXBException {
-        for(String category:LVcategoryList.getItems()) {
-            if (!HelloFX.diary.getCategories().contains(category)) {
-                HelloFX.diary.addNewCategory(category);
-            }
-        }
-    }*/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

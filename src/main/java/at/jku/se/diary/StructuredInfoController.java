@@ -117,9 +117,7 @@ public class StructuredInfoController {
 
         @FXML
         void deleteStructuredInfo(MouseEvent event) {
-
                 tableList.getItems().remove(tableList.getSelectionModel().getSelectedItem().getId());
-
         }
 
         public void initialize() {
@@ -141,7 +139,6 @@ public class StructuredInfoController {
                 } else {
                         SwingUtilities.invokeLater(() -> setInfo());
                 }
-
                 //set categorie
                 category.getItems().addAll(diary.getCategories());
                 category.setOnAction(this::selectCategory);

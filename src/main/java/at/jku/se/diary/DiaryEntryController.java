@@ -86,6 +86,7 @@ public class DiaryEntryController implements Initializable {
         LocalDate entryDate = date.getValue();
         String entryAddress = address.getText();
         String entryDiaryText = diaryText.getHtmlText();
+        //test
 
 
 

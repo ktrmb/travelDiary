@@ -52,10 +52,12 @@ class DiaryEntryTest {
     void setStructuredInfo(){
         StructInformation structInfo1 = new StructInformation(1, "See", 4.00, "sehr schön");
         StructInformation structInfo2 = new StructInformation(2, "Essen", 4.00, "sehr gut");
+
         arrayListInfos = new ArrayList<>();
         arrayListInfos.add(structInfo1);
         arrayListInfos.add(structInfo2);
         entry.setStructuredInfo(arrayListInfos);
         assertEquals(entry.getStructuredInfo(), arrayListInfos);
+
     }
 }

@@ -73,21 +73,25 @@ public class DiaryEntryController implements Initializable {
 
     @FXML
     void addEntry(ActionEvent event) throws JAXBException {
+        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+
         if(diary.isCurrentEntry()) {
+            structuredInfo = diary.getEntryList().get(diary.getEntryList().size()-1).getStructuredInfo();
             diary.getEntryList().remove(diary.getEntryList().size() - 1);
+            diary.setCurrentEntry(false);
         }
-        diary.setCurrentEntry(false);
+        int id = diary.getEntryList().size() + 1;
+
         String entryTitle = title.getText();
         LocalDate entryDate = date.getValue();
         String entryAddress = address.getText();
         String entryDiaryText = diaryText.getHtmlText();
-        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+        //test
 
 
-        if(diary.isCurrentEntry()) {
-            structuredInfo = diary.getEntryList().get(diary.getEntryList().size()-1).getStructuredInfo();
-        }
-        int id = diary.getEntryList().size() + 1;
+
+
+
 
         DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText, structuredInfo);
 
@@ -224,7 +228,7 @@ public class DiaryEntryController implements Initializable {
 
         DiaryEntry newEntry = new DiaryEntry(id, currentDate, currentTitle, currentAddress, currentDiaryText,structuredInfo);
         diary.addNewEntry(newEntry);
-        //newEntry.outPut();
+
     }
 
 

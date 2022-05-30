@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
+
 public class DiaryEntryController implements Initializable {
     private Diary diary = HelloFX.diary;
 
@@ -33,20 +35,15 @@ public class DiaryEntryController implements Initializable {
 
     @FXML
     private TextField address;
+
     @FXML
-    private Button buttonAdd;
-    @FXML
-    private Button buttonCancel;
-    @FXML
-    private Button buttonEditCategories;
-    @FXML
-    private ChoiceBox<String> category;
+    private Button buttonStructInfo;
+
     @FXML
     private DatePicker date;
     @FXML
-    private TextArea diaryText;
-    @FXML
-    private TextArea structuredText;
+    private HTMLEditor diaryText;
+
     @FXML
     private TextField title;
     @FXML
@@ -57,8 +54,6 @@ public class DiaryEntryController implements Initializable {
     private ImageView pic3;
     @FXML
     private ImageView btnJournalList;
-    @FXML
-    private Rating rating;
 
     private String selectedCategory;
 
@@ -78,23 +73,20 @@ public class DiaryEntryController implements Initializable {
 
     @FXML
     void addEntry(ActionEvent event) throws JAXBException {
+        if(diary.isCurrentEntry()) {
+            diary.getEntryList().remove(diary.getEntryList().size() - 1);
+        }
+        diary.setCurrentEntry(false);
         String entryTitle = title.getText();
         LocalDate entryDate = date.getValue();
         String entryAddress = address.getText();
-        String entryDiaryText = diaryText.getText();
+        String entryDiaryText = diaryText.getHtmlText();
         ArrayList<StructInformation> structuredInfo = new ArrayList<>();
 
 
         if(diary.isCurrentEntry()) {
             structuredInfo = diary.getEntryList().get(diary.getEntryList().size()-1).getStructuredInfo();
-        } else {
-            double stars = rating.getRating();
-
-            StructInformation structInfo = new StructInformation(0, selectedCategory, stars, structuredText.getText());
-
-            structuredInfo.add(structInfo);
         }
-
         int id = diary.getEntryList().size() + 1;
 
         DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText, structuredInfo);
@@ -117,11 +109,10 @@ public class DiaryEntryController implements Initializable {
             newEntry.setPicture3(imgName3);
         }
 
-        //diary.getEntryList().remove(diary.getEntryList().size()-1);
 
         diary.addNewEntry(newEntry);
-        diary.setCurrentEntry(false);
-        System.out.println("AddCurrentEntry == "+ diary.isCurrentEntry() );
+
+        System.out.println("AddCurrentEntry == "+ diary.isCurrentEntry());
     }
 
     public String saveImageToFile(String fileImg, String id){
@@ -175,25 +166,17 @@ public class DiaryEntryController implements Initializable {
     //when the boolean CurrentEntry() of diary is true, the last entrydata is initialized
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        category.getItems().addAll(HelloFX.diary.getCategories());
-        category.setOnAction(this::selectCategory);
         System.out.println("Initialize == "+ diary.isCurrentEntry() );
         if (diary.isCurrentEntry() == true) {
             DiaryEntry lastEntry = diary.getEntryList().get(diary.getEntryList().size()-1);
             title.setText(lastEntry.getTitle());
             date.setValue(lastEntry.getDate());
             address.setText(lastEntry.getAddress());
-            diaryText.setText(lastEntry.getDiaryText());
-            rating.setRating(lastEntry.getStructuredInfo().get(0).getStars());
-            structuredText.setText(lastEntry.getStructuredInfo().get(0).getStructuredText());
-            category.setValue(lastEntry.getStructuredInfo().get(0).getCategory());
+            diaryText.setHtmlText(lastEntry.getDiaryText());
         }
     }
 
-    public void selectCategory(ActionEvent event){
-        this.selectedCategory = category.getValue();
-    }
-
+/*
     //calls safeEntry() to safe the current input and opens new view
     @FXML
     public void editCategories(MouseEvent mouseEvent) throws IOException, JAXBException {
@@ -211,49 +194,38 @@ public class DiaryEntryController implements Initializable {
             System.out.println("load categories" + e);
         }
 
-    }
+    } */
 
     @FXML
-    public void addStructuredInfo(MouseEvent mouseEvent) throws IOException, JAXBException {
+    public void addStructuredInfo(ActionEvent actionEvent) throws IOException, JAXBException {
         if(!diary.isCurrentEntry()) {
             this.safeEntry();
             diary.setCurrentEntry(true);
         }
         try {
-            Scene scene = buttonEditCategories.getScene();
+            Scene scene = buttonStructInfo.getScene();
             URL url = new File("src/main/java/at/jku/se/diary/StructInformationView.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
             scene.setRoot(root);
         } catch (Exception e) {
             System.out.println("load newStructuredInfo" + e);
         }
-
     }
 
     //when the Categories or new structured Info is added, the current Input is saved in the diary Arraylist
     public void safeEntry() throws JAXBException {
-        StructInformation structInfo = new StructInformation(0, selectedCategory, rating.getRating(), structuredText.getText());
         ArrayList<StructInformation> structuredInfo = new ArrayList<>();
-        structuredInfo.add(structInfo);
-
         int id = diary.getEntryList().size() + 1;
 
         LocalDate currentDate = date.getValue();
         String currentTitle = ((title.getText() == null) ? " " : title.getText());
         String currentAddress = ((address.getText() == null) ? " " : address.getText());
-        String currentDiaryText = ((diaryText.getText() == null) ? " " : diaryText.getText());
+        String currentDiaryText = ((diaryText.getHtmlText() == null) ? " " : diaryText.getHtmlText());
 
         DiaryEntry newEntry = new DiaryEntry(id, currentDate, currentTitle, currentAddress, currentDiaryText,structuredInfo);
         diary.addNewEntry(newEntry);
         //newEntry.outPut();
     }
 
-    @FXML
-    public void deleteStructInfo(MouseEvent mouseEvent) {
-        rating.setRating(0);
-        structuredText.setText("");
-        category.setValue("");
-
-    }
 
 }

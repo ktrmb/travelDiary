@@ -66,4 +66,24 @@
         <picture3>defaultPic.png</picture3>
         <title>Portugal</title>
     </entryList>
+    <entryList>
+        <address></address>
+        <date>2022-05-18</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>6</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <structuredInfo>
+            <category>Strand</category>
+            <id>0</id>
+            <structuredText>asdfasdf</structuredText>
+        </structuredInfo>
+        <structuredInfo>
+            <category>Urlaub</category>
+            <id>1</id>
+            <structuredText>asdf</structuredText>
+        </structuredInfo>
+        <title>asdfasdf</title>
+    </entryList>
 </myDiary>

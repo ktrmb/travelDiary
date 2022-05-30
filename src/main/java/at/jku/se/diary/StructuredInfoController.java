@@ -76,6 +76,9 @@ public class StructuredInfoController {
 
                         ArrayList<StructInformation> infos = new ArrayList<>();
                         infos.addAll(tableList.getItems());
+                        infos.forEach(structInformation -> {
+                                System.out.println("category " + structInformation.getCategory() + "Rating " + structInformation.getStars() + " Infos " + structInformation.getStructuredText());
+                        });
                         diary.getEntryList().get(diary.getEntryList().size() - 1).setStructuredInfo(infos);
                         diary.getEntryList().get(diary.getEntryList().size() - 1).getStructuredInfo().forEach(info ->
                                 System.out.println(info.getCategory() + " " + info.getStars()));
@@ -131,7 +134,7 @@ public class StructuredInfoController {
 
                 tableList.getColumns().addAll(columnCategory,columnStars, columnInfo);
 
-
+                System.out.print("in inizialize:" + diary.isCurrentEntry());
                 if (diary.isCurrentEntry()) {
                         ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(diary.getEntryList().get(diary.getEntryList().size() -1).getStructuredInfo());
                         diaryE.forEach(info -> System.out.println(info.getCategory() + " " + info.getStars()));

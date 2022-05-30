@@ -63,19 +63,14 @@ public class EntryEditController {
 
 
     public void initialize() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                setEntry(entry);
-            }
-        });
+        SwingUtilities.invokeLater(() -> setEntry());
     }
 
     public void setSelectedEntry (DiaryEntry entry) {
         this.entry = entry;
     }
 
-    public void setEntry (DiaryEntry entry) {
+    public void setEntry () {
         txtTitel.setText(entry.getTitle());
         txtAdress.setText(entry.getAddress());
         txtDate.setValue(entry.getDate());
@@ -167,6 +162,7 @@ public class EntryEditController {
     @FXML
     void cancelEdit(MouseEvent event) throws IOException {
         try {
+            Scene scene = btnCancel.getScene();
             URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
@@ -174,10 +170,11 @@ public class EntryEditController {
             EntryViewController eController = loader.getController();
             eController.setSelectedEntry(entry);
 
-            Stage stage = new Stage();
+            scene.setRoot(root);
+            /*Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Entry View");
-            stage.show();
+            stage.show();*/
         } catch (IOException e) {
             e.printStackTrace();
         }

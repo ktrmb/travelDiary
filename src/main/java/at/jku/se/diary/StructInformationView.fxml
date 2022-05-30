@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.Rating?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.StructuredInfoController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.StructuredInfoController">
    <children>
       <Label layoutX="162.0" layoutY="26.0" prefHeight="43.0" prefWidth="317.0" text="T R A V E L   J O U R N A L" textAlignment="CENTER">
          <font>
@@ -62,16 +56,19 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+
       <ImageView fx:id="delete" fitHeight="20.0" fitWidth="15.0" layoutX="550.0" layoutY="158.0" onMouseClicked="#deleteStructuredInfo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/delete.png" />
          </image>
       </ImageView>
+
       <TableView fx:id="tableList" layoutX="282.0" layoutY="198.0" prefHeight="188.0" prefWidth="274.0" />
       <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="229.0" layoutY="186.0" onMouseClicked="#openEditCategories" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/edit.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnDelete" layoutX="517.0" layoutY="153.0" mnemonicParsing="false" onMouseClicked="#deleteStructuredInfo" text="delete" />
    </children>
 </Pane>

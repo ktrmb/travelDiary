@@ -36,7 +36,6 @@ public class CategoryViewTest {
     void containsButtons(FxRobot robot) {
         FxAssert.verifyThat("#BtnOk", LabeledMatchers.hasText("Ok"));
         FxAssert.verifyThat("#BtnAdd", LabeledMatchers.hasText("Add"));
-
     }
 
 

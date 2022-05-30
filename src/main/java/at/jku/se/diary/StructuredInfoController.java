@@ -13,17 +13,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
+
 import org.controlsfx.control.Rating;
-import org.controlsfx.tools.Platform;
+
 
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+
 
 import static at.jku.se.diary.HelloFX.diary;
 
@@ -62,7 +61,7 @@ public class StructuredInfoController {
         private DiaryEntry entryEdit;
 
         @FXML
-        void AddToList(ActionEvent event) {
+        void addToList(ActionEvent event) {
                 StructInformation structInfo = new StructInformation(tableList.getItems().size(), selectedCategory, rating.getRating() , structuredText.getText());
                 tableList.getItems().add(structInfo);
                 category.setValue(" ");
@@ -72,7 +71,7 @@ public class StructuredInfoController {
         }
 
         @FXML
-        void SaveListOnClick(ActionEvent event) throws IOException {
+        void saveListOnClick(ActionEvent event) throws IOException {
                 if (diary.isCurrentEntry()) {
 
                         ArrayList<StructInformation> infos = new ArrayList<>();
@@ -131,6 +130,7 @@ public class StructuredInfoController {
                 columnInfo.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStructuredText()));
 
                 tableList.getColumns().addAll(columnCategory,columnStars, columnInfo);
+
 
                 if (diary.isCurrentEntry()) {
                         ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(diary.getEntryList().get(diary.getEntryList().size() -1).getStructuredInfo());

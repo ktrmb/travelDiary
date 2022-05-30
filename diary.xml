@@ -4,6 +4,7 @@
     <categories>Kultur</categories>
     <categories>Urlaub</categories>
     <categories>Strand</categories>
+    <categories>Restaurant</categories>
     <currentEntry>false</currentEntry>
     <entryList>
         <address>Marsa Alam</address>
@@ -36,28 +37,33 @@
         <title>Ausflug Luxor</title>
     </entryList>
     <entryList>
-        <address>Ägypten</address>
-        <date>2022-05-03</date>
-        <diaryText>Liebes Reisetagebuch, ....</diaryText>
-        <id>3</id>
-        <picture1>image3_1.jpg</picture1>
-        <picture2>image3_2.jpg</picture2>
-        <picture3>image3_3.jpg</picture3>
-        <structuredInfo>
-            <category>Hotel</category>
-            <id>0</id>
-            <structuredText>sauber, gutes essen</structuredText>
-        </structuredInfo>
-        <title>Ägypten Urlaub</title>
-    </entryList>
-    <entryList>
         <address>Italien</address>
         <date>2022-05-17</date>
-        <diaryText></diaryText>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>4</id>
         <picture1>defaultPic.png</picture1>
         <picture2>defaultPic.png</picture2>
         <picture3>defaultPic.png</picture3>
         <title>Italien</title>
+    </entryList>
+    <entryList>
+        <address>Ägypten</address>
+        <date>2022-05-03</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;Liebes Reisetagebuch, ....&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>4</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <title>Ägypten Urlaub</title>
+    </entryList>
+    <entryList>
+        <address>Portugal</address>
+        <date>2022-05-21</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;; font-weight: bold;"&gt;Ich war in Porto&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>5</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <title>Portugal</title>
     </entryList>
 </myDiary>

@@ -228,7 +228,7 @@ public class DiaryEntryController implements Initializable {
 
         DiaryEntry newEntry = new DiaryEntry(id, currentDate, currentTitle, currentAddress, currentDiaryText,structuredInfo);
         diary.addNewEntry(newEntry);
-        //newEntry.outPut();
+
     }
 
 

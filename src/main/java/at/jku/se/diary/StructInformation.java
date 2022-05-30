@@ -8,7 +8,6 @@ public class StructInformation {
     private String structuredText;
 
     public StructInformation(){
-
     }
 
     public StructInformation(int id, String category, double stars, String structuredText) {

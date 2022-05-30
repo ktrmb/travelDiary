@@ -59,14 +59,44 @@
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pic2" fitHeight="50.0" fitWidth="51.0" layoutX="200.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pic2" fitHeight="50.0" fitWidth="51.0" layoutX="222.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pic3" fitHeight="50.0" fitWidth="51.0" layoutX="258.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pic3" fitHeight="50.0" fitWidth="51.0" layoutX="306.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/pic.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnDeletePic1" fitHeight="12.0" fitWidth="13.0" layoutX="192.0" layoutY="380.0" onMouseClicked="#deletePic1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnDeletePic2" fitHeight="12.0" fitWidth="13.0" layoutX="273.0" layoutY="383.0" onMouseClicked="#deletePic2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnDeletePic3" fitHeight="12.0" fitWidth="13.0" layoutX="356.0" layoutY="384.0" onMouseClicked="#deletePic3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/delete.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnEditPic1" fitHeight="12.0" fitWidth="12.0" layoutX="192.0" layoutY="363.0" onMouseClicked="#editPic1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/edit.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnEditPic2" fitHeight="12.0" fitWidth="12.0" layoutX="274.0" layoutY="363.0" onMouseClicked="#editPic2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/edit.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnEditPic3" fitHeight="12.0" fitWidth="12.0" layoutX="357.0" layoutY="365.0" onMouseClicked="#editPic3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Icons/edit.png" />
          </image>
       </ImageView>
    </children>

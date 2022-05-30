@@ -26,7 +26,7 @@
             <Image url="@../../../../../../Icons/icons/menu-burger.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="btnNewEntry" fitHeight="24.0" fitWidth="24.0" layoutX="289.0" layoutY="99.0" onMouseClicked="#showNewEntryPage" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnNewEntry" fitHeight="24.0" fitWidth="24.0" layoutX="289.0" layoutY="99.0" onMouseClicked="#showStructInfoPage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Icons/icons/plus.png" />
          </image>
@@ -47,14 +47,14 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="160.0" layoutX="181.0" layoutY="196.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="280.0" />
-      <Button fx:id="BtnOk" layoutX="404.0" layoutY="386.0" mnemonicParsing="false" onAction="#SaveListOnClick" onMouseClicked="#showNewEntryPage" prefHeight="25.0" prefWidth="48.0" text="OK">
+      <Button fx:id="BtnOk" layoutX="404.0" layoutY="386.0" mnemonicParsing="false" onAction="#saveListOnClick" onMouseClicked="#showStructInfoPage" prefHeight="25.0" prefWidth="48.0" text="OK">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <ListView fx:id="LVcategoryList" editable="true" layoutX="188.0" layoutY="196.0" prefHeight="159.0" prefWidth="264.0" />
+      <ListView fx:id="lVcategoryList" editable="true" layoutX="188.0" layoutY="196.0" prefHeight="159.0" prefWidth="264.0" />
       <TextField fx:id="newCategory" layoutX="190.0" layoutY="386.0" />
-      <Button fx:id="BtnAdd" layoutX="347.0" layoutY="386.0" mnemonicParsing="false" onAction="#AddToList" prefHeight="25.0" prefWidth="48.0" text="Add">
+      <Button fx:id="BtnAdd" layoutX="347.0" layoutY="386.0" mnemonicParsing="false" onAction="#addToList" prefHeight="25.0" prefWidth="48.0" text="Add">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

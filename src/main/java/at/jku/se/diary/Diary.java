@@ -41,12 +41,16 @@ public class Diary {
 
     public void addNewCategory(String category) throws JAXBException {
         categories.add(category);
-        diaryDB.writeDiary(this, diaryFile);
+        if(this.diaryDB != null){
+            diaryDB.writeDiary(this, diaryFile);
+        }
     }
 
     public void addNewEntry(DiaryEntry newEntry) throws JAXBException {
         entryList.add(newEntry);
-        diaryDB.writeDiary(this, diaryFile);
+        if(this.diaryDB != null) {
+            diaryDB.writeDiary(this, diaryFile);
+        }
     }
 
     public boolean isCurrentEntry() {
@@ -57,7 +61,8 @@ public class Diary {
         this.currentEntry = currentEntry;
     }
 
-    //wieder weglöschen!
+
+/*    //wieder weglöschen!
     public String toString(){
         String output = "";
         for(DiaryEntry e : getEntryList()){
@@ -71,5 +76,5 @@ public class Diary {
         for(DiaryEntry e : getEntryList()){
             System.out.println("ID: " + e.getId() + " Titel: " + e.getTitle());
         }
-    }
+    }*/
 }

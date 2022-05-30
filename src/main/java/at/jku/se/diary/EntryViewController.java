@@ -35,9 +35,6 @@ public class EntryViewController {
     private Button btnEdit;
 
     @FXML
-    private Button btnTest;
-
-    @FXML
     private Label txtDatePlace;
 
     @FXML
@@ -63,11 +60,6 @@ public class EntryViewController {
 
     public void setSelectedEntry (DiaryEntry entry) {
         this.entry = entry;
-    }
-
-    @FXML
-    void showEntry(MouseEvent event) {
-        System.out.println(entry.getTitle());
     }
 
     @FXML
@@ -129,12 +121,7 @@ public class EntryViewController {
     }
 
     public void initialize() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                setEntryView();
-            }
-        });
+        SwingUtilities.invokeLater(() -> setEntryView());
     }
 
     public void setEntryView () {

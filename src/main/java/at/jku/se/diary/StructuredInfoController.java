@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
+import org.controlsfx.tools.Platform;
 
 import javax.swing.*;
 import java.io.File;
@@ -42,7 +43,7 @@ public class StructuredInfoController {
         private ChoiceBox<String> category;
 
         @FXML
-        private ImageView delete;
+        private Button btnDelete;
 
         @FXML
         private ImageView journalView;
@@ -90,6 +91,7 @@ public class StructuredInfoController {
                         entryEdit.setStructuredInfo(infos);
 
                         try {
+                                Scene scene = BtnAdd.getScene();
                                 URL url = new File("src/main/java/at/jku/se/diary/EntryEdit.fxml").toURI().toURL();
                                 FXMLLoader loader = new FXMLLoader(url);
                                 Parent root = loader.load();
@@ -97,10 +99,11 @@ public class StructuredInfoController {
                                 EntryEditController eController = loader.getController();
                                 eController.setSelectedEntry(entryEdit);
 
-                                Stage stage = new Stage();
+                                scene.setRoot(root);
+                                /*Stage stage = new Stage();
                                 stage.setScene(new Scene(root));
                                 stage.setTitle("Entry Edit");
-                                stage.show();
+                                stage.show();*/
                         } catch (IOException e) {
                                 e.printStackTrace();
                         }
@@ -136,16 +139,11 @@ public class StructuredInfoController {
                         diaryE.forEach(info -> System.out.println(info.getCategory() + " " + info.getStars()));
                         if (diaryE.size()>0)tableList.setItems(diaryE);
                 } else {
-                        SwingUtilities.invokeLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                        setInfo();
-                                }
-                        });
+                        SwingUtilities.invokeLater(() -> setInfo());
                 }
 
                 //set categorie
-                category.getItems().addAll(HelloFX.diary.getCategories());
+                category.getItems().addAll(diary.getCategories());
                 category.setOnAction(this::selectCategory);
         }
 
@@ -165,7 +163,10 @@ public class StructuredInfoController {
                 this.selectedCategory = category.getValue();
         }
 
-        public void setEntryEdit (DiaryEntry entry) { this.entryEdit = entry;}
+        public void setEntryEdit (DiaryEntry entry) {
+                this.entryEdit = entry;
+                System.out.println("entry set");
+        }
 
         public void setInfo () {
                 if(entryEdit.getStructuredInfo() != null) {

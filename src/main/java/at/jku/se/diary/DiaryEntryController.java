@@ -14,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.controlsfx.control.Rating;
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXBException;
 import java.awt.image.BufferedImage;
@@ -64,6 +63,7 @@ public class DiaryEntryController implements Initializable {
         System.out.println("JLCurrentEntry == "+ diary.isCurrentEntry() );
         if(diary.isCurrentEntry() == true){
             diary.getEntryList().remove(diary.getEntryList().size()-1);
+            diary.setCurrentEntry(false);
         }
         Scene scene = btnJournalList.getScene();
         URL url = new File("src/main/java/at/jku/se/diary/JournalList.fxml").toURI().toURL();
@@ -73,21 +73,25 @@ public class DiaryEntryController implements Initializable {
 
     @FXML
     void addEntry(ActionEvent event) throws JAXBException {
+        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+
         if(diary.isCurrentEntry()) {
+            structuredInfo = diary.getEntryList().get(diary.getEntryList().size()-1).getStructuredInfo();
             diary.getEntryList().remove(diary.getEntryList().size() - 1);
+            diary.setCurrentEntry(false);
         }
-        diary.setCurrentEntry(false);
+        int id = diary.getEntryList().size() + 1;
+
         String entryTitle = title.getText();
         LocalDate entryDate = date.getValue();
         String entryAddress = address.getText();
         String entryDiaryText = diaryText.getHtmlText();
-        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+        //test
 
 
-        if(diary.isCurrentEntry()) {
-            structuredInfo = diary.getEntryList().get(diary.getEntryList().size()-1).getStructuredInfo();
-        }
-        int id = diary.getEntryList().size() + 1;
+
+
+
 
         DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText, structuredInfo);
 
@@ -224,7 +228,7 @@ public class DiaryEntryController implements Initializable {
 
         DiaryEntry newEntry = new DiaryEntry(id, currentDate, currentTitle, currentAddress, currentDiaryText,structuredInfo);
         diary.addNewEntry(newEntry);
-        //newEntry.outPut();
+
     }
 
 

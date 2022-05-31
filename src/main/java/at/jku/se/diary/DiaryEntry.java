@@ -58,9 +58,11 @@ public class DiaryEntry {
     public void setStructuredInfo(ArrayList<StructInformation> structuredInfo) {
         this.structuredInfo = structuredInfo;
     }
-    public void setId(int id){
+
+    public void setId(int id) {
         this.id = id;
     }
+
 
     public void setDate(LocalDate date){
         if(date != null){
@@ -107,12 +109,15 @@ public class DiaryEntry {
     public LocalDate getDate() {
         return date;
     }
+
     public String getTitle() {
         return title;
     }
+
     public String getAddress() {
         return address;
     }
+
     public String getDiaryText() {
         return diaryText;
     }

@@ -7,6 +7,13 @@ public class StructuredInfoTest {
 
     StructInformation structInformation = new StructInformation();
 
+    @Test
+    void setId() {
+        this.structInformation.setId(1);
+        Assertions.assertEquals(this.structInformation.getId(), 1);
+    }
+
+
 
     @Test
     void setStructInformation() {

@@ -51,6 +51,7 @@ public class CategoryListController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Category" + HelloFX.diary.isCurrentEntry());
         lVcategoryList.getItems().addAll(HelloFX.diary.getCategories());
         lVcategoryList.setEditable(true);
         lVcategoryList.setCellFactory(TextFieldListCell.forListView());

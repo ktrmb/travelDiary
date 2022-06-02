@@ -2,8 +2,9 @@
 <myDiary>
     <categories>Hotel</categories>
     <categories>Kultur</categories>
-    <categories>Urlaub</categories>
     <categories>Strand</categories>
+    <categories>Restaurant</categories>
+    <categories>Kino</categories>
     <currentEntry>false</currentEntry>
     <entryList>
         <address>Marsa Alam</address>
@@ -50,15 +51,34 @@
         </structuredInfo>
         <title>Ägypten Urlaub</title>
     </entryList>
-
     <entryList>
-        <address>Ägypten</address>
-        <date>2022-05-03</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;Liebes Reisetagebuch, ....&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <address>Italien</address>
+        <date>2022-05-27</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Reisetagebuch, letztes Wochenende war ich in Rom mit Freunden&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>4</id>
         <picture1>defaultPic.png</picture1>
         <picture2>defaultPic.png</picture2>
         <picture3>defaultPic.png</picture3>
-        <title>Ägypten Urlaub</title>
+        <title>Rom</title>
+    </entryList>
+    <entryList>
+        <address>Italien</address>
+        <date>2022-05-27</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Letzes Wochenende war ich in Rom&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>5</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <title>Rom</title>
+    </entryList>
+    <entryList>
+        <address>Italien</address>
+        <date>2022-05-27</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Letztes Wochenende war ich mit Freunden in Rom&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>6</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <title>Rom</title>
     </entryList>
 </myDiary>

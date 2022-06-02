@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
@@ -56,7 +57,7 @@ public class EntryEditController {
     private DatePicker txtDate;
 
     @FXML
-    private TextField txtText;
+    private HTMLEditor txtText;
 
     @FXML
     private TextField txtTitel;
@@ -74,7 +75,7 @@ public class EntryEditController {
         txtTitel.setText(entry.getTitle());
         txtAdress.setText(entry.getAddress());
         txtDate.setValue(entry.getDate());
-        txtText.setText(entry.getDiaryText());
+        txtText.setHtmlText(entry.getDiaryText());
 
         Image image1 = new Image(file+entry.getPicture1());
         this.pic1.setImage(image1);
@@ -184,7 +185,7 @@ public class EntryEditController {
     void saveEntry(MouseEvent event) throws JAXBException {
         int oldId = entry.getId();
         DiaryEntry newEntry = new DiaryEntry(oldId, txtDate.getValue(),
-                txtTitel.getText(), txtAdress.getText(), txtText.getText(), entry.getStructuredInfo());
+                txtTitel.getText(), txtAdress.getText(), txtText.getHtmlText(), entry.getStructuredInfo());
 
         String defaultWord = "default";
         //Bild 1:
@@ -239,7 +240,7 @@ public class EntryEditController {
         entry.setTitle(txtTitel.getText());
         entry.setDate(txtDate.getValue());
         entry.setAddress(txtAdress.getText());
-        entry.setDiaryText(txtText.getText());
+        entry.setDiaryText(txtText.getHtmlText());
 
         try {
             Scene scene = btnShowStructuredInfo.getScene();

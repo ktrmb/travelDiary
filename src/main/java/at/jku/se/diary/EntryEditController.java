@@ -256,4 +256,37 @@ public class EntryEditController {
             e.printStackTrace();
         }
     }
+
+
+
+    @FXML
+    void enlargePic1(MouseEvent event) {
+        openNewWindowWithPic(entry.getPicture1());
+    }
+    @FXML
+    void enlargePic2(MouseEvent event) {
+        openNewWindowWithPic(entry.getPicture2());
+    }
+    @FXML
+    void enlargePic3(MouseEvent event) {
+        openNewWindowWithPic(entry.getPicture3());
+    }
+    //Methode die das jeweilige Bild in einem neuen Fenster (neue Stage) öffnet
+    void openNewWindowWithPic(String picture){
+        try {
+            URL url = new File("src/main/java/at/jku/se/diary/EnlargedPicture.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            EnlargedPictureController eController = loader.getController();
+            eController.setSelectedEntry(picture);
+
+            stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("enlarge Picture");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

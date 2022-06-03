@@ -142,19 +142,14 @@ public class EntryViewController {
     void enlargePic1(MouseEvent event) {
         openNewWindowWithPic(entry.getPicture1());
     }
-
     @FXML
     void enlargePic2(MouseEvent event) {
         openNewWindowWithPic(entry.getPicture2());
-
     }
-
     @FXML
     void enlargePic3(MouseEvent event) {
         openNewWindowWithPic(entry.getPicture3());
-
     }
-
     //Methode die das jeweilige Bild in einem neuen Fenster (neue Stage) öffnet
     void openNewWindowWithPic(String picture){
         try {

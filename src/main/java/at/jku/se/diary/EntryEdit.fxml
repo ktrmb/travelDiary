@@ -98,6 +98,6 @@
             <Image url="@../../../../../../Icons/edit.png" />
          </image>
       </ImageView>
-      <HTMLEditor fx:id="txtText" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="85.0" layoutY="239.0" prefHeight="171.0" prefWidth="365.0" />
+      <HTMLEditor fx:id="txtText" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="85.0" layoutY="237.0" prefHeight="167.0" prefWidth="365.0" />
    </children>
 </Pane>

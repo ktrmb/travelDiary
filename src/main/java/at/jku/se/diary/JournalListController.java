@@ -13,6 +13,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -60,7 +62,7 @@ public class JournalListController {
 
     @FXML
     void showCalendarPage(MouseEvent event) {
-        //will be implemented
+        //will be deleted
     }
 
     @FXML
@@ -78,11 +80,9 @@ public class JournalListController {
     }
 
     @FXML
-    void showSelectFileLocation(MouseEvent event) throws IOException{
-        Scene scene = btnSFL.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/SelectFileLocation.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
+    void showSelectFileLocation(MouseEvent event) throws IOException {
+        SceneSwitch s = new SceneSwitch("fileLocaiton", btnSFL.getScene());
+        s.switchScene("fileLocation");
     }
 
     @FXML
@@ -90,19 +90,15 @@ public class JournalListController {
         selectedEntry = tVjournalList.getSelectionModel().getSelectedItem();
     }
 
-    public DiaryEntry getSelectedEntry () {
-        return selectedEntry;
-    }
-
     @FXML
     void showSelectedEntry(MouseEvent event) {
         try {
             Scene scene = btnShowEntry.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/EntryView.fxml").toURI().toURL();
+            URL url = new File("src/main/java/at/jku/se/diary/EntryEdit.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
 
-            EntryViewController eController = loader.getController();
+            EntryEditController eController = loader.getController();
             eController.setSelectedEntry(selectedEntry);
 
             scene.setRoot(root);

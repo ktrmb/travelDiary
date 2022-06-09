@@ -172,10 +172,6 @@ public class EntryEditController {
             eController.setSelectedEntry(entry);
 
             scene.setRoot(root);
-            /*Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Entry View");
-            stage.show();*/
         } catch (IOException e) {
             e.printStackTrace();
         }

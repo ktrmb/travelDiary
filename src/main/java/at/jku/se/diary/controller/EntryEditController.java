@@ -168,12 +168,9 @@ public class EntryEditController {
     void cancelEdit(MouseEvent event) throws IOException {
         try {
             Scene scene = btnCancel.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/view/EntryView.fxml").toURI().toURL();
+            URL url = new File("src/main/java/at/jku/se/diary/view/JournalList.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
-
-            EntryViewController eController = loader.getController();
-            eController.setSelectedEntry(entry);
 
             scene.setRoot(root);
         } catch (IOException e) {
@@ -211,11 +208,9 @@ public class EntryEditController {
 
         try{
             Scene scene = btnSave.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/view/EntryView.fxml").toURI().toURL();
+            URL url = new File("src/main/java/at/jku/se/diary/view/JournalList.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
-            EntryViewController eController = loader.getController();
-            eController.setSelectedEntry(newEntry);
             scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();

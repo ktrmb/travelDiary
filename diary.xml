@@ -7,21 +7,6 @@
     <categories>Restaurant</categories>
     <currentEntry>false</currentEntry>
     <entryList>
-        <address>Marsa Alam</address>
-        <date>2022-05-02</date>
-        <diaryText>Liebes Reisetagebuch, heute....</diaryText>
-        <id>2</id>
-        <picture1>image2_1.jpg</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <structuredInfo>
-            <category>Strand</category>
-            <id>0</id>
-            <structuredText>gepflegter Strand</structuredText>
-        </structuredInfo>
-        <title>Strandbesuch</title>
-    </entryList>
-    <entryList>
         <address>Luxor</address>
         <date>2022-05-01</date>
         <diaryText>Liebes Reisetagebuch, ....</diaryText>
@@ -39,16 +24,11 @@
     <entryList>
         <address>Ägypten</address>
         <date>2022-05-03</date>
-        <diaryText>Liebes Reisetagebuch, ....</diaryText>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;Liebes Reisetagebuch, ....&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>3</id>
         <picture1>image3_1.jpg</picture1>
         <picture2>image3_2.jpg</picture2>
         <picture3>image3_3.jpg</picture3>
-        <structuredInfo>
-            <category>Hotel</category>
-            <id>0</id>
-            <structuredText>sauber, gutes essen</structuredText>
-        </structuredInfo>
         <title>Ägypten Urlaub</title>
     </entryList>
     <entryList>
@@ -65,5 +45,20 @@
             <structuredText>schöne Bauwerke</structuredText>
         </structuredInfo>
         <title>Barcelona Ausflug</title>
+    </entryList>
+    <entryList>
+        <address>Marsa Alam</address>
+        <date>2022-05-02</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;Liebes Reisetagebuch, heute...&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>2</id>
+        <picture1>image2_1.jpg</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <structuredInfo>
+            <category>Strand</category>
+            <id>0</id>
+            <structuredText>gepflegter Strand</structuredText>
+        </structuredInfo>
+        <title>Strandbesuch</title>
     </entryList>
 </myDiary>

@@ -1,6 +1,7 @@
 package at.jku.se.diary;
 
 
+import at.jku.se.diary.model.StructInformation;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

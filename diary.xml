@@ -4,6 +4,7 @@
     <categories>Kultur</categories>
     <categories>Urlaub</categories>
     <categories>Strand</categories>
+    <categories>Restaurant</categories>
     <currentEntry>false</currentEntry>
     <entryList>
         <address>Marsa Alam</address>
@@ -49,5 +50,20 @@
             <structuredText>sauber, gutes essen</structuredText>
         </structuredInfo>
         <title>Ägypten Urlaub</title>
+    </entryList>
+    <entryList>
+        <address>Barcelona</address>
+        <date>2022-05-30</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Barca ist &lt;span style="font-weight: bold;"&gt;super&lt;/span&gt;!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>4</id>
+        <picture1>image4_1.jpg</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>image4_3.jpg</picture3>
+        <structuredInfo>
+            <category>Kultur</category>
+            <id>0</id>
+            <structuredText>schöne Bauwerke</structuredText>
+        </structuredInfo>
+        <title>Barcelona Ausflug</title>
     </entryList>
 </myDiary>

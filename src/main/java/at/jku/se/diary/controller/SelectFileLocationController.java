@@ -1,5 +1,6 @@
 package at.jku.se.diary.controller;
 import at.jku.se.diary.HelloFX;
+import at.jku.se.diary.model.SceneSwitch;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -58,11 +59,8 @@ public class SelectFileLocationController extends Component {
 
     @FXML
     void saveSetLocations(MouseEvent event) throws IOException {
-        //switch to JournalList Page
-        Scene scene = btnSaveFileLocation.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/view/JournalList.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
+        SceneSwitch s = new SceneSwitch("journalList", btnSaveFileLocation.getScene());
+        s.switchScene();
     }
 
 }

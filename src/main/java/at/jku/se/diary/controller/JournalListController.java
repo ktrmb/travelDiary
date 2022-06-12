@@ -70,16 +70,14 @@ public class JournalListController {
     //Scene wechseln auf NewDiaryEntry
     @FXML
     void showNewEntryPage(MouseEvent event) throws IOException {
-        Scene scene = btnNewEntry.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/view/DiaryEntryView.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
+        SceneSwitch s = new SceneSwitch("newEntry", btnNewEntry.getScene());
+        s.switchScene();
     }
 
     @FXML
     void showSelectFileLocation(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("fileLocaiton", btnSFL.getScene());
-        s.switchScene("fileLocation");
+        SceneSwitch s = new SceneSwitch("fileLocation", btnSFL.getScene());
+        s.switchScene();
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package at.jku.se.diary.controller;
 import at.jku.se.diary.HelloFX;
+import at.jku.se.diary.model.SceneSwitch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,6 @@ public class CategoryListController implements Initializable {
         newCategory.clear();
     }
 
-
     @FXML
     void saveListOnClick(ActionEvent event) throws JAXBException {
         for(String category:lVcategoryList.getItems()) {
@@ -48,7 +48,6 @@ public class CategoryListController implements Initializable {
             }
         }
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,12 +60,9 @@ public class CategoryListController implements Initializable {
 
     @FXML
     void showStructInfoPage(MouseEvent event) throws IOException {
-            Scene scene = btnNewEntry.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
-            Parent root = FXMLLoader.load(url);
-            scene.setRoot(root);
+        SceneSwitch s = new SceneSwitch("structInfo", btnNewEntry.getScene());
+        s.switchScene();
     }
-
 
     @FXML
     void deleteCategory(MouseEvent event) throws JAXBException {
@@ -75,5 +71,4 @@ public class CategoryListController implements Initializable {
         HelloFX.diary.getCategories().remove(deletedCategory);
         HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
     }
-
 }

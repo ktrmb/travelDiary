@@ -1,6 +1,7 @@
 package at.jku.se.diary.controller;
 
 import at.jku.se.diary.HelloFX;
+import at.jku.se.diary.model.SceneSwitch;
 import at.jku.se.diary.model.StructInformation;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
@@ -65,10 +66,8 @@ public class DiaryEntryController implements Initializable {
             diary.getEntryList().remove(diary.getEntryList().size()-1);
             diary.setCurrentEntry(false);
         }
-        Scene scene = btnJournalList.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/view/JournalList.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
+        SceneSwitch s = new SceneSwitch("journalList", btnJournalList.getScene());
+        s.switchScene();
     }
 
     @FXML
@@ -140,8 +139,8 @@ public class DiaryEntryController implements Initializable {
         File selectedFile = addPic();
         Image image = new Image(selectedFile.toURI().toString());
         pic2.setImage(image);
-
     }
+
     @FXML
     public void addPic3(MouseEvent mouseEvent) {
         File selectedFile = addPic();
@@ -203,10 +202,8 @@ public class DiaryEntryController implements Initializable {
             diary.setCurrentEntry(true);
         }
         try {
-            Scene scene = buttonStructInfo.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/StructInformationView.fxml").toURI().toURL();
-            Parent root = FXMLLoader.load(url);
-            scene.setRoot(root);
+            SceneSwitch s = new SceneSwitch("structInfo", buttonStructInfo.getScene());
+            s.switchScene();
         } catch (Exception e) {
             System.out.println("load newStructuredInfo" + e);
         }

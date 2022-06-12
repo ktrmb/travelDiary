@@ -5,14 +5,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javax.swing.*;
 
-
-
 public class EnlargedPictureController {
     private String picture;
 
     @FXML
     private ImageView enlargedPicture;
-
 
     public void setSelectedEntry (String picture) {
         this.picture = picture;

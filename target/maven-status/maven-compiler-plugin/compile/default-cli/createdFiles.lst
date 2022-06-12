@@ -2,7 +2,7 @@ at\jku\se\diary\model\DiaryDB.class
 at\jku\se\diary\model\LocalDateAdapter.class
 at\jku\se\diary\model\StructInformation.class
 at\jku\se\diary\controller\EnlargedPictureController.class
-at\jku\se\diary\controller\EntryViewController.class
+at\jku\se\diary\model\EntryEdit.class
 at\jku\se\diary\controller\JournalListController.class
 at\jku\se\diary\HelloFX.class
 at\jku\se\diary\model\DiaryEntry.class

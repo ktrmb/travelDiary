@@ -1,6 +1,7 @@
 package at.jku.se.diary.controller;
 
 import at.jku.se.diary.model.DiaryEntry;
+import at.jku.se.diary.model.SceneSwitch;
 import at.jku.se.diary.model.StructInformation;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -25,7 +26,6 @@ import java.util.ArrayList;
 import static at.jku.se.diary.HelloFX.diary;
 
 public class StructuredInfoController {
-
 
         @FXML
         private Button BtnAdd;
@@ -65,7 +65,6 @@ public class StructuredInfoController {
                 category.setValue(" ");
                 rating.setRating(0);
                 structuredText.setText("");
-
         }
 
         @FXML
@@ -81,10 +80,8 @@ public class StructuredInfoController {
                         diary.getEntryList().get(diary.getEntryList().size() - 1).getStructuredInfo().forEach(info ->
                                 System.out.println(info.getCategory() + " " + info.getStars()));
 
-                        Scene scene = btnNewEntry.getScene();
-                        URL url = new File("src/main/java/at/jku/se/diary/view/DiaryEntryView.fxml").toURI().toURL();
-                        Parent root = FXMLLoader.load(url);
-                        scene.setRoot(root);
+                        SceneSwitch s = new SceneSwitch("newEntry", btnNewEntry.getScene());
+                        s.switchScene();
                 } else {
                         ArrayList<StructInformation> infos = new ArrayList<>();
                         infos.addAll(tableList.getItems());
@@ -100,10 +97,6 @@ public class StructuredInfoController {
                                 eController.setSelectedEntry(entryEdit);
 
                                 scene.setRoot(root);
-                                /*Stage stage = new Stage();
-                                stage.setScene(new Scene(root));
-                                stage.setTitle("Entry Edit");
-                                stage.show();*/
                         } catch (IOException e) {
                                 e.printStackTrace();
                         }
@@ -148,10 +141,8 @@ public class StructuredInfoController {
         @FXML
         void openEditCategories(MouseEvent event) {
                 try {
-                        Scene scene = tableList.getScene();
-                        URL url = new File("src/main/java/at/jku/se/diary/view/CategoryList.fxml").toURI().toURL();
-                        Parent root = FXMLLoader.load(url);
-                        scene.setRoot(root);
+                        SceneSwitch s = new SceneSwitch("category", tableList.getScene());
+                        s.switchScene();
                 } catch (Exception e) {
                         System.out.println("load categories" + e);
                 }

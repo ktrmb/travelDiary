@@ -1,13 +1,15 @@
 package at.jku.se.diary.controller;
 
 import at.jku.se.diary.HelloFX;
-import at.jku.se.diary.model.SceneSwitch;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
+import at.jku.se.diary.model.SceneSwitch;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -41,6 +44,8 @@ public class JournalListController {
     private Button btnSFL;
     @FXML
     private Button btnShowEntry;
+    @FXML
+    private TextField filterTitle;
 
     public void initialize() {
         Diary diary = HelloFX.diary;
@@ -55,6 +60,28 @@ public class JournalListController {
 
         ObservableList<DiaryEntry> diaryE = FXCollections.observableArrayList(diary.getEntryList());
         tVjournalList.setItems(diaryE);
+
+        //FILTERN: ---------------
+        //1. Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<DiaryEntry> titleFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
+        //2. Set the filter Predicate whenever the filter changes.
+        filterTitle.textProperty().addListener((observable, oldValue, newValue) -> {
+            titleFilterList.setPredicate(diaryEntry -> {
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (diaryEntry.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true; //Filter matches title.
+                }
+                return false; //Filter not match.
+            });
+        });
+        SortedList<DiaryEntry> sortedEntryList = new SortedList<>(titleFilterList);
+        sortedEntryList.comparatorProperty().bind(tVjournalList.comparatorProperty());
+        tVjournalList.setItems(sortedEntryList);
+
+
     }
 
     @FXML

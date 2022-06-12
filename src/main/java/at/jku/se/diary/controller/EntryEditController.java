@@ -19,7 +19,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 import javax.xml.bind.JAXBException;
 import java.awt.image.BufferedImage;
 import java.io.File;

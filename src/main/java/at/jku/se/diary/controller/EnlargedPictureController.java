@@ -3,8 +3,8 @@ package at.jku.se.diary.controller;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javax.swing.*;
 
+import javax.swing.SwingUtilities;
 
 
 public class EnlargedPictureController {

@@ -36,7 +36,7 @@ public class EntryEdit {
     public void setEntry(DiaryEntry entry) {
         this.entry = entry;
     }
-
+//save geht noch nicht rest sollte passen
     public void saveEntry() throws JAXBException {
         int oldId = entry.getId();
         String defaultWord = "default";

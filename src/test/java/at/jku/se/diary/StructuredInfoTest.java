@@ -1,11 +1,19 @@
 package at.jku.se.diary;
 
+import at.jku.se.diary.model.StructInformation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class StructuredInfoTest {
 
     StructInformation structInformation = new StructInformation();
+
+    @Test
+    void setId() {
+        this.structInformation.setId(1);
+        Assertions.assertEquals(this.structInformation.getId(), 1);
+    }
+
 
 
     @Test

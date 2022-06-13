@@ -54,14 +54,15 @@ public class CategoryListController implements Initializable {
         lVcategoryList.getItems().addAll(HelloFX.diary.getCategories());
         lVcategoryList.setEditable(true);
         lVcategoryList.setCellFactory(TextFieldListCell.forListView());
-
-
     }
 
     @FXML
     void showStructInfoPage(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("structInfo", btnNewEntry.getScene());
-        s.switchScene();
+        Scene scene = lVcategoryList.getScene();
+        URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        scene.setRoot(root);
     }
 
     @FXML

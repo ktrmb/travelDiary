@@ -14,14 +14,15 @@ public class Diary {
     private DiaryDB diaryDB;
     private File diaryFile;
     private ArrayList<String> categories;
-    private boolean currentEntry = false;
+   // private boolean currentEntry = false;
+    private DiaryEntry currentEntry;
 
     public Diary() throws JAXBException {
         entryList = new ArrayList<>();
         diaryDB = HelloFX.diaryDB;
         diaryFile = HelloFX.diaryFile;
         categories = new ArrayList<>();
-        currentEntry = false;
+        currentEntry = null;
     }
 
     @XmlElement
@@ -55,11 +56,11 @@ public class Diary {
         }
     }
 
-    public boolean isCurrentEntry() {
+    public DiaryEntry getCurrentEntry() {
         return currentEntry;
     }
 
-    public void setCurrentEntry(boolean currentEntry) {
+    public void setCurrentEntry(DiaryEntry currentEntry) {
         this.currentEntry = currentEntry;
     }
 

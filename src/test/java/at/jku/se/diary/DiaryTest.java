@@ -73,13 +73,6 @@ public class DiaryTest{
         //hier weiter!
 
     }
-    @Test
-    void isCurrentEntryTest() {
-        diary.setCurrentEntry(true);
-        assertTrue(diary.isCurrentEntry());
-        diary.setCurrentEntry(false);
-        assertFalse(diary.isCurrentEntry());
-    }
 
 
 

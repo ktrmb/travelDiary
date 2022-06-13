@@ -5,6 +5,8 @@
  */
 package at.jku.se.diary;
 
+import at.jku.se.diary.model.DiaryEntry;
+import at.jku.se.diary.model.StructInformation;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

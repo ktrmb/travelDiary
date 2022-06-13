@@ -5,6 +5,8 @@
  */
 package at.jku.se.diary;
 
+import at.jku.se.diary.model.Diary;
+import at.jku.se.diary.model.DiaryDB;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,7 +31,7 @@ public class HelloFX extends Application {
     }
 
     private static Parent loadFXML(String diaryEntryView) throws IOException{
-        URL url = new File("src/main/java/at/jku/se/diary/" + diaryEntryView + ".fxml").toURI().toURL();
+        URL url = new File("src/main/java/at/jku/se/diary/view/" + diaryEntryView + ".fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         return root;
     }
@@ -41,7 +43,6 @@ public class HelloFX extends Application {
         diaryFile = new File("diary.xml");
         try {
             diary = new Diary();
-            // hier alle DiaryEntries aus xml auslesen und dem Diary hinzufügen
             diary = diaryDB.readDiary(diaryFile);
         } catch (JAXBException e) {
             e.printStackTrace();

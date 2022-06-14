@@ -33,8 +33,6 @@ public class JournalListController {
     @FXML
     private TableView<DiaryEntry> tVjournalList;
     @FXML
-    private ImageView btnCalendar;
-    @FXML
     private ImageView btnJournalList;
     @FXML
     private ImageView btnMap;
@@ -80,21 +78,14 @@ public class JournalListController {
         SortedList<DiaryEntry> sortedEntryList = new SortedList<>(titleFilterList);
         sortedEntryList.comparatorProperty().bind(tVjournalList.comparatorProperty());
         tVjournalList.setItems(sortedEntryList);
-
-
     }
 
     @FXML
-    void showCalendarPage(MouseEvent event) {
-        //will be deleted
+    void showMapPage(MouseEvent event) throws IOException {
+        SceneSwitch s = new SceneSwitch("map", btnMap.getScene());
+        s.switchScene();
     }
 
-    @FXML
-    void showMapPage(MouseEvent event) {
-        //will be implemented
-    }
-
-    //Scene wechseln auf NewDiaryEntry
     @FXML
     void showNewEntryPage(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("newEntry", btnNewEntry.getScene());

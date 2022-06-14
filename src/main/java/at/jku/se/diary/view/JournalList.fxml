@@ -21,22 +21,17 @@
       <Line endX="68.30001831054688" endY="-1.1444091796875E-5" layoutX="74.0" layoutY="48.0" startX="-100.0" strokeWidth="3.0" />
       <Line endX="45.39990234375" endY="-1.1444091796875E-5" layoutX="602.0" layoutY="47.0" startX="-107.2213134765625" startY="-1.1444091796875E-5" strokeWidth="3.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="341.0" layoutX="66.0" layoutY="95.0" stroke="#d9d9d9" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="30.0" width="508.0" />
-      <ImageView fx:id="btnJournalList" fitHeight="85.0" fitWidth="24.0" layoutX="247.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnJournalList" fitHeight="85.0" fitWidth="24.0" layoutX="265.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../Icons/icons/menu-burger.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="btnNewEntry" fitHeight="24.0" fitWidth="24.0" layoutX="289.0" layoutY="99.0" onMouseClicked="#showNewEntryPage" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnNewEntry" fitHeight="24.0" fitWidth="24.0" layoutX="307.0" layoutY="98.0" onMouseClicked="#showNewEntryPage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../Icons/icons/plus.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="btnCalendar" fitHeight="24.0" fitWidth="24.0" layoutX="331.0" layoutY="99.0" onMouseClicked="#showCalendarPage" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Icons/icons/calendar.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="btnMap" fitHeight="24.0" fitWidth="24.0" layoutX="371.0" layoutY="99.0" onMouseClicked="#showMapPage" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnMap" fitHeight="24.0" fitWidth="24.0" layoutX="349.0" layoutY="98.0" onMouseClicked="#showMapPage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../Icons/icons/marker.png" />
          </image>

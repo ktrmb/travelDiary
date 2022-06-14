@@ -24,9 +24,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class EntryEditController {
 
@@ -178,16 +175,6 @@ public class EntryEditController {
         e.editPic(pic3);
     }
 
-    /*public File addPic(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Wähle ein Bild aus");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
-        File selectedFile = fileChooser.showOpenDialog(stage);
-        System.out.println(selectedFile);
-        return selectedFile;
-    }*/
-
     @FXML
     void deletePic1(MouseEvent event) {
         e.deletePic(pic1);
@@ -236,3 +223,13 @@ public class EntryEditController {
         }
     }
 }
+
+/*public File addPic(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Wähle ein Bild aus");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        System.out.println(selectedFile);
+        return selectedFile;
+    }*/

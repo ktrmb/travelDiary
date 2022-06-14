@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class SceneSwitch {
@@ -35,6 +36,8 @@ public class SceneSwitch {
                 sceneStructInfo();
             case "category":
                 sceneCategoryList();
+            case "map":
+                sceneMap();
             default:
                 System.out.println("Scene not available!" + " " + newScene);
         }
@@ -70,6 +73,12 @@ public class SceneSwitch {
 
     public void sceneCategoryList() throws IOException {
         URL url = new File("src/main/java/at/jku/se/diary/view/CategoryList.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
+    }
+
+    public void sceneMap() throws IOException {
+        URL url = new File("src/main/java/at/jku/se/diary/view/MapView.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
     }

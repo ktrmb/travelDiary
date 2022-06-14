@@ -1,11 +1,8 @@
 package at.jku.se.diary.model;
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.controller.EntryEditController;
-import at.jku.se.diary.model.Diary;
-import at.jku.se.diary.model.DiaryEntry;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 

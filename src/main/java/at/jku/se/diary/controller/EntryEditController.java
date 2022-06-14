@@ -34,14 +34,14 @@ public class EntryEditController {
     private Diary diary = HelloFX.diary;
     private Stage stage;
     String file = "file:src/pictures/";
-    private String defaultPicPath = "file:src/pictures/defaultPic.png";
-    private String defaultPicName = "defaultPic.png";
-    private String pathToPic = "src/pictures/image";
 
     private EntryEdit e = new EntryEdit();
 
     @FXML
     private Button btnCancel;
+
+    @FXML
+    private Button btnDelete;
 
     @FXML
     private Button btnSave;
@@ -74,7 +74,7 @@ public class EntryEditController {
     }
 
     public void initialize() {
-        SwingUtilities.invokeLater(this::setEntry);
+        SwingUtilities.invokeLater(() -> setEntry());
     }
 
     public void setEntry() {
@@ -105,8 +105,39 @@ public class EntryEditController {
 
     @FXML
     void saveEntry(MouseEvent event) throws IOException, JAXBException {
-        e.saveEntry();
+        int oldId = entry.getId();
+        String defaultWord = "default";
+
+        DiaryEntry newEntry = new DiaryEntry(oldId, txtDate.getValue(),
+                txtTitel.getText(), txtAdress.getText(), txtText.getHtmlText(), entry.getStructuredInfo());
+
+        if(!pic1.getImage().getUrl().contains(defaultWord)){
+            String imgName1 = e.saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
+            newEntry.setPicture1(imgName1);
+        }
+
+        if(!pic2.getImage().getUrl().contains(defaultWord)){
+            String imgName2 = e.saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
+            newEntry.setPicture2(imgName2);
+        }
+
+        if(!pic3.getImage().getUrl().contains(defaultWord)){
+            String imgName3 = e.saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
+            newEntry.setPicture3(imgName3);
+        }
+
+        diary.getEntryList().remove(entry);
+        diary.addNewEntry(newEntry);
+        HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
+
         SceneSwitch s = new SceneSwitch("journalList", btnSave.getScene());
+        s.switchScene();
+    }
+
+    @FXML
+    void deleteEntry(MouseEvent event) throws IOException, JAXBException {
+        e.deleteEntry();
+        SceneSwitch s = new SceneSwitch("journalList", btnDelete.getScene());
         s.switchScene();
     }
 
@@ -157,44 +188,19 @@ public class EntryEditController {
         return selectedFile;
     }*/
 
-
     @FXML
     void deletePic1(MouseEvent event) {
-        String fileName = pathToPic+entry.getId()+"_1.jpg";
-        deletePic(fileName);
-        //Default Image wird gesetzt
-        pic1.setImage(new Image(defaultPicPath));
-        entry.setPicture1(defaultPicName);
+        e.deletePic(pic1);
     }
 
     @FXML
     void deletePic2(MouseEvent event) {
-        String fileName = pathToPic+entry.getId()+"_2.jpg";
-        deletePic(fileName);
-        //Default Image wird gesetzt
-        pic2.setImage(new Image(defaultPicPath));
-        entry.setPicture2(defaultPicName);
+        e.deletePic(pic2);
     }
 
     @FXML
     void deletePic3(MouseEvent event) {
-        String fileName = pathToPic+entry.getId()+"_3.jpg";
-        deletePic(fileName);
-        //Default Image wird gesetzt
-        pic3.setImage(new Image(defaultPicPath));
-        entry.setPicture3(defaultPicName);
-    }
-
-    //Methode um Bilder aus dem Verzeichnis "pictures" zu löschen
-    void deletePic(String fileName){
-        File newFile = new File(fileName);
-        String pathString = newFile.getAbsolutePath();
-        Path path = Paths.get(pathString);
-        try{
-            Files.delete(path);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        e.deletePic(pic3);
     }
 
     @FXML

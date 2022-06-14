@@ -50,7 +50,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="btnSave" layoutX="260.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#saveEntry" text="Save" />
+      <Button fx:id="btnSave" layoutX="333.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#saveEntry" text="Save" />
       <Button fx:id="btnCancel" layoutX="85.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#cancelEdit" text="Cancel" />
       <Button fx:id="btnShowStructuredInfo" layoutX="152.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#showStructuredInfo" text="Structered Info" />
       <ImageView fx:id="pic1" fitHeight="50.0" fitWidth="51.0" layoutX="486.0" layoutY="178.0" onMouseClicked="#enlargePic1" pickOnBounds="true" preserveRatio="true">
@@ -99,5 +99,6 @@
          </image>
       </ImageView>
       <HTMLEditor fx:id="txtText" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="85.0" layoutY="237.0" prefHeight="167.0" prefWidth="365.0" />
+      <Button fx:id="btnDelete" layoutX="263.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#deleteEntry" text="Delete" />
    </children>
 </Pane>

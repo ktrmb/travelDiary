@@ -19,6 +19,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class EntryEdit {
     private Diary diary;
@@ -30,13 +33,14 @@ public class EntryEdit {
         this.diary = HelloFX.diary;
         URL url = new File("src/main/java/at/jku/se/diary/view/EntryEdit.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
-        c = loader.getController();
+        c = loader.getController(); //laden von controller object geht nicht
     }
 
     public void setEntry(DiaryEntry entry) {
         this.entry = entry;
     }
-//save geht noch nicht rest sollte passen
+
+    //save geht noch nicht rest sollte passen (save noch in controller klasse)
     public void saveEntry() throws JAXBException {
         int oldId = entry.getId();
         String defaultWord = "default";
@@ -64,6 +68,11 @@ public class EntryEdit {
         HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
     }
 
+    public void deleteEntry() throws JAXBException, IOException {
+        diary.getEntryList().remove(entry);
+        HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
+    }
+
     public void editPic(ImageView pic) {
         File selectedFile = addPic();
         Image image = new Image(String.valueOf(selectedFile));
@@ -71,7 +80,21 @@ public class EntryEdit {
     }
 
     public void deletePic(ImageView pic) {
+        String fileName = "src/pictures/image" + entry.getId() + "_1.jpg"; //pathToPic
+        deletePicFile(fileName);
+        pic.setImage(new Image("file:src/pictures/defaultPic.png")); //defaultPicPath
+        entry.setPicture1("defaultPic.png"); //defaultPicName
+    }
 
+    public void deletePicFile(String fileName) {
+        File newFile = new File(fileName);
+        String pathString = newFile.getAbsolutePath();
+        Path path = Paths.get(pathString);
+        try{
+            Files.delete(path);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public File addPic(){

@@ -167,6 +167,12 @@ public class DiaryEntryController implements Initializable {
             date.setValue(diary.getCurrentEntry().getDate());
             address.setText(diary.getCurrentEntry().getAddress());
             diaryText.setHtmlText(diary.getCurrentEntry().getDiaryText());
+            Image i1 = new Image(diary.getCurrentEntry().getPicture1());
+            pic1.setImage(i1);
+            Image i2 = new Image(diary.getCurrentEntry().getPicture2());
+            pic2.setImage(i2);
+            Image i3 = new Image(diary.getCurrentEntry().getPicture3());
+            pic3.setImage(i3);
         }
     }
 
@@ -210,12 +216,14 @@ public class DiaryEntryController implements Initializable {
     //when the Categories or new structured Info is added, the current Input is saved in the diary Arraylist
     public void safeEntry() throws JAXBException {
         int id = diary.getEntryList().size() + 1;
-
         LocalDate currentDate = date.getValue();
         String currentTitle = ((title.getText() == null) ? " " : title.getText());
         String currentAddress = ((address.getText() == null) ? " " : address.getText());
         String currentDiaryText = ((diaryText.getHtmlText() == null) ? " " : diaryText.getHtmlText());
-
-        diary.setCurrentEntry(new DiaryEntry(id, currentDate, currentTitle, currentAddress, currentDiaryText,null));
+        DiaryEntry currentEntry = new DiaryEntry(id, currentDate, currentTitle, currentAddress, currentDiaryText,null);
+        currentEntry.setPicture1(pic1.getImage().getUrl());
+        currentEntry.setPicture2(pic2.getImage().getUrl());
+        currentEntry.setPicture3(pic3.getImage().getUrl());
+        diary.setCurrentEntry(currentEntry);
     }
 }

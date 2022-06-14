@@ -36,7 +36,7 @@ public class SceneSwitch {
             case "category":
                 sceneCategoryList();
             default:
-                System.out.println("Scene not available!");
+                System.out.println("Scene not available!" + " " + newScene);
         }
     }
 

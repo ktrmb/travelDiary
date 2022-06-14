@@ -69,16 +69,14 @@ public class StructuredInfoController {
 
         @FXML
         void saveListOnClick(ActionEvent event) throws IOException {
-                if (diary.isCurrentEntry()) {
+                if (diary.getCurrentEntry() != null) {
 
                         ArrayList<StructInformation> infos = new ArrayList<>();
                         infos.addAll(tableList.getItems());
                         infos.forEach(structInformation -> {
                                 System.out.println("category " + structInformation.getCategory() + "Rating " + structInformation.getStars() + " Infos " + structInformation.getStructuredText());
                         });
-                        diary.getEntryList().get(diary.getEntryList().size() - 1).setStructuredInfo(infos);
-                        diary.getEntryList().get(diary.getEntryList().size() - 1).getStructuredInfo().forEach(info ->
-                                System.out.println(info.getCategory() + " " + info.getStars()));
+                        diary.getCurrentEntry().setStructuredInfo(infos);
 
                         SceneSwitch s = new SceneSwitch("newEntry", btnNewEntry.getScene());
                         s.switchScene();
@@ -125,11 +123,11 @@ public class StructuredInfoController {
 
                 tableList.getColumns().addAll(columnCategory,columnStars, columnInfo);
 
-                System.out.print("in inizialize:" + diary.isCurrentEntry());
-                if (diary.isCurrentEntry()) {
-                        ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(diary.getEntryList().get(diary.getEntryList().size() -1).getStructuredInfo());
-                        diaryE.forEach(info -> System.out.println(info.getCategory() + " " + info.getStars()));
-                        if (diaryE.size()>0)tableList.setItems(diaryE);
+                if (diary.getCurrentEntry() != null) {
+                        if (diary.getCurrentEntry().getStructuredInfo() != null) {
+                                ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(diary.getCurrentEntry().getStructuredInfo());
+                                tableList.setItems(diaryE);
+                        }
                 } else {
                         SwingUtilities.invokeLater(() -> setInfo());
                 }

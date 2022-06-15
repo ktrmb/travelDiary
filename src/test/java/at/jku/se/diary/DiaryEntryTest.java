@@ -5,6 +5,8 @@
  */
 package at.jku.se.diary;
 
+import at.jku.se.diary.model.DiaryEntry;
+import at.jku.se.diary.model.StructInformation;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -21,6 +23,7 @@ class DiaryEntryTest {
      * Creating a new TestObject
      */
     private ArrayList<StructInformation> arrayListInfos = new ArrayList<>();
+    private final DiaryEntry entryDefault = new DiaryEntry();
     private final DiaryEntry entry = new DiaryEntry(1, LocalDate.now(),
             "Ausflug Attersee", "Steinbach am Attersee", "Liebes Tagebuch ...", arrayListInfos);
 
@@ -28,10 +31,17 @@ class DiaryEntryTest {
      * Test of setTitle method, of class DiaryEntry.
      */
     @Test
+    void setId(){
+        entry.setId(1);
+        assertEquals(entry.getId(), 1);
+    }
+
+    @Test
     void setTitle() {
         entry.setTitle("Going San Francisco");
         assertEquals(entry.getTitle(), "Going San Francisco");
     }
+
     @Test
     void setDate() {
         entry.setDate(LocalDate.of(2022, 5, 4));
@@ -58,6 +68,24 @@ class DiaryEntryTest {
         arrayListInfos.add(structInfo2);
         entry.setStructuredInfo(arrayListInfos);
         assertEquals(entry.getStructuredInfo(), arrayListInfos);
-
     }
+
+    @Test
+    void setPicture1(){
+        entry.setPicture1("defaultPic.png");
+        assertEquals(entry.getPicture1(), "defaultPic.png");
+    }
+    @Test
+    void setPicture2(){
+        entry.setPicture2("defaultPic.png");
+        assertEquals(entry.getPicture2(), "defaultPic.png");
+    }
+    @Test
+    void setPicture3(){
+        entry.setPicture3("defaultPic.png");
+        assertEquals(entry.getPicture3(), "defaultPic.png");
+    }
+
+
+
 }

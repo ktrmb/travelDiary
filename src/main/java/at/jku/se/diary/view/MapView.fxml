@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.jku.se.diary.controller.MapController">
+   <children>
+      <Label layoutX="172.0" layoutY="36.0" prefHeight="43.0" prefWidth="317.0" text="T R A V E L   J O U R N A L" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Line endX="68.30001831054688" endY="-1.1444091796875E-5" layoutX="84.0" layoutY="58.0" startX="-100.0" strokeWidth="3.0" />
+      <Line endX="28.0" endY="-1.1444091796875E-5" layoutX="612.0" layoutY="57.0" startX="-107.2213134765625" startY="-1.1444091796875E-5" strokeWidth="3.0" />
+   </children>
+</Pane>

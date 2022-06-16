@@ -87,6 +87,26 @@ public class Diary {
         return titleFilterList;
     }
 
+/*    public FilteredList<DiaryEntry> filterText(ObservableList diaryE, StringProperty filterTitle){
+        //FILTERN: ---------------
+        //1. Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<DiaryEntry> titleFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
+        //2. Set the filter Predicate whenever the filter changes.
+        filterTitle.addListener((observable, oldValue, newValue) -> {
+            titleFilterList.setPredicate(diaryEntry -> {
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (diaryEntry.getDiaryText().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true; //Filter matches title.
+                }
+                return false; //Filter not match.
+            });
+        });
+        return titleFilterList;
+    }*/
+
 
 /*    //wieder weglöschen!
     public String toString(){

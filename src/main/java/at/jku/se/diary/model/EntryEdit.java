@@ -19,6 +19,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class EntryEdit {
     private Diary diary;
@@ -66,18 +67,28 @@ public class EntryEdit {
     }
 
     public void deleteEntry() throws JAXBException, IOException {
+        ArrayList<String> pictureNames = new ArrayList<>();
+        pictureNames.add(entry.getPicture1());
+        pictureNames.add(entry.getPicture2());
+        pictureNames.add(entry.getPicture3());
+        for(String pic : pictureNames){
+            if(!pic.contains("default")){
+                deletePicFile("src/pictures/"+pic);
+            }
+        }
         diary.getEntryList().remove(entry);
         HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
     }
-
     public void editPic(ImageView pic) {
         File selectedFile = addPic();
-        Image image = new Image(String.valueOf(selectedFile));
-        pic.setImage(image);
+        if(selectedFile!=null){
+            Image image = new Image(String.valueOf(selectedFile));
+            pic.setImage(image);
+        }
     }
 
-    public void deletePic(ImageView pic) {
-        String fileName = "src/pictures/image" + entry.getId() + "_1.jpg"; //pathToPic
+    public void deletePic(ImageView pic, String picNumber) {
+        String fileName = "src/pictures/image" + entry.getId() + "_"+picNumber+".jpg"; //pathToPic
         deletePicFile(fileName);
         pic.setImage(new Image("file:src/pictures/defaultPic.png")); //defaultPicPath
         entry.setPicture1("defaultPic.png"); //defaultPicName
@@ -93,7 +104,6 @@ public class EntryEdit {
             e.printStackTrace();
         }
     }
-
     public File addPic(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Wähle ein Bild aus");

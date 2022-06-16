@@ -68,12 +68,18 @@ public class JournalListController {
         ObservableList<DiaryEntry> diaryE = FXCollections.observableArrayList(diary.getEntryList());
         tVjournalList.setItems(diaryE);
 
-        diary.filterTitle(diaryE, filterTitle.textProperty());
+        //diary.filterTitle(diaryE, filterTitle.textProperty());
 
         //Title Filtern (wird in Diary Klasse gemacht)
         SortedList<DiaryEntry> sortedEntryList = new SortedList<>(diary.filterTitle(diaryE, filterTitle.textProperty()));
         sortedEntryList.comparatorProperty().bind(tVjournalList.comparatorProperty());
         tVjournalList.setItems(sortedEntryList);
+
+/*        //Text Filtern
+        SortedList<DiaryEntry> sortedEntryList2 = new SortedList<>(diary.filterText(diaryE, filterText.textProperty()));
+        sortedEntryList2.comparatorProperty().bind(tVjournalList.comparatorProperty());
+        tVjournalList.setItems(sortedEntryList2);*/
+
 
 
         filterStars.getItems().addAll("1/5", "2/5", "3/5", "4/5", "5/5");
@@ -99,13 +105,13 @@ public class JournalListController {
 
     @FXML
     void showNewEntryPage(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("newEntry", btnNewEntry.getScene());
+        SceneSwitch s = new SceneSwitch("DiaryEntryView", btnNewEntry.getScene());
         s.switchScene();
     }
 
     @FXML
     void showSelectFileLocation(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("fileLocation", btnSFL.getScene());
+        SceneSwitch s = new SceneSwitch("SelectFileLocation", btnSFL.getScene());
         s.switchScene();
     }
 

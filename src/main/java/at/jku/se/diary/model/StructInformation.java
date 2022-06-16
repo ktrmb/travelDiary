@@ -38,7 +38,7 @@ public class StructInformation {
         return stars;
     }
 
-    public void setStars(int stars) {
+    public void setStars(double stars) {
         this.stars = stars;
     }
 

@@ -14,10 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -44,8 +41,21 @@ public class JournalListController {
     private Button btnShowEntry;
     @FXML
     private TextField filterTitle;
+    @FXML
+    private ComboBox<String> filterCategory;
+    @FXML
+    private DatePicker filterDateFrom;
+    @FXML
+    private DatePicker filterDateTo;
+    @FXML
+    private ComboBox<String> filterStars;
+    @FXML
+    private TextField filterStructInfo;
+    @FXML
+    private TextField filterText;
 
-    public void initialize() {
+
+        public void initialize() {
         Diary diary = HelloFX.diary;
 
         TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
@@ -79,6 +89,15 @@ public class JournalListController {
         sortedEntryList.comparatorProperty().bind(tVjournalList.comparatorProperty());
         tVjournalList.setItems(sortedEntryList);
     }
+    @FXML
+    void applyFilter(MouseEvent event) {
+
+    }
+
+    @FXML
+    void deleteFilter(MouseEvent event) {
+    }
+
 
     @FXML
     void showMapPage(MouseEvent event) throws IOException {

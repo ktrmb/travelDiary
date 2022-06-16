@@ -17,6 +17,7 @@
         <structuredInfo>
             <category>Kultur</category>
             <id>0</id>
+            <stars>0.0</stars>
             <structuredText>schöne, alte Stadt</structuredText>
         </structuredInfo>
         <title>Ausflug Luxor</title>
@@ -42,64 +43,10 @@
         <structuredInfo>
             <category>Strand</category>
             <id>0</id>
+            <stars>0.0</stars>
             <structuredText>gepflegter Strand</structuredText>
         </structuredInfo>
         <title>Strandbesuch</title>
-    </entryList>
-    <entryList>
-        <address>asdfasdf</address>
-        <date>2022-06-25</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;asdfsadf&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>6</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <structuredInfo>
-            <category>Strand</category>
-            <id>0</id>
-            <structuredText>asdf</structuredText>
-        </structuredInfo>
-        <structuredInfo>
-            <category>Urlaub</category>
-            <id>1</id>
-            <structuredText>asdfsadf</structuredText>
-        </structuredInfo>
-        <title>Berlin</title>
-    </entryList>
-    <entryList>
-        <address></address>
-        <date>2022-06-07</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;asdf&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>8</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <structuredInfo>
-            <category>Strand</category>
-            <id>0</id>
-            <structuredText>asdf</structuredText>
-        </structuredInfo>
-        <structuredInfo>
-            <category>Hotel</category>
-            <id>1</id>
-            <structuredText>asdf</structuredText>
-        </structuredInfo>
-        <title>qqqqq</title>
-    </entryList>
-    <entryList>
-        <address>asdf</address>
-        <date>2022-06-07</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;asdfsdf&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>7</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <structuredInfo>
-            <category>Strand</category>
-            <id>0</id>
-            <structuredText>asdf</structuredText>
-        </structuredInfo>
-        <title>Hamburg</title>
     </entryList>
     <entryList>
         <address>Barcelona</address>
@@ -112,6 +59,7 @@
         <structuredInfo>
             <category>Kultur</category>
             <id>0</id>
+            <stars>0.0</stars>
             <structuredText>schöne Bauwerke</structuredText>
         </structuredInfo>
         <title>Barcelona Ausflug</title>

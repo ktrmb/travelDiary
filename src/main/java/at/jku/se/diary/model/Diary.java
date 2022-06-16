@@ -1,6 +1,9 @@
 package at.jku.se.diary.model;
 
 import at.jku.se.diary.HelloFX;
+import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
@@ -62,6 +65,26 @@ public class Diary {
 
     public void setCurrentEntry(DiaryEntry currentEntry) {
         this.currentEntry = currentEntry;
+    }
+
+    public FilteredList<DiaryEntry> filterTitle(ObservableList diaryE, StringProperty filterTitle){
+        //FILTERN: ---------------
+        //1. Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<DiaryEntry> titleFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
+        //2. Set the filter Predicate whenever the filter changes.
+        filterTitle.addListener((observable, oldValue, newValue) -> {
+            titleFilterList.setPredicate(diaryEntry -> {
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (diaryEntry.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true; //Filter matches title.
+                }
+                return false; //Filter not match.
+            });
+        });
+        return titleFilterList;
     }
 
 

@@ -8,7 +8,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,28 +68,21 @@ public class JournalListController {
         ObservableList<DiaryEntry> diaryE = FXCollections.observableArrayList(diary.getEntryList());
         tVjournalList.setItems(diaryE);
 
-        //FILTERN: ---------------
-        //1. Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<DiaryEntry> titleFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
-        //2. Set the filter Predicate whenever the filter changes.
-        filterTitle.textProperty().addListener((observable, oldValue, newValue) -> {
-            titleFilterList.setPredicate(diaryEntry -> {
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if (diaryEntry.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                    return true; //Filter matches title.
-                }
-                return false; //Filter not match.
-            });
-        });
-        SortedList<DiaryEntry> sortedEntryList = new SortedList<>(titleFilterList);
+        diary.filterTitle(diaryE, filterTitle.textProperty());
+
+        //Title Filtern (wird in Diary Klasse gemacht)
+        SortedList<DiaryEntry> sortedEntryList = new SortedList<>(diary.filterTitle(diaryE, filterTitle.textProperty()));
         sortedEntryList.comparatorProperty().bind(tVjournalList.comparatorProperty());
         tVjournalList.setItems(sortedEntryList);
+
+
+        filterStars.getItems().addAll("1/5", "2/5", "3/5", "4/5", "5/5");
+        filterCategory.getItems().addAll(diary.getCategories());
+
     }
     @FXML
     void applyFilter(MouseEvent event) {
+
 
     }
 

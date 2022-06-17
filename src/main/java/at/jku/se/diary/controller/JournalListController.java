@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +26,8 @@ import java.time.LocalDate;
 public class JournalListController {
 
     public DiaryEntry selectedEntry;
+    public SortedList<DiaryEntry> sortedList;
+    public Diary diary = HelloFX.diary;
 
     @FXML
     private TableView<DiaryEntry> tVjournalList;
@@ -41,13 +44,13 @@ public class JournalListController {
     @FXML
     private TextField filterTitle;
     @FXML
-    private ComboBox<String> filterCategory;
+    private ComboBox<String> filterCategoryBox;
     @FXML
     private DatePicker filterDateFrom;
     @FXML
     private DatePicker filterDateTo;
     @FXML
-    private ComboBox<String> filterStars;
+    private ComboBox<String> filterStarsBox;
     @FXML
     private TextField filterStructInfo;
     @FXML
@@ -55,7 +58,7 @@ public class JournalListController {
 
 
         public void initialize() {
-        Diary diary = HelloFX.diary;
+
 
         TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
         titel.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getTitle())));
@@ -68,24 +71,42 @@ public class JournalListController {
         ObservableList<DiaryEntry> diaryE = FXCollections.observableArrayList(diary.getEntryList());
         tVjournalList.setItems(diaryE);
 
-        //diary.filterTitle(diaryE, filterTitle.textProperty());
+        filterStarsBox.getItems().addAll("-", "1.0", "2.0", "3.0", "4.0", "5.0");
+        filterCategoryBox.getItems().add("-");
+        filterCategoryBox.getItems().addAll(diary.getCategories());
 
-        //Title Filtern (wird in Diary Klasse gemacht)
-        SortedList<DiaryEntry> sortedEntryList = new SortedList<>(diary.filterTitle(diaryE, filterTitle.textProperty()));
-        sortedEntryList.comparatorProperty().bind(tVjournalList.comparatorProperty());
-        tVjournalList.setItems(sortedEntryList);
+        //Title filtern (wird in Diary Klasse gemacht)
+        SortedList<DiaryEntry> sortedEntryListTitle = new SortedList<>(diary.filterTitle(diaryE, filterTitle.textProperty()));
+        sortedEntryListTitle.comparatorProperty().bind(tVjournalList.comparatorProperty());
+        tVjournalList.setItems(sortedEntryListTitle);
 
-/*        //Text Filtern
-        SortedList<DiaryEntry> sortedEntryList2 = new SortedList<>(diary.filterText(diaryE, filterText.textProperty()));
-        sortedEntryList2.comparatorProperty().bind(tVjournalList.comparatorProperty());
-        tVjournalList.setItems(sortedEntryList2);*/
+        //Text filtern
+        SortedList<DiaryEntry> sortedEntryListText = new SortedList<>(diary.filterText(sortedEntryListTitle, filterText.textProperty()));
+        sortedEntryListText.comparatorProperty().bind(tVjournalList.comparatorProperty());
+        tVjournalList.setItems(sortedEntryListText);
 
 
-
-        filterStars.getItems().addAll("1/5", "2/5", "3/5", "4/5", "5/5");
-        filterCategory.getItems().addAll(diary.getCategories());
+        //Struct Info Text filtern
+        SortedList<DiaryEntry> sortedEntryListStructText = new SortedList<>(diary.filterStructText(sortedEntryListText, filterStructInfo.textProperty()));
+        sortedEntryListStructText.comparatorProperty().bind(tVjournalList.comparatorProperty());
+        tVjournalList.setItems(sortedEntryListStructText);
+        sortedList = sortedEntryListStructText;
 
     }
+
+    @FXML
+    void filterCategory(ActionEvent event) {
+        SortedList<DiaryEntry> sortedListCategory = new SortedList<>(diary.filterCategory(sortedList, filterCategoryBox.getSelectionModel().getSelectedItem()));
+        sortedListCategory.comparatorProperty().bind(tVjournalList.comparatorProperty());
+        tVjournalList.setItems(sortedListCategory);
+    }
+    @FXML
+    void filterStars(ActionEvent event) {
+        SortedList<DiaryEntry> sortedListStars = new SortedList<>(diary.filterStars(sortedList, filterStarsBox.getSelectionModel().getSelectedItem()));
+        sortedListStars.comparatorProperty().bind(tVjournalList.comparatorProperty());
+        tVjournalList.setItems(sortedListStars);
+    }
+
     @FXML
     void applyFilter(MouseEvent event) {
 

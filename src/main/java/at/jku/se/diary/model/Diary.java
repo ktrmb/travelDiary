@@ -67,8 +67,8 @@ public class Diary {
         this.currentEntry = currentEntry;
     }
 
+
     public FilteredList<DiaryEntry> filterTitle(ObservableList diaryE, StringProperty filterTitle){
-        //FILTERN: ---------------
         //1. Wrap the ObservableList in a FilteredList (initially display all data).
         FilteredList<DiaryEntry> titleFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
         //2. Set the filter Predicate whenever the filter changes.
@@ -87,28 +87,81 @@ public class Diary {
         return titleFilterList;
     }
 
-/*    public FilteredList<DiaryEntry> filterText(ObservableList diaryE, StringProperty filterTitle){
-        //FILTERN: ---------------
-        //1. Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<DiaryEntry> titleFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
-        //2. Set the filter Predicate whenever the filter changes.
-        filterTitle.addListener((observable, oldValue, newValue) -> {
-            titleFilterList.setPredicate(diaryEntry -> {
+    public FilteredList<DiaryEntry> filterText(ObservableList diaryE, StringProperty filterText){
+        FilteredList<DiaryEntry> textFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
+        filterText.addListener((observable, oldValue, newValue) -> {
+            textFilterList.setPredicate(diaryEntry -> {
                 if(newValue == null || newValue.isEmpty()){
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
                 if (diaryEntry.getDiaryText().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                    return true; //Filter matches title.
+                    return true;
                 }
-                return false; //Filter not match.
+                return false;
             });
         });
-        return titleFilterList;
-    }*/
+        return textFilterList;
+    }
 
+    public FilteredList<DiaryEntry> filterStructText(ObservableList diaryE, StringProperty filterStructText){
+        FilteredList<DiaryEntry> structTextFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
+        filterStructText.addListener((observable, oldValue, newValue) -> {
+            structTextFilterList.setPredicate(diaryEntry -> {
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if(diaryEntry.getStructuredInfo()!=null){
+                    for(StructInformation s : diaryEntry.getStructuredInfo()){
+                        if(s.getStructuredText().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            });
+        });
+        return structTextFilterList;
+    }
 
-/*    //wieder weglöschen!
+    public FilteredList<DiaryEntry> filterCategory(ObservableList diaryE, String filterCategory) {
+        FilteredList<DiaryEntry> categoryFilteredList = new FilteredList<DiaryEntry>(diaryE, p -> true);
+        categoryFilteredList.setPredicate(diaryEntry -> {
+            if (filterCategory == null || filterCategory.equals("-")) {
+                return true;
+            }
+            if(diaryEntry.getStructuredInfo()!=null){
+                for (StructInformation s : diaryEntry.getStructuredInfo()) {
+                    if (s.getCategory().equals(filterCategory)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
+        return categoryFilteredList;
+    }
+
+    public FilteredList<DiaryEntry> filterStars(ObservableList diaryE, String filterStars) {
+        FilteredList<DiaryEntry> starsFilteredList = new FilteredList<DiaryEntry>(diaryE, p -> true);
+        starsFilteredList.setPredicate(diaryEntry -> {
+            if (filterStars == null || filterStars.equals("-")) {
+                return true;
+            }
+            if(diaryEntry.getStructuredInfo()!=null){
+                for (StructInformation s : diaryEntry.getStructuredInfo()) {
+                    if (String.valueOf(s.getStars()).equals(filterStars)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
+        return starsFilteredList;
+    }
+
+/*
     public String toString(){
         String output = "";
         for(DiaryEntry e : getEntryList()){

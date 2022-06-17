@@ -74,6 +74,14 @@ public class DiaryTest{
 
     }
 
+    @Test
+    void setCurrentEntry() {
+        DiaryEntry currentEntry = new DiaryEntry(1, LocalDate.now(), "Urlaub Rom", "Italien", "Liebes Tagebuch ...", structInfoList );
+        diary.setCurrentEntry(currentEntry);
+        assertEquals(diary.getCurrentEntry(), currentEntry);
+
+    }
+
 
 
 

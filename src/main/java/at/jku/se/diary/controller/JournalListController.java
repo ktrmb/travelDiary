@@ -4,11 +4,13 @@ import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.SceneSwitch;
+import at.jku.se.diary.model.StructInformation;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +28,9 @@ import java.time.LocalDate;
 public class JournalListController {
 
     public DiaryEntry selectedEntry;
-    public SortedList<DiaryEntry> sortedList;
     public Diary diary = HelloFX.diary;
+    ObservableList<DiaryEntry> diaryE;
+
 
     @FXML
     private TableView<DiaryEntry> tVjournalList;
@@ -46,18 +49,25 @@ public class JournalListController {
     @FXML
     private ComboBox<String> filterCategoryBox;
     @FXML
-    private DatePicker filterDateFrom;
+    private DatePicker filterDateFromBox;
     @FXML
-    private DatePicker filterDateTo;
+    private DatePicker filterDateToBox;
     @FXML
     private ComboBox<String> filterStarsBox;
     @FXML
     private TextField filterStructInfo;
     @FXML
     private TextField filterText;
+    @FXML
+    private TextField applyHelpTextBox;
 
 
-        public void initialize() {
+    public void initialize() {
+
+
+        filterStarsBox.getItems().addAll("Stars", "1.0", "2.0", "3.0", "4.0", "5.0");
+        filterCategoryBox.getItems().add("Category");
+        filterCategoryBox.getItems().addAll(diary.getCategories());
 
 
         TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
@@ -68,55 +78,86 @@ public class JournalListController {
 
         tVjournalList.getColumns().addAll(titel, date);
 
-        ObservableList<DiaryEntry> diaryE = FXCollections.observableArrayList(diary.getEntryList());
+        diaryE = FXCollections.observableArrayList(diary.getEntryList());
         tVjournalList.setItems(diaryE);
 
-        filterStarsBox.getItems().addAll("-", "1.0", "2.0", "3.0", "4.0", "5.0");
-        filterCategoryBox.getItems().add("-");
-        filterCategoryBox.getItems().addAll(diary.getCategories());
-
-        //Title filtern (wird in Diary Klasse gemacht)
-        SortedList<DiaryEntry> sortedEntryListTitle = new SortedList<>(diary.filterTitle(diaryE, filterTitle.textProperty()));
-        sortedEntryListTitle.comparatorProperty().bind(tVjournalList.comparatorProperty());
-        tVjournalList.setItems(sortedEntryListTitle);
-
-        //Text filtern
-        SortedList<DiaryEntry> sortedEntryListText = new SortedList<>(diary.filterText(sortedEntryListTitle, filterText.textProperty()));
-        sortedEntryListText.comparatorProperty().bind(tVjournalList.comparatorProperty());
-        tVjournalList.setItems(sortedEntryListText);
+        applyHelpTextBox.setVisible(false);
+        filterTitle.setText("");
+        filterText.setText("Text");
+        filterDateFromBox.setValue(LocalDate.of(2022, 06, 01));
+        filterDateToBox.setValue(LocalDate.of(2022, 06, 30));
+        filterCategoryBox.setValue("Category");
+        filterStructInfo.setText("Structured Info");
+        filterStarsBox.setValue("Stars");
 
 
-        //Struct Info Text filtern
-        SortedList<DiaryEntry> sortedEntryListStructText = new SortedList<>(diary.filterStructText(sortedEntryListText, filterStructInfo.textProperty()));
-        sortedEntryListStructText.comparatorProperty().bind(tVjournalList.comparatorProperty());
-        tVjournalList.setItems(sortedEntryListStructText);
-        sortedList = sortedEntryListStructText;
+        FilteredList<DiaryEntry> filteredList = new FilteredList<>(diaryE);
+        tVjournalList.setItems(filteredList);
+        filteredList.predicateProperty().bind(Bindings.createObjectBinding(() -> diaryEntry ->
+                        ((diaryEntry.getTitle().toLowerCase().contains(filterTitle.getText().toLowerCase())) || (filterTitle.getText().isEmpty()))
+                                && ((applyHelpTextBox.getText().equals("")))
+                                && ((diaryEntry.getDiaryText().toLowerCase().contains(filterText.getText().toLowerCase())) || (filterText.getText().isEmpty()) || filterText.getText().equals("Text"))
+                                && (diaryEntry.getDate().isAfter(filterDateFromBox.getValue()) || (diaryEntry.getDate().isEqual(filterDateFromBox.getValue())))
+                                && (diaryEntry.getDate().isBefore(filterDateToBox.getValue()) || diaryEntry.getDate().isEqual(filterDateToBox.getValue()))
+                                && (filterCategories(diaryEntry, filterCategoryBox.getValue()) || (filterCategoryBox.getValue().equals("Category")))
+                                && ((filterStructInfoText(diaryEntry, filterStructInfo.getText())) || (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
+                                && (filterStars(diaryEntry, filterStarsBox.getValue()) || (filterStarsBox.getValue().equals("Stars"))),
+                applyHelpTextBox.textProperty(),
+                filterTitle.textProperty(),
+                filterText.textProperty(),
+                filterDateFromBox.converterProperty(),
+                filterDateToBox.converterProperty(),
+                filterCategoryBox.converterProperty(),
+                filterStructInfo.textProperty(),
+                filterStarsBox.converterProperty()
+        ));
 
+    }
+
+    boolean filterCategories(DiaryEntry entry, String category){
+        if(entry.getStructuredInfo() != null){
+            for(StructInformation s : entry.getStructuredInfo()){
+                return (s.getCategory().equals(category));
+            }
+        }
+        return false;
+    }
+    boolean filterStructInfoText(DiaryEntry entry, String value){
+        if(entry.getStructuredInfo() != null){
+            for(StructInformation s : entry.getStructuredInfo()){
+                return s.getStructuredText().toLowerCase().contains(value.toLowerCase());
+            }
+        }
+        return false;
+    }
+    boolean filterStars(DiaryEntry entry, String rating){
+        if(entry.getStructuredInfo() != null){
+            for(StructInformation s : entry.getStructuredInfo()){
+                return String.valueOf(s.getStars()).equals(rating);
+            }
+        }
+        return false;
+    }
+
+
+    @FXML
+    void filterDateFrom(ActionEvent event) {
+        applyHelpTextBox.setText("");
+    }
+
+    @FXML
+    void filterDateTo(ActionEvent event) {
+        applyHelpTextBox.setText("");
     }
 
     @FXML
     void filterCategory(ActionEvent event) {
-        SortedList<DiaryEntry> sortedListCategory = new SortedList<>(diary.filterCategory(sortedList, filterCategoryBox.getSelectionModel().getSelectedItem()));
-        sortedListCategory.comparatorProperty().bind(tVjournalList.comparatorProperty());
-        tVjournalList.setItems(sortedListCategory);
+        applyHelpTextBox.setText("");
     }
     @FXML
     void filterStars(ActionEvent event) {
-        SortedList<DiaryEntry> sortedListStars = new SortedList<>(diary.filterStars(sortedList, filterStarsBox.getSelectionModel().getSelectedItem()));
-        sortedListStars.comparatorProperty().bind(tVjournalList.comparatorProperty());
-        tVjournalList.setItems(sortedListStars);
+        applyHelpTextBox.setText("");
     }
-
-    @FXML
-    void applyFilter(MouseEvent event) {
-
-
-    }
-
-    @FXML
-    void deleteFilter(MouseEvent event) {
-    }
-
 
     @FXML
     void showMapPage(MouseEvent event) throws IOException {

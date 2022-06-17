@@ -66,7 +66,7 @@ public class DiaryEntryController implements Initializable {
         if(diary.getCurrentEntry() != null) {
             diary.setCurrentEntry(null);
         }
-        SceneSwitch s = new SceneSwitch("journalList", btnJournalList.getScene());
+        SceneSwitch s = new SceneSwitch("JournalList", btnJournalList.getScene());
         s.switchScene();
     }
 
@@ -128,21 +128,26 @@ public class DiaryEntryController implements Initializable {
     @FXML
     public void addPic1(MouseEvent mouseEvent) throws FileNotFoundException {
         File selectedFile = addPic();
-        Image image = new Image(String.valueOf(selectedFile));
-        pic1.setImage(image);
+        if(selectedFile!=null){
+            Image image = new Image(String.valueOf(selectedFile));
+            pic1.setImage(image);
+        }
     }
     @FXML
     public void addPic2(MouseEvent mouseEvent) {
         File selectedFile = addPic();
-        Image image = new Image(selectedFile.toURI().toString());
-        pic2.setImage(image);
+        if(selectedFile!=null){
+            Image image = new Image(selectedFile.toURI().toString());
+            pic2.setImage(image);
+        }
     }
-
     @FXML
     public void addPic3(MouseEvent mouseEvent) {
         File selectedFile = addPic();
-        Image image = new Image(selectedFile.toURI().toString());
-        pic3.setImage(image);
+        if(selectedFile!=null){
+            Image image = new Image(selectedFile.toURI().toString());
+            pic3.setImage(image);
+        }
     }
 
     public File addPic(){
@@ -155,8 +160,8 @@ public class DiaryEntryController implements Initializable {
 
         //in selectedFile bekomme ich den Pfad gespeichert
         File selectedFile = fileChooser.showOpenDialog(stage);
-        System.out.println(selectedFile);
         return selectedFile;
+
     }
 
     //when the boolean CurrentEntry() of diary is true, the last entrydata is initialized

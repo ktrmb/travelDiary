@@ -96,29 +96,28 @@ public class EntryEditController {
 
     @FXML
     void cancelEdit(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("journalList", btnCancel.getScene());
+        SceneSwitch s = new SceneSwitch("JournalList", btnCancel.getScene());
         s.switchScene();
     }
 
     @FXML
     void saveEntry(MouseEvent event) throws IOException, JAXBException {
         int oldId = entry.getId();
-        String defaultWord = "default";
 
         DiaryEntry newEntry = new DiaryEntry(oldId, txtDate.getValue(),
                 txtTitel.getText(), txtAdress.getText(), txtText.getHtmlText(), entry.getStructuredInfo());
 
-        if(!pic1.getImage().getUrl().contains(defaultWord)){
+        if(!pic1.getImage().getUrl().contains("default")){
             String imgName1 = e.saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
             newEntry.setPicture1(imgName1);
         }
 
-        if(!pic2.getImage().getUrl().contains(defaultWord)){
+        if(!pic2.getImage().getUrl().contains("default")){
             String imgName2 = e.saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
             newEntry.setPicture2(imgName2);
         }
 
-        if(!pic3.getImage().getUrl().contains(defaultWord)){
+        if(!pic3.getImage().getUrl().contains("default")){
             String imgName3 = e.saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
             newEntry.setPicture3(imgName3);
         }
@@ -127,14 +126,14 @@ public class EntryEditController {
         diary.addNewEntry(newEntry);
         HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
 
-        SceneSwitch s = new SceneSwitch("journalList", btnSave.getScene());
+        SceneSwitch s = new SceneSwitch("JournalList", btnSave.getScene());
         s.switchScene();
     }
 
     @FXML
     void deleteEntry(MouseEvent event) throws IOException, JAXBException {
         e.deleteEntry();
-        SceneSwitch s = new SceneSwitch("journalList", btnDelete.getScene());
+        SceneSwitch s = new SceneSwitch("JournalList", btnDelete.getScene());
         s.switchScene();
     }
 
@@ -164,42 +163,40 @@ public class EntryEditController {
     void editPic1(MouseEvent event) {
         e.editPic(pic1);
     }
-
     @FXML
     void editPic2(MouseEvent event) {
         e.editPic(pic2);
     }
-
     @FXML
     void editPic3(MouseEvent event) {
         e.editPic(pic3);
     }
-
     @FXML
     void deletePic1(MouseEvent event) {
-        e.deletePic(pic1);
+        if(!entry.getPicture1().contains("default")){
+            e.deletePic(pic1, "1");
+        }
     }
-
     @FXML
     void deletePic2(MouseEvent event) {
-        e.deletePic(pic2);
+        if(!entry.getPicture2().contains("default")){
+            e.deletePic(pic2, "2");
+        }
     }
-
     @FXML
     void deletePic3(MouseEvent event) {
-        e.deletePic(pic3);
+        if(!entry.getPicture3().contains("default")){
+            e.deletePic(pic3, "3");
+        }
     }
-
     @FXML
     void enlargePic1(MouseEvent event) {
         openNewWindowWithPic(entry.getPicture1());
     }
-
     @FXML
     void enlargePic2(MouseEvent event) {
         openNewWindowWithPic(entry.getPicture2());
     }
-
     @FXML
     void enlargePic3(MouseEvent event) {
         openNewWindowWithPic(entry.getPicture3());

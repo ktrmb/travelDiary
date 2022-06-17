@@ -75,7 +75,7 @@ public class StructuredInfoController {
                 if (diary.getCurrentEntry() != null) {
                         diary.getCurrentEntry().setStructuredInfo(infos);
 
-                        SceneSwitch s = new SceneSwitch("newEntry", btnNewEntry.getScene());
+                        SceneSwitch s = new SceneSwitch("DiaryEntryView", btnNewEntry.getScene());
                         s.switchScene();
                 } else {
                         entryEdit.setStructuredInfo(infos);
@@ -138,7 +138,7 @@ public class StructuredInfoController {
         @FXML
         void openEditCategories(MouseEvent event) {
                 try {
-                        SceneSwitch s = new SceneSwitch("category", tableList.getScene());
+                        SceneSwitch s = new SceneSwitch("CategoryList", tableList.getScene());
                         s.switchScene();
                 } catch (Exception e) {
                         System.out.println("load categories" + e);

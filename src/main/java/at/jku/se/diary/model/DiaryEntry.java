@@ -98,7 +98,7 @@ public class DiaryEntry {
     }
 
     public ArrayList<StructInformation> getStructuredInfo() {
-        return structuredInfo;
+            return structuredInfo;
     }
 
     public int getId() {

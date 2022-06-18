@@ -74,7 +74,6 @@ public class StructuredInfoController {
                 infos.addAll(tableList.getItems());
                 if (diary.getCurrentEntry() != null) {
                         diary.getCurrentEntry().setStructuredInfo(infos);
-
                         SceneSwitch s = new SceneSwitch("DiaryEntryView", btnNewEntry.getScene());
                         s.switchScene();
                 } else {

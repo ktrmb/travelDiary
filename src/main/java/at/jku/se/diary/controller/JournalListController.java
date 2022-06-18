@@ -120,7 +120,7 @@ public class JournalListController {
 
     @FXML
     void showMapPage(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("map", btnMap.getScene());
+        SceneSwitch s = new SceneSwitch("MapView", btnMap.getScene());
         s.switchScene();
     }
 

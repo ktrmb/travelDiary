@@ -55,15 +55,18 @@ public class MapController implements Initializable {
         MapOptions mapOptions = new MapOptions();
 
 
-        mapOptions.center(new LatLong(47.6097, -122.3331))
+        mapOptions.center(new LatLong(41.890251, 12.492373))
                 .mapType(MapTypeIdEnum.ROADMAP)
                 .zoom(9);
         map = mapView.createMap(mapOptions, false);
 
-        MarkerOptions markerOptions1 = new MarkerOptions();
-        markerOptions1.position(new LatLong(47.6197, -122.3231));
-        Marker m1 = new Marker(markerOptions1);
-        map.addMarker( m1 );
+        map.setZoom(3);
+
+
+        MarkerOptions markerOptions3 = new MarkerOptions();
+        markerOptions3.position(new LatLong(41.890251, 12.492373));
+        Marker m3 = new Marker(markerOptions3);
+        map.addMarker( m3 );
 
     }
 }

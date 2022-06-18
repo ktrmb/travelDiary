@@ -1,10 +1,17 @@
 package at.jku.se.diary.controller;
 
+import at.jku.se.diary.HelloFX;
+import at.jku.se.diary.model.DiaryEntry;
+import at.jku.se.diary.model.Map;
+import at.jku.se.diary.model.MarkerPoint;
 import at.jku.se.diary.model.SceneSwitch;
 import com.dlsc.gmapsfx.GoogleMapView;
 
 import com.dlsc.gmapsfx.javascript.object.*;
 
+import com.dlsc.gmapsfx.service.geocoding.GeocoderStatus;
+import com.dlsc.gmapsfx.service.geocoding.GeocodingResult;
+import com.dlsc.gmapsfx.service.geocoding.GeocodingService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -26,9 +33,11 @@ public class MapController implements Initializable {
     private ImageView btnNewEntry;
 
     @FXML
-    private GoogleMapView mapView =  new GoogleMapView("en-US", "asdfasdf-HBYej7901dM");
+    private GoogleMapView mapView =  new GoogleMapView("en-US", "AIzaSyClUxzPhXoJKME9PHBo1wH-HBYej7901dM");
 
     private GoogleMap map;
+
+    Map location;
 
 
     @FXML
@@ -45,8 +54,9 @@ public class MapController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mapView.addMapInitializedListener(() -> configureMap());
+      location = new Map(HelloFX.diary);
 
+        mapView.addMapInitializedListener(() -> configureMap());
 
     }
 
@@ -68,5 +78,11 @@ public class MapController implements Initializable {
         Marker m3 = new Marker(markerOptions3);
         map.addMarker( m3 );
 
+        for(DiaryEntry m: HelloFX.diary.getEntryList()) {
+            MarkerPoint mp = location.getDataFromAPI(m.getAddress());
+            map.addMarker( new Marker(new MarkerOptions().position(new LatLong(mp.getLatitute(), mp.getLongitute()))));
+        }
     }
+
+
 }

@@ -22,48 +22,20 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class EntryEdit {
-    private Diary diary;
+    private final Diary diary;
     private DiaryEntry entry;
     private Stage stage;
-    private EntryEditController c;
 
-    public EntryEdit () throws MalformedURLException {
+    public EntryEdit () {
         this.diary = HelloFX.diary;
-        URL url = new File("src/main/java/at/jku/se/diary/view/EntryEdit.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        c = loader.getController(); //laden von controller object geht nicht
     }
 
     public void setEntry(DiaryEntry entry) {
         this.entry = entry;
     }
 
-    //save geht noch nicht rest sollte passen (save noch in controller klasse)
-    public void saveEntry() throws JAXBException {
-        int oldId = entry.getId();
-        String defaultWord = "default";
-
-        DiaryEntry newEntry = new DiaryEntry(oldId, c.txtDate.getValue(),
-                c.txtTitel.getText(), c.txtAdress.getText(), c.txtText.getHtmlText(), entry.getStructuredInfo());
-
-        if(!c.pic1.getImage().getUrl().contains(defaultWord)){
-            String imgName1 = saveImageToFile(c.pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
-            newEntry.setPicture1(imgName1);
-        }
-
-        if(!c.pic2.getImage().getUrl().contains(defaultWord)){
-            String imgName2 = saveImageToFile(c.pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
-            newEntry.setPicture2(imgName2);
-        }
-
-        if(!c.pic3.getImage().getUrl().contains(defaultWord)){
-            String imgName3 = saveImageToFile(c.pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
-            newEntry.setPicture3(imgName3);
-        }
-
-        diary.getEntryList().remove(entry);
-        diary.addNewEntry(newEntry);
-        HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
+    public DiaryEntry getEntry () {
+        return entry;
     }
 
     public void deleteEntry() throws JAXBException, IOException {
@@ -79,6 +51,7 @@ public class EntryEdit {
         diary.getEntryList().remove(entry);
         HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
     }
+
     public void editPic(ImageView pic) {
         File selectedFile = addPic();
         if(selectedFile!=null){
@@ -88,7 +61,7 @@ public class EntryEdit {
     }
 
     public void deletePic(ImageView pic, String picNumber) {
-        String fileName = "src/pictures/image" + entry.getId() + "_"+picNumber+".jpg"; //pathToPic
+        String fileName = "src/pictures/image" + entry.getId() + "_" + picNumber + ".jpg"; //pathToPic
         deletePicFile(fileName);
         pic.setImage(new Image("file:src/pictures/defaultPic.png")); //defaultPicPath
         entry.setPicture1("defaultPic.png"); //defaultPicName
@@ -104,6 +77,7 @@ public class EntryEdit {
             e.printStackTrace();
         }
     }
+
     public File addPic(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Wähle ein Bild aus");

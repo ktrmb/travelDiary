@@ -1,0 +1,16 @@
+at\jku\se\diary\model\DiaryDB.class
+at\jku\se\diary\model\LocalDateAdapter.class
+at\jku\se\diary\model\StructInformation.class
+at\jku\se\diary\controller\EnlargedPictureController.class
+at\jku\se\diary\model\EntryEdit.class
+at\jku\se\diary\controller\JournalListController.class
+at\jku\se\diary\HelloFX.class
+at\jku\se\diary\controller\MapController.class
+at\jku\se\diary\model\DiaryEntry.class
+at\jku\se\diary\controller\EntryEditController.class
+at\jku\se\diary\model\SceneSwitch.class
+at\jku\se\diary\controller\SelectFileLocationController.class
+at\jku\se\diary\controller\CategoryListController.class
+at\jku\se\diary\controller\DiaryEntryController.class
+at\jku\se\diary\model\Diary.class
+at\jku\se\diary\controller\StructuredInfoController.class

@@ -4,6 +4,7 @@ package at.jku.se.diary;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.StructInformation;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.JAXBException;
@@ -14,34 +15,51 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DiaryTest{
 
+    private Diary diary;
+    private ArrayList<DiaryEntry> diaryEntryList;
+    private ArrayList<StructInformation> structInfoList;
+    private ArrayList<String> categoryList;
+    private DiaryEntry entry1;
+    private DiaryEntry entry2;
+    private String category1;
+    private String category2;
+
     /**
-     * Creating Test-Class
+     * Creating a new Diary with entries and categories before each test
      */
-    Diary diary;
-    {
+    @BeforeEach
+    public void setUp(){
         try {
             diary = new Diary();
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-    }
-    private ArrayList<DiaryEntry> diaryEntryList = new ArrayList<>();
-    private ArrayList<StructInformation> structInfoList = new ArrayList<>();
-    private ArrayList<String> categoryList = new ArrayList<>();
-    private final DiaryEntry entry1 = new DiaryEntry(1, LocalDate.now(),
-            "Ausflug Attersee", "Steinbach am Attersee", "Liebes Tagebuch ...", structInfoList);
-    private final DiaryEntry entry2 = new DiaryEntry(2, LocalDate.now(),
-            "Ausflug Italien", "Rosolina Mare", "Liebes Tagebuch ...", structInfoList);
-    private String category1 = "Strand";
-    private String category2 = "Hotel";
 
+        diaryEntryList = new ArrayList<>();
+        structInfoList = new ArrayList<>();
+        categoryList = new ArrayList<>();
+        entry1 = new DiaryEntry(1, LocalDate.now(),
+                "Ausflug Attersee", "Steinbach am Attersee", "Liebes Tagebuch ...", structInfoList);
+        entry2 = new DiaryEntry(2, LocalDate.now(),
+                "Ausflug Italien", "Rosolina Mare", "Liebes Tagebuch ...", structInfoList);
+        category1 = "Strand";
+        category2 = "Hotel";
+    }
+
+    /**
+     * Test for setting a diaryEntryList
+     */
     @Test
-    void setEntryList(){
+    void setEntryListTest(){
         diaryEntryList.add(entry1);
         diaryEntryList.add(entry2);
         diary.setEntryList(diaryEntryList);
         assertEquals(diary.getEntryList(), diaryEntryList);
     }
+
+    /**
+     * Test for adding a category to the categoryList
+     */
     @Test
     void setCategoriesTest(){
         categoryList.add(category1);
@@ -54,9 +72,17 @@ public class DiaryTest{
             e.printStackTrace();
         }
         assertTrue(diary.getCategories().contains("Meer"));
+        assertTrue(diary.getCategories().contains("Strand"));
+        assertTrue(diary.getCategories().contains("Hotel"));
     }
+
+    /**
+     * Test checks if the diaryEntryList isn´t empty anymore after adding a new entry
+     */
     @Test
     void addNewEntryTest(){
+        assertTrue(diaryEntryList.isEmpty());
+
         DiaryEntry newEntry = new DiaryEntry(3, LocalDate.now(),
                 "Besichtigung Sagrada Familia", "Barcelona", "Liebes Tagebuch ...", structInfoList);
         try {
@@ -70,13 +96,14 @@ public class DiaryTest{
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-        //hier weiter!
-
+        assertFalse(diaryEntryList.isEmpty());
     }
 
+    @Test
+    void setCurrentEntryTest(){
+        diary.setCurrentEntry(entry1);
+        assertEquals(diary.getCurrentEntry(), entry1);
 
-
-
-
+    }
 
 }

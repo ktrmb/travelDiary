@@ -5,11 +5,7 @@ import at.jku.se.diary.model.EntryEdit;
 import at.jku.se.diary.model.StructInformation;
 import javafx.scene.image.Image;
 import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
 
-import java.awt.*;
-import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -46,10 +42,10 @@ public class EntryEditTest {
     /**
      * Method: editPic(ImageView pic)
      */
-    @Test
+/*    @Test
     public void testEditPic() throws Exception {
         ee.editPic();
-    }
+    }*/
 
     /**
      * Method: deletePic(ImageView pic, String picNumber)

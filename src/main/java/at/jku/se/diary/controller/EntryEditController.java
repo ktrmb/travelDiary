@@ -31,7 +31,6 @@ public class EntryEditController {
     private Diary diary = HelloFX.diary;
     private Stage stage;
     String file = "file:src/pictures/";
-
     private EntryEdit e = new EntryEdit();
 
     @FXML
@@ -108,17 +107,17 @@ public class EntryEditController {
                 txtTitel.getText(), txtAdress.getText(), txtText.getHtmlText(), entry.getStructuredInfo());
 
         if(!pic1.getImage().getUrl().contains("default")){
-            String imgName1 = e.saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
+            String imgName1 = entry.saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
             newEntry.setPicture1(imgName1);
         }
 
         if(!pic2.getImage().getUrl().contains("default")){
-            String imgName2 = e.saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
+            String imgName2 = entry.saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
             newEntry.setPicture2(imgName2);
         }
 
         if(!pic3.getImage().getUrl().contains("default")){
-            String imgName3 = e.saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
+            String imgName3 = entry.saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
             newEntry.setPicture3(imgName3);
         }
 
@@ -161,16 +160,26 @@ public class EntryEditController {
 
     @FXML
     void editPic1(MouseEvent event) {
-        e.editPic(pic1);
+        File selectedFile = diary.addPic(stage);
+        if(selectedFile!=null){
+            pic1.setImage(new Image(String.valueOf(selectedFile)));
+        }
     }
     @FXML
     void editPic2(MouseEvent event) {
-        e.editPic(pic2);
+        File selectedFile = diary.addPic(stage);
+        if(selectedFile!=null){
+            pic2.setImage(new Image(String.valueOf(selectedFile)));
+        }
     }
     @FXML
     void editPic3(MouseEvent event) {
-        e.editPic(pic3);
+        File selectedFile = diary.addPic(stage);
+        if(selectedFile!=null){
+            pic3.setImage(new Image(String.valueOf(selectedFile)));
+        }
     }
+
     @FXML
     void deletePic1(MouseEvent event) {
         if(!entry.getPicture1().contains("default")){
@@ -220,13 +229,3 @@ public class EntryEditController {
         }
     }
 }
-
-/*public File addPic(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Wähle ein Bild aus");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
-        File selectedFile = fileChooser.showOpenDialog(stage);
-        System.out.println(selectedFile);
-        return selectedFile;
-    }*/

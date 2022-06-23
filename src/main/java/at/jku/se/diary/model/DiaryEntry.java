@@ -5,7 +5,14 @@
  */
 package at.jku.se.diary.model;
 
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
+
+import javax.imageio.ImageIO;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -121,6 +128,23 @@ public class DiaryEntry {
     public String getDiaryText() {
         return diaryText;
     }
+
+    // Picutres:
+    public String saveImageToFile(String fileImg, String id){
+        System.out.println("###fileImg####" + fileImg + " ##id##: " + id);
+        Image image = new Image(fileImg);
+        String imageName = "image" + id + ".jpg";
+        File imageFile = new File("src\\pictures\\"+imageName);
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+
+        try{
+            ImageIO.write(bufferedImage, "jpg", imageFile);
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+        return imageName;
+    }
+
 
     //dient nur zum Testen - wieder weglöschen!!----------------------------------------------------------------------------------
 /*    public void outPut(){

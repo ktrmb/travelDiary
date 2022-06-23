@@ -1,17 +1,12 @@
 package at.jku.se.diary.controller;
 
 import at.jku.se.diary.HelloFX;
-import at.jku.se.diary.model.SceneSwitch;
-import at.jku.se.diary.model.StructInformation;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
-import javafx.embed.swing.SwingFXUtils;
+import at.jku.se.diary.model.SceneSwitch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -19,17 +14,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.HTMLEditor;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javax.imageio.ImageIO;
+
 import javax.xml.bind.JAXBException;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -37,6 +29,7 @@ import java.util.ResourceBundle;
 public class DiaryEntryController implements Initializable {
     private Diary diary = HelloFX.diary;
     private Stage stage;
+    private DiaryEntry newEntry;
 
     @FXML
     private TextField address;
@@ -70,7 +63,7 @@ public class DiaryEntryController implements Initializable {
         s.switchScene();
     }
 
-    @FXML
+/*    @FXML
     void addEntry(ActionEvent event) throws JAXBException {
         ArrayList<StructInformation> structuredInfo = new ArrayList<>();
 
@@ -80,54 +73,74 @@ public class DiaryEntryController implements Initializable {
         }
         int id = diary.getEntryList().size() + 1;
 
-        String entryTitle = title.getText();
-        LocalDate entryDate = date.getValue();
-        String entryAddress = address.getText();
-        String entryDiaryText = diaryText.getHtmlText();
-        //test
-
-
-        DiaryEntry newEntry = new DiaryEntry(id, entryDate, entryTitle, entryAddress, entryDiaryText, structuredInfo);
+        newEntry = new DiaryEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(), structuredInfo);
 
         //Bilder zuerst in ordner "pictures" speichern und dann in das newDiary Objekt speichern
         //Bild1:
         String defaultPic = "Icons/pic.png";
         if(!pic1.getImage().getUrl().contains(defaultPic)){
-            String imgName1 = saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
+            System.out.println("**** url: " + pic1.getImage().getUrl());
+            String imgName1 = newEntry.saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
             newEntry.setPicture1(imgName1);
         }
         //Bild 2:
         if(!pic2.getImage().getUrl().contains(defaultPic)){
-            String imgName2 = saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
+            String imgName2 = newEntry.saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
             newEntry.setPicture2(imgName2);
         }
         //Bild 3:
         if(!pic3.getImage().getUrl().contains(defaultPic)){
-            String imgName3 = saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
+            String imgName3 = newEntry.saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
             newEntry.setPicture3(imgName3);
         }
 
         diary.addNewEntry(newEntry);
+    }*/
 
-    }
+/*    @FXML
+    void addEntry(ActionEvent event) throws JAXBException {
 
-    public String saveImageToFile(String fileImg, String id){
-        Image image = new Image(fileImg);
-        String imageName = "image" + id + ".jpg";
-        File imageFile = new File("src\\pictures\\"+imageName);
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
 
-        try{
-            ImageIO.write(bufferedImage, "jpg", imageFile);
-        }catch (IOException e){
-            throw new RuntimeException(e);
+        if(diary.getCurrentEntry() != null) {
+            structuredInfo = diary.getCurrentEntry().getStructuredInfo();
+            diary.setCurrentEntry(null);
         }
-        return imageName;
+        int id = diary.getEntryList().size() + 1;
+
+        newEntry = new DiaryEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(), structuredInfo);
+
+        //Bilder zuerst in ordner "pictures" speichern und dann in das newDiary Objekt speichern
+        //Bild1:
+        String defaultPic = "Icons/pic.png";
+        if(!pic1.getImage().getUrl().contains(defaultPic)){
+            System.out.println("**** url: " + pic1.getImage().getUrl());
+            String imgName1 = newEntry.saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
+            newEntry.setPicture1(imgName1);
+        }
+        //Bild 2:
+        if(!pic2.getImage().getUrl().contains(defaultPic)){
+            String imgName2 = newEntry.saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
+            newEntry.setPicture2(imgName2);
+        }
+        //Bild 3:
+        if(!pic3.getImage().getUrl().contains(defaultPic)){
+            String imgName3 = newEntry.saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
+            newEntry.setPicture3(imgName3);
+        }
+
+        diary.addNewEntry(newEntry);
+    }*/
+    @FXML
+    void addEntry(ActionEvent event) throws JAXBException {
+        diary.createNewEntry(date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(),
+                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl());
     }
 
     @FXML
     public void addPic1(MouseEvent mouseEvent) throws FileNotFoundException {
-        File selectedFile = addPic();
+        File selectedFile = diary.addPic(stage);
+        //File selectedFile = addPic();
         if(selectedFile!=null){
             Image image = new Image(String.valueOf(selectedFile));
             pic1.setImage(image);
@@ -135,7 +148,7 @@ public class DiaryEntryController implements Initializable {
     }
     @FXML
     public void addPic2(MouseEvent mouseEvent) {
-        File selectedFile = addPic();
+        File selectedFile = diary.addPic(stage);
         if(selectedFile!=null){
             Image image = new Image(selectedFile.toURI().toString());
             pic2.setImage(image);
@@ -143,26 +156,14 @@ public class DiaryEntryController implements Initializable {
     }
     @FXML
     public void addPic3(MouseEvent mouseEvent) {
-        File selectedFile = addPic();
+        File selectedFile = diary.addPic(stage);
         if(selectedFile!=null){
             Image image = new Image(selectedFile.toURI().toString());
             pic3.setImage(image);
         }
     }
 
-    public File addPic(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Wähle ein Bild aus");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
-        //Festlegen welche Dateitypen wir zulassen - nur JPG:
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
-
-        //in selectedFile bekomme ich den Pfad gespeichert
-        File selectedFile = fileChooser.showOpenDialog(stage);
-        return selectedFile;
-
-    }
 
     //when the boolean CurrentEntry() of diary is true, the last entrydata is initialized
     @Override
@@ -201,7 +202,7 @@ public class DiaryEntryController implements Initializable {
 
     } */
 
-    @FXML
+/*    @FXML
     public void addStructuredInfo(ActionEvent actionEvent) throws IOException, JAXBException {
         if(diary.getCurrentEntry() == null) {
             this.safeEntry();
@@ -216,6 +217,15 @@ public class DiaryEntryController implements Initializable {
             System.out.println("load newStructuredInfo" + e);
         }
 
+    }*/
+
+    @FXML
+    public void addStructuredInfo(ActionEvent actionEvent) throws IOException, JAXBException {
+        if(diary.getCurrentEntry() == null) {
+            this.safeEntry();
+        }
+        SceneSwitch s = new SceneSwitch("StructInformationView", buttonStructInfo.getScene());
+        s.switchScene();
     }
 
     //when the Categories or new structured Info is added, the current Input is saved in the diary Arraylist

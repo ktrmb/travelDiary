@@ -1,11 +1,14 @@
 package at.jku.se.diary.model;
 
 import at.jku.se.diary.HelloFX;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @XmlRootElement(name="myDiary")
@@ -63,6 +66,50 @@ public class Diary {
     public void setCurrentEntry(DiaryEntry currentEntry) {
         this.currentEntry = currentEntry;
     }
+
+    //-------------------ab hier aus Controller ausgelagert:
+
+    public void createNewEntry(LocalDate date, String title, String address, String diaryText, String pic1, String pic2, String pic3) throws JAXBException {
+        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+
+        if(getCurrentEntry() != null) {
+            structuredInfo = getCurrentEntry().getStructuredInfo();
+            setCurrentEntry(null);
+        }
+        int id = getEntryList().size() + 1;
+
+        DiaryEntry newEntry = new DiaryEntry(id, date, title, address, diaryText, structuredInfo);
+
+        //Bilder zuerst in ordner "pictures" speichern und dann in das newDiary Objekt speichern
+        //Bild1:
+        String defaultPic = "Icons/pic.png";
+        if(!pic1.contains(defaultPic)){
+            String imgName1 = newEntry.saveImageToFile(pic1, (String.valueOf(newEntry.getId())+"_1"));
+            newEntry.setPicture1(imgName1);
+        }
+        //Bild 2:
+        if(!pic2.contains(defaultPic)){
+            String imgName2 = newEntry.saveImageToFile(pic2, (String.valueOf(newEntry.getId())+"_2"));
+            newEntry.setPicture2(imgName2);
+        }
+        //Bild 3:
+        if(!pic3.contains(defaultPic)){
+            String imgName3 = newEntry.saveImageToFile(pic3, (String.valueOf(newEntry.getId())+"_3"));
+            newEntry.setPicture3(imgName3);
+        }
+
+        addNewEntry(newEntry);
+    }
+
+    public File addPic(Stage stage){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Wähle ein Bild aus");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        return selectedFile;
+    }
+
 
 
 /*

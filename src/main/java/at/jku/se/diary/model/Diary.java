@@ -80,22 +80,15 @@ public class Diary {
 
         DiaryEntry newEntry = new DiaryEntry(id, date, title, address, diaryText, structuredInfo);
 
-        //Bilder zuerst in ordner "pictures" speichern und dann in das newDiary Objekt speichern
-        //Bild1:
         String defaultPic = "Icons/pic.png";
         if(!pic1.contains(defaultPic)){
-            String imgName1 = newEntry.saveImageToFile(pic1, (String.valueOf(newEntry.getId())+"_1"));
-            newEntry.setPicture1(imgName1);
+            newEntry.setPicture1(newEntry.saveImageToFile(pic1, (String.valueOf(newEntry.getId())+"_1")));
         }
-        //Bild 2:
         if(!pic2.contains(defaultPic)){
-            String imgName2 = newEntry.saveImageToFile(pic2, (String.valueOf(newEntry.getId())+"_2"));
-            newEntry.setPicture2(imgName2);
+            newEntry.setPicture2(newEntry.saveImageToFile(pic2, (String.valueOf(newEntry.getId())+"_2")));
         }
-        //Bild 3:
         if(!pic3.contains(defaultPic)){
-            String imgName3 = newEntry.saveImageToFile(pic3, (String.valueOf(newEntry.getId())+"_3"));
-            newEntry.setPicture3(imgName3);
+            newEntry.setPicture3(newEntry.saveImageToFile(pic3, (String.valueOf(newEntry.getId())+"_3")));
         }
 
         addNewEntry(newEntry);
@@ -103,11 +96,9 @@ public class Diary {
 
     public File addPic(Stage stage){
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Wähle ein Bild aus");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
-        File selectedFile = fileChooser.showOpenDialog(stage);
-        return selectedFile;
+        return fileChooser.showOpenDialog(stage);
     }
 
 

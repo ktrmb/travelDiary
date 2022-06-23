@@ -106,5 +106,34 @@ public class DiaryTest{
 
     }
 
+    @Test
+    void createNewEntry() throws JAXBException {
+        assertTrue(diary.getEntryList().isEmpty());
+        LocalDate.now();
+        String pic1 = "Icons/pic.png";
+        String pic2 = "Icons/pic.png";
+        String pic3 = "Icons/pic.png";
+        diary.createNewEntry(LocalDate.now(), "TestTitle", "TestAdresse", "TestText", pic1, pic2, pic3);
+        assertFalse(diary.getEntryList().isEmpty());
+        for(DiaryEntry e : diary.getEntryList()){
+            assertEquals(e.getTitle(),"TestTitle");
+            assertEquals(e.getDate(), LocalDate.now());
+            assertEquals(e.getAddress(), "TestAdresse");
+            assertEquals(e.getDiaryText(), "TestText");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

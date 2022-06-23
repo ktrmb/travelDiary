@@ -69,18 +69,18 @@ public class Diary {
 
     //-------------------ab hier aus Controller ausgelagert:
 
-    public void createNewEntry(LocalDate date, String title, String address, String diaryText, String pic1, String pic2, String pic3) throws JAXBException {
-        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+    public void createNewEntry(int id, LocalDate date, String title, String address, String diaryText, String pic1, String pic2,
+                               String pic3, ArrayList<StructInformation> structInfo) throws JAXBException {
+        //ArrayList<StructInformation> structuredInfo = new ArrayList<>();
 
         if(getCurrentEntry() != null) {
-            structuredInfo = getCurrentEntry().getStructuredInfo();
+            structInfo = getCurrentEntry().getStructuredInfo();
             setCurrentEntry(null);
         }
-        int id = getEntryList().size() + 1;
 
-        DiaryEntry newEntry = new DiaryEntry(id, date, title, address, diaryText, structuredInfo);
+        DiaryEntry newEntry = new DiaryEntry(id, date, title, address, diaryText, structInfo);
 
-        String defaultPic = "Icons/pic.png";
+        String defaultPic = "png";
         if(!pic1.contains(defaultPic)){
             newEntry.setPicture1(newEntry.saveImageToFile(pic1, (String.valueOf(newEntry.getId())+"_1")));
         }
@@ -98,7 +98,8 @@ public class Diary {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
-        return fileChooser.showOpenDialog(stage);
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        return selectedFile;
     }
 
 

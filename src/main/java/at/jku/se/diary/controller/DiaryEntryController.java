@@ -4,6 +4,7 @@ import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.SceneSwitch;
+import at.jku.se.diary.model.StructInformation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -133,33 +135,34 @@ public class DiaryEntryController implements Initializable {
     }*/
     @FXML
     void addEntry(ActionEvent event) throws JAXBException {
-        diary.createNewEntry(date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(),
-                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl());
+        //ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+        int id = diary.getEntryList().size() + 1;
+        diary.createNewEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(),
+                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl(), new ArrayList<StructInformation>());
     }
 
     @FXML
     public void addPic1(MouseEvent mouseEvent) throws FileNotFoundException {
         File selectedFile = diary.addPic(stage);
-        //File selectedFile = addPic();
         if(selectedFile!=null){
-            Image image = new Image(String.valueOf(selectedFile));
-            pic1.setImage(image);
+            //Image image = new Image(String.valueOf(selectedFile));
+            pic1.setImage(new Image(String.valueOf(selectedFile)));
         }
     }
     @FXML
     public void addPic2(MouseEvent mouseEvent) {
         File selectedFile = diary.addPic(stage);
         if(selectedFile!=null){
-            Image image = new Image(selectedFile.toURI().toString());
-            pic2.setImage(image);
+            //Image image = new Image(selectedFile.toURI().toString());
+            pic2.setImage(new Image(selectedFile.toURI().toString()));
         }
     }
     @FXML
     public void addPic3(MouseEvent mouseEvent) {
         File selectedFile = diary.addPic(stage);
         if(selectedFile!=null){
-            Image image = new Image(selectedFile.toURI().toString());
-            pic3.setImage(image);
+            //Image image = new Image(selectedFile.toURI().toString());
+            pic3.setImage(new Image(selectedFile.toURI().toString()));
         }
     }
 
@@ -242,3 +245,11 @@ public class DiaryEntryController implements Initializable {
         diary.setCurrentEntry(currentEntry);
     }
 }
+
+
+
+
+
+
+
+

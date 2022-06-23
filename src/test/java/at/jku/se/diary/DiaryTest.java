@@ -114,7 +114,7 @@ public class DiaryTest{
         String pic2 = "Icons/pic.png";
         String pic3 = "Icons/pic.png";
         diary.setCurrentEntry(entry1);
-        diary.createNewEntry(LocalDate.now(), "TestTitle", "TestAdresse", "TestText", pic1, pic2, pic3);
+        diary.createNewEntry(1, LocalDate.now(), "TestTitle", "TestAdresse", "TestText", pic1, pic2, pic3, structInfoList);
         assertFalse(diary.getEntryList().isEmpty());
         for(DiaryEntry e : diary.getEntryList()){
             assertEquals(e.getTitle(),"TestTitle");

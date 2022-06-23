@@ -79,12 +79,9 @@ public class EntryEditController {
         txtDate.setValue(entry.getDate());
         txtText.setHtmlText(entry.getDiaryText());
 
-        Image i1 = new Image(file + entry.getPicture1());
-        pic1.setImage(i1);
-        Image i2 = new Image(file + entry.getPicture2());
-        pic2.setImage(i2);
-        Image i3 = new Image(file + entry.getPicture3());
-        pic3.setImage(i3);
+        pic1.setImage(new Image(file + entry.getPicture1()));
+        pic2.setImage(new Image(file + entry.getPicture2()));
+        pic3.setImage(new Image(file + entry.getPicture3()));
 
         e.setEntry(entry);
     }
@@ -102,23 +99,32 @@ public class EntryEditController {
     @FXML
     void saveEntry(MouseEvent event) throws IOException, JAXBException {
         int oldId = entry.getId();
+        diary.getEntryList().remove(entry);
+
+        diary.createNewEntry(oldId, txtDate.getValue(), txtTitel.getText(), txtAdress.getText(), txtText.getHtmlText(),
+                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl() ,entry.getStructuredInfo());
+
+        SceneSwitch s = new SceneSwitch("JournalList", btnSave.getScene());
+        s.switchScene();
+    }
+/*    @FXML
+    void saveEntry(MouseEvent event) throws IOException, JAXBException {
+        int oldId = entry.getId();
+
 
         DiaryEntry newEntry = new DiaryEntry(oldId, txtDate.getValue(),
                 txtTitel.getText(), txtAdress.getText(), txtText.getHtmlText(), entry.getStructuredInfo());
 
         if(!pic1.getImage().getUrl().contains("default")){
-            String imgName1 = entry.saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
-            newEntry.setPicture1(imgName1);
+            newEntry.setPicture1(entry.saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1")));
         }
 
         if(!pic2.getImage().getUrl().contains("default")){
-            String imgName2 = entry.saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
-            newEntry.setPicture2(imgName2);
+            newEntry.setPicture2(entry.saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2")));
         }
 
         if(!pic3.getImage().getUrl().contains("default")){
-            String imgName3 = entry.saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
-            newEntry.setPicture3(imgName3);
+            newEntry.setPicture3(entry.saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3")));
         }
 
         diary.getEntryList().remove(entry);
@@ -127,7 +133,7 @@ public class EntryEditController {
 
         SceneSwitch s = new SceneSwitch("JournalList", btnSave.getScene());
         s.switchScene();
-    }
+    }*/
 
     @FXML
     void deleteEntry(MouseEvent event) throws IOException, JAXBException {

@@ -129,20 +129,14 @@ public class DiaryEntry {
         return diaryText;
     }
 
-    // Picutres:
     public String saveImageToFile(String fileImg, String id){
-        System.out.println("###fileImg####" + fileImg + " ##id##: " + id);
-        Image image = new Image(fileImg);
-        String imageName = "image" + id + ".jpg";
-        File imageFile = new File("src\\pictures\\"+imageName);
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
-
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(new Image(fileImg), null);
         try{
-            ImageIO.write(bufferedImage, "jpg", imageFile);
-        }catch (IOException e){
+            ImageIO.write(bufferedImage, "jpg", new File("src\\pictures\\image" + id + ".jpg"));
+        }catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return imageName;
+        return "image" + id + ".jpg";
     }
 
 

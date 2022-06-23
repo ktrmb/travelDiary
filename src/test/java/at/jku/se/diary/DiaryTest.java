@@ -113,6 +113,7 @@ public class DiaryTest{
         String pic1 = "Icons/pic.png";
         String pic2 = "Icons/pic.png";
         String pic3 = "Icons/pic.png";
+        diary.setCurrentEntry(entry1);
         diary.createNewEntry(LocalDate.now(), "TestTitle", "TestAdresse", "TestText", pic1, pic2, pic3);
         assertFalse(diary.getEntryList().isEmpty());
         for(DiaryEntry e : diary.getEntryList()){

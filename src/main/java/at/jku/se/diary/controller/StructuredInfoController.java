@@ -60,6 +60,7 @@ public class StructuredInfoController {
 
         @FXML
         void addToList(ActionEvent event) {
+                //UI
                 StructInformation structInfo = new StructInformation(tableList.getItems().size(), selectedCategory, rating.getRating() , structuredText.getText());
                 tableList.getItems().add(structInfo);
                 category.setValue(" ");
@@ -69,22 +70,14 @@ public class StructuredInfoController {
 
         @FXML
         void saveListOnClick(ActionEvent event) throws IOException {
+                ArrayList<StructInformation> infos = new ArrayList<>();
+                infos.addAll(tableList.getItems());
                 if (diary.getCurrentEntry() != null) {
-
-                        ArrayList<StructInformation> infos = new ArrayList<>();
-                        infos.addAll(tableList.getItems());
-                        infos.forEach(structInformation -> {
-                                System.out.println("category " + structInformation.getCategory() + "Rating " + structInformation.getStars() + " Infos " + structInformation.getStructuredText());
-                        });
                         diary.getCurrentEntry().setStructuredInfo(infos);
-
                         SceneSwitch s = new SceneSwitch("DiaryEntryView", btnNewEntry.getScene());
                         s.switchScene();
                 } else {
-                        ArrayList<StructInformation> infos = new ArrayList<>();
-                        infos.addAll(tableList.getItems());
                         entryEdit.setStructuredInfo(infos);
-
                         try {
                                 Scene scene = BtnAdd.getScene();
                                 URL url = new File("src/main/java/at/jku/se/diary/view/EntryEdit.fxml").toURI().toURL();
@@ -112,6 +105,8 @@ public class StructuredInfoController {
         }
 
         public void initialize() {
+
+                //UI
                 TableColumn<StructInformation, String> columnCategory = new TableColumn<StructInformation, String>("Category");
                 columnCategory.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getCategory())));
 
@@ -122,6 +117,9 @@ public class StructuredInfoController {
                 columnInfo.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStructuredText()));
 
                 tableList.getColumns().addAll(columnCategory,columnStars, columnInfo);
+
+                //End UI
+
 
                 if (diary.getCurrentEntry() != null) {
                         if (diary.getCurrentEntry().getStructuredInfo() != null) {

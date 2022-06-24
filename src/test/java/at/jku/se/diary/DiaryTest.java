@@ -99,14 +99,18 @@ public class DiaryTest{
         assertFalse(diaryEntryList.isEmpty());
     }
 
+
+    /**
+     * Test checks if the currentEnty is set when adding new structured Info
+     */
     @Test
-    void setCurrentEntryTest(){
-        diary.setCurrentEntry(entry1);
-        assertEquals(diary.getCurrentEntry(), entry1);
+    void setCurrentEntry() {
+        DiaryEntry currentEntry = new DiaryEntry(1, LocalDate.now(), "Urlaub Rom", "Italien", "Liebes Tagebuch ...", structInfoList );
+        diary.setCurrentEntry(currentEntry);
+        assertEquals(diary.getCurrentEntry(), currentEntry);
 
     }
 
-    @Test
     void createNewEntry() throws JAXBException {
         assertTrue(diary.getEntryList().isEmpty());
         LocalDate.now();
@@ -123,14 +127,6 @@ public class DiaryTest{
             assertEquals(e.getDiaryText(), "TestText");
         }
     }
-
-
-
-
-
-
-
-
 
 
 

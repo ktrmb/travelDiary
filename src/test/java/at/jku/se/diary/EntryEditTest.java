@@ -4,6 +4,7 @@ import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.EntryEdit;
 import at.jku.se.diary.model.StructInformation;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -15,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class EntryEditTest {
 
     private ArrayList<StructInformation> arrayListInfo = new ArrayList<>();
-    private final DiaryEntry entry = new DiaryEntry(1, LocalDate.now(), "Spanien-Reise", "Malaga",
+    private final DiaryEntry entry = new DiaryEntry(99, LocalDate.now(), "Spanien-Reise", "Malaga",
             "Liebes Tagebuch, ...", arrayListInfo);
-    private Image defaultPic = new Image("file:src/pictures/defaultPic.png");
-    private Image pic = new Image("file:src/pictures/image_test.jpg");
+   // private Image defaultPic = new Image("file:src/pictures/defaultPic.png");
+    private Image pic = new Image("file:src/pictures/image99_1.jpg");
     private EntryEdit ee = new EntryEdit();
 
     /**
@@ -52,7 +53,12 @@ public class EntryEditTest {
      */
     @Test
     public void testDeletePic() throws Exception {
-        //Image View stört beim Testen
+     /*   ImageView picture = new ImageView();
+        picture.setImage(pic);
+        ee.deletePic(picture, "1");
+        System.out.print(picture.getImage().getUrl());
+*/
+
     }
 
     /**

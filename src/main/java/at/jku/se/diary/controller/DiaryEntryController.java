@@ -211,19 +211,18 @@ public class DiaryEntryController implements Initializable {
             this.safeEntry();
         }
         try {
-/*            Scene scene = buttonStructInfo.getScene();
+           Scene scene = buttonStructInfo.getScene();
             URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
             scene.setRoot(root);
-*/
-            SceneSwitch s = new SceneSwitch("StructInformationView", buttonStructInfo.getScene());
+         SceneSwitch s = new SceneSwitch("StructInformationView", buttonStructInfo.getScene());
             s.switchScene();
         } catch (Exception e) {
             System.out.println("load newStructuredInfo" + e);
         }
 
-    }*/
+    }  */
 
     @FXML
     public void addStructuredInfo(ActionEvent actionEvent) throws IOException, JAXBException {

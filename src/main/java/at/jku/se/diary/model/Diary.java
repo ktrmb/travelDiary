@@ -90,7 +90,6 @@ public class Diary {
         if(!pic3.contains(defaultPic)){
             newEntry.setPicture3(newEntry.saveImageToFile(pic3, (String.valueOf(newEntry.getId())+"_3")));
         }
-
         addNewEntry(newEntry);
     }
 

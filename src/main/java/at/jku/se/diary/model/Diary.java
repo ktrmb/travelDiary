@@ -1,14 +1,14 @@
 package at.jku.se.diary.model;
 
 import at.jku.se.diary.HelloFX;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @XmlRootElement(name="myDiary")
@@ -67,99 +67,42 @@ public class Diary {
         this.currentEntry = currentEntry;
     }
 
+    //-------------------ab hier aus Controller ausgelagert:
 
-    public FilteredList<DiaryEntry> filterTitle(ObservableList diaryE, StringProperty filterTitle){
-        //1. Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<DiaryEntry> titleFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
-        //2. Set the filter Predicate whenever the filter changes.
-        filterTitle.addListener((observable, oldValue, newValue) -> {
-            titleFilterList.setPredicate(diaryEntry -> {
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if (diaryEntry.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                    return true; //Filter matches title.
-                }
-                return false; //Filter not match.
-            });
-        });
-        return titleFilterList;
+    public void createNewEntry(int id, LocalDate date, String title, String address, String diaryText, String pic1, String pic2,
+                               String pic3, ArrayList<StructInformation> structInfo) throws JAXBException {
+        //ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+
+        if(getCurrentEntry() != null) {
+            structInfo = getCurrentEntry().getStructuredInfo();
+            setCurrentEntry(null);
+        }
+
+        DiaryEntry newEntry = new DiaryEntry(id, date, title, address, diaryText, structInfo);
+
+        String defaultPic = "png";
+        if(!pic1.contains(defaultPic)){
+            newEntry.setPicture1(newEntry.saveImageToFile(pic1, (String.valueOf(newEntry.getId())+"_1")));
+        }
+        if(!pic2.contains(defaultPic)){
+            newEntry.setPicture2(newEntry.saveImageToFile(pic2, (String.valueOf(newEntry.getId())+"_2")));
+        }
+        if(!pic3.contains(defaultPic)){
+            newEntry.setPicture3(newEntry.saveImageToFile(pic3, (String.valueOf(newEntry.getId())+"_3")));
+        }
+
+        addNewEntry(newEntry);
     }
 
-    public FilteredList<DiaryEntry> filterText(ObservableList diaryE, StringProperty filterText){
-        FilteredList<DiaryEntry> textFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
-        filterText.addListener((observable, oldValue, newValue) -> {
-            textFilterList.setPredicate(diaryEntry -> {
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if (diaryEntry.getDiaryText().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                    return true;
-                }
-                return false;
-            });
-        });
-        return textFilterList;
+    public File addPic(Stage stage){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        return selectedFile;
     }
 
-    public FilteredList<DiaryEntry> filterStructText(ObservableList diaryE, StringProperty filterStructText){
-        FilteredList<DiaryEntry> structTextFilterList = new FilteredList<DiaryEntry>(diaryE, p -> true);
-        filterStructText.addListener((observable, oldValue, newValue) -> {
-            structTextFilterList.setPredicate(diaryEntry -> {
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if(diaryEntry.getStructuredInfo()!=null){
-                    for(StructInformation s : diaryEntry.getStructuredInfo()){
-                        if(s.getStructuredText().toLowerCase().indexOf(lowerCaseFilter) != -1){
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            });
-        });
-        return structTextFilterList;
-    }
 
-    public FilteredList<DiaryEntry> filterCategory(ObservableList diaryE, String filterCategory) {
-        FilteredList<DiaryEntry> categoryFilteredList = new FilteredList<DiaryEntry>(diaryE, p -> true);
-        categoryFilteredList.setPredicate(diaryEntry -> {
-            if (filterCategory == null || filterCategory.equals("-")) {
-                return true;
-            }
-            if(diaryEntry.getStructuredInfo()!=null){
-                for (StructInformation s : diaryEntry.getStructuredInfo()) {
-                    if (s.getCategory().equals(filterCategory)) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        });
-        return categoryFilteredList;
-    }
-
-    public FilteredList<DiaryEntry> filterStars(ObservableList diaryE, String filterStars) {
-        FilteredList<DiaryEntry> starsFilteredList = new FilteredList<DiaryEntry>(diaryE, p -> true);
-        starsFilteredList.setPredicate(diaryEntry -> {
-            if (filterStars == null || filterStars.equals("-")) {
-                return true;
-            }
-            if(diaryEntry.getStructuredInfo()!=null){
-                for (StructInformation s : diaryEntry.getStructuredInfo()) {
-                    if (String.valueOf(s.getStars()).equals(filterStars)) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        });
-        return starsFilteredList;
-    }
 
 /*
     public String toString(){

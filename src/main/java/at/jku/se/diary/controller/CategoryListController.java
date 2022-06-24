@@ -1,12 +1,11 @@
 package at.jku.se.diary.controller;
+
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.SceneSwitch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
@@ -14,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import javax.xml.bind.JAXBException;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,6 +32,9 @@ public class CategoryListController implements Initializable {
     private TextField newCategory;
 
     @FXML
+    private Button btnOk;
+
+    @FXML
     void addToList(ActionEvent event) {
         lVcategoryList.getItems().add(newCategory.getText());
         newCategory.clear();
@@ -49,6 +50,7 @@ public class CategoryListController implements Initializable {
         }
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lVcategoryList.getItems().addAll(HelloFX.diary.getCategories());
@@ -56,14 +58,21 @@ public class CategoryListController implements Initializable {
         lVcategoryList.setCellFactory(TextFieldListCell.forListView());
     }
 
-    @FXML
+/*    @FXML
     void showStructInfoPage(MouseEvent event) throws IOException {
         Scene scene = lVcategoryList.getScene();
         URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         scene.setRoot(root);
+    }*/
+    @FXML
+    void showStructInfoPage(MouseEvent event) throws IOException {
+        SceneSwitch s = new SceneSwitch("StructInformationView", btnOk.getScene());
+        s.switchScene();
     }
+
+
 
     @FXML
     void deleteCategory(MouseEvent event) throws JAXBException {

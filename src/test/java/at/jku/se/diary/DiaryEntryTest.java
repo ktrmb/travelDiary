@@ -4,59 +4,51 @@
  * and open the template in the editor.
  */
 package at.jku.se.diary;
-
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.StructInformation;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- *
- * @author reinhold
- */
 class DiaryEntryTest {
-    /**
-     * Creating a new TestObject
-     */
-    private ArrayList<StructInformation> arrayListInfos = new ArrayList<>();
-    private final DiaryEntry entryDefault = new DiaryEntry();
-    private final DiaryEntry entry = new DiaryEntry(1, LocalDate.now(),
-            "Ausflug Attersee", "Steinbach am Attersee", "Liebes Tagebuch ...", arrayListInfos);
 
-    /**
-     * Test of setTitle method, of class DiaryEntry.
-     */
+    private DiaryEntry entry1;
+    private ArrayList<StructInformation> arrayListInfos = new ArrayList<>();
+
+    @BeforeEach
+    void setUp(){
+        entry1 = new DiaryEntry();
+    }
+
     @Test
     void setId(){
-        entry.setId(1);
-        assertEquals(entry.getId(), 1);
+        entry1.setId(1);
+        assertEquals(entry1.getId(), 1);
     }
 
     @Test
     void setTitle() {
-        entry.setTitle("Going San Francisco");
-        assertEquals(entry.getTitle(), "Going San Francisco");
+        entry1.setTitle("Going San Francisco");
+        assertEquals(entry1.getTitle(), "Going San Francisco");
     }
 
     @Test
     void setDate() {
-        entry.setDate(LocalDate.of(2022, 5, 4));
-        assertEquals(entry.getDate(), LocalDate.of(2022, 5, 4));
+        entry1.setDate(LocalDate.of(2022, 5, 4));
+        assertEquals(entry1.getDate(), LocalDate.of(2022, 5, 4));
     }
 
     @Test
     void setAddress(){
-        entry.setAddress("Weyregg am Attersee");
-        assertEquals(entry.getAddress(), "Weyregg am Attersee");
+        entry1.setAddress("Weyregg am Attersee");
+        assertEquals(entry1.getAddress(), "Weyregg am Attersee");
     }
     @Test
     void setDiaryText(){
-        entry.setDiaryText("Liebes Tagebuch, es war sehr schön");
-        assertEquals(entry.getDiaryText(), "Liebes Tagebuch, es war sehr schön");
+        entry1.setDiaryText("Liebes Tagebuch, es war sehr schön");
+        assertEquals(entry1.getDiaryText(), "Liebes Tagebuch, es war sehr schön");
     }
     @Test
     void setStructuredInfo(){
@@ -66,26 +58,30 @@ class DiaryEntryTest {
         arrayListInfos = new ArrayList<>();
         arrayListInfos.add(structInfo1);
         arrayListInfos.add(structInfo2);
-        entry.setStructuredInfo(arrayListInfos);
-        assertEquals(entry.getStructuredInfo(), arrayListInfos);
+        entry1.setStructuredInfo(arrayListInfos);
+        assertEquals(entry1.getStructuredInfo(), arrayListInfos);
     }
 
     @Test
     void setPicture1(){
-        entry.setPicture1("defaultPic.png");
-        assertEquals(entry.getPicture1(), "defaultPic.png");
+        entry1.setPicture1("defaultPic.png");
+        assertEquals(entry1.getPicture1(), "defaultPic.png");
     }
     @Test
     void setPicture2(){
-        entry.setPicture2("defaultPic.png");
-        assertEquals(entry.getPicture2(), "defaultPic.png");
+        entry1.setPicture2("defaultPic.png");
+        assertEquals(entry1.getPicture2(), "defaultPic.png");
     }
     @Test
     void setPicture3(){
-        entry.setPicture3("defaultPic.png");
-        assertEquals(entry.getPicture3(), "defaultPic.png");
+        entry1.setPicture3("defaultPic.png");
+        assertEquals(entry1.getPicture3(), "defaultPic.png");
     }
-
-
+/*    @Test
+    void saveImageToFileTest(){
+        String imgFile = "C:\\Users\\magda\\Pictures\\Fotobuch\\map.JPG";
+        String imageName = entry1.saveImageToFile(imgFile, "1");
+        assertEquals(imageName, "image1.jpg");
+    }*/
 
 }

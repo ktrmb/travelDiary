@@ -18,7 +18,7 @@ public class SceneSwitch {
     }
 
     public void switchScene()throws IOException {
-        URL url = new File("src/main/java/at/jku/se/diary/view/"+newScene+".fxml").toURI().toURL();
+        URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
     }

@@ -22,8 +22,8 @@ public class EnlargedPictureController {
         SwingUtilities.invokeLater(() -> setEntry(picture));
     }
     public void setEntry (String picture) {
-        Image image1 = new Image("file:src/pictures/"+picture);
-        this.enlargedPicture.setImage(image1);
+        //Image image1 = new Image("file:src/pictures/"+picture);
+        this.enlargedPicture.setImage(new Image("file:src/pictures/"+picture));
 
     }
 

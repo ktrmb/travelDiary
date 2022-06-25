@@ -19,6 +19,7 @@ public class Diary {
     private ArrayList<String> categories;
    // private boolean currentEntry = false;
     private DiaryEntry currentEntry;
+    private String diaryFilePath = "diary.xml";
 
     public Diary() throws JAXBException {
         entryList = new ArrayList<>();
@@ -102,7 +103,13 @@ public class Diary {
         return selectedFile;
     }
 
+    public void setDiaryFilePath (String path) {
+        this.diaryFilePath = path;
+    }
 
+    public String getDiaryFilePath () {
+        return diaryFilePath;
+    }
 
 /*
     public String toString(){

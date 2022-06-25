@@ -1,11 +1,14 @@
 package at.jku.se.diary.model;
 
 import at.jku.se.diary.HelloFX;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @XmlRootElement(name="myDiary")
@@ -64,8 +67,44 @@ public class Diary {
         this.currentEntry = currentEntry;
     }
 
+    //-------------------ab hier aus Controller ausgelagert:
 
-/*    //wieder weglöschen!
+    public void createNewEntry(int id, LocalDate date, String title, String address, String diaryText, String pic1, String pic2,
+                               String pic3, ArrayList<StructInformation> structInfo) throws JAXBException {
+        //ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+
+        if(getCurrentEntry() != null) {
+            structInfo = getCurrentEntry().getStructuredInfo();
+            setCurrentEntry(null);
+        }
+
+        DiaryEntry newEntry = new DiaryEntry(id, date, title, address, diaryText, structInfo);
+
+        String defaultPic = "png";
+        if(!pic1.contains(defaultPic)){
+            newEntry.setPicture1(newEntry.saveImageToFile(pic1, (String.valueOf(newEntry.getId())+"_1")));
+        }
+        if(!pic2.contains(defaultPic)){
+            newEntry.setPicture2(newEntry.saveImageToFile(pic2, (String.valueOf(newEntry.getId())+"_2")));
+        }
+        if(!pic3.contains(defaultPic)){
+            newEntry.setPicture3(newEntry.saveImageToFile(pic3, (String.valueOf(newEntry.getId())+"_3")));
+        }
+
+        addNewEntry(newEntry);
+    }
+
+    public File addPic(Stage stage){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        return selectedFile;
+    }
+
+
+
+/*
     public String toString(){
         String output = "";
         for(DiaryEntry e : getEntryList()){

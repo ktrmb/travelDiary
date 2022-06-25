@@ -5,115 +5,42 @@
     <categories>Urlaub</categories>
     <categories>Strand</categories>
     <categories>Restaurant</categories>
-    <categories></categories>
     <entryList>
-        <address>Luxor</address>
-        <date>2022-05-01</date>
-        <diaryText>Liebes Reisetagebuch, ....</diaryText>
+        <address>BarcaAdresse</address>
+        <date>2022-06-01</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Text Barca&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>1</id>
         <picture1>image1_1.jpg</picture1>
         <picture2>image1_2.jpg</picture2>
-        <picture3>image1_3.jpg</picture3>
+        <picture3>defaultPic.png</picture3>
         <structuredInfo>
-            <category>Kultur</category>
+            <category>Strand</category>
             <id>0</id>
-            <structuredText>schöne, alte Stadt</structuredText>
+            <stars>4.0</stars>
+            <structuredText>toll</structuredText>
         </structuredInfo>
-        <title>Ausflug Luxor</title>
+        <title>Barcelona</title>
     </entryList>
     <entryList>
-        <address>Ägypten</address>
-        <date>2022-05-03</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;Liebes Reisetagebuch, ....&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>3</id>
-        <picture1>image3_1.jpg</picture1>
-        <picture2>image3_2.jpg</picture2>
-        <picture3>image3_3.jpg</picture3>
-        <title>Ägypten Urlaub</title>
-    </entryList>
-    <entryList>
-        <address>Marsa Alam</address>
-        <date>2022-05-02</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;Liebes Reisetagebuch, heute...&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <address>Luxor Aegypten</address>
+        <date>2022-06-06</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Reisetagebuch, .....&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>2</id>
-        <picture1>image2_1.jpg</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <structuredInfo>
-            <category>Strand</category>
-            <id>0</id>
-            <structuredText>gepflegter Strand</structuredText>
-        </structuredInfo>
-        <title>Strandbesuch</title>
-    </entryList>
-    <entryList>
-        <address>asdfasdf</address>
-        <date>2022-06-25</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;asdfsadf&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>6</id>
         <picture1>defaultPic.png</picture1>
         <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
+        <picture3>image2_3.jpg</picture3>
         <structuredInfo>
             <category>Strand</category>
             <id>0</id>
-            <structuredText>asdf</structuredText>
+            <stars>5.0</stars>
+            <structuredText>schön</structuredText>
         </structuredInfo>
         <structuredInfo>
-            <category>Urlaub</category>
+            <category>Restaurant</category>
             <id>1</id>
-            <structuredText>asdfsadf</structuredText>
+            <stars>4.0</stars>
+            <structuredText>lecker</structuredText>
         </structuredInfo>
-        <title>Berlin</title>
-    </entryList>
-    <entryList>
-        <address></address>
-        <date>2022-06-07</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;asdf&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>8</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <structuredInfo>
-            <category>Strand</category>
-            <id>0</id>
-            <structuredText>asdf</structuredText>
-        </structuredInfo>
-        <structuredInfo>
-            <category>Hotel</category>
-            <id>1</id>
-            <structuredText>asdf</structuredText>
-        </structuredInfo>
-        <title>qqqqq</title>
-    </entryList>
-    <entryList>
-        <address>asdf</address>
-        <date>2022-06-07</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;asdfsdf&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>7</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <structuredInfo>
-            <category>Strand</category>
-            <id>0</id>
-            <structuredText>asdf</structuredText>
-        </structuredInfo>
-        <title>Hamburg</title>
-    </entryList>
-    <entryList>
-        <address>Barcelona</address>
-        <date>2022-05-30</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Barca ist &lt;span style="font-weight: bold;"&gt;super&lt;/span&gt;!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>4</id>
-        <picture1>image4_1.jpg</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>image4_3.jpg</picture3>
-        <structuredInfo>
-            <category>Kultur</category>
-            <id>0</id>
-            <structuredText>schöne Bauwerke</structuredText>
-        </structuredInfo>
-        <title>Barcelona Ausflug</title>
+        <title>Italien</title>
     </entryList>
 </myDiary>

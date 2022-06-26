@@ -6,7 +6,8 @@ public class MarkerPoint {
     String address;
     int id;
 
-    public MarkerPoint() {};
+    public MarkerPoint() {
+    }
 
     public MarkerPoint(Integer diaryEntryId, String address, double latitute, double longitute) {
         this.id = diaryEntryId;
@@ -31,8 +32,5 @@ public class MarkerPoint {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
 }

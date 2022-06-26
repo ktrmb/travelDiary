@@ -3,17 +3,14 @@ package at.jku.se.diary.controller;
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.Map;
-import at.jku.se.diary.model.MarkerPoint;
+
 import at.jku.se.diary.model.SceneSwitch;
 import com.dlsc.gmapsfx.GoogleMapView;
 
-import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
 import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.*;
 
-import com.dlsc.gmapsfx.service.geocoding.GeocoderStatus;
-import com.dlsc.gmapsfx.service.geocoding.GeocodingResult;
-import com.dlsc.gmapsfx.service.geocoding.GeocodingService;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,7 +39,7 @@ public class MapController implements Initializable {
     private ImageView btnNewEntry;
 
     @FXML
-    private GoogleMapView mapView =  new GoogleMapView("en-US", "AIzaSyClUxzPhXoJKME9PHBo1wH-HBYej7901dM");
+    private GoogleMapView mapView =  new GoogleMapView("en-US", "asdfasdf-HBYej7901dM");
 
     private GoogleMap map;
 
@@ -82,13 +79,14 @@ public class MapController implements Initializable {
         ArrayList<Marker> markers = location.getMarker();
         map.addMarkers((Collection<Marker>) markers);
 
-        for (Marker m : markers)
-        map.addUIEventHandler(m, UIEventType.click, (JSObject obj) -> { LatLong ll = new LatLong((JSObject) obj.getMember("latLng"));
-            System.out.println("LatLong: lat: " + ll.getLatitude() + " lng: " + ll.getLongitude());
-            DiaryEntry entry = location.getEntryFromLatLng(ll.getLatitude(), ll.getLongitude());
-            this.showSelectedEntry(entry);
-        });
-
+        for (Marker m : markers) {
+            map.addUIEventHandler(m, UIEventType.click, (JSObject obj) -> {
+                LatLong ll = new LatLong((JSObject) obj.getMember("latLng"));
+                System.out.println("LatLong: lat: " + ll.getLatitude() + " lng: " + ll.getLongitude());
+                DiaryEntry entry = location.getEntryFromLatLng(ll.getLatitude(), ll.getLongitude());
+                this.showSelectedEntry(entry);
+            });
+        }
 
     }
 

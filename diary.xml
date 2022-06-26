@@ -5,6 +5,7 @@
     <categories>Urlaub</categories>
     <categories>Strand</categories>
     <categories>Restaurant</categories>
+    <diaryFilePath>diary.xml</diaryFilePath>
     <entryList>
         <address>Barcelona</address>
         <date>2022-06-01</date>
@@ -45,8 +46,8 @@
     </entryList>
     <entryList>
         <address>Rom, Italien</address>
-        <date>2022-06-11</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;wir waren in Rom&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <date>2022-06-19</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;war schön dort&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>3</id>
         <picture1>image3_1.jpg</picture1>
         <picture2>defaultPic.png</picture2>
@@ -61,7 +62,7 @@
             <category>Kultur</category>
             <id>1</id>
             <stars>5.0</stars>
-            <structuredText>wunderschön</structuredText>
+            <structuredText>war schön</structuredText>
         </structuredInfo>
         <title>Rom</title>
     </entryList>

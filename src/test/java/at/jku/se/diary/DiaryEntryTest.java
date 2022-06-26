@@ -15,11 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class DiaryEntryTest {
 
     private DiaryEntry entry1;
+    private DiaryEntry entry2;
     private ArrayList<StructInformation> arrayListInfos = new ArrayList<>();
 
     @BeforeEach
     void setUp(){
         entry1 = new DiaryEntry();
+        //String address, String diaryText, ArrayList<StructInformation> infos
+        entry2 = new DiaryEntry(0, LocalDate.now(), "Urlaub", "Schweiz", "Es war schön", arrayListInfos);
     }
 
     @Test

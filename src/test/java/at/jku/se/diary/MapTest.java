@@ -22,8 +22,8 @@ public class MapTest {
 
     @Test
     void getDataFromApiTest() {
-        MarkerPoint rome = new MarkerPoint("Rome", 41.9027835,12.4963655);
-        MarkerPoint m = this.map.getDataFromAPI("Rome");
+        MarkerPoint rome = new MarkerPoint(0, "Rome", 41.9027835,12.4963655);
+        MarkerPoint m = this.map.getDataFromAPI("Rome", 0);
         assertEquals(m.getAddress(), rome.getAddress());
         assertEquals(m.getLatitute(), rome.getLatitute());
         assertEquals(m.getLongitute(), rome.getLongitute());

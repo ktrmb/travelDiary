@@ -186,7 +186,6 @@ public class DiaryEntryController implements Initializable {
     }
 
 
-
     @FXML
     public void addStructuredInfo(ActionEvent actionEvent) throws IOException, JAXBException {
         if(diary.getCurrentEntry() == null) {

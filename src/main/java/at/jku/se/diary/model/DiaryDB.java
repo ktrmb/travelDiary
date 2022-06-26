@@ -8,15 +8,26 @@ import java.io.File;
 
 public class DiaryDB {
 
-    //Methode um in die XML zu schreiben
+    /**
+     * Writes the current diary-Object into the XML
+     * @param diary
+     * @param file
+     * @throws JAXBException
+     */
     public void writeDiary(Diary diary, File file) throws JAXBException{
-        diary.setCurrentEntry(false);
+        diary.setCurrentEntry(null);
         JAXBContext jc = JAXBContext.newInstance(Diary.class);
         Marshaller m = jc.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         m.marshal(diary, file);
     }
-    //Methode um Daten aus dem XML File auszulesen
+
+    /**
+     * Reads the data from the XML
+     * @param file
+     * @return file, diary class
+     * @throws JAXBException
+     */
     public Diary readDiary(File file) throws JAXBException{
         return JAXB.unmarshal(file, Diary.class);
     }

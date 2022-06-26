@@ -4,6 +4,7 @@ import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryDB;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.StructInformation;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.JAXBException;
@@ -11,69 +12,46 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DiaryDBTest {
-    /**
-     * Create test-data
-     */
-    public Diary diary;
-    public File diaryFile;
-    public DiaryDB diaryDB;
-    private ArrayList<StructInformation> arrayListInfos = new ArrayList<>();
-    private final DiaryEntry newEntry = new DiaryEntry(1, LocalDate.now(),
-            "Ausflug Attersee", "Steinbach am Attersee", "Liebes Tagebuch ...", arrayListInfos);
+
+    private Diary diary;
+    private File diaryFile;
+    private DiaryDB diaryDB;
+    private ArrayList<StructInformation> arrayListInfos;
+    private DiaryEntry newEntry;
 
 
-/*    @BeforeEach
-    void setUpTestDiary(){
+    @BeforeEach
+    void setUp() throws JAXBException {
+        diary = new Diary();
+        diaryFile = new File("diaryTest.xml");
         diaryDB = new DiaryDB();
-        diaryFile = new File("diaryTEST.xml");
-        try {
-            diary = new Diary();
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-    }*/
+    }
 
     @Test
-    void readDiaryTest(){
-        diaryDB = new DiaryDB();
-        diaryFile = new File("diaryTEST.xml");
-        try {
-            diary = new Diary();
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        try {
-            diary = diaryDB.readDiary(diaryFile);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        String title = diary.getEntryList().get(0).getTitle();
-        assertEquals(title, "Strandbesuch");
-
+    void readDiaryTest() throws JAXBException {
+       assertTrue(diary.getEntryList().isEmpty());
+       diary = diaryDB.readDiary(diaryFile);
+       assertFalse(diary.getEntryList().isEmpty());
+       String title = diary.getEntryList().get(0).getTitle();
+       assertEquals(title, "Ausflug Attersee");
     }
-/*    @Test
-    void writeDiaryTest(){
-        try {
-            diary.addNewEntry(newEntry);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        try {
-            diaryDB.writeDiary(diary, diaryFile);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        try {
-            diary = diaryDB.readDiary(diaryFile);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        String title = diary.getEntryList().get(1).getTitle();
-        assertEquals(title, "Ausflug Attersee");
 
-    }*/
+    @Test
+    void writeDiaryTest() throws JAXBException {
+        diaryDB.writeDiary(diary, diaryFile);
+        diaryDB.readDiary(diaryFile);
+        assertTrue(diary.getEntryList().isEmpty());
+
+        arrayListInfos = new ArrayList<>();
+        newEntry = new DiaryEntry(1, LocalDate.now(), "Ausflug Attersee", "Steinbach am Attersee",
+                "Liebes Tagebuch ...", arrayListInfos);
+        diary.addNewEntry(newEntry);
+        diaryDB.writeDiary(diary, diaryFile);
+        diaryDB.readDiary(diaryFile);
+        assertFalse(diary.getEntryList().isEmpty());
+    }
 
 }

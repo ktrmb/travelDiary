@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class SceneSwitch {
-    private String newScene; //Main, NewEntry, JournalList, Map, ...
+    private String newScene;
     private Scene scene;
 
     public SceneSwitch(String newScene, Scene scene) {
@@ -17,7 +17,15 @@ public class SceneSwitch {
         this.scene = scene;
     }
 
-    public void switchScene () throws IOException {
+    public void switchScene()throws IOException {
+        URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
+    }
+
+
+
+/*    public void switchScene () throws IOException {
         switch (newScene) {
             case "journalList":
                 sceneJournalList();
@@ -35,12 +43,15 @@ public class SceneSwitch {
                 sceneStructInfo();
             case "category":
                 sceneCategoryList();
+            case "map":
+                sceneMap();
             default:
-                System.out.println("Scene not available!");
+                System.out.println("Scene not available!" + " " + newScene);
         }
-    }
+    }*/
 
-    public void sceneJournalList() throws IOException {
+
+/*    public void sceneJournalList() throws IOException {
         URL url = new File("src/main/java/at/jku/se/diary/view/JournalList.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
@@ -73,4 +84,10 @@ public class SceneSwitch {
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
     }
+
+    public void sceneMap() throws IOException {
+        URL url = new File("src/main/java/at/jku/se/diary/view/MapView.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
+    }*/
 }

@@ -60,6 +60,7 @@ public class StructuredInfoController {
 
         @FXML
         void addToList(ActionEvent event) {
+                //UI
                 StructInformation structInfo = new StructInformation(tableList.getItems().size(), selectedCategory, rating.getRating() , structuredText.getText());
                 tableList.getItems().add(structInfo);
                 category.setValue(" ");
@@ -69,25 +70,14 @@ public class StructuredInfoController {
 
         @FXML
         void saveListOnClick(ActionEvent event) throws IOException {
-                System.out.print("saveListonClick" + diary.isCurrentEntry());
-                if (diary.isCurrentEntry()) {
-
-                        ArrayList<StructInformation> infos = new ArrayList<>();
-                        infos.addAll(tableList.getItems());
-                        infos.forEach(structInformation -> {
-                                System.out.println("category " + structInformation.getCategory() + "Rating " + structInformation.getStars() + " Infos " + structInformation.getStructuredText());
-                        });
-                        diary.getEntryList().get(diary.getEntryList().size() - 1).setStructuredInfo(infos);
-                        diary.getEntryList().get(diary.getEntryList().size() - 1).getStructuredInfo().forEach(info ->
-                                System.out.println(info.getCategory() + " " + info.getStars()));
-
-                        SceneSwitch s = new SceneSwitch("newEntry", btnNewEntry.getScene());
+                ArrayList<StructInformation> infos = new ArrayList<>();
+                infos.addAll(tableList.getItems());
+                if (diary.getCurrentEntry() != null) {
+                        diary.getCurrentEntry().setStructuredInfo(infos);
+                        SceneSwitch s = new SceneSwitch("DiaryEntryView", btnNewEntry.getScene());
                         s.switchScene();
                 } else {
-                        ArrayList<StructInformation> infos = new ArrayList<>();
-                        infos.addAll(tableList.getItems());
                         entryEdit.setStructuredInfo(infos);
-
                         try {
                                 Scene scene = BtnAdd.getScene();
                                 URL url = new File("src/main/java/at/jku/se/diary/view/EntryEdit.fxml").toURI().toURL();
@@ -115,7 +105,8 @@ public class StructuredInfoController {
         }
 
         public void initialize() {
-                System.out.print("in inizialize:" + diary.isCurrentEntry());
+
+                //UI
                 TableColumn<StructInformation, String> columnCategory = new TableColumn<StructInformation, String>("Category");
                 columnCategory.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getCategory())));
 
@@ -127,11 +118,14 @@ public class StructuredInfoController {
 
                 tableList.getColumns().addAll(columnCategory,columnStars, columnInfo);
 
-                System.out.print("in inizialize:" + diary.isCurrentEntry());
-                if (diary.isCurrentEntry() == true) {
-                        ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(diary.getEntryList().get(diary.getEntryList().size() -1).getStructuredInfo());
-                        diaryE.forEach(info -> System.out.println(info.getCategory() + " " + info.getStars()));
-                        if (diaryE.size()>0)tableList.setItems(diaryE);
+                //End UI
+
+
+                if (diary.getCurrentEntry() != null) {
+                        if (diary.getCurrentEntry().getStructuredInfo() != null) {
+                                ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(diary.getCurrentEntry().getStructuredInfo());
+                                tableList.setItems(diaryE);
+                        }
                 } else {
                         SwingUtilities.invokeLater(() -> setInfo());
                 }
@@ -143,7 +137,7 @@ public class StructuredInfoController {
         @FXML
         void openEditCategories(MouseEvent event) {
                 try {
-                        SceneSwitch s = new SceneSwitch("category", tableList.getScene());
+                        SceneSwitch s = new SceneSwitch("CategoryList", tableList.getScene());
                         s.switchScene();
                 } catch (Exception e) {
                         System.out.println("load categories" + e);

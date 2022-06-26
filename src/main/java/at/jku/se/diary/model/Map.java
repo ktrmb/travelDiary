@@ -2,7 +2,6 @@ package at.jku.se.diary.model;
 
 import java.util.ArrayList;
 
-import at.jku.se.diary.HelloFX;
 import com.dlsc.gmapsfx.javascript.object.LatLong;
 import com.dlsc.gmapsfx.javascript.object.Marker;
 import com.dlsc.gmapsfx.javascript.object.MarkerOptions;
@@ -31,8 +30,8 @@ public class Map {
         for (DiaryEntry e : entries) {
             if (e.getAddress() != null) {
                 MarkerPoint m = this.getDataFromAPI(e.getAddress(), e.getId());
-                MarkerOptions markerOptions1 = new MarkerOptions().position(new LatLong(m.getLatitute(), m.getLongitute()));
-                //markerOptions1.position(new LatLong(m.getLatitute(), m.getLongitute()));
+                MarkerOptions markerOptions1 = new MarkerOptions().position(new LatLong(m.getLatitute(),
+                        m.getLongitute()));
                 Marker pos = new Marker(markerOptions1);
                 markers.add(pos);
             }

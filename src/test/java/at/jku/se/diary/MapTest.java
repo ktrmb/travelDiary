@@ -1,21 +1,12 @@
 package at.jku.se.diary;
 
 import at.jku.se.diary.model.*;
-import com.dlsc.gmapsfx.GoogleMapView;
-import com.dlsc.gmapsfx.javascript.object.*;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import org.junit.After;
-import org.junit.Before;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MapTest {

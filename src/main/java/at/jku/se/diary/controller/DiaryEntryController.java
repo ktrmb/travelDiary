@@ -185,45 +185,6 @@ public class DiaryEntryController implements Initializable {
         }
     }
 
-/*
-    //calls safeEntry() to safe the current input and opens new view
-    @FXML
-    public void editCategories(MouseEvent mouseEvent) throws IOException, JAXBException {
-        if(!diary.isCurrentEntry()) {
-            this.safeEntry();
-            diary.setCurrentEntry(true);
-            System.out.println("EditCurrentEntry == " + diary.isCurrentEntry());
-        }
-        try {
-            Scene scene = buttonEditCategories.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/CategoryList.fxml").toURI().toURL();
-            Parent root = FXMLLoader.load(url);
-            scene.setRoot(root);
-        } catch (Exception e) {
-            System.out.println("load categories" + e);
-        }
-
-    } */
-
-/*    @FXML
-    public void addStructuredInfo(ActionEvent actionEvent) throws IOException, JAXBException {
-        if(diary.getCurrentEntry() == null) {
-            this.safeEntry();
-        }
-        try {
-            Scene scene = buttonStructInfo.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-            scene.setRoot(root);
-
-            SceneSwitch s = new SceneSwitch("StructInformationView", buttonStructInfo.getScene());
-            s.switchScene();
-        } catch (Exception e) {
-            System.out.println("load newStructuredInfo" + e);
-        }
-
-    }*/
 
     @FXML
     public void addStructuredInfo(ActionEvent actionEvent) throws IOException, JAXBException {

@@ -1,28 +1,38 @@
 package at.jku.se.diary.model;
 
 import java.util.ArrayList;
-
 import com.dlsc.gmapsfx.javascript.object.LatLong;
 import com.dlsc.gmapsfx.javascript.object.Marker;
 import com.dlsc.gmapsfx.javascript.object.MarkerOptions;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+/**
+ *
+ * this class contains important functions to get the lat and lng for a location, but it also works the other way
+ * @author Team E
+ *
+ */
 
 public class Map {
 
     Diary diary;
     private ArrayList<MarkerPoint> markerPointArrayList = new ArrayList<>();
 
+    /**
+     * @param diary to get the correct diary entries for the map
+     */
     public Map(Diary diary) {
         this.diary = diary;
-
     }
 
+    /**
+     * @return a list of markers, which are elements of the GoogleMapView and contain the position of the marker
+     */
     public ArrayList<Marker> getMarker() {
         ArrayList<DiaryEntry> entries = this.diary.getEntryList();
         ArrayList<Marker> markers = new ArrayList<>();
@@ -39,7 +49,11 @@ public class Map {
         return markers;
     }
 
-
+    /**
+     * @param address to get the latitute and longitute for the address
+     * @param index set the index of the markerpoint to the id of the diary entry
+     * @return a markerpoint, with the correct latitute and longitute of the location and has also the id of the matching diary entry
+     */
     public MarkerPoint getDataFromAPI(String address, Integer index) {
         address = address.replace(" ", "");
         try {
@@ -67,6 +81,11 @@ public class Map {
         return null;
     }
 
+    /**
+     * @param lat to get the matching markerpoint
+     * @param lng  to get the matching markerpoint
+     * @return a diary entry, which is matching with the location of lat and lng. If no Entry matches, the method will return null
+     */
     public DiaryEntry getEntryFromLatLng(double lat, double lng) {
         MarkerPoint markerp;
         for(MarkerPoint mp : markerPointArrayList) {

@@ -44,10 +44,11 @@ public class HelloFX extends Application {
 
         try {
             diary = new Diary();
-            diary.setDiaryFilePath(diary.getDiaryFilePath());
-            diaryFile = new File(diary.getDiaryFilePath());
+            //diary.setDiaryFilePath(diary.getDiaryFilePath());
+            //diaryFile = new File(diary.getDiaryFilePath());
+            diaryFile = new File("diary.xml");
             diary = diaryDB.readDiary(diaryFile);
-            System.out.println(diary.getDiaryFilePath());
+            //System.out.println(diary.getDiaryFilePath());
         } catch (JAXBException e) {
             e.printStackTrace();
         }

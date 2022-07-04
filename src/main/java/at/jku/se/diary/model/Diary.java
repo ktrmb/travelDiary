@@ -19,7 +19,7 @@ public class Diary {
     private ArrayList<String> categories;
    // private boolean currentEntry = false;
     private DiaryEntry currentEntry;
-    private String diaryFilePath = "diary.xml";
+    private String diaryFilePath;
 
     public Diary() throws JAXBException {
         entryList = new ArrayList<>();
@@ -103,12 +103,16 @@ public class Diary {
         return selectedFile;
     }
 
-    public void setDiaryFilePath (String path) {
+    public void setDiaryFilePath (String path) throws JAXBException {
         this.diaryFilePath = path;
+        if(this.diaryDB != null){
+            diaryDB.writeDiary(this, diaryFile);
+        }
     }
 
-    public String getDiaryFilePath () {
-        return diaryFilePath;
+    public String getDiaryFilePath () throws JAXBException {
+        System.out.println("getDiaryPath methode: " + diaryDB.readDiary(diaryFile).getDiaryFilePath());
+        return diaryDB.readDiary(diaryFile).getDiaryFilePath();
     }
 
 /*

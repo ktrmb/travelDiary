@@ -44,6 +44,7 @@ public class HelloFX extends Application {
 
         try {
             diary = new Diary();
+            diary.setDiaryFilePath(diary.getDiaryFilePath());
             diaryFile = new File(diary.getDiaryFilePath());
             diary = diaryDB.readDiary(diaryFile);
             System.out.println(diary.getDiaryFilePath());

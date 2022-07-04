@@ -5,6 +5,7 @@
     <categories>Urlaub</categories>
     <categories>Strand</categories>
     <categories>Restaurant</categories>
+    <diaryFilePath>C:\Users\misch\OneDrive\Desktop\test</diaryFilePath>
     <entryList>
         <address>BarcaAdresse</address>
         <date>2022-06-01</date>

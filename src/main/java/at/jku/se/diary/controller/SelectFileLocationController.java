@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.bind.JAXBException;
 import java.awt.Component;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -25,7 +26,7 @@ public class SelectFileLocationController extends Component {
     private Button btnSearchLocationPhoto;
 
     @FXML
-    void saveFileLocation(MouseEvent event) throws IOException {
+    void saveFileLocation(MouseEvent event) throws IOException, JAXBException {
         String path;
         String filename;
         String filecontent = "";
@@ -61,19 +62,15 @@ public class SelectFileLocationController extends Component {
         }
     }
 
-
-
-
     @FXML
     void savePhotoLocation(MouseEvent event) {
         //no need for method
     }
 
     @FXML
-    void saveSetLocations(MouseEvent event) throws IOException {
+    void saveSetLocations(MouseEvent event) throws IOException, JAXBException {
         System.out.println(diary.getDiaryFilePath());
         SceneSwitch s = new SceneSwitch("journalList", btnSaveFileLocation.getScene());
         s.switchScene();
     }
-
 }

@@ -28,10 +28,10 @@ import static at.jku.se.diary.HelloFX.diary;
 public class StructuredInfoController {
 
         @FXML
-        private Button BtnAdd;
+        private Button btnAdd;
 
         @FXML
-        private Button BtnOk;
+        private Button btnOk;
 
         @FXML
         private ImageView btnNewEntry;
@@ -61,7 +61,8 @@ public class StructuredInfoController {
         @FXML
         void addToList(ActionEvent event) {
                 //UI
-                StructInformation structInfo = new StructInformation(tableList.getItems().size(), selectedCategory, rating.getRating() , structuredText.getText());
+                StructInformation structInfo = new StructInformation(tableList.getItems().size(),
+                        selectedCategory, rating.getRating() , structuredText.getText());
                 tableList.getItems().add(structInfo);
                 category.setValue(" ");
                 rating.setRating(0);
@@ -79,7 +80,7 @@ public class StructuredInfoController {
                 } else {
                         entryEdit.setStructuredInfo(infos);
                         try {
-                                Scene scene = BtnAdd.getScene();
+                                Scene scene = btnAdd.getScene();
                                 URL url = new File("src/main/java/at/jku/se/diary/view/EntryEdit.fxml").toURI().toURL();
                                 FXMLLoader loader = new FXMLLoader(url);
                                 Parent root = loader.load();
@@ -94,10 +95,7 @@ public class StructuredInfoController {
                 }
         }
 
-        @FXML
-        void showNewEntryPage(MouseEvent event) {
 
-        }
 
         @FXML
         void deleteStructuredInfo(MouseEvent event) {
@@ -116,14 +114,15 @@ public class StructuredInfoController {
                 TableColumn<StructInformation, String> columnInfo = new TableColumn<StructInformation, String>("Information");
                 columnInfo.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStructuredText()));
 
-                tableList.getColumns().addAll(columnCategory,columnStars, columnInfo);
+                tableList.getColumns().addAll(columnCategory, columnStars, columnInfo);
 
                 //End UI
 
 
                 if (diary.getCurrentEntry() != null) {
                         if (diary.getCurrentEntry().getStructuredInfo() != null) {
-                                ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(diary.getCurrentEntry().getStructuredInfo());
+                                ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(
+                                        diary.getCurrentEntry().getStructuredInfo());
                                 tableList.setItems(diaryE);
                         }
                 } else {
@@ -155,9 +154,12 @@ public class StructuredInfoController {
 
         public void setInfo () {
                 if(entryEdit.getStructuredInfo() != null) {
-                        ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(entryEdit.getStructuredInfo());
+                        ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(
+                                entryEdit.getStructuredInfo());
                         diaryE.forEach(info -> System.out.println(info.getCategory() + " " + info.getStars()));
-                        if (diaryE.size() > 0) tableList.setItems(diaryE);
+                        if (diaryE.size() > 0){
+                                tableList.setItems(diaryE);
+                        }
                 }
         }
 }

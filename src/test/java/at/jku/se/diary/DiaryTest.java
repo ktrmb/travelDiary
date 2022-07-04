@@ -111,6 +111,7 @@ public class DiaryTest{
 
     }
 
+    @Test
     void createNewEntry() throws JAXBException {
         assertTrue(diary.getEntryList().isEmpty());
         LocalDate.now();

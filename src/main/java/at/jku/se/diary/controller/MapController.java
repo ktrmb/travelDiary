@@ -3,22 +3,28 @@ package at.jku.se.diary.controller;
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.Map;
-import at.jku.se.diary.model.MarkerPoint;
+
 import at.jku.se.diary.model.SceneSwitch;
 import com.dlsc.gmapsfx.GoogleMapView;
 
+import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.*;
 
-import com.dlsc.gmapsfx.service.geocoding.GeocoderStatus;
-import com.dlsc.gmapsfx.service.geocoding.GeocodingResult;
-import com.dlsc.gmapsfx.service.geocoding.GeocodingService;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import netscape.javascript.JSObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class MapController implements Initializable {
@@ -33,7 +39,7 @@ public class MapController implements Initializable {
     private ImageView btnNewEntry;
 
     @FXML
-    private GoogleMapView mapView =  new GoogleMapView("en-US", "AIzaSyClUxzPhXoJKME9PHBo1wH-HBYej7901dM");
+    private GoogleMapView mapView =  new GoogleMapView("en-US", "asdfasdf-HBYej7901dM");
 
     private GoogleMap map;
 
@@ -64,23 +70,39 @@ public class MapController implements Initializable {
     public void configureMap() {
         MapOptions mapOptions = new MapOptions();
 
-
         mapOptions.center(new LatLong(41.890251, 12.492373))
                 .mapType(MapTypeIdEnum.ROADMAP)
                 .zoom(9);
         map = mapView.createMap(mapOptions, false);
-
         map.setZoom(3);
 
+        ArrayList<Marker> markers = location.getMarker();
+        map.addMarkers((Collection<Marker>) markers);
 
-        MarkerOptions markerOptions3 = new MarkerOptions();
-        markerOptions3.position(new LatLong(41.890251, 12.492373));
-        Marker m3 = new Marker(markerOptions3);
-        map.addMarker( m3 );
+        for (Marker m : markers) {
+            map.addUIEventHandler(m, UIEventType.click, (JSObject obj) -> {
+                LatLong ll = new LatLong((JSObject) obj.getMember("latLng"));
+                System.out.println("LatLong: lat: " + ll.getLatitude() + " lng: " + ll.getLongitude());
+                DiaryEntry entry = location.getEntryFromLatLng(ll.getLatitude(), ll.getLongitude());
+                this.showSelectedEntry(entry);
+            });
+        }
 
-        for(DiaryEntry m: HelloFX.diary.getEntryList()) {
-            MarkerPoint mp = location.getDataFromAPI(m.getAddress());
-            map.addMarker( new Marker(new MarkerOptions().position(new LatLong(mp.getLatitute(), mp.getLongitute()))));
+    }
+
+    void showSelectedEntry(DiaryEntry entry) {
+        try {
+            Scene scene = btnJournalList.getScene();
+            URL url = new File("src/main/java/at/jku/se/diary/view/EntryEdit.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            EntryEditController eController = loader.getController();
+            eController.setSelectedEntry(entry);
+
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

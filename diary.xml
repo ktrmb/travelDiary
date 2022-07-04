@@ -5,9 +5,9 @@
     <categories>Urlaub</categories>
     <categories>Strand</categories>
     <categories>Restaurant</categories>
-    <diaryFilePath>C:\Users\misch\OneDrive\Desktop\test</diaryFilePath>
+    <diaryFilePath>diary.xml</diaryFilePath>
     <entryList>
-        <address>BarcaAdresse</address>
+        <address>Barcelona</address>
         <date>2022-06-01</date>
         <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Text Barca&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>1</id>
@@ -42,6 +42,28 @@
             <stars>4.0</stars>
             <structuredText>lecker</structuredText>
         </structuredInfo>
-        <title>Italien</title>
+        <title>Luxor</title>
+    </entryList>
+    <entryList>
+        <address>Rom, Italien</address>
+        <date>2022-06-19</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;war schön dort&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>3</id>
+        <picture1>image3_1.jpg</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <structuredInfo>
+            <category>Restaurant</category>
+            <id>0</id>
+            <stars>5.0</stars>
+            <structuredText>war lecker</structuredText>
+        </structuredInfo>
+        <structuredInfo>
+            <category>Kultur</category>
+            <id>1</id>
+            <stars>5.0</stars>
+            <structuredText>war schön</structuredText>
+        </structuredInfo>
+        <title>Rom</title>
     </entryList>
 </myDiary>

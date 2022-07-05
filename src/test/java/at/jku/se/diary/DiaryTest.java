@@ -129,9 +129,22 @@ public class DiaryTest{
         }
     }
 
+    @Test
+    void filterTest(){
+        StructInformation info1 = new StructInformation(1, "Hotel", 4, "Text1");
+        StructInformation info2 = new StructInformation(2, "Strand", 5, "Text2");
+        entry1.getStructuredInfo().add(info1);
+        entry1.getStructuredInfo().add(info2);
 
+        assertTrue(diary.filterCategories(entry1, "Hotel"));
+        assertTrue(diary.filterCategories(entry1, "Strand"));
+        assertFalse(diary.filterCategories(entry1, "Restaurant"));
+        assertTrue(diary.filterStars(entry1, "4.0"));
+        assertFalse(diary.filterStars(entry1, "3.0"));
+        assertTrue(diary.filterStars(entry1, "5.0"));
+        assertTrue(diary.filterStructInfoText(entry1, "Tex"));
+        assertFalse(diary.filterStructInfoText(entry1, "Text123"));
+        assertTrue(diary.filterStructInfoText(entry1, "text2"));
 
-
-
-
+    }
 }

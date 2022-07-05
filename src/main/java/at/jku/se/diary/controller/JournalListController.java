@@ -4,7 +4,6 @@ import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.SceneSwitch;
-import at.jku.se.diary.model.StructInformation;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -94,9 +93,9 @@ public class JournalListController {
                                 && ((diaryEntry.getDiaryText().toLowerCase().contains(filterText.getText().toLowerCase())) || (filterText.getText().isEmpty()) || filterText.getText().equals("Text"))
                                 && (diaryEntry.getDate().isAfter(filterDateFromBox.getValue()) || (diaryEntry.getDate().isEqual(filterDateFromBox.getValue())))
                                 && (diaryEntry.getDate().isBefore(filterDateToBox.getValue()) || diaryEntry.getDate().isEqual(filterDateToBox.getValue()))
-                                && ((filterCategories(diaryEntry, filterCategoryBox.getValue())) || (filterCategoryBox.getValue().equals("Category")))
-                                && ((filterStructInfoText(diaryEntry, filterStructInfo.getText())) || (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
-                                && (filterStars(diaryEntry, filterStarsBox.getValue()) || (filterStarsBox.getValue().equals("Stars"))),
+                                && ((diary.filterCategories(diaryEntry, filterCategoryBox.getValue())) || (filterCategoryBox.getValue().equals("Category")))
+                                && ((diary.filterStructInfoText(diaryEntry, filterStructInfo.getText())) || (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
+                                && (diary.filterStars(diaryEntry, filterStarsBox.getValue()) || (filterStarsBox.getValue().equals("Stars"))),
                 applyHelpTextBox.textProperty(),
                 filterTitle.textProperty(),
                 filterText.textProperty(),
@@ -109,7 +108,7 @@ public class JournalListController {
 
     }
 
-    boolean filterCategories(DiaryEntry entry, String category){
+/*    boolean filterCategories(DiaryEntry entry, String category){
         if(entry.getStructuredInfo() != null){
             for(StructInformation s : entry.getStructuredInfo()){
                 if(s.getCategory().equals(category)){
@@ -138,7 +137,7 @@ public class JournalListController {
             }
         }
         return false;
-    }
+    }*/
 
 
     @FXML

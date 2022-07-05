@@ -102,6 +102,43 @@ public class Diary {
         return selectedFile;
     }
 
+    //Filterhilfsklassen auslagern ------------------------------------------------------
+    public boolean filterCategories(DiaryEntry entry, String category){
+        if(entry.getStructuredInfo() != null){
+            for(StructInformation s : entry.getStructuredInfo()){
+                if(s.getCategory().equals(category)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean filterStructInfoText(DiaryEntry entry, String value){
+        if(entry.getStructuredInfo() != null){
+            for(StructInformation s : entry.getStructuredInfo()){
+                if(s.getStructuredText().toLowerCase().contains(value.toLowerCase())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean filterStars(DiaryEntry entry, String rating){
+        if(entry.getStructuredInfo() != null){
+            for(StructInformation s : entry.getStructuredInfo()){
+                if(String.valueOf(s.getStars()).equals(rating)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+
 /*    public void setDiaryFilePath (String path) throws JAXBException {
         this.diaryFilePath = path;
         if(this.diaryDB != null){

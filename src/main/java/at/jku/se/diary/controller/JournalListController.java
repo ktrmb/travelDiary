@@ -85,7 +85,7 @@ public class JournalListController {
         filterTitle.setText("");
         filterText.setText("Text");
         filterDateFromBox.setValue(LocalDate.of(2022, 06, 01));
-        filterDateToBox.setValue(LocalDate.of(2022, 06, 30));
+        filterDateToBox.setValue(LocalDate.of(2022, 07, 31));
         filterCategoryBox.setValue("Category");
         filterStructInfo.setText("Structured Info");
         filterStarsBox.setValue("Stars");

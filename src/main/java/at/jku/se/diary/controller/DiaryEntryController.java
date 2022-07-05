@@ -54,8 +54,6 @@ public class DiaryEntryController implements Initializable {
     @FXML
     private String selectedCategory;
 
-    //Scene wechseln - auf JournalList
-    //wenn Current Entry true ist und es wird auf eine andere View gewechselt, wird der derzeitige Input wieder aus Arraylist gelöscht
     @FXML
     void showJournalListPage(MouseEvent mouseEvent) throws IOException {
         if(diary.getCurrentEntry() != null) {

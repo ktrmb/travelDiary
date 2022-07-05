@@ -66,7 +66,7 @@ public class JournalListController {
 
 
         TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
-        titel.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getTitle())));
+        titel.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getTitle()));
 
         TableColumn<DiaryEntry, LocalDate> date = new TableColumn<DiaryEntry, LocalDate>("Date");
         date.setCellValueFactory(c -> new SimpleObjectProperty<LocalDate>(c.getValue().getDate()));

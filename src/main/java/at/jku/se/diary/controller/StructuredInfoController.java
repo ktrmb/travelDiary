@@ -13,11 +13,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.Rating;
 
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -34,16 +33,10 @@ public class StructuredInfoController {
         private Button btnOk;
 
         @FXML
-        private ImageView btnNewEntry;
-
-        @FXML
         private ChoiceBox<String> category;
 
         @FXML
         private Button btnDelete;
-
-        @FXML
-        private ImageView journalView;
 
         @FXML
         private TextField structuredText;
@@ -75,7 +68,7 @@ public class StructuredInfoController {
                 infos.addAll(tableList.getItems());
                 if (diary.getCurrentEntry() != null) {
                         diary.getCurrentEntry().setStructuredInfo(infos);
-                        SceneSwitch s = new SceneSwitch("DiaryEntryView", btnNewEntry.getScene());
+                        SceneSwitch s = new SceneSwitch("DiaryEntryView", btnOk.getScene());
                         s.switchScene();
                 } else {
                         entryEdit.setStructuredInfo(infos);
@@ -128,7 +121,7 @@ public class StructuredInfoController {
                 } else {
                         SwingUtilities.invokeLater(() -> setInfo());
                 }
-                //set categorie
+                //set category
                 category.getItems().addAll(diary.getCategories());
                 category.setOnAction(this::selectCategory);
         }

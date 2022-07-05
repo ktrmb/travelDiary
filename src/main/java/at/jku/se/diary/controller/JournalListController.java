@@ -94,7 +94,7 @@ public class JournalListController {
                                 && ((diaryEntry.getDiaryText().toLowerCase().contains(filterText.getText().toLowerCase())) || (filterText.getText().isEmpty()) || filterText.getText().equals("Text"))
                                 && (diaryEntry.getDate().isAfter(filterDateFromBox.getValue()) || (diaryEntry.getDate().isEqual(filterDateFromBox.getValue())))
                                 && (diaryEntry.getDate().isBefore(filterDateToBox.getValue()) || diaryEntry.getDate().isEqual(filterDateToBox.getValue()))
-                                && (filterCategories(diaryEntry, filterCategoryBox.getValue()) || (filterCategoryBox.getValue().equals("Category")))
+                                && ((filterCategories(diaryEntry, filterCategoryBox.getValue())) || (filterCategoryBox.getValue().equals("Category")))
                                 && ((filterStructInfoText(diaryEntry, filterStructInfo.getText())) || (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
                                 && (filterStars(diaryEntry, filterStarsBox.getValue()) || (filterStarsBox.getValue().equals("Stars"))),
                 applyHelpTextBox.textProperty(),
@@ -112,7 +112,9 @@ public class JournalListController {
     boolean filterCategories(DiaryEntry entry, String category){
         if(entry.getStructuredInfo() != null){
             for(StructInformation s : entry.getStructuredInfo()){
-                return (s.getCategory().equals(category));
+                if(s.getCategory().equals(category)){
+                    return true;
+                }
             }
         }
         return false;
@@ -120,7 +122,9 @@ public class JournalListController {
     boolean filterStructInfoText(DiaryEntry entry, String value){
         if(entry.getStructuredInfo() != null){
             for(StructInformation s : entry.getStructuredInfo()){
-                return s.getStructuredText().toLowerCase().contains(value.toLowerCase());
+                if(s.getStructuredText().toLowerCase().contains(value.toLowerCase())){
+                    return true;
+                }
             }
         }
         return false;
@@ -128,7 +132,9 @@ public class JournalListController {
     boolean filterStars(DiaryEntry entry, String rating){
         if(entry.getStructuredInfo() != null){
             for(StructInformation s : entry.getStructuredInfo()){
-                return String.valueOf(s.getStars()).equals(rating);
+                if(String.valueOf(s.getStars()).equals(rating)){
+                    return true;
+                }
             }
         }
         return false;

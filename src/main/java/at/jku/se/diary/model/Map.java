@@ -1,6 +1,5 @@
 package at.jku.se.diary.model;
 
-import java.util.ArrayList;
 import com.dlsc.gmapsfx.javascript.object.LatLong;
 import com.dlsc.gmapsfx.javascript.object.Marker;
 import com.dlsc.gmapsfx.javascript.object.MarkerOptions;
@@ -10,6 +9,8 @@ import com.mashape.unirest.http.Unirest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -91,8 +92,11 @@ public class Map {
         for(MarkerPoint mp : markerPointArrayList) {
             if(mp.getLatitute() == lat && mp.getLongitute() == lng){
                 markerp = mp;
-                DiaryEntry entry = diary.getEntryList().get(markerp.getId()-1);
-                return entry;
+                for(DiaryEntry e: diary.getEntryList() ) {
+                    if(e.getId() == markerp.getId()) {
+                        return e;
+                    }
+                }
             }
         }
         return null;

@@ -62,6 +62,82 @@ public class DiaryEntryController implements Initializable {
         SceneSwitch s = new SceneSwitch("JournalList", btnJournalList.getScene());
         s.switchScene();
     }
+    @FXML
+    void addEntry(ActionEvent event) throws JAXBException {
+        //ArrayList<StructInformation> structuredInfo = new ArrayList<>();
+        int id = diary.getEntryList().size() + 1;
+        diary.createNewEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(),
+                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl(), new ArrayList<StructInformation>());
+    }
+
+    @FXML
+    public void addPic1(MouseEvent mouseEvent) throws FileNotFoundException {
+        File selectedFile = diary.addPic(stage);
+        if(selectedFile!=null){
+            //Image image = new Image(String.valueOf(selectedFile));
+            pic1.setImage(new Image(String.valueOf(selectedFile)));
+        }
+    }
+    @FXML
+    public void addPic2(MouseEvent mouseEvent) {
+        File selectedFile = diary.addPic(stage);
+        if(selectedFile!=null){
+            //Image image = new Image(selectedFile.toURI().toString());
+            pic2.setImage(new Image(selectedFile.toURI().toString()));
+        }
+    }
+    @FXML
+    public void addPic3(MouseEvent mouseEvent) {
+        File selectedFile = diary.addPic(stage);
+        if(selectedFile!=null){
+            //Image image = new Image(selectedFile.toURI().toString());
+            pic3.setImage(new Image(selectedFile.toURI().toString()));
+        }
+    }
+
+    //when the boolean CurrentEntry() of diary is true, the last entrydata is initialized
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (diary.getCurrentEntry() != null) {
+            title.setText(diary.getCurrentEntry().getTitle());
+            date.setValue(diary.getCurrentEntry().getDate());
+            address.setText(diary.getCurrentEntry().getAddress());
+            diaryText.setHtmlText(diary.getCurrentEntry().getDiaryText());
+            Image i1 = new Image(diary.getCurrentEntry().getPicture1());
+            pic1.setImage(i1);
+            Image i2 = new Image(diary.getCurrentEntry().getPicture2());
+            pic2.setImage(i2);
+            Image i3 = new Image(diary.getCurrentEntry().getPicture3());
+            pic3.setImage(i3);
+        }
+    }
+
+    @FXML
+    public void addStructuredInfo(ActionEvent actionEvent) throws IOException, JAXBException {
+        if(diary.getCurrentEntry() == null) {
+            this.safeEntry();
+        }
+        SceneSwitch s = new SceneSwitch("StructInformationView", buttonStructInfo.getScene());
+        s.switchScene();
+    }
+
+    //when the Categories or new structured Info is added, the current Input is saved in the diary Arraylist
+    public void safeEntry() throws JAXBException {
+        int id = diary.getEntryList().size() + 1;
+        LocalDate currentDate = date.getValue();
+        String currentTitle = ((title.getText() == null) ? " " : title.getText());
+        String currentAddress = ((address.getText() == null) ? " " : address.getText());
+        String currentDiaryText = ((diaryText.getHtmlText() == null) ? " " : diaryText.getHtmlText());
+        DiaryEntry currentEntry = new DiaryEntry(id, currentDate, currentTitle, currentAddress, currentDiaryText,null);
+        currentEntry.setPicture1(pic1.getImage().getUrl());
+        currentEntry.setPicture2(pic2.getImage().getUrl());
+        currentEntry.setPicture3(pic3.getImage().getUrl());
+        diary.setCurrentEntry(currentEntry);
+    }
+
+
+
+
 
 /*    @FXML
     void addEntry(ActionEvent event) throws JAXBException {
@@ -131,80 +207,7 @@ public class DiaryEntryController implements Initializable {
 
         diary.addNewEntry(newEntry);
     }*/
-    @FXML
-    void addEntry(ActionEvent event) throws JAXBException {
-        //ArrayList<StructInformation> structuredInfo = new ArrayList<>();
-        int id = diary.getEntryList().size() + 1;
-        diary.createNewEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(),
-                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl(), new ArrayList<StructInformation>());
-    }
 
-    @FXML
-    public void addPic1(MouseEvent mouseEvent) throws FileNotFoundException {
-        File selectedFile = diary.addPic(stage);
-        if(selectedFile!=null){
-            //Image image = new Image(String.valueOf(selectedFile));
-            pic1.setImage(new Image(String.valueOf(selectedFile)));
-        }
-    }
-    @FXML
-    public void addPic2(MouseEvent mouseEvent) {
-        File selectedFile = diary.addPic(stage);
-        if(selectedFile!=null){
-            //Image image = new Image(selectedFile.toURI().toString());
-            pic2.setImage(new Image(selectedFile.toURI().toString()));
-        }
-    }
-    @FXML
-    public void addPic3(MouseEvent mouseEvent) {
-        File selectedFile = diary.addPic(stage);
-        if(selectedFile!=null){
-            //Image image = new Image(selectedFile.toURI().toString());
-            pic3.setImage(new Image(selectedFile.toURI().toString()));
-        }
-    }
-
-
-
-    //when the boolean CurrentEntry() of diary is true, the last entrydata is initialized
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (diary.getCurrentEntry() != null) {
-            title.setText(diary.getCurrentEntry().getTitle());
-            date.setValue(diary.getCurrentEntry().getDate());
-            address.setText(diary.getCurrentEntry().getAddress());
-            diaryText.setHtmlText(diary.getCurrentEntry().getDiaryText());
-            Image i1 = new Image(diary.getCurrentEntry().getPicture1());
-            pic1.setImage(i1);
-            Image i2 = new Image(diary.getCurrentEntry().getPicture2());
-            pic2.setImage(i2);
-            Image i3 = new Image(diary.getCurrentEntry().getPicture3());
-            pic3.setImage(i3);
-        }
-    }
-
-    @FXML
-    public void addStructuredInfo(ActionEvent actionEvent) throws IOException, JAXBException {
-        if(diary.getCurrentEntry() == null) {
-            this.safeEntry();
-        }
-        SceneSwitch s = new SceneSwitch("StructInformationView", buttonStructInfo.getScene());
-        s.switchScene();
-    }
-
-    //when the Categories or new structured Info is added, the current Input is saved in the diary Arraylist
-    public void safeEntry() throws JAXBException {
-        int id = diary.getEntryList().size() + 1;
-        LocalDate currentDate = date.getValue();
-        String currentTitle = ((title.getText() == null) ? " " : title.getText());
-        String currentAddress = ((address.getText() == null) ? " " : address.getText());
-        String currentDiaryText = ((diaryText.getHtmlText() == null) ? " " : diaryText.getHtmlText());
-        DiaryEntry currentEntry = new DiaryEntry(id, currentDate, currentTitle, currentAddress, currentDiaryText,null);
-        currentEntry.setPicture1(pic1.getImage().getUrl());
-        currentEntry.setPicture2(pic2.getImage().getUrl());
-        currentEntry.setPicture3(pic3.getImage().getUrl());
-        diary.setCurrentEntry(currentEntry);
-    }
 }
 
 

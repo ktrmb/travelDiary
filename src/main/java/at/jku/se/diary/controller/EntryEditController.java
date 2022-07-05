@@ -70,12 +70,10 @@ public class EntryEditController {
     }
 
     public void initialize() {
-        System.out.println("2. jetzt wird inizialized mit setEntry");
         SwingUtilities.invokeLater(() -> setEntry());
     }
 
     public void setEntry() {
-        System.out.println("3. jetzt wird alles gesetzt");
         txtTitel.setText(entry.getTitle());
         txtAdress.setText(entry.getAddress());
         txtDate.setValue(entry.getDate());
@@ -89,7 +87,6 @@ public class EntryEditController {
     }
 
     public void setSelectedEntry (DiaryEntry entry) {
-        System.out.println("1. jetzt wird setSelectedEntry ausgeführt");
         this.entry = entry;
     }
 
@@ -153,14 +150,17 @@ public class EntryEditController {
         entry.setDiaryText(txtText.getHtmlText());
 
         try {
-
-            Scene scene = btnShowStructuredInfo.getScene();
+            /*Scene scene = btnShowStructuredInfo.getScene();
             URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
+
             StructuredInfoController controller = loader.getController();
             controller.setEntryEdit(entry);
-            scene.setRoot(root);
+
+            scene.setRoot(root);*/
+            SceneSwitch s = new SceneSwitch("StructInformationView", btnShowStructuredInfo.getScene());
+            s.switchSceneStructInfoController(entry);
 
         } catch (IOException e) {
             e.printStackTrace();

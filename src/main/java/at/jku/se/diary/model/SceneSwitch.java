@@ -1,5 +1,7 @@
 package at.jku.se.diary.model;
 
+import at.jku.se.diary.controller.EntryEditController;
+import at.jku.se.diary.controller.StructuredInfoController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,6 +22,22 @@ public class SceneSwitch {
     public void switchScene()throws IOException {
         URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
+        scene.setRoot(root);
+    }
+    public void switchSceneStructInfoController(DiaryEntry entry)throws IOException {
+        URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        StructuredInfoController controller = loader.getController();
+        controller.setEntryEdit(entry);
+        scene.setRoot(root);
+    }
+    public void switchSceneEntryEditController(DiaryEntry entry)throws IOException {
+        URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        EntryEditController controller = loader.getController();
+        controller.setSelectedEntry(entry);
         scene.setRoot(root);
     }
 

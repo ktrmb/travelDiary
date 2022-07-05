@@ -2,12 +2,10 @@ package at.jku.se.diary.controller;
 
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.DiaryEntry;
+import at.jku.se.diary.model.SceneSwitch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -16,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import javax.xml.bind.JAXBException;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -66,15 +63,10 @@ public class CategoryListController implements Initializable {
                 HelloFX.diary.getCategories().add(category);
             }
         }
-
         try {
-            Scene scene = btnOk.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-            StructuredInfoController controller = loader.getController();
-            controller.setEntryEdit(diaryEntry);
-            scene.setRoot(root);
+            SceneSwitch s = new SceneSwitch("StructInformationView", btnOk.getScene());
+            s.switchSceneStructInfoController(diaryEntry);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

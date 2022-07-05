@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<myDiary>
+    <entryList>
+        <address>Steinbach am Attersee</address>
+        <date>2022-07-05</date>
+        <diaryText>Liebes Tagebuch ...</diaryText>
+        <id>1</id>
+        <picture1>defaultPic.png</picture1>
+        <picture2>defaultPic.png</picture2>
+        <picture3>defaultPic.png</picture3>
+        <title>Ausflug Attersee</title>
+    </entryList>
+</myDiary>

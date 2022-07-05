@@ -13,16 +13,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 
 public class JournalListController {
@@ -185,15 +180,9 @@ public class JournalListController {
     @FXML
     void showSelectedEntry(MouseEvent event) {
         try {
-            Scene scene = btnShowEntry.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/view/EntryEdit.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
+            SceneSwitch s = new SceneSwitch("EntryEdit", btnShowEntry.getScene());
+            s.switchSceneEntryEditController(selectedEntry);
 
-            EntryEditController eController = loader.getController();
-            eController.setSelectedEntry(selectedEntry);
-
-            scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

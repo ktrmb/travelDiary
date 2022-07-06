@@ -41,14 +41,10 @@ public class HelloFX extends Application {
         // dass unten dann mit den bereits vorhandenen Daten(der XML) befüllt wird
         diaryDB = new DiaryDB();
         diaryFile = new File("diary.xml");
-        //diaryFile = new File("diary.xml");
 
         try {
             diary = new Diary();
-            //diary.setDiaryFilePath(diary.getDiaryFilePath());
-            //diaryFile = new File(diary.getDiaryFilePath());
             diary = diaryDB.readDiary(diaryFile);
-            //System.out.println(diary.getDiaryFilePath());
         } catch (JAXBException e) {
             e.printStackTrace();
         }

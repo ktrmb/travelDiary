@@ -6,70 +6,59 @@
     <categories>Restaurant</categories>
     <categories>Bauwerke</categories>
     <categories>Action</categories>
+    <diaryFilePath>C:\Users\misch\OneDrive\Desktop\12 new code</diaryFilePath>
     <entryList>
         <address>Italien</address>
-        <date>2022-07-22</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Reisetagebuch, heute waren wir in Rom.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>3</id>
-        <picture1>image3_1.jpg</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <structuredInfo>
-            <category>Restaurant</category>
-            <id>0</id>
-            <stars>5.0</stars>
-            <structuredText>sehr leckeres Frühstück </structuredText>
-        </structuredInfo>
-        <title>Rom</title>
-    </entryList>
-    <entryList>
-        <address>Barcelona</address>
-        <date>2022-07-11</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Reisetagebuch, heute haben wir die Sagrada Familia besichtigt.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <date>2022-07-06</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Tagebuch,...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>1</id>
         <picture1>image1_1.jpg</picture1>
         <picture2>image1_2.jpg</picture2>
         <picture3>image1_3.jpg</picture3>
         <structuredInfo>
-            <category>Restaurant</category>
-            <id>1</id>
-            <stars>3.0</stars>
-            <structuredText>essen war mittelmäßig</structuredText>
-        </structuredInfo>
-        <structuredInfo>
-            <category>Bauwerke</category>
-            <id>1</id>
+            <category>Strand</category>
+            <id>0</id>
             <stars>4.0</stars>
             <structuredText>schön</structuredText>
         </structuredInfo>
-        <title>Sagrada Familia</title>
+        <structuredInfo>
+            <category>Restaurant</category>
+            <id>1</id>
+            <stars>2.0</stars>
+            <structuredText>Service</structuredText>
+        </structuredInfo>
+        <title>Italien Roadtrip</title>
     </entryList>
     <entryList>
-        <address>St. Wolfgang</address>
-        <date>2022-07-08</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Reisetagebuch, heute waren wir wandern.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <address>Spanien</address>
+        <date>2022-06-03</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Tagebuch, ...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>2</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
+        <picture1>image2_1.jpg</picture1>
+        <picture2>image2_2.jpg</picture2>
+        <picture3>defaultPic.png</picture3>
+        <title>Spanien Wochenende</title>
+    </entryList>
+    <entryList>
+        <address>Frankreich</address>
+        <date>2022-07-29</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Tagebuch, ...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>3</id>
+        <picture1>image3_1.jpg</picture1>
+        <picture2>image3_2.jpg</picture2>
         <picture3>defaultPic.png</picture3>
         <structuredInfo>
-            <category>Wandern</category>
+            <category>Kultur</category>
             <id>0</id>
-            <stars>5.0</stars>
-            <structuredText>super Wanderweg</structuredText>
+            <stars>4.0</stars>
+            <structuredText>Eiffelturm</structuredText>
         </structuredInfo>
         <structuredInfo>
-            <category>Bauwerke</category>
-            <id>2</id>
-            <stars>4.0</stars>
-            <structuredText>sdf</structuredText>
+            <category>Restaurant</category>
+            <id>1</id>
+            <stars>2.0</stars>
+            <structuredText>:( Schnecken</structuredText>
         </structuredInfo>
-        <structuredInfo>
-            <category>Action</category>
-            <id>2</id>
-            <stars>4.0</stars>
-            <structuredText>sdf</structuredText>
-        </structuredInfo>
-        <title>Bürglsteinweg</title>
+        <title>Frankreich Wochenende</title>
     </entryList>
 </myDiary>

@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -59,7 +60,7 @@ public class JournalListController {
     @FXML
     private TextField applyHelpTextBox;
 
-    public void initialize() {
+    public void initialize() throws JAXBException {
         filterStarsBox.getItems().addAll("Stars", "1.0", "2.0", "3.0", "4.0", "5.0");
         filterCategoryBox.getItems().add("Category");
         filterCategoryBox.getItems().addAll(diary.getCategories());

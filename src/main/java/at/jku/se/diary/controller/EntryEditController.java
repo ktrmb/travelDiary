@@ -150,7 +150,7 @@ public class EntryEditController {
         entry.setDiaryText(txtText.getHtmlText());
 
         try {
-            Scene scene = btnShowStructuredInfo.getScene();
+            /*Scene scene = btnShowStructuredInfo.getScene();
             URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
@@ -158,7 +158,10 @@ public class EntryEditController {
             StructuredInfoController controller = loader.getController();
             controller.setEntryEdit(entry);
 
-            scene.setRoot(root);
+            scene.setRoot(root);*/
+            SceneSwitch s = new SceneSwitch("StructInformationView", btnShowStructuredInfo.getScene());
+            s.switchSceneStructInfoController(entry);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

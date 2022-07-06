@@ -1,31 +1,39 @@
 package at.jku.se.diary.model;
 
-import java.util.ArrayList;
-
-import at.jku.se.diary.HelloFX;
 import com.dlsc.gmapsfx.javascript.object.LatLong;
 import com.dlsc.gmapsfx.javascript.object.Marker;
 import com.dlsc.gmapsfx.javascript.object.MarkerOptions;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
-
-import com.dlsc.gmapsfx.service.geocoding.GeocodingService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * this class contains important functions to get the lat and lng for a location, but it also works the other way
+ * @author Team E
+ *
+ */
 
 public class Map {
 
     Diary diary;
     private ArrayList<MarkerPoint> markerPointArrayList = new ArrayList<>();
 
+    /**
+     * @param diary to get the correct diary entries for the map
+     */
     public Map(Diary diary) {
         this.diary = diary;
-
     }
 
+    /**
+     * @return a list of markers, which are elements of the GoogleMapView and contain the position of the marker
+     */
     public ArrayList<Marker> getMarker() {
         ArrayList<DiaryEntry> entries = this.diary.getEntryList();
         ArrayList<Marker> markers = new ArrayList<>();
@@ -33,8 +41,8 @@ public class Map {
         for (DiaryEntry e : entries) {
             if (e.getAddress() != null) {
                 MarkerPoint m = this.getDataFromAPI(e.getAddress(), e.getId());
-                MarkerOptions markerOptions1 = new MarkerOptions();
-                markerOptions1.position(new LatLong(m.getLatitute(), m.getLongitute()));
+                MarkerOptions markerOptions1 = new MarkerOptions().position(new LatLong(m.getLatitute(),
+                        m.getLongitute()));
                 Marker pos = new Marker(markerOptions1);
                 markers.add(pos);
             }
@@ -42,11 +50,16 @@ public class Map {
         return markers;
     }
 
-
+    /**
+     * @param address to get the latitute and longitute for the address
+     * @param index set the index of the markerpoint to the id of the diary entry
+     * @return a markerpoint, with the correct latitute and longitute of the location and has also the id of the matching diary entry
+     */
     public MarkerPoint getDataFromAPI(String address, Integer index) {
         address = address.replace(" ", "");
         try {
-            HttpResponse<JsonNode> apiResponse = Unirest.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyClUxzPhXoJKME9PHBo1wH-HBYej7901dM").asJson();
+            HttpResponse<JsonNode> apiResponse = Unirest.get("https://maps.googleapis.com/maps/api/geocode/json?address="
+                    + address + "&key=AIzaSyClUxzPhXoJKME9PHBo1wH-HBYej7901dM").asJson();
             JSONObject myObj = apiResponse.getBody().getObject();
             JSONObject results = null;
             try {
@@ -55,12 +68,12 @@ public class Map {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if(results == null) throw new IllegalArgumentException("Bad Request");
+            if(results == null) {
+                throw new IllegalArgumentException("Bad Request");
+            }
             JSONObject geometry = results.getJSONObject("geometry");
             JSONObject location = geometry.getJSONObject("location");
             MarkerPoint m = new MarkerPoint(index, address, location.getDouble("lat"), location.getDouble("lng"));
-            System.out.println("id" + m.getId());
-            System.out.println("index" + index);
             markerPointArrayList.add(m);
             return m;
         } catch (Exception e) {
@@ -69,13 +82,21 @@ public class Map {
         return null;
     }
 
+    /**
+     * @param lat to get the matching markerpoint
+     * @param lng  to get the matching markerpoint
+     * @return a diary entry, which is matching with the location of lat and lng. If no Entry matches, the method will return null
+     */
     public DiaryEntry getEntryFromLatLng(double lat, double lng) {
-        MarkerPoint markerp = new MarkerPoint();
+        MarkerPoint markerp;
         for(MarkerPoint mp : markerPointArrayList) {
             if(mp.getLatitute() == lat && mp.getLongitute() == lng){
                 markerp = mp;
-                DiaryEntry entry = HelloFX.diary.getEntryList().get(markerp.getId()-1);
-                return entry;
+                for(DiaryEntry e: diary.getEntryList() ) {
+                    if(e.getId() == markerp.getId()) {
+                        return e;
+                    }
+                }
             }
         }
         return null;

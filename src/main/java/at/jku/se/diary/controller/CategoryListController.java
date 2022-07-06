@@ -1,6 +1,7 @@
 package at.jku.se.diary.controller;
 
 import at.jku.se.diary.HelloFX;
+import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.SceneSwitch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,22 +35,8 @@ public class CategoryListController implements Initializable {
     @FXML
     private Button btnOk;
 
-    @FXML
-    void addToList(ActionEvent event) {
-        lVcategoryList.getItems().add(newCategory.getText());
-        newCategory.clear();
-    }
 
-    @FXML
-    void saveListOnClick(ActionEvent event) throws JAXBException {
-        for(String category:lVcategoryList.getItems()) {
-            if (!HelloFX.diary.getCategories().contains(category)) {
-                HelloFX.diary.getCategories().add(category);
-                HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
-            }
-        }
-    }
-
+    private DiaryEntry diaryEntry;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,22 +45,32 @@ public class CategoryListController implements Initializable {
         lVcategoryList.setCellFactory(TextFieldListCell.forListView());
     }
 
-/*    @FXML
-    void showStructInfoPage(MouseEvent event) throws IOException {
-        Scene scene = lVcategoryList.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-        scene.setRoot(root);
-    }*/
     @FXML
-    void showStructInfoPage(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("StructInformationView", btnOk.getScene());
-        s.switchScene();
+    void addToList(ActionEvent event) throws JAXBException {
+        lVcategoryList.getItems().add(newCategory.getText());
+        newCategory.clear();
     }
 
 
+    void setEntry(DiaryEntry diaryEntry){
+        this.diaryEntry = diaryEntry;
+    }
 
+    @FXML
+    void saveListOnClick(ActionEvent event) throws JAXBException {
+        for(String category:lVcategoryList.getItems()) {
+            if (!HelloFX.diary.getCategories().contains(category)) {
+                HelloFX.diary.getCategories().add(category);
+            }
+        }
+        try {
+            SceneSwitch s = new SceneSwitch("StructInformationView", btnOk.getScene());
+            s.switchSceneStructInfoController(diaryEntry);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     void deleteCategory(MouseEvent event) throws JAXBException {
         String deletedCategory = lVcategoryList.getSelectionModel().getSelectedItem();
@@ -81,4 +78,35 @@ public class CategoryListController implements Initializable {
         HelloFX.diary.getCategories().remove(deletedCategory);
         HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
     }
+
+
+/*    @FXML
+    void showStructInfoPage(MouseEvent event) throws IOException {
+        SceneSwitch s = new SceneSwitch("StructInformationView", btnOk.getScene());
+        s.switchScene();
+    }*/
+/*    @FXML
+    void showStructInfoPage(MouseEvent event) throws IOException {
+
+        try {
+            Scene scene = btnOk.getScene();
+            URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+            StructuredInfoController controller = loader.getController();
+            controller.setEntryEdit(diaryEntry);
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    /*    @FXML
+    void showStructInfoPage(MouseEvent event) throws IOException {
+        Scene scene = lVcategoryList.getScene();
+        URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        scene.setRoot(root);
+    }*/
 }

@@ -1,16 +1,10 @@
 package at.jku.se.diary.controller;
-import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.HelloFX;
-import at.jku.se.diary.model.SceneSwitch;
+import at.jku.se.diary.model.Diary;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.Component;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.awt.*;
 
 public class SelectFileLocationController extends Component {
     Diary diary = HelloFX.diary;
@@ -24,8 +18,8 @@ public class SelectFileLocationController extends Component {
     @FXML
     private Button btnSearchLocationPhoto;
 
-    @FXML
-    void saveFileLocation(MouseEvent event) throws IOException {
+/*    @FXML
+    void saveFileLocation(MouseEvent event) throws IOException, JAXBException {
         String path;
         String filename;
         String filecontent = "";
@@ -61,19 +55,15 @@ public class SelectFileLocationController extends Component {
         }
     }
 
-
-
-
     @FXML
     void savePhotoLocation(MouseEvent event) {
         //no need for method
     }
 
     @FXML
-    void saveSetLocations(MouseEvent event) throws IOException {
+    void saveSetLocations(MouseEvent event) throws IOException, JAXBException {
         System.out.println(diary.getDiaryFilePath());
         SceneSwitch s = new SceneSwitch("journalList", btnSaveFileLocation.getScene());
         s.switchScene();
-    }
-
+    }*/
 }

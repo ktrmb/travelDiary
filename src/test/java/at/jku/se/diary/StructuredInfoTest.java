@@ -1,6 +1,5 @@
 package at.jku.se.diary;
 
-import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.StructInformation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,13 +7,14 @@ import org.junit.jupiter.api.Test;
 
 public class StructuredInfoTest {
 
+    String category = "Restaurant";
     StructInformation structInformation;
     StructInformation structInformation1;
 
     @BeforeEach
     void setUp(){
         structInformation = new StructInformation();
-        structInformation1 = new StructInformation(0, "Restaurant", 4.0, "Das Essen war sehr lecker");
+        structInformation1 = new StructInformation(0, "Kino", 4.0, "Film war gut");
     }
 
 
@@ -40,7 +40,7 @@ public class StructuredInfoTest {
 
     @Test
     void setCategory() {
-        this.structInformation.setCategory("Restaurant");
-        Assertions.assertEquals(this.structInformation.getCategory(), "Restaurant");
+        this.structInformation.setCategory(category);
+        Assertions.assertEquals(this.structInformation.getCategory(), category);
     }
 }

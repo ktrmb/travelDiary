@@ -19,7 +19,7 @@ public class Diary {
     private ArrayList<String> categories;
    // private boolean currentEntry = false;
     private DiaryEntry currentEntry;
-    private String diaryFilePath = "diary.xml";
+   // private String diaryFilePath;
 
     public Diary() throws JAXBException {
         entryList = new ArrayList<>();
@@ -102,13 +102,54 @@ public class Diary {
         return selectedFile;
     }
 
-    public void setDiaryFilePath (String path) {
-        this.diaryFilePath = path;
+    //Filterhilfsklassen auslagern ------------------------------------------------------
+    public boolean filterCategories(DiaryEntry entry, String category){
+        if(entry.getStructuredInfo() != null){
+            for(StructInformation s : entry.getStructuredInfo()){
+                if(s.getCategory().equals(category)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean filterStructInfoText(DiaryEntry entry, String value){
+        if(entry.getStructuredInfo() != null){
+            for(StructInformation s : entry.getStructuredInfo()){
+                if(s.getStructuredText().toLowerCase().contains(value.toLowerCase())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean filterStars(DiaryEntry entry, String rating){
+        if(entry.getStructuredInfo() != null){
+            for(StructInformation s : entry.getStructuredInfo()){
+                if(String.valueOf(s.getStars()).equals(rating)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    public String getDiaryFilePath () {
-        return diaryFilePath;
+
+
+
+
+
+/*    public void setDiaryFilePath (String path) throws JAXBException {
+        this.diaryFilePath = path;
+        if(this.diaryDB != null){
+            diaryDB.writeDiary(this, diaryFile);
+        }
     }
+
+    public String getDiaryFilePath () throws JAXBException {
+        System.out.println("getDiaryPath methode: " + diaryDB.readDiary(diaryFile).getDiaryFilePath());
+        return diaryDB.readDiary(diaryFile).getDiaryFilePath();
+    }*/
 
 /*
     public String toString(){

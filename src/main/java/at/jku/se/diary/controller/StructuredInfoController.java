@@ -13,11 +13,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.Rating;
 
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -28,22 +27,16 @@ import static at.jku.se.diary.HelloFX.diary;
 public class StructuredInfoController {
 
         @FXML
-        private Button BtnAdd;
+        private Button btnAdd;
 
         @FXML
-        private Button BtnOk;
-
-        @FXML
-        private ImageView btnNewEntry;
+        private Button btnOk;
 
         @FXML
         private ChoiceBox<String> category;
 
         @FXML
         private Button btnDelete;
-
-        @FXML
-        private ImageView journalView;
 
         @FXML
         private TextField structuredText;
@@ -55,13 +48,60 @@ public class StructuredInfoController {
         public Rating rating;
 
         private String selectedCategory;
-
         private DiaryEntry entryEdit;
+
+
+        public void initialize() {
+                SwingUtilities.invokeLater(() -> setStructInfo());
+        }
+
+        public void setEntryEdit (DiaryEntry entry) {
+                this.entryEdit = entry;
+        }
+
+        public void setStructInfo(){
+                //UI
+                TableColumn<StructInformation, String> columnCategory = new TableColumn<StructInformation, String>("Category");
+                columnCategory.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getCategory())));
+
+                TableColumn<StructInformation, Double> columnStars = new TableColumn<StructInformation, Double>("Stars");
+                columnStars.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStars()));
+
+                TableColumn<StructInformation, String> columnInfo = new TableColumn<StructInformation, String>("Information");
+                columnInfo.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStructuredText()));
+
+                tableList.getColumns().addAll(columnCategory, columnStars, columnInfo);
+
+                //End UI
+                if (diary.getCurrentEntry() != null) {
+                        if (diary.getCurrentEntry().getStructuredInfo() != null) {
+                                ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(
+                                        diary.getCurrentEntry().getStructuredInfo());
+                                tableList.setItems(diaryE);
+                        }
+                } else {
+                        SwingUtilities.invokeLater(() -> setInfo());
+                }
+                category.getItems().addAll(diary.getCategories());
+                category.setOnAction(this::selectCategory);
+        }
+
+        public void setInfo () {
+                if(entryEdit.getStructuredInfo() != null) {
+                        ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(
+                                entryEdit.getStructuredInfo());
+                        diaryE.forEach(info -> System.out.println(info.getCategory() + " " + info.getStars()));
+                        if (diaryE.size() > 0){
+                                tableList.setItems(diaryE);
+                        }
+                }
+        }
 
         @FXML
         void addToList(ActionEvent event) {
                 //UI
-                StructInformation structInfo = new StructInformation(tableList.getItems().size(), selectedCategory, rating.getRating() , structuredText.getText());
+                StructInformation structInfo = new StructInformation(tableList.getItems().size(),
+                        selectedCategory, rating.getRating() , structuredText.getText());
                 tableList.getItems().add(structInfo);
                 category.setValue(" ");
                 rating.setRating(0);
@@ -72,14 +112,15 @@ public class StructuredInfoController {
         void saveListOnClick(ActionEvent event) throws IOException {
                 ArrayList<StructInformation> infos = new ArrayList<>();
                 infos.addAll(tableList.getItems());
+
                 if (diary.getCurrentEntry() != null) {
                         diary.getCurrentEntry().setStructuredInfo(infos);
-                        SceneSwitch s = new SceneSwitch("DiaryEntryView", btnNewEntry.getScene());
+                        SceneSwitch s = new SceneSwitch("DiaryEntryView", btnOk.getScene());
                         s.switchScene();
                 } else {
                         entryEdit.setStructuredInfo(infos);
-                        try {
-                                Scene scene = BtnAdd.getScene();
+                        try{
+                                Scene scene = btnAdd.getScene();
                                 URL url = new File("src/main/java/at/jku/se/diary/view/EntryEdit.fxml").toURI().toURL();
                                 FXMLLoader loader = new FXMLLoader(url);
                                 Parent root = loader.load();
@@ -95,16 +136,40 @@ public class StructuredInfoController {
         }
 
         @FXML
-        void showNewEntryPage(MouseEvent event) {
-
-        }
-
-        @FXML
         void deleteStructuredInfo(MouseEvent event) {
                 tableList.getItems().remove(tableList.getSelectionModel().getSelectedItem().getId());
         }
 
-        public void initialize() {
+
+        @FXML
+        void openEditCategories(MouseEvent event) {
+                if(diary.getCurrentEntry()==null){
+                        ArrayList<StructInformation> infos = new ArrayList<>();
+                        infos.addAll(tableList.getItems());
+                        entryEdit.setStructuredInfo(infos);
+                }
+
+                try {
+                        Scene scene = btnAdd.getScene();
+                        URL url = new File("src/main/java/at/jku/se/diary/view/CategoryList.fxml").toURI().toURL();
+                        FXMLLoader loader = new FXMLLoader(url);
+                        Parent root = loader.load();
+                        CategoryListController cController = loader.getController();
+                        cController.setEntry(entryEdit);
+                        scene.setRoot(root);
+                } catch (Exception e) {
+                        System.out.println("load categories" + e);
+                }
+        }
+
+        public void selectCategory(ActionEvent event){
+                this.selectedCategory = category.getValue();
+        }
+
+
+
+
+        /*        public void initialize() {
 
                 //UI
                 TableColumn<StructInformation, String> columnCategory = new TableColumn<StructInformation, String>("Category");
@@ -116,48 +181,25 @@ public class StructuredInfoController {
                 TableColumn<StructInformation, String> columnInfo = new TableColumn<StructInformation, String>("Information");
                 columnInfo.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStructuredText()));
 
-                tableList.getColumns().addAll(columnCategory,columnStars, columnInfo);
+                tableList.getColumns().addAll(columnCategory, columnStars, columnInfo);
 
                 //End UI
 
-
                 if (diary.getCurrentEntry() != null) {
                         if (diary.getCurrentEntry().getStructuredInfo() != null) {
-                                ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(diary.getCurrentEntry().getStructuredInfo());
+                                ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(
+                                        diary.getCurrentEntry().getStructuredInfo());
                                 tableList.setItems(diaryE);
                         }
                 } else {
+                        System.out.println("2. jz wird inizialized" );
+
                         SwingUtilities.invokeLater(() -> setInfo());
+
                 }
-                //set categorie
+                //set category
                 category.getItems().addAll(diary.getCategories());
                 category.setOnAction(this::selectCategory);
-        }
+        }*/
 
-        @FXML
-        void openEditCategories(MouseEvent event) {
-                try {
-                        SceneSwitch s = new SceneSwitch("CategoryList", tableList.getScene());
-                        s.switchScene();
-                } catch (Exception e) {
-                        System.out.println("load categories" + e);
-                }
-        }
-
-        public void selectCategory(ActionEvent event){
-                this.selectedCategory = category.getValue();
-        }
-
-        public void setEntryEdit (DiaryEntry entry) {
-                this.entryEdit = entry;
-                System.out.println("entry set");
-        }
-
-        public void setInfo () {
-                if(entryEdit.getStructuredInfo() != null) {
-                        ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(entryEdit.getStructuredInfo());
-                        diaryE.forEach(info -> System.out.println(info.getCategory() + " " + info.getStars()));
-                        if (diaryE.size() > 0) tableList.setItems(diaryE);
-                }
-        }
 }

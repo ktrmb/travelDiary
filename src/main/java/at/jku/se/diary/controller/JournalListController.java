@@ -4,7 +4,6 @@ import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.SceneSwitch;
-import at.jku.se.diary.model.StructInformation;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,16 +12,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 
 public class JournalListController {
@@ -71,7 +65,7 @@ public class JournalListController {
 
 
         TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
-        titel.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getTitle())));
+        titel.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getTitle()));
 
         TableColumn<DiaryEntry, LocalDate> date = new TableColumn<DiaryEntry, LocalDate>("Date");
         date.setCellValueFactory(c -> new SimpleObjectProperty<LocalDate>(c.getValue().getDate()));
@@ -85,7 +79,7 @@ public class JournalListController {
         filterTitle.setText("");
         filterText.setText("Text");
         filterDateFromBox.setValue(LocalDate.of(2022, 06, 01));
-        filterDateToBox.setValue(LocalDate.of(2022, 06, 30));
+        filterDateToBox.setValue(LocalDate.of(2022, 07, 31));
         filterCategoryBox.setValue("Category");
         filterStructInfo.setText("Structured Info");
         filterStarsBox.setValue("Stars");
@@ -99,9 +93,9 @@ public class JournalListController {
                                 && ((diaryEntry.getDiaryText().toLowerCase().contains(filterText.getText().toLowerCase())) || (filterText.getText().isEmpty()) || filterText.getText().equals("Text"))
                                 && (diaryEntry.getDate().isAfter(filterDateFromBox.getValue()) || (diaryEntry.getDate().isEqual(filterDateFromBox.getValue())))
                                 && (diaryEntry.getDate().isBefore(filterDateToBox.getValue()) || diaryEntry.getDate().isEqual(filterDateToBox.getValue()))
-                                && (filterCategories(diaryEntry, filterCategoryBox.getValue()) || (filterCategoryBox.getValue().equals("Category")))
-                                && ((filterStructInfoText(diaryEntry, filterStructInfo.getText())) || (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
-                                && (filterStars(diaryEntry, filterStarsBox.getValue()) || (filterStarsBox.getValue().equals("Stars"))),
+                                && ((diary.filterCategories(diaryEntry, filterCategoryBox.getValue())) || (filterCategoryBox.getValue().equals("Category")))
+                                && ((diary.filterStructInfoText(diaryEntry, filterStructInfo.getText())) || (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
+                                && (diary.filterStars(diaryEntry, filterStarsBox.getValue()) || (filterStarsBox.getValue().equals("Stars"))),
                 applyHelpTextBox.textProperty(),
                 filterTitle.textProperty(),
                 filterText.textProperty(),
@@ -114,10 +108,12 @@ public class JournalListController {
 
     }
 
-    boolean filterCategories(DiaryEntry entry, String category){
+/*    boolean filterCategories(DiaryEntry entry, String category){
         if(entry.getStructuredInfo() != null){
             for(StructInformation s : entry.getStructuredInfo()){
-                return (s.getCategory().equals(category));
+                if(s.getCategory().equals(category)){
+                    return true;
+                }
             }
         }
         return false;
@@ -125,7 +121,9 @@ public class JournalListController {
     boolean filterStructInfoText(DiaryEntry entry, String value){
         if(entry.getStructuredInfo() != null){
             for(StructInformation s : entry.getStructuredInfo()){
-                return s.getStructuredText().toLowerCase().contains(value.toLowerCase());
+                if(s.getStructuredText().toLowerCase().contains(value.toLowerCase())){
+                    return true;
+                }
             }
         }
         return false;
@@ -133,11 +131,13 @@ public class JournalListController {
     boolean filterStars(DiaryEntry entry, String rating){
         if(entry.getStructuredInfo() != null){
             for(StructInformation s : entry.getStructuredInfo()){
-                return String.valueOf(s.getStars()).equals(rating);
+                if(String.valueOf(s.getStars()).equals(rating)){
+                    return true;
+                }
             }
         }
         return false;
-    }
+    }*/
 
 
     @FXML
@@ -185,15 +185,9 @@ public class JournalListController {
     @FXML
     void showSelectedEntry(MouseEvent event) {
         try {
-            Scene scene = btnShowEntry.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/view/EntryEdit.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
+            SceneSwitch s = new SceneSwitch("EntryEdit", btnShowEntry.getScene());
+            s.switchSceneEntryEditController(selectedEntry);
 
-            EntryEditController eController = loader.getController();
-            eController.setSelectedEntry(selectedEntry);
-
-            scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

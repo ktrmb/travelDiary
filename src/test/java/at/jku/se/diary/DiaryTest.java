@@ -147,4 +147,14 @@ public class DiaryTest{
         assertTrue(diary.filterStructInfoText(entry1, "text2"));
 
     }
+    @Test
+    void createIDTest(){
+        assertEquals(diary.createID(), 1);
+        diary.getEntryList().add(entry1);
+        assertEquals(diary.createID(), 2);
+        diary.getEntryList().add(entry2);
+        assertEquals(diary.createID(), 3);
+        diary.getEntryList().remove(entry1);
+        assertEquals(diary.createID(), 3);
+    }
 }

@@ -48,7 +48,14 @@ public class EntryEdit {
         String fileName = "src/pictures/image" + entry.getId() + "_" + picNumber + ".jpg"; //pathToPic
         deletePicFile(fileName);
         pic.setImage(new Image("file:src/pictures/defaultPic.png")); //defaultPicPath
-        entry.setPicture1("defaultPic.png"); //defaultPicName
+        if(picNumber == "1"){
+            entry.setPicture1("defaultPic.png");
+        }else if(picNumber == "2"){
+            entry.setPicture2("defaultPic.png");
+        }else if(picNumber == "3"){
+            entry.setPicture3("defaultPic.png");
+        }
+       //entry.setPicture1("defaultPic.png"); //defaultPicName
     }
 
     public void deletePicFile(String fileName) {

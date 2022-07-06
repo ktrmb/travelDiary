@@ -105,40 +105,7 @@ public class JournalListController {
                 filterStructInfo.textProperty(),
                 filterStarsBox.converterProperty()
         ));
-
     }
-
-/*    boolean filterCategories(DiaryEntry entry, String category){
-        if(entry.getStructuredInfo() != null){
-            for(StructInformation s : entry.getStructuredInfo()){
-                if(s.getCategory().equals(category)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    boolean filterStructInfoText(DiaryEntry entry, String value){
-        if(entry.getStructuredInfo() != null){
-            for(StructInformation s : entry.getStructuredInfo()){
-                if(s.getStructuredText().toLowerCase().contains(value.toLowerCase())){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    boolean filterStars(DiaryEntry entry, String rating){
-        if(entry.getStructuredInfo() != null){
-            for(StructInformation s : entry.getStructuredInfo()){
-                if(String.valueOf(s.getStars()).equals(rating)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }*/
-
 
     @FXML
     void filterDateFrom(ActionEvent event) {
@@ -187,7 +154,6 @@ public class JournalListController {
         try {
             SceneSwitch s = new SceneSwitch("EntryEdit", btnShowEntry.getScene());
             s.switchSceneEntryEditController(selectedEntry);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

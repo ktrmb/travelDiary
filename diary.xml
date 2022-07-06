@@ -5,6 +5,7 @@
     <categories>Strand</categories>
     <categories>Restaurant</categories>
     <categories>Bauwerke</categories>
+    <categories>Action</categories>
     <entryList>
         <address>Italien</address>
         <date>2022-07-22</date>
@@ -59,6 +60,12 @@
         </structuredInfo>
         <structuredInfo>
             <category>Bauwerke</category>
+            <id>2</id>
+            <stars>4.0</stars>
+            <structuredText>sdf</structuredText>
+        </structuredInfo>
+        <structuredInfo>
+            <category>Action</category>
             <id>2</id>
             <stars>4.0</stars>
             <structuredText>sdf</structuredText>

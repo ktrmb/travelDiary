@@ -8,10 +8,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 
 public class SelectFileLocationController {
@@ -46,18 +53,35 @@ public class SelectFileLocationController {
             filecontent = sb.toString();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        try {
+            BufferedReader in
+                    = new BufferedReader(new FileReader("diary.xml"));
+            StringBuffer output = new StringBuffer();
+            String st;
+            while ((st=in.readLine()) != null) {
+                output.append(st);
+            }
+            filecontent = output.toString();
+            System.out.println(filecontent);
+            in.close();
+        }
+        catch (Exception fx) {
+            System.out.println("Exception " + fx.toString());
         }*/
 
-        Reader fileReader = new FileReader(diaryFile);
-        BufferedReader bufReader = new BufferedReader(fileReader);
-
-        StringBuilder sb = new StringBuilder();
-        String line = bufReader.readLine();
-        while( line != null){
-            sb.append(line).append("\n");
-            line = bufReader.readLine();
+        try{
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            InputSource is = new InputSource("diary.xml");
+            Document document = docBuilderFactory.newDocumentBuilder().parse(is);
+            StringWriter sw = new StringWriter();
+            Transformer serializer = TransformerFactory.newInstance().newTransformer();
+            serializer.transform(new DOMSource(document), new StreamResult(sw));
+            filecontent = sw.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        filecontent = sb.toString();
 
         //new file + content
         FileNameExtensionFilter filter = new FileNameExtensionFilter ("XML-File","XML");

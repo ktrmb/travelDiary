@@ -2,6 +2,7 @@ package at.jku.se.diary.controller;
 
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
+import at.jku.se.diary.model.DiaryDB;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.SceneSwitch;
 import javafx.beans.binding.Bindings;
@@ -16,6 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import javax.xml.bind.JAXBException;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -24,6 +27,8 @@ public class JournalListController {
     public DiaryEntry selectedEntry;
     public Diary diary = HelloFX.diary;
     ObservableList<DiaryEntry> diaryE;
+    public DiaryDB diaryDB = HelloFX.diaryDB;
+    public File diaryFile = HelloFX.diaryFile;
 
 
     @FXML
@@ -55,10 +60,7 @@ public class JournalListController {
     @FXML
     private TextField applyHelpTextBox;
 
-
-    public void initialize() {
-
-
+    public void initialize() throws JAXBException {
         filterStarsBox.getItems().addAll("Stars", "1.0", "2.0", "3.0", "4.0", "5.0");
         filterCategoryBox.getItems().add("Category");
         filterCategoryBox.getItems().addAll(diary.getCategories());

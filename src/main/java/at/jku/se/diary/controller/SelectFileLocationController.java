@@ -1,13 +1,25 @@
 package at.jku.se.diary.controller;
+
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
+import at.jku.se.diary.model.DiaryDB;
+import at.jku.se.diary.model.SceneSwitch;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
-import java.awt.*;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.bind.JAXBException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
-public class SelectFileLocationController extends Component {
-    Diary diary = HelloFX.diary;
+public class SelectFileLocationController {
+    private Diary diary = HelloFX.diary;
+    private String filePath = "diary.xml";
+    private DiaryDB diaryDB = HelloFX.diaryDB;
+    private File diaryFile = HelloFX.diaryFile;
 
     @FXML
     private Button btnSaveFileLocation;
@@ -16,9 +28,9 @@ public class SelectFileLocationController extends Component {
     private Button btnSearchLocationFile;
 
     @FXML
-    private Button btnSearchLocationPhoto;
+    private Label txtSaveLocation;
 
-/*    @FXML
+    @FXML
     void saveFileLocation(MouseEvent event) throws IOException, JAXBException {
         String path;
         String filename;
@@ -52,18 +64,20 @@ public class SelectFileLocationController extends Component {
 
             fw.write(filecontent);
             fw.close();
+            filePath = path;
+            txtSaveLocation.setText(path);
         }
     }
 
-    @FXML
-    void savePhotoLocation(MouseEvent event) {
-        //no need for method
+    public void initialize() throws JAXBException {
+        filePath = diaryDB.readDiary(diaryFile).getDiaryFilePath();
+        txtSaveLocation.setText(filePath);
     }
 
     @FXML
-    void saveSetLocations(MouseEvent event) throws IOException, JAXBException {
-        System.out.println(diary.getDiaryFilePath());
-        SceneSwitch s = new SceneSwitch("journalList", btnSaveFileLocation.getScene());
+    void saveSetLocations(MouseEvent event) throws IOException {
+        SceneSwitch s = new SceneSwitch("JournalList", btnSaveFileLocation.getScene());
         s.switchScene();
-    }*/
+    }
+
 }

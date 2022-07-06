@@ -134,22 +134,9 @@ public class Diary {
         return false;
     }
 
-    public int createID(){
-        int id;
-        if(this.getEntryList().isEmpty()){
-            id = 1;
-        }else{
-            int max = 0;
-            for(DiaryEntry e : this.getEntryList()){
-                int currentID = e.getId();
-                if(max < currentID){
-                    max = currentID;
-                }
-            }
-            id = max+1;
-        }
-        return id;
-    }
+
+
+
 
 
 /*    public void setDiaryFilePath (String path) throws JAXBException {

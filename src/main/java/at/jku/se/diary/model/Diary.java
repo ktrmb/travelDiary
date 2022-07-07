@@ -149,9 +149,7 @@ public class Diary {
     }
     public void setDiaryFilePath (String path) throws JAXBException {
         this.diaryFilePath = path;
-        if(this.diaryDB != null){
-            diaryDB.writeDiary(this, diaryFile);
-        }
+        diaryDB.writeDiary(this, diaryFile);
     }
 
     public String getDiaryFilePath () throws JAXBException {

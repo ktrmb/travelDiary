@@ -27,9 +27,6 @@ public class JournalListController {
     public DiaryEntry selectedEntry;
     public Diary diary = HelloFX.diary;
     ObservableList<DiaryEntry> diaryE;
-    public DiaryDB diaryDB = HelloFX.diaryDB;
-    public File diaryFile = HelloFX.diaryFile;
-
 
     @FXML
     private TableView<DiaryEntry> tVjournalList;
@@ -65,7 +62,6 @@ public class JournalListController {
         filterCategoryBox.getItems().add("Category");
         filterCategoryBox.getItems().addAll(diary.getCategories());
 
-
         TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
         titel.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getTitle()));
 
@@ -85,7 +81,6 @@ public class JournalListController {
         filterCategoryBox.setValue("Category");
         filterStructInfo.setText("Structured Info");
         filterStarsBox.setValue("Stars");
-
 
         FilteredList<DiaryEntry> filteredList = new FilteredList<>(diaryE);
         tVjournalList.setItems(filteredList);
@@ -152,16 +147,8 @@ public class JournalListController {
     }
 
     @FXML
-    void showSelectedEntry(MouseEvent event) {
-        try {
-            SceneSwitch s = new SceneSwitch("EntryEdit", btnShowEntry.getScene());
-            s.switchSceneEntryEditController(selectedEntry);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void showSelectedEntry(MouseEvent event) throws IOException {
+        SceneSwitch s = new SceneSwitch("EntryEdit", btnShowEntry.getScene());
+        s.switchSceneEntryEditController(selectedEntry);
     }
-
 }
-
-
-

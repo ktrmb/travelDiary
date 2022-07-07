@@ -22,7 +22,6 @@ import javax.swing.*;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class EntryEditController {
@@ -30,47 +29,34 @@ public class EntryEditController {
     private DiaryEntry entry;
     private Diary diary = HelloFX.diary;
     private Stage stage;
-    String file = "file:src/pictures/";
+    private String file = "file:src/pictures/";
     private EntryEdit e = new EntryEdit();
 
     @FXML
     private Button btnCancel;
-
     @FXML
     private Button btnDelete;
-
     @FXML
     private Button btnSave;
-
     @FXML
     private Button btnShowStructuredInfo;
-
     @FXML
     public ImageView pic1;
-
     @FXML
     public ImageView pic2;
-
     @FXML
     public ImageView pic3;
-
     @FXML
     public TextField txtAdress;
-
     @FXML
     public DatePicker txtDate;
-
     @FXML
     public HTMLEditor txtText;
-
     @FXML
     public TextField txtTitel;
 
-    public EntryEditController() throws MalformedURLException {
-    }
-
     public void initialize() {
-        SwingUtilities.invokeLater(() -> setEntry());
+        SwingUtilities.invokeLater(this::setEntry);
     }
 
     public void setEntry() {
@@ -143,28 +129,14 @@ public class EntryEditController {
     }
 
     @FXML
-    void showStructuredInfo(MouseEvent event) {
+    void showStructuredInfo(MouseEvent event) throws IOException {
         entry.setTitle(txtTitel.getText());
         entry.setDate(txtDate.getValue());
         entry.setAddress(txtAdress.getText());
         entry.setDiaryText(txtText.getHtmlText());
 
-        try {
-            /*Scene scene = btnShowStructuredInfo.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-
-            StructuredInfoController controller = loader.getController();
-            controller.setEntryEdit(entry);
-
-            scene.setRoot(root);*/
-            SceneSwitch s = new SceneSwitch("StructInformationView", btnShowStructuredInfo.getScene());
-            s.switchSceneStructInfoController(entry);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SceneSwitch s = new SceneSwitch("StructInformationView", btnShowStructuredInfo.getScene());
+        s.switchSceneStructInfoController(entry);
     }
 
     @FXML

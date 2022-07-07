@@ -37,23 +37,12 @@ public class DiaryEntry {
     }
 
     public DiaryEntry(int id, LocalDate date, String title, String address, String diaryText, ArrayList<StructInformation> infos) {
-       /* this.id = id;
-        this.date = date;
-        this.title = title;
-        this.address = address;
-        this.diaryText = diaryText;
-        structuredInfo = infos;*/
-
-
         setId(id);
         setDate(date);
         setTitle(title);
         setAddress(address);
         setDiaryText(diaryText);
         setStructuredInfo(infos);
-
-
-
         String defaultPic = "defaultPic.png";
         picture1 = defaultPic;
         picture2 = defaultPic;

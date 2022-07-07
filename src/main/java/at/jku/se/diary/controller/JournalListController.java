@@ -2,7 +2,6 @@ package at.jku.se.diary.controller;
 
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
-import at.jku.se.diary.model.DiaryDB;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.SceneSwitch;
 import javafx.beans.binding.Bindings;
@@ -16,12 +15,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
-import javax.xml.bind.JAXBException;
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-
+/**
+ *
+ * this class loads the entry overview and the table filters
+ * @author Team E
+ *
+ */
 public class JournalListController {
 
     public DiaryEntry selectedEntry;
@@ -57,16 +58,19 @@ public class JournalListController {
     @FXML
     private TextField applyHelpTextBox;
 
-    public void initialize() throws JAXBException {
+    /**
+     * loads table with entries and filters ???
+     */
+    public void initialize() {
         filterStarsBox.getItems().addAll("Stars", "1.0", "2.0", "3.0", "4.0", "5.0");
         filterCategoryBox.getItems().add("Category");
         filterCategoryBox.getItems().addAll(diary.getCategories());
 
-        TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
+        TableColumn<DiaryEntry, String> titel = new TableColumn<>("Titel");
         titel.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getTitle()));
 
-        TableColumn<DiaryEntry, LocalDate> date = new TableColumn<DiaryEntry, LocalDate>("Date");
-        date.setCellValueFactory(c -> new SimpleObjectProperty<LocalDate>(c.getValue().getDate()));
+        TableColumn<DiaryEntry, LocalDate> date = new TableColumn<>("Date");
+        date.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().getDate()));
 
         tVjournalList.getColumns().addAll(titel, date);
 
@@ -123,29 +127,40 @@ public class JournalListController {
         applyHelpTextBox.setText("");
     }
 
+    /**
+     * @param event button clicked, loads "Map" scene
+     */
     @FXML
     void showMapPage(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("MapView", btnMap.getScene());
         s.switchScene();
     }
-
+    /**
+     * @param event button clicked, loads "NewEntry" scene
+     */
     @FXML
     void showNewEntryPage(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("DiaryEntryView", btnNewEntry.getScene());
         s.switchScene();
     }
-
+    /**
+     * @param event button clicked, loads "SelectFileLocation" scene
+     */
     @FXML
     void showSelectFileLocation(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("SelectFileLocation", btnSFL.getScene());
         s.switchScene();
     }
-
+    /**
+     * @param event saves selected table item
+     */
     @FXML
-    void saveSelectedItem(MouseEvent event) throws IOException {
+    void saveSelectedItem(MouseEvent event) {
         selectedEntry = tVjournalList.getSelectionModel().getSelectedItem();
     }
-
+    /**
+     * @param event button clicked, shows selected entry
+     */
     @FXML
     void showSelectedEntry(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("EntryEdit", btnShowEntry.getScene());

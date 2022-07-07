@@ -3,8 +3,6 @@ package at.jku.se.diary.model;
 import at.jku.se.diary.HelloFX;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
@@ -12,25 +10,41 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
+/**
+ *
+ * this class contains part of the functions regarding editing entries
+ * @author Team E
+ *
+ */
 public class EntryEdit {
     private final Diary diary;
     private DiaryEntry entry;
-    private Stage stage;
 
     public EntryEdit () {
         this.diary = HelloFX.diary;
     }
 
+    /**
+     * @param entry currently edited entry
+     */
     public void setEntry(DiaryEntry entry) {
         this.entry = entry;
     }
 
+    /**
+     * @return entry
+     */
     public DiaryEntry getEntry () {
         return entry;
     }
 
-    public void deleteEntry() throws JAXBException, IOException {
+    /**
+     * Deletes selected entry
+     * @throws JAXBException
+     */
+    public void deleteEntry() throws JAXBException {
         ArrayList<String> pictureNames = new ArrayList<>();
         pictureNames.add(entry.getPicture1());
         pictureNames.add(entry.getPicture2());
@@ -44,20 +58,28 @@ public class EntryEdit {
         HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
     }
 
+    /**
+     * Method to delete pictures
+     * @param pic selected to delete
+     * @param picNumber for search in files (part of filename)
+     */
     public void deletePic(ImageView pic, String picNumber) {
         String fileName = "src/pictures/image" + entry.getId() + "_" + picNumber + ".jpg"; //pathToPic
         deletePicFile(fileName);
         pic.setImage(new Image("file:src/pictures/defaultPic.png")); //defaultPicPath
-        if(picNumber == "1"){
+        if(Objects.equals(picNumber, "1")){
             entry.setPicture1("defaultPic.png");
-        }else if(picNumber == "2"){
+        }else if(Objects.equals(picNumber, "2")){
             entry.setPicture2("defaultPic.png");
-        }else if(picNumber == "3"){
+        }else if(Objects.equals(picNumber, "3")){
             entry.setPicture3("defaultPic.png");
         }
-       //entry.setPicture1("defaultPic.png"); //defaultPicName
     }
 
+    /**
+     * Actually deletes the selected picture (Helper-Method)
+     * @param fileName directory to pic file
+     */
     public void deletePicFile(String fileName) {
         File newFile = new File(fileName);
         String pathString = newFile.getAbsolutePath();

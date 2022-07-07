@@ -9,13 +9,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.bind.JAXBException;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 
+/**
+ *
+ * this class contains methods to save a backup file at chosen directory
+ * @author Team E
+ *
+ */
 public class SelectFileLocationController {
     private final Diary diary = HelloFX.diary;
     private final DiaryDB diaryDB = HelloFX.diaryDB;
@@ -29,6 +33,19 @@ public class SelectFileLocationController {
     @FXML
     private Label txtSaveLocation;
 
+    /**
+     * before the scene loads, sets file path text
+     */
+    public void initialize() throws JAXBException {
+        txtSaveLocation.setText(diaryDB.readDiary(diaryFile).getDiaryFilePath());
+    }
+
+    /**
+     * loads Save Dialog Window, copies file at directory
+     * @param event button clicked to choose directory
+     * @throws IOException
+     * @throws JAXBException
+     */
     @FXML
     void saveFileLocation(MouseEvent event) throws IOException, JAXBException {
         FileNameExtensionFilter filter = new FileNameExtensionFilter ("XML-File","XML");
@@ -63,15 +80,13 @@ public class SelectFileLocationController {
         }
     }
 
-    public void initialize() throws JAXBException {
-        filePath = diaryDB.readDiary(diaryFile).getDiaryFilePath();
-        txtSaveLocation.setText(filePath);
-    }
-
+    /**
+     * switches back to the "JournalList" scene
+     * @param event button clicked to switch scene
+     */
     @FXML
     void saveSetLocations(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("JournalList", btnSaveFileLocation.getScene());
         s.switchScene();
     }
-
 }

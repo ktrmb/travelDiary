@@ -20,8 +20,6 @@ import java.util.ResourceBundle;
 
 
 public class CategoryListController implements Initializable {
-    //ListView list with two buttons in it
-    //https://stackoverflow.com/questions/53602086/having-two-button-in-a-list-view-in-javafx-with-xml-file
 
     @FXML
     private ImageView btnNewEntry;

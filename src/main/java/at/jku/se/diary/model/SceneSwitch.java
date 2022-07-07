@@ -5,25 +5,43 @@ import at.jku.se.diary.controller.StructuredInfoController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-
+/**
+ *
+ * this class contains all navigation methods, switches between scenes
+ * @author Team E
+ *
+ */
 public class SceneSwitch {
     private String newScene;
     private Scene scene;
 
+    /**
+     * @param newScene fxml file name of scene to switch to
+     * @param scene current scene
+     */
     public SceneSwitch(String newScene, Scene scene) {
         this.newScene = newScene;
         this.scene = scene;
     }
 
+    /**
+     * classic switch between scenes
+     * @throws IOException
+     */
     public void switchScene()throws IOException {
         URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
     }
+
+    /**
+     * special scene switch so pass variables between controllers
+     * @param entry gets passed from EntryEditController to StructuredInformationController
+     * @throws IOException
+     */
     public void switchSceneStructInfoController(DiaryEntry entry)throws IOException {
         URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
@@ -32,6 +50,12 @@ public class SceneSwitch {
         controller.setEntryEdit(entry);
         scene.setRoot(root);
     }
+
+    /**
+     * special scene switch so pass variables between controllers
+     * @param entry gets passed from JournalListController to EntryEditController
+     * @throws IOException
+     */
     public void switchSceneEntryEditController(DiaryEntry entry)throws IOException {
         URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
@@ -40,72 +64,4 @@ public class SceneSwitch {
         controller.setSelectedEntry(entry);
         scene.setRoot(root);
     }
-
-
-
-/*    public void switchScene () throws IOException {
-        switch (newScene) {
-            case "journalList":
-                sceneJournalList();
-                break;
-            case "newEntry":
-                sceneNewEntry();
-                break;
-            case "entryEdit":
-                sceneEntryEdit();
-                break;
-            case "fileLocation":
-                sceneFileLocation();
-                break;
-            case "structInfo":
-                sceneStructInfo();
-            case "category":
-                sceneCategoryList();
-            case "map":
-                sceneMap();
-            default:
-                System.out.println("Scene not available!" + " " + newScene);
-        }
-    }*/
-
-
-/*    public void sceneJournalList() throws IOException {
-        URL url = new File("src/main/java/at/jku/se/diary/view/JournalList.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
-    }
-
-    public void sceneNewEntry() throws IOException {
-        URL url = new File("src/main/java/at/jku/se/diary/view/DiaryEntryView.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
-    }
-
-    public void sceneEntryEdit() {
-
-    }
-
-    public void sceneFileLocation() throws IOException {
-        URL url = new File("src/main/java/at/jku/se/diary/view/SelectFileLocation.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
-    }
-
-    public void sceneStructInfo() throws IOException {
-        URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
-    }
-
-    public void sceneCategoryList() throws IOException {
-        URL url = new File("src/main/java/at/jku/se/diary/view/CategoryList.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
-    }
-
-    public void sceneMap() throws IOException {
-        URL url = new File("src/main/java/at/jku/se/diary/view/MapView.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        scene.setRoot(root);
-    }*/
 }

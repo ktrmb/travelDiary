@@ -41,6 +41,8 @@ class DiaryEntryTest {
     void setDate() {
         entry1.setDate(LocalDate.of(2022, 5, 4));
         assertEquals(entry1.getDate(), LocalDate.of(2022, 5, 4));
+        entry1.setDate(null);
+        assertEquals(entry1.getDate(), LocalDate.now());
     }
 
     @Test

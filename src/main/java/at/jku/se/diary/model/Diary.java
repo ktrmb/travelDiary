@@ -17,9 +17,9 @@ public class Diary {
     private DiaryDB diaryDB;
     private File diaryFile;
     private ArrayList<String> categories;
-   // private boolean currentEntry = false;
+    // private boolean currentEntry = false;
     private DiaryEntry currentEntry;
-   // private String diaryFilePath;
+    private String diaryFilePath;
 
     public Diary() throws JAXBException {
         entryList = new ArrayList<>();
@@ -27,6 +27,7 @@ public class Diary {
         diaryFile = HelloFX.diaryFile;
         categories = new ArrayList<>();
         currentEntry = null;
+        diaryFilePath = "diary.xml";
     }
 
     @XmlElement
@@ -69,16 +70,29 @@ public class Diary {
     }
 
     //-------------------ab hier aus Controller ausgelagert:
+    public int createID(){
+        int id;
+        if(this.getEntryList().isEmpty()){
+            id = 1;
+        }else{
+            int max = 0;
+            for(DiaryEntry e : this.getEntryList()){
+                int currentID = e.getId();
+                if(currentID > max){
+                    max = currentID;
+                }
+            }
+            id = max+1;
+        }
+        return id;
+    }
 
     public void createNewEntry(int id, LocalDate date, String title, String address, String diaryText, String pic1, String pic2,
                                String pic3, ArrayList<StructInformation> structInfo) throws JAXBException {
-        //ArrayList<StructInformation> structuredInfo = new ArrayList<>();
-
         if(getCurrentEntry() != null) {
             structInfo = getCurrentEntry().getStructuredInfo();
             setCurrentEntry(null);
         }
-
         DiaryEntry newEntry = new DiaryEntry(id, date, title, address, diaryText, structInfo);
 
         String defaultPic = "png";
@@ -133,13 +147,7 @@ public class Diary {
         }
         return false;
     }
-
-
-
-
-
-
-/*    public void setDiaryFilePath (String path) throws JAXBException {
+    public void setDiaryFilePath (String path) throws JAXBException {
         this.diaryFilePath = path;
         if(this.diaryDB != null){
             diaryDB.writeDiary(this, diaryFile);
@@ -147,9 +155,8 @@ public class Diary {
     }
 
     public String getDiaryFilePath () throws JAXBException {
-        System.out.println("getDiaryPath methode: " + diaryDB.readDiary(diaryFile).getDiaryFilePath());
-        return diaryDB.readDiary(diaryFile).getDiaryFilePath();
-    }*/
+        return diaryFilePath;
+    }
 
 /*
     public String toString(){

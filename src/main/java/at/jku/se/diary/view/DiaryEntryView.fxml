@@ -29,24 +29,14 @@
       <TextField fx:id="title" layoutX="257.0" layoutY="173.0" promptText="Titel" />
       <TextField fx:id="address" layoutX="136.0" layoutY="205.0" prefHeight="25.0" prefWidth="270.0" promptText="Address" />
       <Line endX="68.30001831054688" endY="-1.1444091796875E-5" layoutX="74.0" layoutY="48.0" startX="-100.0" strokeWidth="3.0" />
-      <ImageView fx:id="btnJournalList" fitHeight="25.0" fitWidth="25.0" layoutX="243.0" layoutY="97.0" onMouseClicked="#showJournalListPage" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnJournalList" fitHeight="25.0" fitWidth="25.0" layoutX="291.0" layoutY="97.0" onMouseClicked="#showJournalListPage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../Icons/menu.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="289.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="328.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../Icons/plus.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="330.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Icons/calendar.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="370.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Icons/map.png" />
          </image>
       </ImageView>
       <Button fx:id="buttonCancel" layoutX="136.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#showJournalListPage" prefWidth="80.0" text="Cancel" />

@@ -47,7 +47,7 @@ public class MapController implements Initializable {
 
 
     @FXML
-    void showMapPage(MouseEvent event) throws IOException {
+    void showJournalList(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("JournalList", btnNewEntry.getScene());
         s.switchScene();
     }

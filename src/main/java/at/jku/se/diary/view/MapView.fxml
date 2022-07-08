@@ -20,7 +20,7 @@
       <Line endX="68.30001831054688" endY="-1.1444091796875E-5" layoutX="84.0" layoutY="58.0" startX="-100.0" strokeWidth="3.0" />
       <Line endX="28.0" endY="-1.1444091796875E-5" layoutX="612.0" layoutY="57.0" startX="-107.2213134765625" startY="-1.1444091796875E-5" strokeWidth="3.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d9" height="341.0" layoutX="63.0" layoutY="110.0" stroke="#d9d9d9" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="30.0" width="508.0" />
-      <ImageView fx:id="btnJournalList" fitHeight="85.0" fitWidth="24.0" layoutX="275.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnJournalList" fitHeight="85.0" fitWidth="24.0" layoutX="275.0" layoutY="108.0" onMouseClicked="#showJournalList" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../Icons/icons/menu-burger.png" />
          </image>
@@ -30,7 +30,7 @@
             <Image url="@../../../../../../../Icons/icons/plus.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="btnMap" fitHeight="24.0" fitWidth="24.0" layoutX="359.0" layoutY="108.0" onMouseClicked="#showMapPage" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnMap" fitHeight="24.0" fitWidth="24.0" layoutX="359.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../Icons/icons/marker.png" />
          </image>

@@ -17,7 +17,9 @@ public class MapTest {
     DiaryDB diaryDB;
     public static File diaryFile;
 
-
+    /**
+     * Creating a new Diary and a new map before each test
+     */
     @BeforeEach
     void setUp() throws JAXBException {
         diary = new Diary();
@@ -28,7 +30,9 @@ public class MapTest {
         entry1 = diary.getEntryList().get(0);
     }
 
-
+    /**
+     * Test checks if the longitude and latitude of an address is correct
+     */
     @Test
     void getDataFromApiTest() {
         MarkerPoint rome = new MarkerPoint(0, "Rome", 41.9027835,12.4963655);
@@ -39,6 +43,9 @@ public class MapTest {
 
     }
 
+    /**
+     * Test checks if the correct entry returns, when function is called with longitude and latitude of the address
+     */
     @Test
     void getEntryfromLatLngTest() {
         MarkerPoint m = this.map.getDataFromAPI(entry1.getAddress(),entry1.getId());

@@ -57,6 +57,8 @@ public class JournalListController {
     private TextField filterText;
     @FXML
     private TextField applyHelpTextBox;
+    @FXML
+    private Button btnResetFilter;
 
     /**
      * loads table with entries and filters ???
@@ -80,8 +82,8 @@ public class JournalListController {
         applyHelpTextBox.setVisible(false);
         filterTitle.setText("");
         filterText.setText("Text");
-        filterDateFromBox.setValue(LocalDate.of(2022, 06, 01));
-        filterDateToBox.setValue(LocalDate.of(2022, 07, 31));
+        filterDateFromBox.setValue(LocalDate.of(2022, 01, 01));
+        filterDateToBox.setValue(LocalDate.of(2022, 12, 31));
         filterCategoryBox.setValue("Category");
         filterStructInfo.setText("Structured Info");
         filterStarsBox.setValue("Stars");
@@ -106,6 +108,16 @@ public class JournalListController {
                 filterStructInfo.textProperty(),
                 filterStarsBox.converterProperty()
         ));
+    }
+    @FXML
+    void resetFilter(ActionEvent event) {
+        filterTitle.setText("");
+        filterText.setText("Text");
+        filterDateFromBox.setValue(LocalDate.of(2022, 01, 01));
+        filterDateToBox.setValue(LocalDate.of(2022, 12, 31));
+        filterCategoryBox.setValue("Category");
+        filterStructInfo.setText("Structured Info");
+        filterStarsBox.setValue("Stars");
     }
 
     @FXML

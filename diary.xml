@@ -6,7 +6,7 @@
     <categories>Restaurant</categories>
     <categories>Bauwerke</categories>
     <categories>Action</categories>
-    <diaryFilePath>C:\Users\misch\OneDrive\Desktop\6</diaryFilePath>
+    <diaryFilePath>C:\Users\magda\OneDrive\Desktop\testneu</diaryFilePath>
     <entryList>
         <address>Italien</address>
         <date>2022-07-22</date>
@@ -72,5 +72,15 @@
             <structuredText>sdf</structuredText>
         </structuredInfo>
         <title>Bürglsteinweg</title>
+    </entryList>
+    <entryList>
+        <address>Malaga</address>
+        <date>2022-07-13</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>4</id>
+        <picture1>image4_1.jpg</picture1>
+        <picture2>image4_2.jpg</picture2>
+        <picture3>defaultPic.png</picture3>
+        <title>TEST - Bilder rotieren</title>
     </entryList>
 </myDiary>

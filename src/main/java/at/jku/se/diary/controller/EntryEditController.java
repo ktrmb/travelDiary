@@ -4,7 +4,6 @@ import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.EntryEdit;
-import at.jku.se.diary.model.SceneSwitch;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

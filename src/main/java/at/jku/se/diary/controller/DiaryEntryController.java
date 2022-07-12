@@ -3,7 +3,6 @@ package at.jku.se.diary.controller;
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
-import at.jku.se.diary.model.SceneSwitch;
 import at.jku.se.diary.model.StructInformation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

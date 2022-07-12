@@ -4,7 +4,6 @@ package at.jku.se.diary.controller;
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryDB;
-import at.jku.se.diary.model.SceneSwitch;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

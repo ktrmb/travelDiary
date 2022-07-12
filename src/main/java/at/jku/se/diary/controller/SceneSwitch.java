@@ -1,10 +1,10 @@
-package at.jku.se.diary.model;
+package at.jku.se.diary.controller;
 
-import at.jku.se.diary.controller.EntryEditController;
-import at.jku.se.diary.controller.StructuredInfoController;
+import at.jku.se.diary.model.DiaryEntry;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;

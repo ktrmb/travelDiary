@@ -4,7 +4,6 @@ import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.Map;
 
-import at.jku.se.diary.model.SceneSwitch;
 import com.dlsc.gmapsfx.GoogleMapView;
 
 import com.dlsc.gmapsfx.javascript.event.UIEventType;

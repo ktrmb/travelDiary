@@ -149,12 +149,17 @@ public class Diary {
     }
     public void setDiaryFilePath (String path) throws JAXBException {
         this.diaryFilePath = path;
-        diaryDB.writeDiary(this, diaryFile);
+        //diaryDB.writeDiary(this, diaryFile);
     }
 
     public String getDiaryFilePath () throws JAXBException {
         return diaryFilePath;
     }
+
+
+
+
+
 
 /*
     public String toString(){

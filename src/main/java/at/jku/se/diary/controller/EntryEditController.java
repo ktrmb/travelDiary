@@ -173,13 +173,17 @@ public class EntryEditController {
             pic3.setImage(new Image(String.valueOf(selectedFile)));
         }
     }
+
     /**
      * @param event button clicked to delete first picture
      */
     @FXML
     void deletePic1(MouseEvent event) {
         if(!entry.getPicture1().contains("default")){
-            e.deletePic(pic1, "1");
+            String fileName = "src/pictures/image" + entry.getId() + "_1.jpg";
+            e.deletePicFile(fileName);
+            pic1.setImage(new Image("file:src/pictures/defaultPic.png"));
+            entry.setPicture1("default.png");
         }
     }
     /**
@@ -188,7 +192,10 @@ public class EntryEditController {
     @FXML
     void deletePic2(MouseEvent event) {
         if(!entry.getPicture2().contains("default")){
-            e.deletePic(pic2, "2");
+            String fileName = "src/pictures/image" + entry.getId() + "_2.jpg";
+            e.deletePicFile(fileName);
+            pic2.setImage(new Image("file:src/pictures/defaultPic.png"));
+            entry.setPicture2("default.png");
         }
     }
     /**
@@ -197,9 +204,13 @@ public class EntryEditController {
     @FXML
     void deletePic3(MouseEvent event) {
         if(!entry.getPicture3().contains("default")){
-            e.deletePic(pic3, "3");
+            String fileName = "src/pictures/image" + entry.getId() + "_3.jpg";
+            e.deletePicFile(fileName);
+            pic3.setImage(new Image("file:src/pictures/defaultPic.png"));
+            entry.setPicture3("default.png");
         }
     }
+
     /**
      * @param event button clicked to view only the first picture
      */

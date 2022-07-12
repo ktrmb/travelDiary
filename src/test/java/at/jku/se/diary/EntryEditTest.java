@@ -59,7 +59,7 @@ public class EntryEditTest {
      * Method: deleteEntry()
      */
     @Test
-    public void testDeleteEntry() throws Exception {
+    public void deleteEntryTest() throws Exception {
         setUp();
         diary.addNewEntry(entry1);
         diary.addNewEntry(entry2);
@@ -69,30 +69,26 @@ public class EntryEditTest {
         entryEdit.setEntry(entry1);
         entryEdit.deleteEntry();
         assertFalse(diary.getEntryList().contains(entry1));
-    }
-
-
-
-    /**
-     * Method: deletePic(ImageView pic, String picNumber)
-     */
-    @Test
-    public void testDeletePic() throws Exception {
-     /*   ImageView picture = new ImageView();
-        picture.setImage(pic);
-        ee.deletePic(picture, "1");
-        System.out.print(picture.getImage().getUrl());
-*/
-
+        assertTrue(diary.getEntryList().contains(entry2));
     }
 
     /**
      * Method: deletePicFile(String fileName)
      */
-    @Test
-    public void testDeletePicFile() throws Exception {
+/*    @Test
+    public void deletePicFileTest() throws Exception {
+        setUp();
+        String fileImg = "defaultTestPic.jpg";
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(new Image("C:\\Users\\magda\\OneDrive\\Desktop\\Bilder_TravelDiary\\barca.jpg"), null);
+        try{
+            ImageIO.write(bufferedImage, "jpg", new File("src\\pictures\\imageTest.jpg"));
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-    }
+        entryEdit.deletePicFile("src/pictures/image_test.jpg");
+
+    }*/
 
 
 

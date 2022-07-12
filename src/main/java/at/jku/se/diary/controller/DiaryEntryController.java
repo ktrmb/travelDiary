@@ -65,6 +65,8 @@ public class DiaryEntryController implements Initializable {
     void addEntry(ActionEvent event) throws JAXBException {
         int id = diary.createID();
 
+        System.out.println(" DIe url" + pic1.getImage().getUrl());
+
         diary.createNewEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(),
                 pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl(), new ArrayList<StructInformation>());
     }

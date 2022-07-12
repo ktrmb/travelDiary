@@ -68,7 +68,7 @@ public class JournalListController {
         filterCategoryBox.getItems().addAll(diary.getCategories());
 
         TableColumn<DiaryEntry, String> titel = new TableColumn<>("Titel");
-        titel.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getTitle()));
+        titel.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getId() + " " + c.getValue().getTitle()));
 
         TableColumn<DiaryEntry, LocalDate> date = new TableColumn<>("Date");
         date.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().getDate()));

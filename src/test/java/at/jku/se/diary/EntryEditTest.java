@@ -1,34 +1,58 @@
 package at.jku.se.diary;
 
+import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.EntryEdit;
 import at.jku.se.diary.model.StructInformation;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
+import javax.xml.bind.JAXBException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EntryEditTest {
 
-    private ArrayList<StructInformation> arrayListInfo = new ArrayList<>();
-    private final DiaryEntry entry = new DiaryEntry(99, LocalDate.now(), "Spanien-Reise", "Malaga",
-            "Liebes Tagebuch, ...", arrayListInfo);
-   // private Image defaultPic = new Image("file:src/pictures/defaultPic.png");
-    private Image pic = new Image("file:src/pictures/image99_1.jpg");
-    private EntryEdit ee = new EntryEdit();
+    private Diary diary;
+    private ArrayList<DiaryEntry> diaryEntryList;
+    private ArrayList<StructInformation> structInfoList;
+    private ArrayList<String> categoryList;
+    private DiaryEntry entry1;
+    private DiaryEntry entry2;
+    private String category1;
+    private String category2;
+    private EntryEdit entryEdit;
 
-    /**
-     * Method: setEntry(DiaryEntry entry)
-     */
+    @BeforeEach
+    void setUp(){
+        try {
+            diary = new Diary();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        diaryEntryList = new ArrayList<>();
+        structInfoList = new ArrayList<>();
+        categoryList = new ArrayList<>();
+        entry1 = new DiaryEntry(1, LocalDate.now(),
+                "Ausflug Attersee", "Steinbach am Attersee", "Liebes Tagebuch ...", structInfoList);
+        entry2 = new DiaryEntry(2, LocalDate.now(),
+                "Ausflug Italien", "Rosolina Mare", "Liebes Tagebuch ...", structInfoList);
+        category1 = "Strand";
+        category2 = "Hotel";
+        entryEdit = new EntryEdit(diary);
+    }
+
     @Test
-    public void testSetEntry() {
-        ee.setEntry(entry);
-        assertEquals(ee.getEntry(), entry);
+    public void setAndGetEntryTest(){
+        setUp();
+        assertEquals(entryEdit.getEntry(), null);
+        entryEdit.setEntry(entry1);
+        assertEquals(entryEdit.getEntry(), entry1);
+        entryEdit.setEntry(entry2);
+        assertEquals(entryEdit.getEntry(), entry2);
     }
 
     /**
@@ -36,17 +60,18 @@ public class EntryEditTest {
      */
     @Test
     public void testDeleteEntry() throws Exception {
-        ee.deleteEntry();
-        assertNull(ee.getEntry());
+        setUp();
+        diary.addNewEntry(entry1);
+        diary.addNewEntry(entry2);
+        assertTrue(diary.getEntryList().contains(entry1));
+        assertTrue(diary.getEntryList().contains(entry2));
+
+        entryEdit.setEntry(entry1);
+        entryEdit.deleteEntry();
+        assertFalse(diary.getEntryList().contains(entry1));
     }
 
-    /**
-     * Method: editPic(ImageView pic)
-     */
-/*    @Test
-    public void testEditPic() throws Exception {
-        ee.editPic();
-    }*/
+
 
     /**
      * Method: deletePic(ImageView pic, String picNumber)
@@ -66,24 +91,12 @@ public class EntryEditTest {
      */
     @Test
     public void testDeletePicFile() throws Exception {
-        //zusammenhängend mit testDeletePic
+
     }
 
-    /**
-     * Method: addPic()
-     */
-    @Test
-    public void testAddPic() throws Exception {
-//TODO: Test goes here...
-    }
 
-    /**
-     * Method: saveImageToFile(String fileImg, String id)
-     */
-    @Test
-    public void testSaveImageToFile() throws Exception {
-//TODO: Test goes here...
-    }
+
+
 
 
 }

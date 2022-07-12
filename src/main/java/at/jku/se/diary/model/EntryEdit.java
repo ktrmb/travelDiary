@@ -26,6 +26,10 @@ public class EntryEdit {
         this.diary = HelloFX.diary;
     }
 
+    public EntryEdit (Diary diary) {
+        this.diary = diary;
+    }
+
     /**
      * @param entry currently edited entry
      */
@@ -55,7 +59,9 @@ public class EntryEdit {
             }
         }
         diary.getEntryList().remove(entry);
-        HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
+        if(HelloFX.diaryDB != null){
+            HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
+        }
     }
 
     /**

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <myDiary>
+    <diaryFilePath>diary.xml</diaryFilePath>
     <entryList>
         <address>Steinbach am Attersee</address>
-        <date>2022-07-06</date>
+        <date>2022-07-12</date>
         <diaryText>Liebes Tagebuch ...</diaryText>
         <id>1</id>
         <picture1>defaultPic.png</picture1>

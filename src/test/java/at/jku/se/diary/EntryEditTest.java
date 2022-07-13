@@ -5,7 +5,6 @@ import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.EntryEdit;
 import at.jku.se.diary.model.StructInformation;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import javax.xml.bind.JAXBException;
 import java.time.LocalDate;
@@ -24,8 +23,11 @@ public class EntryEditTest {
     private String category1;
     private String category2;
     private EntryEdit entryEdit;
+    private EntryEdit entryEdit1;
 
-    @BeforeEach
+    /**
+     * Creating some test-data
+     */
     void setUp(){
         try {
             diary = new Diary();
@@ -45,6 +47,9 @@ public class EntryEditTest {
         entryEdit = new EntryEdit(diary);
     }
 
+    /**
+     * Testing the setter and getter
+     */
     @Test
     public void setAndGetEntryTest(){
         setUp();
@@ -56,11 +61,12 @@ public class EntryEditTest {
     }
 
     /**
-     * Method: deleteEntry()
+     * Testing whether a diaryEntry can be deleted
      */
     @Test
     public void deleteEntryTest() throws Exception {
         setUp();
+
         diary.addNewEntry(entry1);
         diary.addNewEntry(entry2);
         assertTrue(diary.getEntryList().contains(entry1));
@@ -70,29 +76,22 @@ public class EntryEditTest {
         entryEdit.deleteEntry();
         assertFalse(diary.getEntryList().contains(entry1));
         assertTrue(diary.getEntryList().contains(entry2));
+
+        diary.addNewEntry(entry1);
+        entry1.setPicture1("picDelete1.jpg");
+        entryEdit.setEntry(entry1);
+        assertTrue(diary.getEntryList().contains(entry1));
+        entryEdit.deleteEntry();
+        assertFalse(diary.getEntryList().contains(entry1));
+
     }
 
     /**
-     * Method: deletePicFile(String fileName)
+     * Testing the default Constructor without Parameter
      */
-/*    @Test
-    public void deletePicFileTest() throws Exception {
-        setUp();
-        String fileImg = "defaultTestPic.jpg";
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(new Image("C:\\Users\\magda\\OneDrive\\Desktop\\Bilder_TravelDiary\\barca.jpg"), null);
-        try{
-            ImageIO.write(bufferedImage, "jpg", new File("src\\pictures\\imageTest.jpg"));
-        }catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        entryEdit.deletePicFile("src/pictures/image_test.jpg");
-
-    }*/
-
-
-
-
-
-
+    @Test
+    public void defaultConstructorTest() throws Exception {
+         entryEdit1 = new EntryEdit();
+        assertEquals(entryEdit1.getEntry(), null);
+    }
 }

@@ -17,7 +17,6 @@ public class Diary {
     private DiaryDB diaryDB;
     private File diaryFile;
     private ArrayList<String> categories;
-    // private boolean currentEntry = false;
     private DiaryEntry currentEntry;
     private String diaryFilePath;
 
@@ -49,6 +48,17 @@ public class Diary {
 
     public void addNewCategory(String category) throws JAXBException {
         categories.add(category);
+        saveDiary();
+    }
+
+    public void addNewEntry(DiaryEntry newEntry) throws JAXBException {
+        entryList.add(newEntry);
+        saveDiary();
+    }
+
+/*
+    public void addNewCategory(String category) throws JAXBException {
+        categories.add(category);
         if(this.diaryDB != null){
             diaryDB.writeDiary(this, diaryFile);
         }
@@ -58,6 +68,16 @@ public class Diary {
         entryList.add(newEntry);
         if(this.diaryDB != null) {
             diaryDB.writeDiary(this, diaryFile);
+        }
+    }*/
+
+
+    public void saveDiary() throws JAXBException {
+        if(this.diaryDB !=null){
+            diaryDB.writeDiary(this, diaryFile);
+        }
+        else{
+            return;
         }
     }
 
@@ -155,25 +175,4 @@ public class Diary {
     public String getDiaryFilePath () throws JAXBException {
         return diaryFilePath;
     }
-
-
-
-
-
-
-/*
-    public String toString(){
-        String output = "";
-        for(DiaryEntry e : getEntryList()){
-            output += e.toString();
-        }
-        return output;
-    }
-
-    //wieder weglöschen!
-    public void outputDiaryIDs(){
-        for(DiaryEntry e : getEntryList()){
-            System.out.println("ID: " + e.getId() + " Titel: " + e.getTitle());
-        }
-    }*/
 }

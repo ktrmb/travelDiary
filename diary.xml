@@ -6,6 +6,7 @@
     <categories>Restaurant</categories>
     <categories>Bauwerke</categories>
     <categories>Action</categories>
+    <categories>test</categories>
     <diaryFilePath>diary.xml</diaryFilePath>
     <entryList>
         <address>Barcelona</address>

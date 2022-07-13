@@ -48,18 +48,24 @@ public class EntryEdit {
      */
     public void deleteEntry() throws JAXBException {
         ArrayList<String> pictureNames = new ArrayList<>();
-        pictureNames.add(entry.getPicture1());
-        pictureNames.add(entry.getPicture2());
-        pictureNames.add(entry.getPicture3());
+        String pic1 = entry.getPicture1();
+        String pic2 = entry.getPicture2();
+        String pic3 = entry.getPicture3();
+        pictureNames.add(pic1);
+        pictureNames.add(pic2);
+        pictureNames.add(pic3);
         for(String pic : pictureNames){
             if(!pic.contains("default")){
-                deletePicFile("src/pictures/"+pic);
+                String filename = "src/pictures/"+pic;
+                deletePicFile(filename);
             }
         }
+
         diary.getEntryList().remove(entry);
         if(HelloFX.diaryDB != null){
             HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
         }
+
     }
 
 

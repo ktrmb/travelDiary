@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static at.jku.se.diary.HelloFX.diary;
 
@@ -136,7 +137,9 @@ public class StructuredInfoController {
 
         @FXML
         void deleteStructuredInfo(MouseEvent event) {
-                tableList.getItems().remove(tableList.getSelectionModel().getSelectedItem().getId());
+
+            //    tableList.getItems().remove(tableList.getSelectionModel().getSelectedItem().getId());
+                tableList.getItems().remove(tableList.getItems().indexOf(tableList.getSelectionModel().getSelectedItem()));
         }
 
 
@@ -162,7 +165,7 @@ public class StructuredInfoController {
         }
 
         public void selectCategory(ActionEvent event){
-                this.selectedCategory = category.getValue();
+                this.selectedCategory = Objects.equals(category.getValue(), "") ? " " : category.getValue();
         }
 
 

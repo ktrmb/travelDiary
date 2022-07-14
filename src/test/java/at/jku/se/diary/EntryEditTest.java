@@ -91,7 +91,7 @@ public class EntryEditTest {
      */
     @Test
     public void defaultConstructorTest() throws Exception {
-         entryEdit1 = new EntryEdit();
+        entryEdit1 = new EntryEdit();
         assertEquals(entryEdit1.getEntry(), null);
     }
 }

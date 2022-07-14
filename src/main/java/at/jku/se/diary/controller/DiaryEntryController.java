@@ -33,7 +33,6 @@ import java.util.ResourceBundle;
 public class DiaryEntryController implements Initializable {
     private Diary diary = HelloFX.diary;
     private Stage stage;
-    private DiaryEntry newEntry;
 
     @FXML
     private TextField address;
@@ -79,7 +78,8 @@ public class DiaryEntryController implements Initializable {
     public void addEntry(ActionEvent event) throws JAXBException {
         int id = diary.createID();
         diary.createNewEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(),
-                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl(), new ArrayList<StructInformation>());
+                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl(),
+                new ArrayList<StructInformation>());
     }
 
     /**

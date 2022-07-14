@@ -152,7 +152,8 @@ public class Diary {
      * @param structInfo of the new DiaryEntry
      * @throws JAXBException
      */
-    public void createNewEntry(int id, LocalDate date, String title, String address, String diaryText, String pic1, String pic2,
+    public void createNewEntry(int id, LocalDate date, String title, String address,
+                               String diaryText, String pic1, String pic2,
                                String pic3, ArrayList<StructInformation> structInfo) throws JAXBException {
         if(getCurrentEntry() != null) {
             structInfo = getCurrentEntry().getStructuredInfo();

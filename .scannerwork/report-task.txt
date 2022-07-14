@@ -2,5 +2,5 @@ projectKey=team_E
 serverUrl=https://sonar2.se.jku.at
 serverVersion=8.9.6.50800
 dashboardUrl=https://sonar2.se.jku.at/dashboard?id=team_E
-ceTaskId=AYGg8OH4jM18SKKQL3Ox
-ceTaskUrl=https://sonar2.se.jku.at/api/ce/task?id=AYGg8OH4jM18SKKQL3Ox
+ceTaskId=AYH9EQ12jM18SKKQL3_y
+ceTaskUrl=https://sonar2.se.jku.at/api/ce/task?id=AYH9EQ12jM18SKKQL3_y

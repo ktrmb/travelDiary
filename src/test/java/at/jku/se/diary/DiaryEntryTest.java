@@ -17,11 +17,11 @@ class DiaryEntryTest {
     private DiaryEntry entry1;
     private DiaryEntry entry2;
     private ArrayList<StructInformation> arrayListInfos = new ArrayList<>();
+    public String defaultPicName = "defaultPic.png";
 
     @BeforeEach
     void setUp(){
         entry1 = new DiaryEntry();
-        //String address, String diaryText, ArrayList<StructInformation> infos
         entry2 = new DiaryEntry(0, LocalDate.now(), "Urlaub", "Schweiz", "Es war schön", arrayListInfos);
     }
 
@@ -29,10 +29,14 @@ class DiaryEntryTest {
     void setId(){
         entry1.setId(1);
         assertEquals(entry1.getId(), 1);
+        assertEquals(entry2.getId(), 0);
+        entry2.setId(3);
+        assertEquals(entry2.getId(), 3);
     }
 
     @Test
     void setTitle() {
+        assertEquals(entry1.getTitle(), null);
         entry1.setTitle("Going San Francisco");
         assertEquals(entry1.getTitle(), "Going San Francisco");
     }
@@ -69,24 +73,18 @@ class DiaryEntryTest {
 
     @Test
     void setPicture1(){
-        entry1.setPicture1("defaultPic.png");
-        assertEquals(entry1.getPicture1(), "defaultPic.png");
+        entry1.setPicture1(defaultPicName);
+        assertEquals(entry1.getPicture1(), defaultPicName);
     }
     @Test
     void setPicture2(){
-        entry1.setPicture2("defaultPic.png");
-        assertEquals(entry1.getPicture2(), "defaultPic.png");
+        entry1.setPicture2(defaultPicName);
+        assertEquals(entry1.getPicture2(), defaultPicName);
     }
     @Test
     void setPicture3(){
-        entry1.setPicture3("defaultPic.png");
-        assertEquals(entry1.getPicture3(), "defaultPic.png");
+        entry1.setPicture3(defaultPicName);
+        assertEquals(entry1.getPicture3(), defaultPicName);
     }
-/*    @Test
-    void saveImageToFileTest(){
-        String imgFile = "C:\\Users\\magda\\Pictures\\Fotobuch\\map.JPG";
-        String imageName = entry1.saveImageToFile(imgFile, "1");
-        assertEquals(imageName, "image1.jpg");
-    }*/
 
 }

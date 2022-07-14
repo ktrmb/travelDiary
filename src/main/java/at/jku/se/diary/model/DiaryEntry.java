@@ -208,7 +208,8 @@ public class DiaryEntry {
     }
 
     /**
-     * takes the selected picture from the home-directory of the user and save it to the pictures-folder with a specific name
+     * takes the selected picture from the home-directory of the
+     * user and save it to the pictures-folder with a specific name
      * @param fileImg is the file path to the selected picture
      * @param id of the DiaryEntry
      * @return the name of the saved picture

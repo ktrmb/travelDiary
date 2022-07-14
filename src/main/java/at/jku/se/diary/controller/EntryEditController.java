@@ -35,6 +35,9 @@ public class EntryEditController {
     private final Diary diary = HelloFX.diary;
     private final EntryEdit e = new EntryEdit();
     private Stage stage;
+    private String defaultPic = "defaultPic.png";
+    private String journalListScene = "JournalList";
+    private String defaultPicPath = "file:src/pictures/defaultPic.png";
 
     @FXML
     private Button btnCancel;
@@ -104,7 +107,7 @@ public class EntryEditController {
      */
     @FXML
     void cancelEdit(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("JournalList", btnCancel.getScene());
+        SceneSwitch s = new SceneSwitch(journalListScene, btnCancel.getScene());
         s.switchScene();
     }
 
@@ -118,10 +121,11 @@ public class EntryEditController {
         int oldId = entry.getId();
         diary.getEntryList().remove(entry);
 
-        diary.createNewEntry(oldId, txtDate.getValue(), txtTitel.getText(), txtAdress.getText(), txtText.getHtmlText(),
-                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl() ,entry.getStructuredInfo());
+        diary.createNewEntry(oldId, txtDate.getValue(), txtTitel.getText(), txtAdress.getText(),
+                txtText.getHtmlText(), pic1.getImage().getUrl(), pic2.getImage().getUrl(),
+                pic3.getImage().getUrl() ,entry.getStructuredInfo());
 
-        SceneSwitch s = new SceneSwitch("JournalList", btnSave.getScene());
+        SceneSwitch s = new SceneSwitch(journalListScene, btnSave.getScene());
         s.switchScene();
     }
 
@@ -133,7 +137,7 @@ public class EntryEditController {
     @FXML
     void deleteEntry(MouseEvent event) throws IOException, JAXBException {
         e.deleteEntry();
-        SceneSwitch s = new SceneSwitch("JournalList", btnDelete.getScene());
+        SceneSwitch s = new SceneSwitch(journalListScene, btnDelete.getScene());
         s.switchScene();
     }
 
@@ -198,8 +202,8 @@ public class EntryEditController {
         if(!entry.getPicture1().contains("default")){
             String fileName = "src/pictures/image" + entry.getId() + "_1.jpg";
             e.deletePicFile(fileName);
-            pic1.setImage(new Image("file:src/pictures/defaultPic.png"));
-            entry.setPicture1("default.png");
+            pic1.setImage(new Image(defaultPicPath));
+            entry.setPicture1(defaultPic);
         }
     }
     /**
@@ -211,8 +215,8 @@ public class EntryEditController {
         if(!entry.getPicture2().contains("default")){
             String fileName = "src/pictures/image" + entry.getId() + "_2.jpg";
             e.deletePicFile(fileName);
-            pic2.setImage(new Image("file:src/pictures/defaultPic.png"));
-            entry.setPicture2("default.png");
+            pic2.setImage(new Image(defaultPicPath));
+            entry.setPicture2(defaultPic);
         }
     }
     /**
@@ -224,8 +228,8 @@ public class EntryEditController {
         if(!entry.getPicture3().contains("default")){
             String fileName = "src/pictures/image" + entry.getId() + "_3.jpg";
             e.deletePicFile(fileName);
-            pic3.setImage(new Image("file:src/pictures/defaultPic.png"));
-            entry.setPicture3("default.png");
+            pic3.setImage(new Image(defaultPicPath));
+            entry.setPicture3(defaultPic);
         }
     }
 

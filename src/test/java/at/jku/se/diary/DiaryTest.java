@@ -105,7 +105,8 @@ public class DiaryTest{
      */
     @Test
     void setCurrentEntry() {
-        DiaryEntry currentEntry = new DiaryEntry(1, LocalDate.now(), "Urlaub Rom", "Italien", "Liebes Tagebuch ...", structInfoList );
+        DiaryEntry currentEntry = new DiaryEntry(1, LocalDate.now(), "Urlaub Rom",
+                "Italien", "Liebes Tagebuch ...", structInfoList );
         diary.setCurrentEntry(currentEntry);
         assertEquals(diary.getCurrentEntry(), currentEntry);
 
@@ -114,12 +115,13 @@ public class DiaryTest{
     @Test
     void createNewEntry() throws JAXBException {
         assertTrue(diary.getEntryList().isEmpty());
-        LocalDate.now();
-        String pic1 = "Icons/pic.png";
-        String pic2 = "Icons/pic.png";
-        String pic3 = "Icons/pic.png";
+        String path = "Icons/pic.png";
+        String pic1 = path;
+        String pic2 = path;
+        String pic3 = path;
         diary.setCurrentEntry(entry1);
-        diary.createNewEntry(1, LocalDate.now(), "TestTitle", "TestAdresse", "TestText", pic1, pic2, pic3, structInfoList);
+        diary.createNewEntry(1, LocalDate.now(), "TestTitle", "TestAdresse",
+                "TestText", pic1, pic2, pic3, structInfoList);
         assertFalse(diary.getEntryList().isEmpty());
         for(DiaryEntry e : diary.getEntryList()){
             assertEquals(e.getTitle(),"TestTitle");

@@ -11,7 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
@@ -81,7 +86,7 @@ public class JournalListController {
         applyHelpTextBox.setVisible(false);
         filterTitle.setText("");
         filterText.setText("Text");
-        filterDateFromBox.setValue(LocalDate.of(2022, 01, 01));
+        filterDateFromBox.setValue(LocalDate.of(2022, 1, 1));
         filterDateToBox.setValue(LocalDate.of(2022, 12, 31));
         filterCategoryBox.setValue("Category");
         filterStructInfo.setText("Structured Info");
@@ -90,14 +95,21 @@ public class JournalListController {
         FilteredList<DiaryEntry> filteredList = new FilteredList<>(diaryE);
         tVjournalList.setItems(filteredList);
         filteredList.predicateProperty().bind(Bindings.createObjectBinding(() -> diaryEntry ->
-                        ((diaryEntry.getTitle().toLowerCase().contains(filterTitle.getText().toLowerCase())) || (filterTitle.getText().isEmpty()))
+                        ((diaryEntry.getTitle().toLowerCase().contains(filterTitle.getText().toLowerCase()))
+                                || (filterTitle.getText().isEmpty()))
                                 && ((applyHelpTextBox.getText().equals("")))
-                                && ((diaryEntry.getDiaryText().toLowerCase().contains(filterText.getText().toLowerCase())) || (filterText.getText().isEmpty()) || filterText.getText().equals("Text"))
-                                && (diaryEntry.getDate().isAfter(filterDateFromBox.getValue()) || (diaryEntry.getDate().isEqual(filterDateFromBox.getValue())))
-                                && (diaryEntry.getDate().isBefore(filterDateToBox.getValue()) || diaryEntry.getDate().isEqual(filterDateToBox.getValue()))
-                                && ((diary.filterCategories(diaryEntry, filterCategoryBox.getValue())) || (filterCategoryBox.getValue().equals("Category")))
-                                && ((diary.filterStructInfoText(diaryEntry, filterStructInfo.getText())) || (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
-                                && (diary.filterStars(diaryEntry, filterStarsBox.getValue()) || (filterStarsBox.getValue().equals("Stars"))),
+                                && ((diaryEntry.getDiaryText().toLowerCase().contains(filterText.getText().toLowerCase())) ||
+                                (filterText.getText().isEmpty()) || filterText.getText().equals("Text"))
+                                && (diaryEntry.getDate().isAfter(filterDateFromBox.getValue()) ||
+                                (diaryEntry.getDate().isEqual(filterDateFromBox.getValue())))
+                                && (diaryEntry.getDate().isBefore(filterDateToBox.getValue()) ||
+                                diaryEntry.getDate().isEqual(filterDateToBox.getValue()))
+                                && ((diary.filterCategories(diaryEntry, filterCategoryBox.getValue())) ||
+                                (filterCategoryBox.getValue().equals("Category")))
+                                && ((diary.filterStructInfoText(diaryEntry, filterStructInfo.getText())) ||
+                                (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
+                                && (diary.filterStars(diaryEntry, filterStarsBox.getValue())
+                                || (filterStarsBox.getValue().equals("Stars"))),
                 applyHelpTextBox.textProperty(),
                 filterTitle.textProperty(),
                 filterText.textProperty(),
@@ -117,7 +129,7 @@ public class JournalListController {
     void resetFilter(ActionEvent event) {
         filterTitle.setText("");
         filterText.setText("Text");
-        filterDateFromBox.setValue(LocalDate.of(2022, 01, 01));
+        filterDateFromBox.setValue(LocalDate.of(2022, 1, 1));
         filterDateToBox.setValue(LocalDate.of(2022, 12, 31));
         filterCategoryBox.setValue("Category");
         filterStructInfo.setText("Structured Info");

@@ -17,6 +17,7 @@ import java.net.URL;
 public class SceneSwitch {
     private String newScene;
     private Scene scene;
+    private String pathToViews = "src/main/java/at/jku/se/diary/view/";
 
     /**
      * @param newScene fxml file name of scene to switch to
@@ -32,7 +33,7 @@ public class SceneSwitch {
      * @throws IOException
      */
     public void switchScene()throws IOException {
-        URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
+        URL url = new File(pathToViews + newScene + ".fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         scene.setRoot(root);
     }
@@ -43,7 +44,7 @@ public class SceneSwitch {
      * @throws IOException
      */
     public void switchSceneStructInfoController(DiaryEntry entry)throws IOException {
-        URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
+        URL url = new File(pathToViews + newScene + ".fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         StructuredInfoController controller = loader.getController();
@@ -57,7 +58,7 @@ public class SceneSwitch {
      * @throws IOException
      */
     public void switchSceneEntryEditController(DiaryEntry entry)throws IOException {
-        URL url = new File("src/main/java/at/jku/se/diary/view/" + newScene + ".fxml").toURI().toURL();
+        URL url = new File(pathToViews + newScene + ".fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         EntryEditController controller = loader.getController();

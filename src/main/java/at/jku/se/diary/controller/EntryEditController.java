@@ -22,6 +22,7 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
 /**
  *
  * this class contains the functions regarding editing entries and user interface

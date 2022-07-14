@@ -60,7 +60,7 @@ public class JournalListController {
     private Button btnResetFilter;
 
     /**
-     * loads table with entries and filters ???
+     * loads table with entries uses default Filter, respectively applies used filters from the user immediately
      */
     public void initialize() {
         filterStarsBox.getItems().addAll("Stars", "1.0", "2.0", "3.0", "4.0", "5.0");
@@ -108,6 +108,11 @@ public class JournalListController {
                 filterStarsBox.converterProperty()
         ));
     }
+
+    /**
+     * sets all filters to default values
+     * @param event button clicked to reset all filters
+     */
     @FXML
     void resetFilter(ActionEvent event) {
         filterTitle.setText("");
@@ -120,21 +125,20 @@ public class JournalListController {
     }
 
     @FXML
-    void filterDateFrom(ActionEvent event) {
+    private void filterDateFrom(ActionEvent event) {
+        applyHelpTextBox.setText("");
+    }
+    @FXML
+    private void filterDateTo(ActionEvent event) {
         applyHelpTextBox.setText("");
     }
 
     @FXML
-    void filterDateTo(ActionEvent event) {
-        applyHelpTextBox.setText("");
-    }
-
-    @FXML
-    void filterCategory(ActionEvent event) {
+    private void filterCategory(ActionEvent event) {
         applyHelpTextBox.setText("");
     }
     @FXML
-    void filterStars(ActionEvent event) {
+    private void filterStars(ActionEvent event) {
         applyHelpTextBox.setText("");
     }
 

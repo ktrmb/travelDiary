@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
@@ -74,11 +74,19 @@ public class EntryEditController {
         txtDate.setValue(entry.getDate());
         txtText.setHtmlText(entry.getDiaryText());
 
-        String file = "file:src/pictures/";
-        pic1.setImage(new Image(file + entry.getPicture1()));
-        pic2.setImage(new Image(file + entry.getPicture2()));
-        pic3.setImage(new Image(file + entry.getPicture3()));
-
+        if(entry.getPicture1().contains("/") || entry.getPicture1().contains("\\")){
+            Image i1 = new Image(entry.getPicture1());
+            pic1.setImage(i1);
+            Image i2 = new Image(entry.getPicture2());
+            pic2.setImage(i2);
+            Image i3 = new Image(entry.getPicture3());
+            pic3.setImage(i3);
+        }else{
+            String file = "file:src/pictures/";
+            pic1.setImage(new Image(file + entry.getPicture1()));
+            pic2.setImage(new Image(file + entry.getPicture2()));
+            pic3.setImage(new Image(file + entry.getPicture3()));
+        }
         e.setEntry(entry);
     }
 
@@ -138,12 +146,16 @@ public class EntryEditController {
         entry.setDate(txtDate.getValue());
         entry.setAddress(txtAdress.getText());
         entry.setDiaryText(txtText.getHtmlText());
+        entry.setPicture1(pic1.getImage().getUrl());
+        entry.setPicture2(pic2.getImage().getUrl());
+        entry.setPicture3(pic3.getImage().getUrl());
 
         SceneSwitch s = new SceneSwitch("StructInformationView", btnShowStructuredInfo.getScene());
         s.switchSceneStructInfoController(entry);
     }
 
     /**
+     * to show the selected picture in the first imageview
      * @param event button clicked to edit first picture
      */
     @FXML
@@ -154,6 +166,7 @@ public class EntryEditController {
         }
     }
     /**
+     * to show the selected picture in the second imageview
      * @param event button clicked to edit second picture
      */
     @FXML
@@ -164,6 +177,7 @@ public class EntryEditController {
         }
     }
     /**
+     * to show the selected picture in the third imageview
      * @param event button clicked to edit third picture
      */
     @FXML
@@ -175,6 +189,7 @@ public class EntryEditController {
     }
 
     /**
+     * calls the method to delete the picture from the folder and sets the default picture
      * @param event button clicked to delete first picture
      */
     @FXML
@@ -187,6 +202,7 @@ public class EntryEditController {
         }
     }
     /**
+     * calls the method to delete the picture from the folder and sets the default picture
      * @param event button clicked to delete second picture
      */
     @FXML
@@ -199,6 +215,7 @@ public class EntryEditController {
         }
     }
     /**
+     * calls the method to delete the picture from the folder and sets the default picture
      * @param event button clicked to delete third picture
      */
     @FXML
@@ -212,20 +229,25 @@ public class EntryEditController {
     }
 
     /**
+     * calls the method to open a new window with the first picture
      * @param event button clicked to view only the first picture
      */
     @FXML
     void enlargePic1(MouseEvent event) {
         openNewWindowWithPic(entry.getPicture1());
     }
+
     /**
+     * calls the method to open a new window with the second picture
      * @param event button clicked to view only the second picture
      */
     @FXML
     void enlargePic2(MouseEvent event) {
         openNewWindowWithPic(entry.getPicture2());
     }
+
     /**
+     * calls the method to open a new window with the third picture
      * @param event button clicked to view only the third picture
      */
     @FXML

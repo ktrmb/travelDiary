@@ -6,26 +6,49 @@
     <categories>Restaurant</categories>
     <categories>Bauwerke</categories>
     <categories>Action</categories>
-    <categories>test</categories>
     <diaryFilePath>diary.xml</diaryFilePath>
     <entryList>
         <address>Barcelona</address>
-        <date>2022-07-13</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>4</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <title>Sagrada Familia</title>
+        <date>2022-07-19</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Reisetagebuch, heute...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>7</id>
+        <picture1>image7_1.jpg</picture1>
+        <picture2>image7_2.jpg</picture2>
+        <picture3>image7_3.jpg</picture3>
+        <structuredInfo>
+            <category>Restaurant</category>
+            <id>0</id>
+            <stars>4.0</stars>
+            <structuredText>lecker</structuredText>
+        </structuredInfo>
+        <structuredInfo>
+            <category>Bauwerke</category>
+            <id>1</id>
+            <stars>5.0</stars>
+            <structuredText>sehr schön</structuredText>
+        </structuredInfo>
+        <title>Barcelona</title>
     </entryList>
     <entryList>
-        <address>Italien</address>
-        <date>2022-07-13</date>
-        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Ausflug Rom&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
-        <id>5</id>
-        <picture1>image5_1.jpg</picture1>
+        <address>Paris</address>
+        <date>2022-07-18</date>
+        <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Reisetagebuch, heute waren wir in Paris, .....&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
+        <id>6</id>
+        <picture1>image6_1.jpg</picture1>
         <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
-        <title>Rom</title>
+        <picture3>image6_3.jpg</picture3>
+        <structuredInfo>
+            <category>Bauwerke</category>
+            <id>0</id>
+            <stars>5.0</stars>
+            <structuredText>der Eifelturm ist sehr beeindruckend</structuredText>
+        </structuredInfo>
+        <structuredInfo>
+            <category>Restaurant</category>
+            <id>1</id>
+            <stars>3.0</stars>
+            <structuredText>Essen war mittelmäßig</structuredText>
+        </structuredInfo>
+        <title>Paris</title>
     </entryList>
 </myDiary>

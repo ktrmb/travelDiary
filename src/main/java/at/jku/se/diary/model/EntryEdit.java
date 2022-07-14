@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * this class contains part of the functions regarding editing entries
+ * this class contains part of the functions regarding deleting entries
  * @author Team E
  *
  */
@@ -20,10 +20,17 @@ public class EntryEdit {
     private final Diary diary;
     private DiaryEntry entry;
 
+    /**
+     * standard constructor which initialize the diary variable with the HelloFX.diary
+     */
     public EntryEdit () {
         this.diary = HelloFX.diary;
     }
 
+    /**
+     * second constructor necessary for the unit tests
+     * @param diary object
+     */
     public EntryEdit (Diary diary) {
         this.diary = diary;
     }
@@ -43,7 +50,7 @@ public class EntryEdit {
     }
 
     /**
-     * Deletes selected entry
+     * Deletes the selected entry and pictures, and writes the xml file
      * @throws JAXBException
      */
     public void deleteEntry() throws JAXBException {
@@ -60,14 +67,11 @@ public class EntryEdit {
                 deletePicFile(filename);
             }
         }
-
         diary.getEntryList().remove(entry);
         if(HelloFX.diaryDB != null){
             HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
         }
-
     }
-
 
     /**
      * Actually deletes the selected picture (Helper-Method)

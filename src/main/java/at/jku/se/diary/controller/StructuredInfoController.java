@@ -60,7 +60,6 @@ public class StructuredInfoController {
         }
 
         public void setStructInfo(){
-                //UI
                 TableColumn<StructInformation, String> columnCategory = new TableColumn<StructInformation, String>("Category");
                 columnCategory.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getCategory())));
 

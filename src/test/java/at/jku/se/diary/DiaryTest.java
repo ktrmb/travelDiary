@@ -11,8 +11,16 @@ import javax.xml.bind.JAXBException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ *
+ * this class is for testing the Diary class
+ * @author Team E
+ *
+ */
 public class DiaryTest{
 
     private Diary diary;
@@ -25,7 +33,7 @@ public class DiaryTest{
     private String category2;
 
     /**
-     * Creating a new Diary with entries and categories before each test
+     * creating a new Diary with entries and categories before each test
      */
     @BeforeEach
     public void setUp(){
@@ -47,7 +55,7 @@ public class DiaryTest{
     }
 
     /**
-     * Test for setting a diaryEntryList
+     * test for setting a diaryEntryList
      */
     @Test
     void setEntryListTest(){
@@ -58,7 +66,7 @@ public class DiaryTest{
     }
 
     /**
-     * Test for adding a category to the categoryList
+     * test for adding a category to the categoryList
      */
     @Test
     void setCategoriesTest(){
@@ -77,7 +85,7 @@ public class DiaryTest{
     }
 
     /**
-     * Test checks if the diaryEntryList isn´t empty anymore after adding a new entry
+     * test checks if the diaryEntryList isn´t empty anymore after adding a new entry
      */
     @Test
     void addNewEntryTest(){
@@ -101,7 +109,7 @@ public class DiaryTest{
 
 
     /**
-     * Test checks if the currentEnty is set when adding new structured Info
+     * test checks if the currentEnty is set when adding new structured Info
      */
     @Test
     void setCurrentEntry() {
@@ -112,6 +120,10 @@ public class DiaryTest{
 
     }
 
+    /**
+     * test if a new entry is created right
+     * @throws JAXBException
+     */
     @Test
     void createNewEntry() throws JAXBException {
         assertTrue(diary.getEntryList().isEmpty());
@@ -131,6 +143,9 @@ public class DiaryTest{
         }
     }
 
+    /**
+     * test for the filter-methods
+     */
     @Test
     void filterTest(){
         StructInformation info1 = new StructInformation(1, "Hotel", 4, "Text1");
@@ -150,7 +165,9 @@ public class DiaryTest{
 
     }
 
-
+    /**
+     * test if an id is created right
+     */
     @Test
     void createIDTest(){
         assertEquals(diary.createID(), 1);

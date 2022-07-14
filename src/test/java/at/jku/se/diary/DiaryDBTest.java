@@ -15,6 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ *
+ * this class is for testing the DiaryDB class
+ * @author Team E
+ *
+ */
 public class DiaryDBTest {
 
     private Diary diary;
@@ -24,6 +30,10 @@ public class DiaryDBTest {
     private DiaryEntry newEntry;
 
 
+    /**
+     * to set up test data before each test
+     * @throws JAXBException
+     */
     @BeforeEach
     void setUp() throws JAXBException {
         diary = new Diary();
@@ -31,6 +41,10 @@ public class DiaryDBTest {
         diaryDB = new DiaryDB();
     }
 
+    /**
+     * to test if the data from a xml file can be read
+     * @throws JAXBException
+     */
     @Test
     void readDiaryTest() throws JAXBException {
        assertTrue(diary.getEntryList().isEmpty());
@@ -40,6 +54,10 @@ public class DiaryDBTest {
        assertEquals(title, "Ausflug Attersee");
     }
 
+    /**
+     * to test if data can be written in the xml file
+     * @throws JAXBException
+     */
     @Test
     void writeDiaryTest() throws JAXBException {
         diaryDB.writeDiary(diary, diaryFile);

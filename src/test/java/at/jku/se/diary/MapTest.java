@@ -18,7 +18,7 @@ public class MapTest {
     public static File diaryFile;
 
     /**
-     * Creating a new Diary and a new map before each test
+     * creating a new Diary and a new map before each test
      */
     @BeforeEach
     void setUp() throws JAXBException {
@@ -31,7 +31,7 @@ public class MapTest {
     }
 
     /**
-     * Test checks if the longitude and latitude of an address is correct
+     * test checks if the longitude and latitude of an address is correct
      */
     @Test
     void getDataFromApiTest() {
@@ -44,7 +44,7 @@ public class MapTest {
     }
 
     /**
-     * Test checks if the correct entry returns, when function is called with longitude and latitude of the address
+     * test checks if the correct entry returns, when function is called with longitude and latitude of the address
      */
     @Test
     void getEntryfromLatLngTest() {

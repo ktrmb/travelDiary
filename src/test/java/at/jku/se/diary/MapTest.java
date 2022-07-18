@@ -35,6 +35,7 @@ public class MapTest {
      */
     @Test
     void getDataFromApiTest() {
+        MarkerPoint empty = new MarkerPoint();
         MarkerPoint rome = new MarkerPoint(0, "Rome", 41.9027835,12.4963655);
         MarkerPoint m = this.map.getDataFromAPI("Rome", 0);
         assertEquals(m.getAddress(), rome.getAddress());
@@ -51,6 +52,15 @@ public class MapTest {
         MarkerPoint m = this.map.getDataFromAPI(entry1.getAddress(),entry1.getId());
         DiaryEntry result = map.getEntryFromLatLng(m.getLatitute() , m.getLongitute() );
         assertEquals(result.getTitle(), entry1.getTitle());
+    }
+
+    /**
+     * Test checks if no entry returns, when wrong longitute and latitute
+     */
+    @Test
+    void getNullfromLatLngTest() {
+        DiaryEntry result = map.getEntryFromLatLng(42.1324 , 12.4342 );
+        assertEquals(result, null);
     }
 
 

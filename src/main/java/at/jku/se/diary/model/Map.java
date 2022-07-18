@@ -37,13 +37,11 @@ public class Map {
     public ArrayList<Marker> getMarker() {
         ArrayList<DiaryEntry> entries = this.diary.getEntryList();
         ArrayList<Marker> markers = new ArrayList<>();
-
         for (DiaryEntry e : entries) {
             if (e.getAddress() != null) {
                 MarkerPoint m = this.getDataFromAPI(e.getAddress(), e.getId());
-                MarkerOptions markerOptions1 = new MarkerOptions().position(new LatLong(m.getLatitute(),
-                        m.getLongitute()));
-                Marker pos = new Marker(markerOptions1);
+                Marker pos = new Marker(new MarkerOptions().position(new LatLong(m.getLatitute(),
+                        m.getLongitute())));
                 markers.add(pos);
             }
         }
@@ -53,27 +51,23 @@ public class Map {
     /**
      * @param address to get the latitute and longitute for the address
      * @param index set the index of the markerpoint to the id of the diary entry
-     * @return a markerpoint, with the correct latitute and longitute of the location and has also the id of the matching diary entry
+     * @return a markerpoint, with the correct latitute and longitute of the location
+     * and has also the id of the matching diary entry
      */
     public MarkerPoint getDataFromAPI(String address, Integer index) {
         address = address.replace(" ", "");
         try {
-            HttpResponse<JsonNode> apiResponse = Unirest.get("https://maps.googleapis.com/maps/api/geocode/json?address="
-                    + address + "&key=AIzaSyClUxzPhXoJKME9PHBo1wH-HBYej7901dM").asJson();
+            HttpResponse<JsonNode> apiResponse = Unirest.get("https://maps.googleapis.com/maps/api/" + "" +
+                    "geocode/json?address=" + address + "&key=AIzaSyClUxzPhXoJKME9PHBo1wH-HBYej7901dM").asJson();
             JSONObject myObj = apiResponse.getBody().getObject();
             JSONObject results = null;
-            try {
-                JSONArray resultsArray = myObj.getJSONArray("results");
-                results = resultsArray.getJSONObject(0);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            if(results == null) {
-                throw new IllegalArgumentException("Bad Request");
-            }
+            JSONArray resultsArray = myObj.getJSONArray("results");
+            results = resultsArray.getJSONObject(0);
+
             JSONObject geometry = results.getJSONObject("geometry");
             JSONObject location = geometry.getJSONObject("location");
-            MarkerPoint m = new MarkerPoint(index, address, location.getDouble("lat"), location.getDouble("lng"));
+            MarkerPoint m = new MarkerPoint(index, address,
+                    location.getDouble("lat"), location.getDouble("lng"));
             markerPointArrayList.add(m);
             return m;
         } catch (Exception e) {
@@ -85,7 +79,8 @@ public class Map {
     /**
      * @param lat to get the matching markerpoint
      * @param lng  to get the matching markerpoint
-     * @return a diary entry, which is matching with the location of lat and lng. If no Entry matches, the method will return null
+     * @return a diary entry, which is matching with the location of lat and lng. If no Entry matches,
+     * the method will return null
      */
     public DiaryEntry getEntryFromLatLng(double lat, double lng) {
         MarkerPoint markerp;

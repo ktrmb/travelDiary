@@ -7,7 +7,6 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -40,9 +39,8 @@ public class Map {
         for (DiaryEntry e : entries) {
             if (e.getAddress() != null) {
                 MarkerPoint m = this.getDataFromAPI(e.getAddress(), e.getId());
-                Marker pos = new Marker(new MarkerOptions().position(new LatLong(m.getLatitute(),
-                        m.getLongitute())));
-                markers.add(pos);
+                markers.add(new Marker(new MarkerOptions().position(new LatLong(m.getLatitute(),
+                        m.getLongitute()))));
             }
         }
         return markers;
@@ -71,9 +69,8 @@ public class Map {
             markerPointArrayList.add(m);
             return m;
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Location not found");
         }
-        return null;
     }
 
     /**
@@ -83,12 +80,10 @@ public class Map {
      * the method will return null
      */
     public DiaryEntry getEntryFromLatLng(double lat, double lng) {
-        MarkerPoint markerp;
         for(MarkerPoint mp : markerPointArrayList) {
             if(mp.getLatitute() == lat && mp.getLongitute() == lng){
-                markerp = mp;
                 for(DiaryEntry e: diary.getEntryList() ) {
-                    if(e.getId() == markerp.getId()) {
+                    if(e.getId() == mp.getId()) {
                         return e;
                     }
                 }

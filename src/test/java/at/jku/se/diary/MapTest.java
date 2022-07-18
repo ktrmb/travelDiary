@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MapTest {
 
@@ -55,12 +56,48 @@ public class MapTest {
     }
 
     /**
+     * test checks if null returns, when function is called with longitude and latitude of the address,
+     * but the id does not match of markerpoint and entry
+     */
+    @Test
+    void getNullWhenIdDoesNotMatch() {
+        MarkerPoint m = this.map.getDataFromAPI(entry1.getAddress(),5);
+        DiaryEntry result = map.getEntryFromLatLng(m.getLatitute() , m.getLongitute() );
+        assertNull(result);
+    }
+
+    /**
      * Test checks if no entry returns, when wrong longitute and latitute
      */
     @Test
     void getNullfromLatLngTest() {
         DiaryEntry result = map.getEntryFromLatLng(42.1324 , 12.4342 );
         assertEquals(result, null);
+    }
+
+
+    /**
+     * Test checks if no entry returns, when only wrong longitute
+     */
+    @Test
+    void getNullfromLatTest() {
+        DiaryEntry result = map.getEntryFromLatLng(42.1324 , 19.4342 );
+        assertEquals(result, null);
+    }
+
+    /**
+     * test checks if function throws error, when entry has no location
+     */
+    @Test
+    public void exceptionWhenNoLocationTest() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            this.map.getDataFromAPI("", 0);
+        });
+
+        String expectedMessage = "Location not found";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
 

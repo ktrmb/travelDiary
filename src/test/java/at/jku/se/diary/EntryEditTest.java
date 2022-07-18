@@ -12,6 +12,12 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ *
+ * this class is for testing the EntryEdit class
+ * @author Team E
+ *
+ */
 public class EntryEditTest {
 
     private Diary diary;
@@ -26,7 +32,7 @@ public class EntryEditTest {
     private EntryEdit entryEdit1;
 
     /**
-     * Creating some test-data
+     * creating some test-data
      */
     void setUp(){
         try {
@@ -48,7 +54,7 @@ public class EntryEditTest {
     }
 
     /**
-     * Testing the setter and getter
+     * to test the setter and getter
      */
     @Test
     public void setAndGetEntryTest(){
@@ -61,7 +67,10 @@ public class EntryEditTest {
     }
 
     /**
-     * Testing whether a diaryEntry can be deleted
+     * to test whether a diaryEntry can be deleted correctly
+     * Important note: to run this test a jpg-picture with the name "picDelete1" has to be
+     * manually saved into the "pictures" folder. If this picture disappears after
+     * running the test, the test has been passed.
      */
     @Test
     public void deleteEntryTest() throws Exception {
@@ -87,11 +96,11 @@ public class EntryEditTest {
     }
 
     /**
-     * Testing the default Constructor without Parameter
+     * testing the default constructor without Parameter
      */
     @Test
     public void defaultConstructorTest() throws Exception {
-         entryEdit1 = new EntryEdit();
+        entryEdit1 = new EntryEdit();
         assertEquals(entryEdit1.getEntry(), null);
     }
 }

@@ -17,11 +17,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
 /**
  *
  * this class contains the functions regarding editing entries and user interface
@@ -34,6 +35,9 @@ public class EntryEditController {
     private final Diary diary = HelloFX.diary;
     private final EntryEdit e = new EntryEdit();
     private Stage stage;
+    private String defaultPic = "defaultPic.png";
+    private String journalListScene = "JournalList";
+    private String defaultPicPath = "file:src/pictures/defaultPic.png";
 
     @FXML
     private Button btnCancel;
@@ -74,11 +78,19 @@ public class EntryEditController {
         txtDate.setValue(entry.getDate());
         txtText.setHtmlText(entry.getDiaryText());
 
-        String file = "file:src/pictures/";
-        pic1.setImage(new Image(file + entry.getPicture1()));
-        pic2.setImage(new Image(file + entry.getPicture2()));
-        pic3.setImage(new Image(file + entry.getPicture3()));
-
+        if(entry.getPicture1().contains("/") || entry.getPicture1().contains("\\")){
+            Image i1 = new Image(entry.getPicture1());
+            pic1.setImage(i1);
+            Image i2 = new Image(entry.getPicture2());
+            pic2.setImage(i2);
+            Image i3 = new Image(entry.getPicture3());
+            pic3.setImage(i3);
+        }else{
+            String file = "file:src/pictures/";
+            pic1.setImage(new Image(file + entry.getPicture1()));
+            pic2.setImage(new Image(file + entry.getPicture2()));
+            pic3.setImage(new Image(file + entry.getPicture3()));
+        }
         e.setEntry(entry);
     }
 
@@ -95,7 +107,7 @@ public class EntryEditController {
      */
     @FXML
     void cancelEdit(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("JournalList", btnCancel.getScene());
+        SceneSwitch s = new SceneSwitch(journalListScene, btnCancel.getScene());
         s.switchScene();
     }
 
@@ -109,10 +121,11 @@ public class EntryEditController {
         int oldId = entry.getId();
         diary.getEntryList().remove(entry);
 
-        diary.createNewEntry(oldId, txtDate.getValue(), txtTitel.getText(), txtAdress.getText(), txtText.getHtmlText(),
-                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl() ,entry.getStructuredInfo());
+        diary.createNewEntry(oldId, txtDate.getValue(), txtTitel.getText(), txtAdress.getText(),
+                txtText.getHtmlText(), pic1.getImage().getUrl(), pic2.getImage().getUrl(),
+                pic3.getImage().getUrl() ,entry.getStructuredInfo());
 
-        SceneSwitch s = new SceneSwitch("JournalList", btnSave.getScene());
+        SceneSwitch s = new SceneSwitch(journalListScene, btnSave.getScene());
         s.switchScene();
     }
 
@@ -124,7 +137,7 @@ public class EntryEditController {
     @FXML
     void deleteEntry(MouseEvent event) throws IOException, JAXBException {
         e.deleteEntry();
-        SceneSwitch s = new SceneSwitch("JournalList", btnDelete.getScene());
+        SceneSwitch s = new SceneSwitch(journalListScene, btnDelete.getScene());
         s.switchScene();
     }
 
@@ -138,12 +151,16 @@ public class EntryEditController {
         entry.setDate(txtDate.getValue());
         entry.setAddress(txtAdress.getText());
         entry.setDiaryText(txtText.getHtmlText());
+        entry.setPicture1(pic1.getImage().getUrl());
+        entry.setPicture2(pic2.getImage().getUrl());
+        entry.setPicture3(pic3.getImage().getUrl());
 
         SceneSwitch s = new SceneSwitch("StructInformationView", btnShowStructuredInfo.getScene());
         s.switchSceneStructInfoController(entry);
     }
 
     /**
+     * to show the selected picture in the first imageview
      * @param event button clicked to edit first picture
      */
     @FXML
@@ -154,6 +171,7 @@ public class EntryEditController {
         }
     }
     /**
+     * to show the selected picture in the second imageview
      * @param event button clicked to edit second picture
      */
     @FXML
@@ -164,6 +182,7 @@ public class EntryEditController {
         }
     }
     /**
+     * to show the selected picture in the third imageview
      * @param event button clicked to edit third picture
      */
     @FXML
@@ -175,6 +194,7 @@ public class EntryEditController {
     }
 
     /**
+     * calls the method to delete the picture from the folder and sets the default picture
      * @param event button clicked to delete first picture
      */
     @FXML
@@ -182,11 +202,12 @@ public class EntryEditController {
         if(!entry.getPicture1().contains("default")){
             String fileName = "src/pictures/image" + entry.getId() + "_1.jpg";
             e.deletePicFile(fileName);
-            pic1.setImage(new Image("file:src/pictures/defaultPic.png"));
-            entry.setPicture1("default.png");
+            pic1.setImage(new Image(defaultPicPath));
+            entry.setPicture1(defaultPic);
         }
     }
     /**
+     * calls the method to delete the picture from the folder and sets the default picture
      * @param event button clicked to delete second picture
      */
     @FXML
@@ -194,11 +215,12 @@ public class EntryEditController {
         if(!entry.getPicture2().contains("default")){
             String fileName = "src/pictures/image" + entry.getId() + "_2.jpg";
             e.deletePicFile(fileName);
-            pic2.setImage(new Image("file:src/pictures/defaultPic.png"));
-            entry.setPicture2("default.png");
+            pic2.setImage(new Image(defaultPicPath));
+            entry.setPicture2(defaultPic);
         }
     }
     /**
+     * calls the method to delete the picture from the folder and sets the default picture
      * @param event button clicked to delete third picture
      */
     @FXML
@@ -206,26 +228,31 @@ public class EntryEditController {
         if(!entry.getPicture3().contains("default")){
             String fileName = "src/pictures/image" + entry.getId() + "_3.jpg";
             e.deletePicFile(fileName);
-            pic3.setImage(new Image("file:src/pictures/defaultPic.png"));
-            entry.setPicture3("default.png");
+            pic3.setImage(new Image(defaultPicPath));
+            entry.setPicture3(defaultPic);
         }
     }
 
     /**
+     * calls the method to open a new window with the first picture
      * @param event button clicked to view only the first picture
      */
     @FXML
     void enlargePic1(MouseEvent event) {
         openNewWindowWithPic(entry.getPicture1());
     }
+
     /**
+     * calls the method to open a new window with the second picture
      * @param event button clicked to view only the second picture
      */
     @FXML
     void enlargePic2(MouseEvent event) {
         openNewWindowWithPic(entry.getPicture2());
     }
+
     /**
+     * calls the method to open a new window with the third picture
      * @param event button clicked to view only the third picture
      */
     @FXML

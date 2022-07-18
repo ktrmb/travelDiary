@@ -18,19 +18,21 @@ import javafx.stage.Stage;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-
-
+/**
+ *
+ * this class handles the methods and action events of creating a completely new DiaryEntry
+ * @author Team E
+ *
+ */
 public class DiaryEntryController implements Initializable {
     private Diary diary = HelloFX.diary;
     private Stage stage;
-    private DiaryEntry newEntry;
 
     @FXML
     private TextField address;
@@ -53,45 +55,65 @@ public class DiaryEntryController implements Initializable {
     @FXML
     private String selectedCategory;
 
+    /**
+     * to switch to another scene (= Journal List Page)
+     * @param mouseEvent clicked to switch the scene
+     * @throws IOException
+     */
     @FXML
-    void showJournalListPage(MouseEvent mouseEvent) throws IOException {
+    public void showJournalListPage(MouseEvent mouseEvent) throws IOException {
         if(diary.getCurrentEntry() != null) {
             diary.setCurrentEntry(null);
         }
         SceneSwitch s = new SceneSwitch("JournalList", btnJournalList.getScene());
         s.switchScene();
     }
+
+    /**
+     * calls the methods in the Diary class to create a new ID and a new DiaryEntry
+     * @param event clicked to create a new DiaryEntry
+     * @throws JAXBException
+     */
     @FXML
-    void addEntry(ActionEvent event) throws JAXBException {
+    public void addEntry(ActionEvent event) throws JAXBException {
         int id = diary.createID();
-
-        System.out.println(" DIe url" + pic1.getImage().getUrl());
-
         diary.createNewEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(),
-                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl(), new ArrayList<StructInformation>());
+                pic1.getImage().getUrl(), pic2.getImage().getUrl(), pic3.getImage().getUrl(),
+                new ArrayList<StructInformation>());
     }
 
+    /**
+     * to show the selected picture in the first imageview
+     * @param mouseEvent clicked to add a new picture
+     */
     @FXML
-    public void addPic1(MouseEvent mouseEvent) throws FileNotFoundException {
+    public void addPic1(MouseEvent mouseEvent){
         File selectedFile = diary.addPic(stage);
         if(selectedFile!=null){
-            //Image image = new Image(String.valueOf(selectedFile));
             pic1.setImage(new Image(String.valueOf(selectedFile)));
         }
     }
+
+    /**
+     * to show the selected picture in the second imageview
+     * @param mouseEvent clicked to add a new picture
+     */
     @FXML
     public void addPic2(MouseEvent mouseEvent) {
         File selectedFile = diary.addPic(stage);
         if(selectedFile!=null){
-            //Image image = new Image(selectedFile.toURI().toString());
             pic2.setImage(new Image(selectedFile.toURI().toString()));
         }
     }
+
+    /**
+     * to show the selected picture in the third imageview
+     * @param mouseEvent clicked to add a new picture
+     */
     @FXML
     public void addPic3(MouseEvent mouseEvent) {
         File selectedFile = diary.addPic(stage);
         if(selectedFile!=null){
-            //Image image = new Image(selectedFile.toURI().toString());
             pic3.setImage(new Image(selectedFile.toURI().toString()));
         }
     }
@@ -135,80 +157,6 @@ public class DiaryEntryController implements Initializable {
         currentEntry.setPicture3(pic3.getImage().getUrl());
         diary.setCurrentEntry(currentEntry);
     }
-
-
-
-
-
-/*    @FXML
-    void addEntry(ActionEvent event) throws JAXBException {
-        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
-
-       if(diary.getCurrentEntry() != null) {
-            structuredInfo = diary.getCurrentEntry().getStructuredInfo();
-            diary.setCurrentEntry(null);
-        }
-        int id = diary.getEntryList().size() + 1;
-
-        newEntry = new DiaryEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(), structuredInfo);
-
-        //Bilder zuerst in ordner "pictures" speichern und dann in das newDiary Objekt speichern
-        //Bild1:
-        String defaultPic = "Icons/pic.png";
-        if(!pic1.getImage().getUrl().contains(defaultPic)){
-            System.out.println("**** url: " + pic1.getImage().getUrl());
-            String imgName1 = newEntry.saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
-            newEntry.setPicture1(imgName1);
-        }
-        //Bild 2:
-        if(!pic2.getImage().getUrl().contains(defaultPic)){
-            String imgName2 = newEntry.saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
-            newEntry.setPicture2(imgName2);
-        }
-        //Bild 3:
-        if(!pic3.getImage().getUrl().contains(defaultPic)){
-            String imgName3 = newEntry.saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
-            newEntry.setPicture3(imgName3);
-        }
-
-        diary.addNewEntry(newEntry);
-    }*/
-
-/*    @FXML
-    void addEntry(ActionEvent event) throws JAXBException {
-
-        ArrayList<StructInformation> structuredInfo = new ArrayList<>();
-
-        if(diary.getCurrentEntry() != null) {
-            structuredInfo = diary.getCurrentEntry().getStructuredInfo();
-            diary.setCurrentEntry(null);
-        }
-        int id = diary.getEntryList().size() + 1;
-
-        newEntry = new DiaryEntry(id, date.getValue(), title.getText(), address.getText(), diaryText.getHtmlText(), structuredInfo);
-
-        //Bilder zuerst in ordner "pictures" speichern und dann in das newDiary Objekt speichern
-        //Bild1:
-        String defaultPic = "Icons/pic.png";
-        if(!pic1.getImage().getUrl().contains(defaultPic)){
-            System.out.println("**** url: " + pic1.getImage().getUrl());
-            String imgName1 = newEntry.saveImageToFile(pic1.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_1"));
-            newEntry.setPicture1(imgName1);
-        }
-        //Bild 2:
-        if(!pic2.getImage().getUrl().contains(defaultPic)){
-            String imgName2 = newEntry.saveImageToFile(pic2.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_2"));
-            newEntry.setPicture2(imgName2);
-        }
-        //Bild 3:
-        if(!pic3.getImage().getUrl().contains(defaultPic)){
-            String imgName3 = newEntry.saveImageToFile(pic3.getImage().getUrl(), (String.valueOf(newEntry.getId())+"_3"));
-            newEntry.setPicture3(imgName3);
-        }
-
-        diary.addNewEntry(newEntry);
-    }*/
-
 }
 
 

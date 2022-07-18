@@ -11,7 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
@@ -60,7 +65,7 @@ public class JournalListController {
     private Button btnResetFilter;
 
     /**
-     * loads table with entries and filters ???
+     * loads table with entries uses default Filter, respectively applies used filters from the user immediately
      */
     public void initialize() {
         filterStarsBox.getItems().addAll("Stars", "1.0", "2.0", "3.0", "4.0", "5.0");
@@ -81,7 +86,7 @@ public class JournalListController {
         applyHelpTextBox.setVisible(false);
         filterTitle.setText("");
         filterText.setText("Text");
-        filterDateFromBox.setValue(LocalDate.of(2022, 01, 01));
+        filterDateFromBox.setValue(LocalDate.of(2022, 1, 1));
         filterDateToBox.setValue(LocalDate.of(2022, 12, 31));
         filterCategoryBox.setValue("Category");
         filterStructInfo.setText("Structured Info");
@@ -90,14 +95,21 @@ public class JournalListController {
         FilteredList<DiaryEntry> filteredList = new FilteredList<>(diaryE);
         tVjournalList.setItems(filteredList);
         filteredList.predicateProperty().bind(Bindings.createObjectBinding(() -> diaryEntry ->
-                        ((diaryEntry.getTitle().toLowerCase().contains(filterTitle.getText().toLowerCase())) || (filterTitle.getText().isEmpty()))
+                        ((diaryEntry.getTitle().toLowerCase().contains(filterTitle.getText().toLowerCase()))
+                                || (filterTitle.getText().isEmpty()))
                                 && ((applyHelpTextBox.getText().equals("")))
-                                && ((diaryEntry.getDiaryText().toLowerCase().contains(filterText.getText().toLowerCase())) || (filterText.getText().isEmpty()) || filterText.getText().equals("Text"))
-                                && (diaryEntry.getDate().isAfter(filterDateFromBox.getValue()) || (diaryEntry.getDate().isEqual(filterDateFromBox.getValue())))
-                                && (diaryEntry.getDate().isBefore(filterDateToBox.getValue()) || diaryEntry.getDate().isEqual(filterDateToBox.getValue()))
-                                && ((diary.filterCategories(diaryEntry, filterCategoryBox.getValue())) || (filterCategoryBox.getValue().equals("Category")))
-                                && ((diary.filterStructInfoText(diaryEntry, filterStructInfo.getText())) || (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
-                                && (diary.filterStars(diaryEntry, filterStarsBox.getValue()) || (filterStarsBox.getValue().equals("Stars"))),
+                                && ((diaryEntry.getDiaryText().toLowerCase().contains(filterText.getText().toLowerCase())) ||
+                                (filterText.getText().isEmpty()) || filterText.getText().equals("Text"))
+                                && (diaryEntry.getDate().isAfter(filterDateFromBox.getValue()) ||
+                                (diaryEntry.getDate().isEqual(filterDateFromBox.getValue())))
+                                && (diaryEntry.getDate().isBefore(filterDateToBox.getValue()) ||
+                                diaryEntry.getDate().isEqual(filterDateToBox.getValue()))
+                                && ((diary.filterCategories(diaryEntry, filterCategoryBox.getValue())) ||
+                                (filterCategoryBox.getValue().equals("Category")))
+                                && ((diary.filterStructInfoText(diaryEntry, filterStructInfo.getText())) ||
+                                (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
+                                && (diary.filterStars(diaryEntry, filterStarsBox.getValue())
+                                || (filterStarsBox.getValue().equals("Stars"))),
                 applyHelpTextBox.textProperty(),
                 filterTitle.textProperty(),
                 filterText.textProperty(),
@@ -108,11 +120,16 @@ public class JournalListController {
                 filterStarsBox.converterProperty()
         ));
     }
+
+    /**
+     * sets all filters to default values
+     * @param event button clicked to reset all filters
+     */
     @FXML
     void resetFilter(ActionEvent event) {
         filterTitle.setText("");
         filterText.setText("Text");
-        filterDateFromBox.setValue(LocalDate.of(2022, 01, 01));
+        filterDateFromBox.setValue(LocalDate.of(2022, 1, 1));
         filterDateToBox.setValue(LocalDate.of(2022, 12, 31));
         filterCategoryBox.setValue("Category");
         filterStructInfo.setText("Structured Info");
@@ -120,21 +137,20 @@ public class JournalListController {
     }
 
     @FXML
-    void filterDateFrom(ActionEvent event) {
+    private void filterDateFrom(ActionEvent event) {
+        applyHelpTextBox.setText("");
+    }
+    @FXML
+    private void filterDateTo(ActionEvent event) {
         applyHelpTextBox.setText("");
     }
 
     @FXML
-    void filterDateTo(ActionEvent event) {
-        applyHelpTextBox.setText("");
-    }
-
-    @FXML
-    void filterCategory(ActionEvent event) {
+    private void filterCategory(ActionEvent event) {
         applyHelpTextBox.setText("");
     }
     @FXML
-    void filterStars(ActionEvent event) {
+    private void filterStars(ActionEvent event) {
         applyHelpTextBox.setText("");
     }
 

@@ -75,35 +75,4 @@ public class CategoryListController implements Initializable {
         HelloFX.diary.getCategories().remove(deletedCategory);
         HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
     }
-
-
-/*    @FXML
-    void showStructInfoPage(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("StructInformationView", btnOk.getScene());
-        s.switchScene();
-    }*/
-/*    @FXML
-    void showStructInfoPage(MouseEvent event) throws IOException {
-
-        try {
-            Scene scene = btnOk.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-            StructuredInfoController controller = loader.getController();
-            controller.setEntryEdit(diaryEntry);
-            scene.setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /*    @FXML
-    void showStructInfoPage(MouseEvent event) throws IOException {
-        Scene scene = lVcategoryList.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-        scene.setRoot(root);
-    }*/
 }

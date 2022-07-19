@@ -64,18 +64,20 @@ public class StructuredInfoController {
         }
 
         public void setStructInfo(){
-                TableColumn<StructInformation, String> columnCategory = new TableColumn<StructInformation, String>("Category");
+                TableColumn<StructInformation, String> columnCategory =
+                        new TableColumn<StructInformation, String>("Category");
                 columnCategory.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getCategory())));
 
-                TableColumn<StructInformation, Double> columnStars = new TableColumn<StructInformation, Double>("Stars");
+                TableColumn<StructInformation, Double> columnStars =
+                        new TableColumn<StructInformation, Double>("Stars");
                 columnStars.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStars()));
 
-                TableColumn<StructInformation, String> columnInfo = new TableColumn<StructInformation, String>("Information");
+                TableColumn<StructInformation, String> columnInfo =
+                        new TableColumn<StructInformation, String>("Information");
                 columnInfo.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStructuredText()));
 
                 tableList.getColumns().addAll(columnCategory, columnStars, columnInfo);
 
-                //End UI
                 if (diary.getCurrentEntry() != null) {
                         if (diary.getCurrentEntry().getStructuredInfo() != null) {
                                 ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(
@@ -102,7 +104,6 @@ public class StructuredInfoController {
 
         @FXML
         void addToList(ActionEvent event) {
-                //UI
                 StructInformation structInfo = new StructInformation(tableList.getItems().size(),
                         selectedCategory, rating.getRating() , structuredText.getText());
                 tableList.getItems().add(structInfo);
@@ -124,7 +125,8 @@ public class StructuredInfoController {
                         entryEdit.setStructuredInfo(infos);
                         try{
                                 Scene scene = btnAdd.getScene();
-                                URL url = new File("src/main/java/at/jku/se/diary/view/EntryEdit.fxml").toURI().toURL();
+                                URL url = new File("src/main/java/at/jku/se/diary/view/" +
+                                        "EntryEdit.fxml").toURI().toURL();
                                 FXMLLoader loader = new FXMLLoader(url);
                                 Parent root = loader.load();
 
@@ -140,9 +142,8 @@ public class StructuredInfoController {
 
         @FXML
         void deleteStructuredInfo(MouseEvent event) {
-
-            //    tableList.getItems().remove(tableList.getSelectionModel().getSelectedItem().getId());
-                tableList.getItems().remove(tableList.getItems().indexOf(tableList.getSelectionModel().getSelectedItem()));
+                tableList.getItems().remove(tableList.getItems()
+                        .indexOf(tableList.getSelectionModel().getSelectedItem()));
         }
 
 
@@ -156,7 +157,8 @@ public class StructuredInfoController {
 
                 try {
                         Scene scene = btnAdd.getScene();
-                        URL url = new File("src/main/java/at/jku/se/diary/view/CategoryList.fxml").toURI().toURL();
+                        URL url = new File("src/main/java/at/jku/se/diary/view/" +
+                                "CategoryList.fxml").toURI().toURL();
                         FXMLLoader loader = new FXMLLoader(url);
                         Parent root = loader.load();
                         CategoryListController cController = loader.getController();
@@ -170,41 +172,5 @@ public class StructuredInfoController {
         public void selectCategory(ActionEvent event){
                 this.selectedCategory = Objects.equals(category.getValue(), "") ? " " : category.getValue();
         }
-
-
-
-
-        /*        public void initialize() {
-
-                //UI
-                TableColumn<StructInformation, String> columnCategory = new TableColumn<StructInformation, String>("Category");
-                columnCategory.setCellValueFactory(c -> new SimpleStringProperty((c.getValue().getCategory())));
-
-                TableColumn<StructInformation, Double> columnStars = new TableColumn<StructInformation, Double>("Stars");
-                columnStars.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStars()));
-
-                TableColumn<StructInformation, String> columnInfo = new TableColumn<StructInformation, String>("Information");
-                columnInfo.setCellValueFactory(c -> new SimpleObjectProperty(c.getValue().getStructuredText()));
-
-                tableList.getColumns().addAll(columnCategory, columnStars, columnInfo);
-
-                //End UI
-
-                if (diary.getCurrentEntry() != null) {
-                        if (diary.getCurrentEntry().getStructuredInfo() != null) {
-                                ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(
-                                        diary.getCurrentEntry().getStructuredInfo());
-                                tableList.setItems(diaryE);
-                        }
-                } else {
-                        System.out.println("2. jz wird inizialized" );
-
-                        SwingUtilities.invokeLater(() -> setInfo());
-
-                }
-                //set category
-                category.getItems().addAll(diary.getCategories());
-                category.setOnAction(this::selectCategory);
-        }*/
 
 }

@@ -8,10 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javax.swing.*;
+import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.bind.JAXBException;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  *
@@ -50,7 +55,7 @@ public class SelectFileLocationController {
         FileNameExtensionFilter filter = new FileNameExtensionFilter ("XML-File","XML");
         JFileChooser saveas = new JFileChooser();
         saveas.setDialogTitle("Save File at ...");
-        saveas.setFileFilter((javax.swing.filechooser.FileFilter) filter);
+        saveas.setFileFilter(filter);
 
         int userSelection = saveas.showSaveDialog(saveas);
         if (userSelection == JFileChooser.APPROVE_OPTION) {

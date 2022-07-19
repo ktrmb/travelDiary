@@ -238,12 +238,20 @@ public class Diary {
         return false;
     }
 
-
+    /**
+     * save set backup file bath to variable
+     * @param path to be saved
+     * @throws JAXBException
+     */
     public void setDiaryFilePath (String path) throws JAXBException {
         this.diaryFilePath = path;
-        //diaryDB.writeDiary(this, diaryFile);
     }
 
+    /**
+     * get saved backup file path
+     * @return backup file path
+     * @throws JAXBException
+     */
     public String getDiaryFilePath () throws JAXBException {
         return diaryFilePath;
     }

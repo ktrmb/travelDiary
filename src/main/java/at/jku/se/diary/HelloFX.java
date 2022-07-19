@@ -24,7 +24,7 @@ public class HelloFX extends Application {
 
     @Override
     public void start(Stage stage) throws IOException{
-        Scene journalList = new Scene(loadFXML("JournalList"), 640, 480);
+        Scene journalList = new Scene(loadFXML(), 640, 480);
         stage.setScene(journalList);
         stage.show();
     }
@@ -34,10 +34,9 @@ public class HelloFX extends Application {
         diaryDB.writeDiary(diary, diaryFile);
     }
 
-    private static Parent loadFXML(String diaryEntryView) throws IOException{
-        URL url = new File("src/main/java/at/jku/se/diary/view/" + diaryEntryView + ".fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        return root;
+    private static Parent loadFXML() throws IOException{
+        URL url = new File("src/main/java/at/jku/se/diary/view/" + "JournalList" + ".fxml").toURI().toURL();
+        return FXMLLoader.load(url);
     }
 
     public static void main(String[] args) {

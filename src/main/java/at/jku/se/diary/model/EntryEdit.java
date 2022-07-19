@@ -1,7 +1,5 @@
 package at.jku.se.diary.model;
-
 import at.jku.se.diary.HelloFX;
-
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;

@@ -34,9 +34,9 @@
         <date>2022-07-18</date>
         <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;p&gt;&lt;span style="font-family: &amp;quot;&amp;quot;;"&gt;Liebes Reisetagebuch, heute waren wir in Paris, .....&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>6</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
+        <picture1>file:src/pictures/defaultPic.png</picture1>
+        <picture2>file:src/pictures/defaultPic.png</picture2>
+        <picture3>file:src/pictures/defaultPic.png</picture3>
         <structuredInfo>
             <category>Bauwerke</category>
             <id>0</id>

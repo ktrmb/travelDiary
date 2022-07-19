@@ -4,7 +4,6 @@ import at.jku.se.diary.model.DiaryEntry;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -15,9 +14,9 @@ import java.net.URL;
  *
  */
 public class SceneSwitch {
-    private String newScene;
-    private Scene scene;
-    private String pathToViews = "src/main/java/at/jku/se/diary/view/";
+    private final String newScene;
+    private final Scene scene;
+    private final String pathToViews = "src/main/java/at/jku/se/diary/view/";
 
     /**
      * @param newScene fxml file name of scene to switch to
@@ -39,7 +38,7 @@ public class SceneSwitch {
     }
 
     /**
-     * special scene switch so pass variables between controllers
+     * special scene switch to pass variables between controllers
      * @param entry gets passed from EntryEditController to StructuredInformationController
      * @throws IOException
      */
@@ -53,7 +52,7 @@ public class SceneSwitch {
     }
 
     /**
-     * special scene switch so pass variables between controllers
+     * special scene switch to pass variables between controllers
      * @param entry gets passed from JournalListController to EntryEditController
      * @throws IOException
      */

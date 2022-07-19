@@ -277,8 +277,8 @@ public class EntryEditController {
             stage.setScene(new Scene(root));
             stage.setTitle("enlarge Picture");
             stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 }

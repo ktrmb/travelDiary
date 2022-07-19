@@ -118,7 +118,12 @@ public class DiaryEntryController implements Initializable {
         }
     }
 
-    //when the boolean CurrentEntry() of diary is true, the last entrydata is initialized
+
+    /**
+     * sets the UI Elements to the state it was before switching to structured info page
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (diary.getCurrentEntry() != null) {
@@ -135,8 +140,13 @@ public class DiaryEntryController implements Initializable {
         }
     }
 
+    /**
+     * to switch to another scene (= Structured Info) and safes current entries
+     * @param actionEvent clicked to switch the scene
+     * @throws IOException
+     */
     @FXML
-    public void addStructuredInfo(ActionEvent actionEvent) throws IOException, JAXBException {
+    public void addStructuredInfo(ActionEvent actionEvent) throws IOException {
         if(diary.getCurrentEntry() == null) {
             this.safeEntry();
         }
@@ -144,8 +154,12 @@ public class DiaryEntryController implements Initializable {
         s.switchScene();
     }
 
-    //when the Categories or new structured Info is added, the current Input is saved in the diary Arraylist
-    public void safeEntry() throws JAXBException {
+    /**
+     *
+     * before new structured Info is added, the current Input is saved in diary currentEntry
+     *
+     */
+    public void safeEntry() {
         int id = diary.getEntryList().size() + 1;
         LocalDate currentDate = date.getValue();
         String currentTitle = ((title.getText() == null) ? " " : title.getText());

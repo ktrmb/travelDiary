@@ -3,13 +3,9 @@ package at.jku.se.diary.controller;
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.Map;
-
 import com.dlsc.gmapsfx.GoogleMapView;
-
 import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.*;
-
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import netscape.javascript.JSObject;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +21,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * this class creates a Map and handles all functions regarding marker and map
+ * @author Team E
+ *
+ */
 public class MapController implements Initializable {
 
     @FXML
@@ -44,29 +45,40 @@ public class MapController implements Initializable {
 
     Map location;
 
-
+    /**
+     * @param event button clicked, loads "JournalList" scene
+     * @throws IOException
+     */
     @FXML
     void showJournalList(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("JournalList", btnNewEntry.getScene());
         s.switchScene();
     }
 
+    /**
+     * @param event button clicked, loads "NewEntry" scene
+     * @throws IOException
+     */
     @FXML
     void showNewEntryPage(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("DiaryEntryView", btnNewEntry.getScene());
         s.switchScene();
     }
 
+    /**
+     * creates a Map
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
       location = new Map(HelloFX.diary);
 
         mapView.addMapInitializedListener(() -> configureMap());
-
     }
 
 
-    public void configureMap() {
+    private void configureMap() {
         MapOptions mapOptions = new MapOptions();
 
         mapOptions.center(new LatLong(41.890251, 12.492373))
@@ -89,6 +101,10 @@ public class MapController implements Initializable {
 
     }
 
+    /**
+     * switches to the Edit Entry Page with the entry of which marker was clicked
+     * @param entry diary entry
+     */
     void showSelectedEntry(DiaryEntry entry) {
         try {
             Scene scene = btnJournalList.getScene();

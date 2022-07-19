@@ -28,6 +28,12 @@ import java.util.Objects;
 
 import static at.jku.se.diary.HelloFX.diary;
 
+/**
+ *
+ * this class handles the methods and action events of structured infos of entries
+ * @author Team E
+ *
+ */
 public class StructuredInfoController {
 
         @FXML
@@ -54,15 +60,24 @@ public class StructuredInfoController {
         private String selectedCategory;
         private DiaryEntry entryEdit;
 
-
+        /**
+         * loads entry into interface before scene loads
+         */
         public void initialize() {
                 SwingUtilities.invokeLater(() -> setStructInfo());
         }
 
+        /**
+         * sets the entry, which is edited to the param entry
+         * @param entry the entry, which should be edited
+         */
         public void setEntryEdit (DiaryEntry entry) {
                 this.entryEdit = entry;
         }
 
+        /**
+         * creates a table and its Columns and initializes the categories
+         */
         public void setStructInfo(){
                 TableColumn<StructInformation, String> columnCategory =
                         new TableColumn<StructInformation, String>("Category");
@@ -91,6 +106,9 @@ public class StructuredInfoController {
                 category.setOnAction(this::selectCategory);
         }
 
+        /**
+         * creates a table and sets the structured information, if the entry has any
+         */
         public void setInfo () {
                 if(entryEdit.getStructuredInfo() != null) {
                         ObservableList<StructInformation> diaryE = FXCollections.observableArrayList(
@@ -102,6 +120,11 @@ public class StructuredInfoController {
                 }
         }
 
+
+        /**
+         * gets the input of the UI-Elements and adds Object to the table
+         * @param event when Button is clicked
+         */
         @FXML
         void addToList(ActionEvent event) {
                 StructInformation structInfo = new StructInformation(tableList.getItems().size(),
@@ -112,6 +135,10 @@ public class StructuredInfoController {
                 structuredText.setText("");
         }
 
+        /**
+         * gets the items of the table and adds all the structured infos to DiaryEntry
+         * @param event when Button is clicked
+         */
         @FXML
         void saveListOnClick(ActionEvent event) throws IOException {
                 ArrayList<StructInformation> infos = new ArrayList<>();
@@ -140,13 +167,20 @@ public class StructuredInfoController {
                 }
         }
 
+        /**
+         * deletes the selected structured info
+         * @param event when deletebutton is clicked
+         */
         @FXML
         void deleteStructuredInfo(MouseEvent event) {
                 tableList.getItems().remove(tableList.getItems()
                         .indexOf(tableList.getSelectionModel().getSelectedItem()));
         }
 
-
+        /**
+         * to switch to another scene (= Category Page)
+         * @param event when editCategorie is clicked
+         */
         @FXML
         void openEditCategories(MouseEvent event) {
                 if(diary.getCurrentEntry()==null){
@@ -169,6 +203,9 @@ public class StructuredInfoController {
                 }
         }
 
+        /**
+         * when no category is selected, the category will be set to an empty string
+         */
         public void selectCategory(ActionEvent event){
                 this.selectedCategory = Objects.equals(category.getValue(), "") ? " " : category.getValue();
         }

@@ -41,7 +41,7 @@ public class HelloFX extends Application {
 
     /**
      * stops the application and writes all important diary elements to XML file
-     * @throws IOException
+     * @throws JAXBException
      */
     @Override
     public void stop() throws JAXBException {

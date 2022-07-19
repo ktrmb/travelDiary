@@ -12,7 +12,12 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ *
+ * this class is for testing the Map and Markerpoint classes
+ * @author Team E
+ *
+ */
 public class MapTest {
 
     Map map;

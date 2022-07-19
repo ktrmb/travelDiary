@@ -5,6 +5,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ *
+ * this class is for testing the Structured Info class
+ * @author Team E
+ *
+ */
 public class StructuredInfoTest {
 
     String category = "Restaurant";

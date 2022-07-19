@@ -14,8 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import javax.xml.bind.JAXBException;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 
 public class HelloFX extends Application {
@@ -28,6 +27,11 @@ public class HelloFX extends Application {
         Scene journalList = new Scene(loadFXML("JournalList"), 640, 480);
         stage.setScene(journalList);
         stage.show();
+    }
+
+    @Override
+    public void stop() throws JAXBException {
+        diaryDB.writeDiary(diary, diaryFile);
     }
 
     private static Parent loadFXML(String diaryEntryView) throws IOException{

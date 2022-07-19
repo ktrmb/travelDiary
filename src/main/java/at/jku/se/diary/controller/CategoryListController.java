@@ -2,7 +2,6 @@ package at.jku.se.diary.controller;
 
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.DiaryEntry;
-import at.jku.se.diary.model.SceneSwitch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,10 +17,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+/**
+ *
+ * this class contains the functions regarding categories
+ * @author Team E
+ *
+ */
 public class CategoryListController implements Initializable {
-    //ListView list with two buttons in it
-    //https://stackoverflow.com/questions/53602086/having-two-button-in-a-list-view-in-javafx-with-xml-file
 
     @FXML
     private ImageView btnNewEntry;
@@ -35,9 +37,13 @@ public class CategoryListController implements Initializable {
     @FXML
     private Button btnOk;
 
-
     private DiaryEntry diaryEntry;
 
+    /**
+     * adds the existing categories to the tablelist
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lVcategoryList.getItems().addAll(HelloFX.diary.getCategories());
@@ -45,19 +51,30 @@ public class CategoryListController implements Initializable {
         lVcategoryList.setCellFactory(TextFieldListCell.forListView());
     }
 
+    /**
+     * adds the Userinputcategory to the tablelist and categorylist
+     * @param event clicked on add button
+     */
     @FXML
     void addToList(ActionEvent event) throws JAXBException {
         lVcategoryList.getItems().add(newCategory.getText());
         newCategory.clear();
     }
 
-
+    /**
+     * sets the entry, which is edited to the param entry
+     * @param diaryEntry the entry, which should be edited
+     */
     void setEntry(DiaryEntry diaryEntry){
         this.diaryEntry = diaryEntry;
     }
 
+    /**
+     * safes all the category to categoryList in diary and switches View to Structured Info Page
+     * @param event when Button is clicked
+     */
     @FXML
-    void saveListOnClick(ActionEvent event) throws JAXBException {
+    void saveListOnClick(ActionEvent event) {
         for(String category:lVcategoryList.getItems()) {
             if (!HelloFX.diary.getCategories().contains(category)) {
                 HelloFX.diary.getCategories().add(category);
@@ -71,6 +88,11 @@ public class CategoryListController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * deletes the selected category
+     * @param event when deletebutton is clicked
+     */
     @FXML
     void deleteCategory(MouseEvent event) throws JAXBException {
         String deletedCategory = lVcategoryList.getSelectionModel().getSelectedItem();
@@ -78,35 +100,4 @@ public class CategoryListController implements Initializable {
         HelloFX.diary.getCategories().remove(deletedCategory);
         HelloFX.diaryDB.writeDiary(HelloFX.diary, HelloFX.diaryFile);
     }
-
-
-/*    @FXML
-    void showStructInfoPage(MouseEvent event) throws IOException {
-        SceneSwitch s = new SceneSwitch("StructInformationView", btnOk.getScene());
-        s.switchScene();
-    }*/
-/*    @FXML
-    void showStructInfoPage(MouseEvent event) throws IOException {
-
-        try {
-            Scene scene = btnOk.getScene();
-            URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
-            StructuredInfoController controller = loader.getController();
-            controller.setEntryEdit(diaryEntry);
-            scene.setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /*    @FXML
-    void showStructInfoPage(MouseEvent event) throws IOException {
-        Scene scene = lVcategoryList.getScene();
-        URL url = new File("src/main/java/at/jku/se/diary/view/StructInformationView.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-        scene.setRoot(root);
-    }*/
 }

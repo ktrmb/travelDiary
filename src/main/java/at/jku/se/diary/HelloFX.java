@@ -14,8 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import javax.xml.bind.JAXBException;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 
 public class HelloFX extends Application {
@@ -25,20 +24,22 @@ public class HelloFX extends Application {
 
     @Override
     public void start(Stage stage) throws IOException{
-        Scene journalList = new Scene(loadFXML("JournalList"), 640, 480);
+        Scene journalList = new Scene(loadFXML(), 640, 480);
         stage.setScene(journalList);
         stage.show();
     }
 
-    private static Parent loadFXML(String diaryEntryView) throws IOException{
-        URL url = new File("src/main/java/at/jku/se/diary/view/" + diaryEntryView + ".fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        return root;
+    @Override
+    public void stop() throws JAXBException {
+        diaryDB.writeDiary(diary, diaryFile);
+    }
+
+    private static Parent loadFXML() throws IOException{
+        URL url = new File("src/main/java/at/jku/se/diary/view/" + "JournalList" + ".fxml").toURI().toURL();
+        return FXMLLoader.load(url);
     }
 
     public static void main(String[] args) {
-        //Beim Starten des Programms wird neues Diary-Objekt erzeugt,
-        // dass unten dann mit den bereits vorhandenen Daten(der XML) befüllt wird
         diaryDB = new DiaryDB();
         diaryFile = new File("diary.xml");
 

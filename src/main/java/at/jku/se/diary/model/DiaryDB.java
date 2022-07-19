@@ -6,12 +6,18 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.File;
 
+/**
+ *
+ * this class contains methods to read and write the xml file of Diary-data
+ * @author Team E
+ *
+ */
 public class DiaryDB {
 
     /**
-     * Writes the current diary-Object into the XML
-     * @param diary
-     * @param file
+     * writes the current diary-Object into the XML
+     * @param diary object which should be saved
+     * @param file in which the diary should be saved
      * @throws JAXBException
      */
     public void writeDiary(Diary diary, File file) throws JAXBException{
@@ -23,9 +29,9 @@ public class DiaryDB {
     }
 
     /**
-     * Reads the data from the XML
-     * @param file
-     * @return file, diary class
+     * reads the data from the XML
+     * @param file from which the data is read
+     * @return the unmarshaled file and the Diary.class
      * @throws JAXBException
      */
     public Diary readDiary(File file) throws JAXBException{

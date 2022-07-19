@@ -14,13 +14,16 @@ public class StructInformation {
     private double stars;
     private String structuredText;
 
+    /**
+     * standard constructor - needed to save the data in the xml file
+     */
     public StructInformation(){
     }
 
     /**
      *
      * @param id is the identifier for the structured information
-     * @param category to tag a structured information for better strucutring
+     * @param category to tag a structured information for better structuring
      * @param stars for the rating of the structured information
      * @param structuredText is the free text of a structured information
      */

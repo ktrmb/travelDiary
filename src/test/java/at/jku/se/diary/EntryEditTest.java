@@ -1,89 +1,106 @@
 package at.jku.se.diary;
 
+import at.jku.se.diary.model.Diary;
 import at.jku.se.diary.model.DiaryEntry;
 import at.jku.se.diary.model.EntryEdit;
 import at.jku.se.diary.model.StructInformation;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import org.junit.Test;
 
+import javax.xml.bind.JAXBException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ *
+ * this class is for testing the EntryEdit class
+ * @author Team E
+ *
+ */
 public class EntryEditTest {
 
-    private ArrayList<StructInformation> arrayListInfo = new ArrayList<>();
-    private final DiaryEntry entry = new DiaryEntry(99, LocalDate.now(), "Spanien-Reise", "Malaga",
-            "Liebes Tagebuch, ...", arrayListInfo);
-   // private Image defaultPic = new Image("file:src/pictures/defaultPic.png");
-    private Image pic = new Image("file:src/pictures/image99_1.jpg");
-    private EntryEdit ee = new EntryEdit();
+    private Diary diary;
+    private ArrayList<DiaryEntry> diaryEntryList;
+    private ArrayList<StructInformation> structInfoList;
+    private ArrayList<String> categoryList;
+    private DiaryEntry entry1;
+    private DiaryEntry entry2;
+    private String category1;
+    private String category2;
+    private EntryEdit entryEdit;
+    private EntryEdit entryEdit1;
 
     /**
-     * Method: setEntry(DiaryEntry entry)
+     * creating some test-data
      */
-    @Test
-    public void testSetEntry() {
-        ee.setEntry(entry);
-        assertEquals(ee.getEntry(), entry);
+    void setUp(){
+        try {
+            diary = new Diary();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        diaryEntryList = new ArrayList<>();
+        structInfoList = new ArrayList<>();
+        categoryList = new ArrayList<>();
+        entry1 = new DiaryEntry(1, LocalDate.now(),
+                "Ausflug Attersee", "Steinbach am Attersee", "Liebes Tagebuch ...", structInfoList);
+        entry2 = new DiaryEntry(2, LocalDate.now(),
+                "Ausflug Italien", "Rosolina Mare", "Liebes Tagebuch ...", structInfoList);
+        category1 = "Strand";
+        category2 = "Hotel";
+        entryEdit = new EntryEdit(diary);
     }
 
     /**
-     * Method: deleteEntry()
+     * to test the setter and getter
      */
     @Test
-    public void testDeleteEntry() throws Exception {
-        ee.deleteEntry();
-        assertNull(ee.getEntry());
+    public void setAndGetEntryTest(){
+        setUp();
+        assertEquals(entryEdit.getEntry(), null);
+        entryEdit.setEntry(entry1);
+        assertEquals(entryEdit.getEntry(), entry1);
+        entryEdit.setEntry(entry2);
+        assertEquals(entryEdit.getEntry(), entry2);
     }
 
     /**
-     * Method: editPic(ImageView pic)
-     */
-/*    @Test
-    public void testEditPic() throws Exception {
-        ee.editPic();
-    }*/
-
-    /**
-     * Method: deletePic(ImageView pic, String picNumber)
+     * to test whether a diaryEntry can be deleted correctly
+     * Important note: to run this test a jpg-picture with the name "picDelete1" has to be
+     * manually saved into the "pictures" folder. If this picture disappears after
+     * running the test, the test has been passed.
      */
     @Test
-    public void testDeletePic() throws Exception {
-     /*   ImageView picture = new ImageView();
-        picture.setImage(pic);
-        ee.deletePic(picture, "1");
-        System.out.print(picture.getImage().getUrl());
-*/
+    public void deleteEntryTest() throws Exception {
+        setUp();
+
+        diary.addNewEntry(entry1);
+        diary.addNewEntry(entry2);
+        assertTrue(diary.getEntryList().contains(entry1));
+        assertTrue(diary.getEntryList().contains(entry2));
+
+        entryEdit.setEntry(entry1);
+        entryEdit.deleteEntry();
+        assertFalse(diary.getEntryList().contains(entry1));
+        assertTrue(diary.getEntryList().contains(entry2));
+
+        diary.addNewEntry(entry1);
+        entry1.setPicture1("picDelete1.jpg");
+        entryEdit.setEntry(entry1);
+        assertTrue(diary.getEntryList().contains(entry1));
+        entryEdit.deleteEntry();
+        assertFalse(diary.getEntryList().contains(entry1));
 
     }
 
     /**
-     * Method: deletePicFile(String fileName)
+     * testing the default constructor without Parameter
      */
     @Test
-    public void testDeletePicFile() throws Exception {
-        //zusammenhängend mit testDeletePic
+    public void defaultConstructorTest() throws Exception {
+        entryEdit1 = new EntryEdit();
+        assertEquals(entryEdit1.getEntry(), null);
     }
-
-    /**
-     * Method: addPic()
-     */
-    @Test
-    public void testAddPic() throws Exception {
-//TODO: Test goes here...
-    }
-
-    /**
-     * Method: saveImageToFile(String fileImg, String id)
-     */
-    @Test
-    public void testSaveImageToFile() throws Exception {
-//TODO: Test goes here...
-    }
-
-
 }

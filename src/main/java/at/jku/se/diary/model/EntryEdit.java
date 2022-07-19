@@ -1,10 +1,5 @@
 package at.jku.se.diary.model;
-
 import at.jku.se.diary.HelloFX;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
@@ -13,51 +8,73 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ *
+ * this class contains part of the functions regarding deleting entries
+ * @author Team E
+ *
+ */
 public class EntryEdit {
     private final Diary diary;
     private DiaryEntry entry;
-    private Stage stage;
 
+    /**
+     * standard constructor which initialize the diary variable with the HelloFX.diary
+     */
     public EntryEdit () {
         this.diary = HelloFX.diary;
     }
 
+    /**
+     * second constructor necessary for the unit tests
+     * @param diary object
+     */
+    public EntryEdit (Diary diary) {
+        this.diary = diary;
+    }
+
+    /**
+     * @param entry currently edited entry
+     */
     public void setEntry(DiaryEntry entry) {
         this.entry = entry;
     }
 
+    /**
+     * @return entry
+     */
     public DiaryEntry getEntry () {
         return entry;
     }
 
-    public void deleteEntry() throws JAXBException, IOException {
+    /**
+     * Deletes the selected entry and pictures, and writes the xml file
+     * @throws JAXBException
+     */
+    public void deleteEntry() throws JAXBException {
         ArrayList<String> pictureNames = new ArrayList<>();
-        pictureNames.add(entry.getPicture1());
-        pictureNames.add(entry.getPicture2());
-        pictureNames.add(entry.getPicture3());
+        String pic1 = entry.getPicture1();
+        String pic2 = entry.getPicture2();
+        String pic3 = entry.getPicture3();
+        pictureNames.add(pic1);
+        pictureNames.add(pic2);
+        pictureNames.add(pic3);
         for(String pic : pictureNames){
             if(!pic.contains("default")){
-                deletePicFile("src/pictures/"+pic);
+                String filename = "src/pictures/"+pic;
+                deletePicFile(filename);
             }
         }
         diary.getEntryList().remove(entry);
-        HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
-    }
-
-    public void deletePic(ImageView pic, String picNumber) {
-        String fileName = "src/pictures/image" + entry.getId() + "_" + picNumber + ".jpg"; //pathToPic
-        deletePicFile(fileName);
-        pic.setImage(new Image("file:src/pictures/defaultPic.png")); //defaultPicPath
-        if(picNumber == "1"){
-            entry.setPicture1("defaultPic.png");
-        }else if(picNumber == "2"){
-            entry.setPicture2("defaultPic.png");
-        }else if(picNumber == "3"){
-            entry.setPicture3("defaultPic.png");
+        if(HelloFX.diaryDB != null){
+            HelloFX.diaryDB.writeDiary(diary, HelloFX.diaryFile);
         }
-       //entry.setPicture1("defaultPic.png"); //defaultPicName
     }
 
+    /**
+     * Actually deletes the selected picture (Helper-Method)
+     * @param fileName directory to pic file
+     */
     public void deletePicFile(String fileName) {
         File newFile = new File(fileName);
         String pathString = newFile.getAbsolutePath();

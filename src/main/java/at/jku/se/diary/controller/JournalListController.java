@@ -2,9 +2,7 @@ package at.jku.se.diary.controller;
 
 import at.jku.se.diary.HelloFX;
 import at.jku.se.diary.model.Diary;
-import at.jku.se.diary.model.DiaryDB;
 import at.jku.se.diary.model.DiaryEntry;
-import at.jku.se.diary.model.SceneSwitch;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,23 +11,27 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
-import javax.xml.bind.JAXBException;
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-
+/**
+ *
+ * this class loads the entry overview and the table filters
+ * @author Team E
+ *
+ */
 public class JournalListController {
 
     public DiaryEntry selectedEntry;
     public Diary diary = HelloFX.diary;
     ObservableList<DiaryEntry> diaryE;
-    public DiaryDB diaryDB = HelloFX.diaryDB;
-    public File diaryFile = HelloFX.diaryFile;
-
 
     @FXML
     private TableView<DiaryEntry> tVjournalList;
@@ -59,18 +61,22 @@ public class JournalListController {
     private TextField filterText;
     @FXML
     private TextField applyHelpTextBox;
+    @FXML
+    private Button btnResetFilter;
 
-    public void initialize() throws JAXBException {
+    /**
+     * loads table with entries uses default Filter, respectively applies used filters from the user immediately
+     */
+    public void initialize() {
         filterStarsBox.getItems().addAll("Stars", "1.0", "2.0", "3.0", "4.0", "5.0");
         filterCategoryBox.getItems().add("Category");
         filterCategoryBox.getItems().addAll(diary.getCategories());
 
+        TableColumn<DiaryEntry, String> titel = new TableColumn<>("Titel");
+        titel.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getId() + " " + c.getValue().getTitle()));
 
-        TableColumn<DiaryEntry, String> titel = new TableColumn<DiaryEntry, String>("Titel");
-        titel.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getTitle()));
-
-        TableColumn<DiaryEntry, LocalDate> date = new TableColumn<DiaryEntry, LocalDate>("Date");
-        date.setCellValueFactory(c -> new SimpleObjectProperty<LocalDate>(c.getValue().getDate()));
+        TableColumn<DiaryEntry, LocalDate> date = new TableColumn<>("Date");
+        date.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().getDate()));
 
         tVjournalList.getColumns().addAll(titel, date);
 
@@ -80,24 +86,30 @@ public class JournalListController {
         applyHelpTextBox.setVisible(false);
         filterTitle.setText("");
         filterText.setText("Text");
-        filterDateFromBox.setValue(LocalDate.of(2022, 06, 01));
-        filterDateToBox.setValue(LocalDate.of(2022, 07, 31));
+        filterDateFromBox.setValue(LocalDate.of(2022, 1, 1));
+        filterDateToBox.setValue(LocalDate.of(2022, 12, 31));
         filterCategoryBox.setValue("Category");
         filterStructInfo.setText("Structured Info");
         filterStarsBox.setValue("Stars");
 
-
         FilteredList<DiaryEntry> filteredList = new FilteredList<>(diaryE);
         tVjournalList.setItems(filteredList);
         filteredList.predicateProperty().bind(Bindings.createObjectBinding(() -> diaryEntry ->
-                        ((diaryEntry.getTitle().toLowerCase().contains(filterTitle.getText().toLowerCase())) || (filterTitle.getText().isEmpty()))
+                        ((diaryEntry.getTitle().toLowerCase().contains(filterTitle.getText().toLowerCase()))
+                                || (filterTitle.getText().isEmpty()))
                                 && ((applyHelpTextBox.getText().equals("")))
-                                && ((diaryEntry.getDiaryText().toLowerCase().contains(filterText.getText().toLowerCase())) || (filterText.getText().isEmpty()) || filterText.getText().equals("Text"))
-                                && (diaryEntry.getDate().isAfter(filterDateFromBox.getValue()) || (diaryEntry.getDate().isEqual(filterDateFromBox.getValue())))
-                                && (diaryEntry.getDate().isBefore(filterDateToBox.getValue()) || diaryEntry.getDate().isEqual(filterDateToBox.getValue()))
-                                && ((diary.filterCategories(diaryEntry, filterCategoryBox.getValue())) || (filterCategoryBox.getValue().equals("Category")))
-                                && ((diary.filterStructInfoText(diaryEntry, filterStructInfo.getText())) || (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
-                                && (diary.filterStars(diaryEntry, filterStarsBox.getValue()) || (filterStarsBox.getValue().equals("Stars"))),
+                                && ((diaryEntry.getDiaryText().toLowerCase().contains(filterText.getText().toLowerCase())) ||
+                                (filterText.getText().isEmpty()) || filterText.getText().equals("Text"))
+                                && (diaryEntry.getDate().isAfter(filterDateFromBox.getValue()) ||
+                                (diaryEntry.getDate().isEqual(filterDateFromBox.getValue())))
+                                && (diaryEntry.getDate().isBefore(filterDateToBox.getValue()) ||
+                                diaryEntry.getDate().isEqual(filterDateToBox.getValue()))
+                                && ((diary.filterCategories(diaryEntry, filterCategoryBox.getValue())) ||
+                                (filterCategoryBox.getValue().equals("Category")))
+                                && ((diary.filterStructInfoText(diaryEntry, filterStructInfo.getText())) ||
+                                (filterStructInfo.getText().isEmpty()) || (filterStructInfo.getText().equals("Structured Info")))
+                                && (diary.filterStars(diaryEntry, filterStarsBox.getValue())
+                                || (filterStarsBox.getValue().equals("Stars"))),
                 applyHelpTextBox.textProperty(),
                 filterTitle.textProperty(),
                 filterText.textProperty(),
@@ -109,59 +121,76 @@ public class JournalListController {
         ));
     }
 
+    /**
+     * sets all filters to default values
+     * @param event button clicked to reset all filters
+     */
     @FXML
-    void filterDateFrom(ActionEvent event) {
+    void resetFilter(ActionEvent event) {
+        filterTitle.setText("");
+        filterText.setText("Text");
+        filterDateFromBox.setValue(LocalDate.of(2022, 1, 1));
+        filterDateToBox.setValue(LocalDate.of(2022, 12, 31));
+        filterCategoryBox.setValue("Category");
+        filterStructInfo.setText("Structured Info");
+        filterStarsBox.setValue("Stars");
+    }
+
+    @FXML
+    private void filterDateFrom(ActionEvent event) {
+        applyHelpTextBox.setText("");
+    }
+    @FXML
+    private void filterDateTo(ActionEvent event) {
         applyHelpTextBox.setText("");
     }
 
     @FXML
-    void filterDateTo(ActionEvent event) {
-        applyHelpTextBox.setText("");
-    }
-
-    @FXML
-    void filterCategory(ActionEvent event) {
+    private void filterCategory(ActionEvent event) {
         applyHelpTextBox.setText("");
     }
     @FXML
-    void filterStars(ActionEvent event) {
+    private void filterStars(ActionEvent event) {
         applyHelpTextBox.setText("");
     }
 
+    /**
+     * @param event button clicked, loads "Map" scene
+     */
     @FXML
     void showMapPage(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("MapView", btnMap.getScene());
         s.switchScene();
     }
-
+    /**
+     * @param event button clicked, loads "NewEntry" scene
+     */
     @FXML
     void showNewEntryPage(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("DiaryEntryView", btnNewEntry.getScene());
         s.switchScene();
     }
-
+    /**
+     * @param event button clicked, loads "SelectFileLocation" scene
+     */
     @FXML
     void showSelectFileLocation(MouseEvent event) throws IOException {
         SceneSwitch s = new SceneSwitch("SelectFileLocation", btnSFL.getScene());
         s.switchScene();
     }
-
+    /**
+     * @param event saves selected table item
+     */
     @FXML
-    void saveSelectedItem(MouseEvent event) throws IOException {
+    void saveSelectedItem(MouseEvent event) {
         selectedEntry = tVjournalList.getSelectionModel().getSelectedItem();
     }
-
+    /**
+     * @param event button clicked, shows selected entry
+     */
     @FXML
-    void showSelectedEntry(MouseEvent event) {
-        try {
-            SceneSwitch s = new SceneSwitch("EntryEdit", btnShowEntry.getScene());
-            s.switchSceneEntryEditController(selectedEntry);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void showSelectedEntry(MouseEvent event) throws IOException {
+        SceneSwitch s = new SceneSwitch("EntryEdit", btnShowEntry.getScene());
+        s.switchSceneEntryEditController(selectedEntry);
     }
-
 }
-
-
-

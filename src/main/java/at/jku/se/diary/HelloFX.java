@@ -16,12 +16,22 @@ import javafx.stage.Stage;
 import javax.xml.bind.JAXBException;
 import java.io.*;
 import java.net.URL;
-
+/**
+ *
+ * this is the main class
+ * @author Team E
+ *
+ */
 public class HelloFX extends Application {
     public static Diary diary;
     public static DiaryDB diaryDB;
     public static File diaryFile;
 
+    /**
+     * starts the application and sets height and width and sets stage to journalList
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException{
         Scene journalList = new Scene(loadFXML(), 640, 480);
@@ -29,6 +39,10 @@ public class HelloFX extends Application {
         stage.show();
     }
 
+    /**
+     * stops the application and writes all important diary elements to XML file
+     * @throws IOException
+     */
     @Override
     public void stop() throws JAXBException {
         diaryDB.writeDiary(diary, diaryFile);
@@ -39,6 +53,9 @@ public class HelloFX extends Application {
         return FXMLLoader.load(url);
     }
 
+    /**
+     * reads the xml file, which contains all safed Diary Entries
+     */
     public static void main(String[] args) {
         diaryDB = new DiaryDB();
         diaryFile = new File("diary.xml");

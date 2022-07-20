@@ -27,18 +27,10 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="160.0" layoutX="181.0" layoutY="196.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="20.0" width="280.0" />
-      <Button fx:id="btnOk" layoutX="404.0" layoutY="386.0" mnemonicParsing="false" onAction="#saveListOnClick" prefHeight="25.0" prefWidth="48.0" text="OK">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
+      <Button fx:id="btnOk" layoutX="404.0" layoutY="386.0" mnemonicParsing="false" onAction="#saveListOnClick" prefHeight="25.0" prefWidth="48.0" text="OK" />
       <ListView fx:id="lVcategoryList" editable="true" layoutX="188.0" layoutY="196.0" prefHeight="159.0" prefWidth="264.0" />
       <TextField fx:id="newCategory" layoutX="190.0" layoutY="386.0" />
-      <Button fx:id="BtnAdd" layoutX="347.0" layoutY="386.0" mnemonicParsing="false" onAction="#addToList" prefHeight="25.0" prefWidth="48.0" text="Add">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
+      <Button fx:id="BtnAdd" layoutX="347.0" layoutY="386.0" mnemonicParsing="false" onAction="#addToList" prefHeight="25.0" prefWidth="48.0" text="Add" />
       <ImageView fx:id="delete" fitHeight="20.0" fitWidth="15.0" layoutX="445.0" layoutY="154.0" onMouseClicked="#deleteCategory" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../Icons/delete.png" />

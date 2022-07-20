@@ -21,12 +21,12 @@
          <Font name="System Bold" size="19.0" />
       </font>
    </Label>
-   <Label layoutX="110.0" layoutY="264.0" prefHeight="43.0" prefWidth="317.0" text="Saved File Location:" textAlignment="CENTER">
+   <Label layoutX="110.0" layoutY="264.0" prefHeight="43.0" prefWidth="317.0" text="Backup File Location:" textAlignment="CENTER">
       <font>
          <Font name="System Bold" size="13.0" />
       </font>
    </Label>
    <Button fx:id="btnSaveFileLocation" layoutX="463.0" layoutY="384.0" mnemonicParsing="false" onMouseClicked="#saveSetLocations" prefHeight="25.0" prefWidth="63.0" text="Save" />
-   <Button fx:id="btnSearchLocationFile" layoutX="243.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#saveFileLocation" text="Search Computer" />
-   <Label fx:id="txtSaveLocation" layoutX="243.0" layoutY="299.0" text="Label" />
+   <Button fx:id="btnSearchLocationFile" layoutX="248.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#saveFileLocation" text="Search Computer" />
+   <Label fx:id="txtSaveLocation" layoutX="248.0" layoutY="298.0" text="Label" />
 </Pane>

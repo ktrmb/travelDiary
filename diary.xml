@@ -6,7 +6,7 @@
     <categories>Restaurant</categories>
     <categories>Bauwerke</categories>
     <categories>Action</categories>
-    <diaryFilePath>C:\Users\misch\OneDrive\Desktop\test1</diaryFilePath>
+    <diaryFilePath>diary.xml</diaryFilePath>
     <entryList>
         <address>Barcelona</address>
         <date>2022-07-19</date>
@@ -56,9 +56,9 @@
         <date>2022-07-20</date>
         <diaryText>&lt;html dir="ltr"&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable="true"&gt;&lt;/body&gt;&lt;/html&gt;</diaryText>
         <id>8</id>
-        <picture1>defaultPic.png</picture1>
-        <picture2>defaultPic.png</picture2>
-        <picture3>defaultPic.png</picture3>
+        <picture1>file:src/pictures/defaultPic.png</picture1>
+        <picture2>file:src/pictures/defaultPic.png</picture2>
+        <picture3>file:src/pictures/defaultPic.png</picture3>
         <structuredInfo>
             <category>Strand</category>
             <id>0</id>

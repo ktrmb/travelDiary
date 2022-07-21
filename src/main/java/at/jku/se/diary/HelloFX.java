@@ -12,9 +12,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import javax.xml.bind.JAXBException;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class HelloFX extends Application {
